@@ -1,56 +1,276 @@
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-900 text-white">
+<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
 <head>
+  <!-- Meta Information -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – Enzo Gaggiotti</title>
+  <title>Contact - Enzo Gaggiotti | Développeur Infrastructure & Systèmes</title>
+  <meta name="description" content="Contactez Enzo Gaggiotti pour discuter de vos projets d'infrastructure, systèmes et développement. Étudiant à Epitech Lyon.">
+
+  <!-- External Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- CSS Frameworks & Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="p-6 border-b border-neutral-800 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-semibold">Enzo Gaggiotti</a>
-    <nav class="space-x-4 text-neutral-400 text-sm">
-      <a href="projets.html" class="hover:text-white">Projets</a>
-      <a href="about.html" class="hover:text-white">À propos</a>
-      <a href="contact.html" class="hover:text-white">Contact</a>
-    </nav>
+  <!-- ========== HEADER NAVIGATION ========== -->
+  <header id="main-header">
+    <div class="header-container">
+      <!-- Logo / Home Link -->
+      <a href="index.html#top" aria-label="Accueil">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+          EG
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav>
+        <a href="index.html#top">Accueil</a>
+        <a href="projects.html">Projets</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+
+      <!-- Header Controls (Theme Toggle + Mobile Menu) -->
+      <div class="flex items-center gap-4">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème" tabindex="0">
+          <i class="fas fa-moon moon-icon icon"></i>
+          <i class="fas fa-sun sun-icon icon"></i>
+        </button>
+
+        <!-- Mobile Hamburger Menu -->
+        <div class="burger-menu" onclick="toggleMobileMenu()">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav>
+        <a href="index.html#top" onclick="closeMobileMenu()">Accueil</a>
+        <a href="projects.html" onclick="closeMobileMenu()">Projets</a>
+        <a href="about.html" onclick="closeMobileMenu()">À propos</a>
+        <a href="contact.html" onclick="closeMobileMenu()" class="active">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Main content -->
-  <main class="flex-grow container mx-auto p-6 max-w-2xl space-y-8">
-    <h1 class="text-3xl font-bold text-center">Contactez-moi</h1>
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="flex-grow">
 
-    <form class="space-y-6">
-      <div>
-        <label class="block mb-1 text-sm text-neutral-400" for="name">Nom</label>
-        <input type="text" id="name" name="name" class="w-full bg-neutral-800 text-white border border-neutral-700 rounded-md px-4 py-2 focus:outline-none focus:border-white" required>
-      </div>
-      <div>
-        <label class="block mb-1 text-sm text-neutral-400" for="email">Email</label>
-        <input type="email" id="email" name="email" class="w-full bg-neutral-800 text-white border border-neutral-700 rounded-md px-4 py-2 focus:outline-none focus:border-white" required>
-      </div>
-      <div>
-        <label class="block mb-1 text-sm text-neutral-400" for="message">Message</label>
-        <textarea id="message" name="message" rows="5" class="w-full bg-neutral-800 text-white border border-neutral-700 rounded-md px-4 py-2 focus:outline-none focus:border-white" required></textarea>
-      </div>
-      <button type="submit" class="bg-white text-neutral-900 px-6 py-2 rounded-full hover:bg-neutral-200 transition">Envoyer</button>
-    </form>
+    <!-- ========== HERO SECTION ========== -->
+    <section class="flex flex-col items-center justify-center gap-20 px-6 pt-32 pb-20 fade-in relative overflow-visible">
+      <!-- Effet de fond subtil -->
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
 
-    <div class="text-center mt-10 space-y-2 text-neutral-400 text-sm">
-      <p>Ou contactez-moi directement :</p>
-      <p>
-        📧 <a href="mailto:enzo@example.com" class="text-blue-400 hover:underline">enzo@example.com</a><br>
-        🐙 <a href="https://github.com/enzogaggiotti" class="text-blue-400 hover:underline" target="_blank">github.com/enzogaggiotti</a>
-      </p>
-    </div>
+      <div class="text-center space-y-8 max-w-4xl mx-auto relative z-10">
+        <div class="inline-block">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+            Contactez-moi
+          </h1>
+        </div>
+
+        <p class="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 mb-10 leading-relaxed">
+          Discutons de vos projets et de la façon dont je peux vous aider
+        </p>
+
+        <!-- Decorative Animated Dots -->
+        <div class="flex justify-center gap-4 mt-8 opacity-60">
+          <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+          <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+          <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+      </div>
+
+      <!-- Enhanced Floating Decorative Elements -->
+      <div class="absolute -top-6 -left-4 group-hover:scale-125 transition-transform duration-500 hidden md:block">
+        <div class="w-3 h-3 bg-blue-400/60 rounded-full animate-pulse shadow-lg shadow-blue-400/30"></div>
+      </div>
+      <div class="absolute top-8 -right-6 group-hover:scale-125 transition-transform duration-500 hidden md:block" style="animation-delay: 1.5s;">
+        <div class="w-2 h-2 bg-purple-400/60 rounded-full animate-pulse shadow-lg shadow-purple-400/30"></div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT FORM SECTION ========== -->
+    <section class="py-20 px-6 bg-white dark:bg-transparent">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+
+          <!-- Contact Information -->
+          <div class="space-y-8 fade-in">
+            <div>
+              <h2 class="text-3xl font-bold mb-6 text-neutral-900 dark:text-white">Parlons de votre projet</h2>
+              <p class="text-neutral-600 dark:text-neutral-300 text-lg leading-relaxed mb-8">
+                Que vous ayez un projet d'infrastructure, une question technique ou simplement envie d'échanger, 
+                n'hésitez pas à me contacter. Je suis toujours intéressé par de nouveaux défis !
+              </p>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="space-y-6">
+              <div class="bg-white/90 dark:bg-white/10 backdrop-blur-sm border border-neutral-300/50 dark:border-white/20 p-6 rounded-2xl hover:bg-white dark:hover:bg-white/15 transition-all duration-300 shadow-lg">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-envelope text-white text-lg"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900 dark:text-white mb-1">Email</h3>
+                    <a href="mailto:enzo.gaggiotti@epitech.eu" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+                      enzo.gaggiotti@epitech.eu
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white/90 dark:bg-white/10 backdrop-blur-sm border border-neutral-300/50 dark:border-white/20 p-6 rounded-2xl hover:bg-white dark:hover:bg-white/15 transition-all duration-300 shadow-lg">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <i class="fab fa-linkedin text-white text-lg"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900 dark:text-white mb-1">LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/" target="_blank" class="text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 transition-colors">
+                      Enzo Gaggiotti
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white/90 dark:bg-white/10 backdrop-blur-sm border border-neutral-300/50 dark:border-white/20 p-6 rounded-2xl hover:bg-white dark:hover:bg-white/15 transition-all duration-300 shadow-lg">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-gradient-to-br from-gray-500 to-gray-600 rounded-full flex items-center justify-center">
+                    <i class="fab fa-github text-white text-lg"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900 dark:text-white mb-1">GitHub</h3>
+                    <a href="https://github.com/enzogagg" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 transition-colors">
+                      @enzogagg
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Response Time -->
+            <div class="bg-green-500/10 border border-green-500/20 p-4 rounded-xl">
+              <div class="flex items-center gap-3">
+                <i class="fas fa-clock text-green-500 dark:text-green-400"></i>
+                <span class="text-green-600 dark:text-green-300 text-sm">
+                  <strong>Temps de réponse :</strong> Généralement sous 24h
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="bg-white/90 dark:bg-white/10 backdrop-blur-sm border border-neutral-300/50 dark:border-white/20 p-8 rounded-2xl shadow-lg fade-in">
+            <form class="space-y-6" action="#" method="POST">
+              <div>
+                <label for="name" class="block text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2">
+                  Nom complet
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full bg-neutral-50 dark:bg-white/5 border border-neutral-300 dark:border-white/20 rounded-xl px-4 py-3 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  placeholder="Votre nom"
+                >
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2">
+                  Adresse email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full bg-neutral-50 dark:bg-white/5 border border-neutral-300 dark:border-white/20 rounded-xl px-4 py-3 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  placeholder="votre.email@exemple.com"
+                >
+              </div>
+
+              <div>
+                <label for="subject" class="block text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2">
+                  Sujet
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full bg-neutral-50 dark:bg-white/5 border border-neutral-300 dark:border-white/20 rounded-xl px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                >
+                  <option value="" class="text-neutral-500 dark:text-neutral-400">Sélectionnez un sujet</option>
+                  <option value="collaboration" class="text-neutral-900 dark:text-white">Collaboration de projet</option>
+                  <option value="stage" class="text-neutral-900 dark:text-white">Opportunité de stage</option>
+                  <option value="question" class="text-neutral-900 dark:text-white">Question technique</option>
+                  <option value="other" class="text-neutral-900 dark:text-white">Autre</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="message" class="block text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  class="w-full bg-neutral-50 dark:bg-white/5 border border-neutral-300 dark:border-white/20 rounded-xl px-4 py-3 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
+                  placeholder="Décrivez votre projet ou votre question..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full glass-button text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 group"
+              >
+                <span class="flex items-center justify-center gap-3">
+                  <i class="fas fa-paper-plane text-sm group-hover:rotate-12 transition-transform duration-300"></i>
+                  <span>Envoyer le message</span>
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="p-6 text-center text-neutral-500 text-sm border-t border-neutral-800">
-    &copy; 2025 Enzo Gaggiotti. Tous droits ré
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-neutral-200 dark:bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-600 dark:text-neutral-400">
+    <!-- Social Links -->
+    <div class="flex justify-center items-center gap-6 mb-4">
+      <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-neutral-900 dark:hover:text-white transition" title="Email" aria-label="Email">
+        <i class="fas fa-envelope text-2xl"></i>
+      </a>
+      <a href="https://github.com/enzogagg" class="hover:text-neutral-900 dark:hover:text-white transition" title="GitHub" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/" class="hover:text-neutral-900 dark:hover:text-white transition" title="LinkedIn" aria-label="LinkedIn">
+        <i class="fab fa-linkedin text-2xl"></i>
+      </a>
+    </div>
+
+    <!-- Copyright Notice -->
+    <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <!-- Custom JavaScript -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
