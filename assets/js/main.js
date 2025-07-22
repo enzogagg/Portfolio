@@ -17,38 +17,48 @@ const SCROLL_THRESHOLD = 100;
  */
 function toggleTheme() {
   const html = document.documentElement;
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  const isDark = html.classList.contains('dark');
 
-  // Update theme attribute
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
+  console.log('Toggle theme called. Current isDark:', isDark);
 
-  // Update Tailwind classes for compatibility
-  if (newTheme === 'light') {
-    html.classList.remove('bg-neutral-950');
-    html.classList.add('bg-white');
+  if (isDark) {
+    // Switch to light theme
+    html.classList.remove('dark');
+    html.classList.remove('bg-neutral-950', 'text-white');
+    html.classList.add('bg-white', 'text-gray-900');
+    localStorage.setItem('theme', 'light');
+    console.log('Switched to light theme');
   } else {
-    html.classList.remove('bg-white');
-    html.classList.add('bg-neutral-950');
+    // Switch to dark theme
+    html.classList.add('dark');
+    html.classList.remove('bg-white', 'text-gray-900');
+    html.classList.add('bg-neutral-950', 'text-white');
+    localStorage.setItem('theme', 'dark');
+    console.log('Switched to dark theme');
   }
 }
 
 /**
- * Load saved theme from localStorage or default to dark
+ * Load saved theme from localStorage or default to light
  * Applies theme on initial page load
  */
 function loadTheme() {
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem('theme') || 'light';
   const html = document.documentElement;
 
-  html.setAttribute('data-theme', savedTheme);
+  console.log('Loading theme:', savedTheme);
 
-  // Apply initial theme classes
-  if (savedTheme === 'light') {
-    html.classList.remove('bg-neutral-950');
-    html.classList.add('bg-white');
+  if (savedTheme === 'dark') {
+    html.classList.add('dark');
+    html.classList.remove('bg-white', 'text-gray-900');
+    html.classList.add('bg-neutral-950', 'text-white');
+  } else {
+    html.classList.remove('dark');
+    html.classList.remove('bg-neutral-950', 'text-white');
+    html.classList.add('bg-white', 'text-gray-900');
   }
+
+  console.log('Theme loaded. Current classes:', html.className);
 }
 
 // ========== MOBILE NAVIGATION ==========

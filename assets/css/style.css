@@ -49,7 +49,7 @@
 }
 
 /* Light theme color palette override */
-[data-theme="light"] {
+html:not(.dark) {
   --bg-primary: 255, 255, 255;       /* Primary background (white) */
   --bg-secondary: 243, 244, 246;     /* Secondary background (light gray) */
   --text-primary: 17, 24, 39;        /* Primary text (dark gray) */
@@ -84,13 +84,13 @@ header {
 }
 
 /* Light theme header adjustments */
-[data-theme="light"] header {
+html:not(.dark) header {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-bottom: 2px solid rgba(var(--text-secondary) / 0.5);
 }
 
 /* Dark theme header adjustments */
-[data-theme="dark"] header {
+html.dark header {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   border-bottom: 2px solid rgba(var(--text-secondary) / 0.8);
   background: rgba(var(--bg-primary) / 1);
@@ -345,8 +345,8 @@ nav a:hover::after {
   z-index: 2;
 }
 
-/* Light theme - move slider to right */
-[data-theme="light"] .theme-toggle::after {
+/* Light theme - move slider to right (when NOT in dark mode) */
+html:not(.dark) .theme-toggle::after {
   transform: translateX(24px);
 }
 
