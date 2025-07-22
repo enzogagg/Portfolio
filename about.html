@@ -1,44 +1,363 @@
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-900 text-white">
+<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
 <head>
+  <!-- Meta Information -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>À propos – Enzo Gaggiotti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos - Enzo Gaggiotti | Développeur Infrastructure & Systèmes</title>
+  <meta name="description" content="Découvrez le parcours d'Enzo Gaggiotti, étudiant à Epitech Lyon passionné par l'infrastructure, les systèmes et l'innovation technologique.">
+
+  <!-- External Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- CSS Frameworks & Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <style> body { font-family: 'Inter', sans-serif; } </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="p-6 border-b border-neutral-800 flex justify-between items-center animate-on-scroll">
-    <a href="index.html" class="text-xl font-semibold">Enzo Gaggiotti</a>
-    <nav class="space-x-4 text-neutral-400 text-sm">
-      <a href="projects.html" class="hover:text-white">Projets</a>
-      <a href="about.html" class="hover:text-white">À propos</a>
-      <a href="contact.html" class="hover:text-white">Contact</a>
-    </nav>
+  <!-- ========== HEADER NAVIGATION ========== -->
+  <header id="main-header">
+    <div class="header-container">
+      <!-- Logo / Home Link -->
+      <a href="index.html#top" aria-label="Accueil">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+          EG
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav>
+        <a href="index.html#top">Accueil</a>
+        <a href="projects.html">Projets</a>
+        <a href="about.html" class="active">À propos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Header Controls (Theme Toggle + Mobile Menu) -->
+      <div class="flex items-center gap-4">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème" tabindex="0">
+          <i class="fas fa-moon moon-icon icon"></i>
+          <i class="fas fa-sun sun-icon icon"></i>
+        </button>
+
+        <!-- Mobile Hamburger Menu -->
+        <div class="burger-menu" onclick="toggleMobileMenu()">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav>
+        <a href="index.html#top" onclick="closeMobileMenu()">Accueil</a>
+        <a href="projects.html" onclick="closeMobileMenu()">Projets</a>
+        <a href="about.html" onclick="closeMobileMenu()" class="active">À propos</a>
+        <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Main content -->
-  <main class="flex-grow container mx-auto p-6 max-w-3xl space-y-8">
-    <h1 class="text-3xl font-bold text-center animate-on-scroll">À propos de moi</h1>
-    <p class="text-neutral-400 text-lg leading-relaxed text-justify animate-on-scroll">
-      Je m'appelle Enzo Gaggiotti. Passionné par la technologie, l'élégance du design, et la qualité du code, je crée des projets
-      à la croisée de la simplicité et de la fonctionnalité. J’aime apprendre, créer et repousser mes limites. <br><br>
-      Ce portfolio me permet de partager mon travail et mon univers. Vous y trouverez une sélection de mes projets, mon parcours, et mes moyens de contact.
-    </p>
-    <p class="text-neutral-400 text-lg leading-relaxed text-justify animate-on-scroll">
-      En dehors du code, je m'intéresse aussi à l’autohébergement, l’aquascaping, et les systèmes domotiques intelligents.
-    </p>
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="flex-grow pt-24 pb-12">
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="py-20 px-6 text-center fade-in">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+          À propos de moi
+        </h1>
+        <p class="text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+          Découvrez mon parcours, mes passions et ma vision de la technologie
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== PERSONAL STORY SECTION ========== -->
+    <section class="py-16 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+
+          <!-- Personal Photo & Visual Elements -->
+          <div class="relative order-2 md:order-1">
+            <div class="relative w-80 h-80 mx-auto floating">
+              <!-- Background Glow -->
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
+
+              <!-- Main Container -->
+              <div class="relative w-full h-full rounded-full bg-gradient-to-br from-white/10 to-white/5 p-[2px] shadow-2xl">
+                <div class="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-gray-900 to-black">
+                  <img 
+                    src="assets/images/avatar-stylisé.png" 
+                    alt="Enzo Gaggiotti - Portrait professionnel"
+                    class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  />
+                  <!-- Subtle overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent rounded-full"></div>
+                </div>
+              </div>
+
+              <!-- Decorative Elements -->
+              <div class="absolute -top-4 -left-4 w-12 h-12 bg-blue-500/60 rounded-full animate-pulse"></div>
+              <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-purple-500/60 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+              <div class="absolute top-1/2 -right-8 w-8 h-8 bg-indigo-500/60 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+            </div>
+          </div>
+
+          <!-- Personal Story Content -->
+          <div class="space-y-8 order-1 md:order-2 fade-in">
+            <div>
+              <h2 class="text-3xl font-bold mb-6 text-white">Mon parcours</h2>
+              <div class="space-y-6 text-neutral-300 leading-relaxed text-lg">
+                <p>
+                  Actuellement étudiant en <strong class="text-blue-400">troisième année à Epitech Lyon</strong>, 
+                  je me consacre au développement de compétences solides en infrastructure, réseau et programmation système.
+                </p>
+                <p>
+                  Mon parcours m'a permis d'aborder les problématiques techniques avec <strong class="text-purple-400">méthode et pragmatisme</strong>, 
+                  en privilégiant l'efficacité et la qualité des solutions. Je suis particulièrement passionné par 
+                  l'optimisation des systèmes et l'automation intelligente.
+                </p>
+                <p>
+                  Motivé par l'innovation et la résolution de problèmes complexes, je recherche activement des 
+                  opportunités pour contribuer à des projets ambitieux tout en approfondissant mes connaissances 
+                  dans un environnement professionnel exigeant.
+                </p>
+              </div>
+            </div>
+
+            <!-- Key Stats -->
+            <div class="grid grid-cols-2 gap-6 pt-8">
+              <div class="glass-button p-6 rounded-xl text-center">
+                <div class="text-3xl font-bold text-blue-400 mb-2">3+</div>
+                <div class="text-sm text-neutral-400">Années d'études</div>
+              </div>
+              <div class="glass-button p-6 rounded-xl text-center">
+                <div class="text-3xl font-bold text-purple-400 mb-2">10+</div>
+                <div class="text-sm text-neutral-400">Projets réalisés</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS & EXPERTISE SECTION ========== -->
+    <section class="py-20 bg-neutral-900">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold mb-6">Compétences & Expertise</h2>
+          <p class="text-xl text-neutral-400">Domaines de spécialisation et technologies maîtrisées</p>
+        </div>
+
+        <!-- Skills Categories -->
+        <div class="grid md:grid-cols-3 gap-8">
+
+          <!-- System & Infrastructure -->
+          <div class="glass-button p-8 rounded-2xl fade-in">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <i class="fas fa-server text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-center">Systèmes & Infrastructure</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Administration Linux</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Virtualisation (Proxmox)</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Scripting Bash</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Gestion de services</li>
+            </ul>
+          </div>
+
+          <!-- Network & Security -->
+          <div class="glass-button p-8 rounded-2xl fade-in">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <i class="fas fa-network-wired text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-center">Réseau & Sécurité</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Configuration TCP/IP</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>pfSense & Firewall</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Unifi & Wi-Fi</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Diagnostic réseau</li>
+            </ul>
+          </div>
+
+          <!-- Programming & Development -->
+          <div class="glass-button p-8 rounded-2xl fade-in">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <i class="fas fa-code text-2xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-center">Programmation</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li><i class="fas fa-check text-green-400 mr-2"></i>C / C++ avancé</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Python & automation</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>Git & versioning</li>
+              <li><i class="fas fa-check text-green-400 mr-2"></i>ESP32 & IoT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INTERESTS & HOBBIES SECTION ========== -->
+    <section class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold mb-6">Centres d'intérêt</h2>
+          <p class="text-xl text-neutral-400">Au-delà du code, mes autres passions</p>
+        </div>
+
+        <!-- Interests Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- Home Automation -->
+          <div class="text-center group cursor-pointer fade-in">
+            <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-home text-3xl text-white"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Domotique</h3>
+            <p class="text-neutral-400 text-sm">Home Assistant, ESP32, automation intelligente</p>
+          </div>
+
+          <!-- Self-hosting -->
+          <div class="text-center group cursor-pointer fade-in">
+            <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-cloud text-3xl text-white"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Auto-hébergement</h3>
+            <p class="text-neutral-400 text-sm">Services personnels, Plex, NAS, sécurité</p>
+          </div>
+
+          <!-- Aquascaping -->
+          <div class="text-center group cursor-pointer fade-in">
+            <div class="w-20 h-20 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-fish text-3xl text-white"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Aquascaping</h3>
+            <p class="text-neutral-400 text-sm">Design aquatique, monitoring IoT, écosystèmes</p>
+          </div>
+
+          <!-- Technology Innovation -->
+          <div class="text-center group cursor-pointer fade-in">
+            <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-rocket text-3xl text-white"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Innovation Tech</h3>
+            <p class="text-neutral-400 text-sm">Nouvelles technologies, R&D, expérimentation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EDUCATION & TIMELINE SECTION ========== -->
+    <section class="py-20 bg-neutral-900">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16 fade-in">
+          <h2 class="text-4xl font-bold mb-6">Formation & Parcours</h2>
+          <p class="text-xl text-neutral-400">Mon évolution académique et professionnelle</p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="max-w-4xl mx-auto">
+          <div class="relative">
+            <!-- Timeline Line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+
+            <!-- Timeline Item 1 -->
+            <div class="relative flex items-center mb-12 fade-in">
+              <div class="w-1/2 pr-8 text-right">
+                <div class="glass-button p-6 rounded-xl">
+                  <h3 class="text-xl font-bold text-blue-400 mb-2">2022 - Présent</h3>
+                  <h4 class="text-lg font-semibold mb-2">Epitech Lyon</h4>
+                  <p class="text-neutral-400">Cursus Expert en Technologies de l'Information - Spécialisation systèmes et infrastructure</p>
+                </div>
+              </div>
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-neutral-950"></div>
+              <div class="w-1/2 pl-8"></div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="relative flex items-center mb-12 fade-in">
+              <div class="w-1/2 pr-8"></div>
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-purple-500 rounded-full border-4 border-neutral-950"></div>
+              <div class="w-1/2 pl-8">
+                <div class="glass-button p-6 rounded-xl">
+                  <h3 class="text-xl font-bold text-purple-400 mb-2">2021 - 2022</h3>
+                  <h4 class="text-lg font-semibold mb-2">Projets personnels</h4>
+                  <p class="text-neutral-400">Développement d'une passion pour l'infrastructure et l'automation domestique</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="relative flex items-center fade-in">
+              <div class="w-1/2 pr-8 text-right">
+                <div class="glass-button p-6 rounded-xl">
+                  <h3 class="text-xl font-bold text-indigo-400 mb-2">2020 - 2021</h3>
+                  <h4 class="text-lg font-semibold mb-2">Baccalauréat</h4>
+                  <p class="text-neutral-400">Baccalauréat général - Orientation vers les technologies de l'information</p>
+                </div>
+              </div>
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-indigo-500 rounded-full border-4 border-neutral-950"></div>
+              <div class="w-1/2 pl-8"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CALL TO ACTION SECTION ========== -->
+    <section class="py-20 text-center">
+      <div class="max-w-4xl mx-auto px-6 fade-in">
+        <h2 class="text-4xl font-bold mb-6">Travaillons ensemble</h2>
+        <p class="text-xl text-neutral-400 mb-12 leading-relaxed">
+          Intéressé par mon profil ? Discutons de vos projets et de la façon dont je peux contribuer à leur réussite.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <a href="contact.html" class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]">
+            <span class="flex items-center gap-3">
+              <i class="fas fa-envelope text-sm group-hover:rotate-12 transition-transform duration-300"></i>
+              <span>Me contacter</span>
+            </span>
+          </a>
+          <a href="projects.html" class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]">
+            <span class="flex items-center gap-3">
+              <i class="fas fa-folder-open text-sm group-hover:rotate-12 transition-transform duration-300"></i>
+              <span>Voir mes projets</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="p-6 text-center text-neutral-500 text-sm border-t border-neutral-800 animate-on-scroll">
-    &copy; 2025 Enzo Gaggiotti. Tous droits réservés.
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
+    <!-- Social Links -->
+    <div class="flex justify-center items-center gap-6 mb-4">
+      <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
+        <i class="fas fa-envelope text-2xl"></i>
+      </a>
+      <a href="https://github.com/enzogagg" class="hover:text-white transition" title="GitHub" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/" class="hover:text-white transition" title="LinkedIn" aria-label="LinkedIn">
+        <i class="fab fa-linkedin text-2xl"></i>
+      </a>
+    </div>
+
+    <!-- Copyright Notice -->
+    <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
   </footer>
 
+  <!-- ========== JAVASCRIPT ========== -->
+  <!-- Custom JavaScript -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>
