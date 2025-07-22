@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-neutral-900 text-white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Enzo Gaggiotti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="p-6 border-b border-neutral-800 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-semibold">Enzo Gaggiotti</a>
+    <nav class="space-x-4 text-neutral-400 text-sm">
+      <a href="projets.html" class="hover:text-white">Projets</a>
+      <a href="about.html" class="hover:text-white">À propos</a>
+      <a href="contact.html" class="hover:text-white">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-grow container mx-auto p-6 max-w-2xl space-y-8">
+    <h1 class="text-3xl font-bold text-center">Contactez-moi</h1>
+
+    <form class="space-y-6">
+      <div>
+        <label class="block mb-1 text-sm text-neutral-400" for="name">Nom</label>
+        <input type="text" id="name" name="name" class="w-full bg-neutral-800 text-white border border-neutral-700 rounded-md px-4 py-2 focus:outline-none focus:border-white" required>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm text-neutral-400" for="email">Email</label>
+        <input type="email" id="email" name="email" class="w-full bg-neutral-800 text-white border border-neutral-700 rounded-md px-4 py-2 focus:outline-none focus:border-white" required>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm text-neutral-400" for="message">Message</label>
+        <textarea id="message" name="message" rows="5" class="w-full bg-neutral-800 text-white border border-neutral-700 rounded-md px-4 py-2 focus:outline-none focus:border-white" required></textarea>
+      </div>
+      <button type="submit" class="bg-white text-neutral-900 px-6 py-2 rounded-full hover:bg-neutral-200 transition">Envoyer</button>
+    </form>
+
+    <div class="text-center mt-10 space-y-2 text-neutral-400 text-sm">
+      <p>Ou contactez-moi directement :</p>
+      <p>
+        📧 <a href="mailto:enzo@example.com" class="text-blue-400 hover:underline">enzo@example.com</a><br>
+        🐙 <a href="https://github.com/enzogaggiotti" class="text-blue-400 hover:underline" target="_blank">github.com/enzogaggiotti</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-6 text-center text-neutral-500 text-sm border-t border-neutral-800">
+    &copy; 2025 Enzo Gaggiotti. Tous droits ré

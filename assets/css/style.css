@@ -1,0 +1,905 @@
+/* =========================================
+   PORTFOLIO CSS STYLESHEET
+   Modern Interactive Portfolio Website
+   Author: Enzo Gaggiotti
+   ========================================= */
+
+/* ========== CORE ANIMATIONS ========== */
+/* Fade-in animation for scroll triggers */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Slide-up animation for enhanced entrance effects */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* Initial state for scroll-triggered animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  /* Note: transition removed to avoid conflicts with keyframe animations */
+}
+
+/* ========== CSS CUSTOM PROPERTIES (VARIABLES) ========== */
+/* Dark theme color palette */
+:root {
+  --bg-primary: 10, 10, 10;          /* Primary background (dark gray) */
+  --bg-secondary: 23, 23, 23;        /* Secondary background (lighter dark) */
+  --text-primary: 255, 255, 255;     /* Primary text (white) */
+  --text-secondary: 163, 163, 163;   /* Secondary text (gray) */
+  --accent: 59, 130, 246;            /* Accent color (blue) */
+}
+
+/* Light theme color palette override */
+[data-theme="light"] {
+  --bg-primary: 255, 255, 255;       /* Primary background (white) */
+  --bg-secondary: 243, 244, 246;     /* Secondary background (light gray) */
+  --text-primary: 17, 24, 39;        /* Primary text (dark gray) */
+  --text-secondary: 75, 85, 99;      /* Secondary text (medium gray) */
+  --accent: 59, 130, 246;            /* Accent color (blue - same as dark) */
+}
+
+/* ========== GLOBAL STYLES ========== */
+/* Base body styling with theme support */
+body {
+  font-family: 'Inter', sans-serif;
+  padding-top: 48px;                 /* Account for fixed header height */
+  background-color: rgb(var(--bg-primary));
+  color: rgb(var(--text-primary));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========== HEADER & NAVIGATION ========== */
+/* Fixed header with glassmorphism effect */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(15px);        /* Glassmorphism blur effect */
+  background: rgba(var(--bg-primary) / 0.98);
+  border-bottom: 2px solid rgba(var(--text-secondary) / 0.4);
+  box-shadow: 0 4px 20px rgba(var(--text-secondary) / 0.2);
+  z-index: 100;                       /* Ensure header stays on top */
+  height: 48px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Light theme header adjustments */
+[data-theme="light"] header {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(var(--text-secondary) / 0.5);
+}
+
+/* Dark theme header adjustments */
+[data-theme="dark"] header {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-bottom: 2px solid rgba(var(--text-secondary) / 0.8);
+  background: rgba(var(--bg-primary) / 1);
+}
+
+/* Header container with centered content */
+.header-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+}
+
+/* Logo styling with hover effects */
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;             /* Perfect circle */
+  object-fit: cover;
+  transition: filter 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: 2px solid rgba(var(--accent) / 0.5);
+}
+
+.logo-img:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+.logo-img:focus {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* ========== DESKTOP NAVIGATION ========== */
+/* Centered navigation menu */
+nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);        /* Perfect horizontal centering */
+  display: flex;
+  gap: 2rem;
+  font-size: 0.875rem;
+  color: rgb(var(--text-secondary));
+  font-weight: 300;
+  letter-spacing: 0.1em;              /* Subtle letter spacing for elegance */
+}
+
+/* Navigation link styling */
+nav a {
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+  line-height: 48px;                  /* Match header height */
+  position: relative;
+  padding: 0 4px;
+}
+
+/* Hover effects for navigation links */
+nav a:hover {
+  color: rgb(var(--text-primary));
+  transform: translateY(-1px);        /* Subtle lift effect */
+}
+
+/* Focus states for accessibility */
+nav a:focus {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+nav a:focus:not(:focus-visible) {
+  outline: none;                      /* Hide focus for mouse users */
+}
+
+/* Active navigation state */
+nav a.active {
+  color: rgb(var(--accent));
+}
+
+/* Animated underline effect */
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgb(var(--accent));
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;                        /* Expand underline on hover */
+}
+
+/* ========== MOBILE NAVIGATION ========== */
+/* Mobile menu overlay */
+.mobile-menu {
+  display: none;                      /* Hidden by default */
+  position: fixed;
+  top: 48px;                          /* Below header */
+  left: 0;
+  width: 100%;
+  background: rgba(var(--bg-primary) / 0.98);
+  backdrop-filter: blur(15px);        /* Consistent glassmorphism */
+  border-bottom: 2px solid rgba(var(--text-secondary) / 0.4);
+  box-shadow: 0 4px 20px rgba(var(--text-secondary) / 0.2);
+  padding: 20px;
+  transform: translateY(-100%);       /* Initially hidden above */
+  transition: transform 0.3s ease;
+}
+
+/* Dark theme mobile menu adjustments */
+[data-theme="dark"] .mobile-menu {
+  background: rgba(var(--bg-primary) / 1);
+  border-bottom: 2px solid rgba(var(--text-secondary) / 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Active state - slide down mobile menu */
+.mobile-menu.active {
+  transform: translateY(0);
+}
+
+/* Mobile navigation layout */
+.mobile-menu nav {
+  position: static;
+  transform: none;
+  flex-direction: column;             /* Stack vertically */
+  gap: 1rem;
+  text-align: center;
+}
+
+/* Mobile navigation link styling */
+.mobile-menu nav a {
+  line-height: 1.5;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu nav a:hover {
+  background: rgba(var(--text-secondary) / 0.1);
+}
+
+/* Hamburger menu button */
+.burger-menu {
+  display: none;                      /* Hidden on desktop */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+  padding: 8px;
+}
+
+/* Individual hamburger lines */
+.burger-line {
+  width: 20px;
+  height: 2px;
+  background: rgb(var(--text-primary));
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+/* Hamburger to X animation */
+.burger-menu.active .burger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+  opacity: 0;                         /* Hide middle line */
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* ========== THEME TOGGLE SWITCH ========== */
+/* Toggle switch container */
+.theme-toggle {
+  background: rgba(var(--text-secondary) / 0.2);
+  border: 1px solid rgba(var(--text-secondary) / 0.3);
+  border-radius: 20px;
+  width: 50px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  outline: none !important;
+}
+
+/* Hover effect for toggle */
+.theme-toggle:hover {
+  background: rgba(var(--text-secondary) / 0.3);
+}
+
+/* Focus state for accessibility */
+.theme-toggle:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(var(--accent) / 0.5);
+}
+
+.theme-toggle:active {
+  outline: none !important;
+}
+
+/* Theme icons positioning */
+.theme-toggle .icon {
+  font-size: 10px;
+  transition: color 0.3s ease;
+  z-index: 3;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* Moon icon (dark theme indicator) */
+.theme-toggle .moon-icon {
+  color: #6366f1;                     /* Purple color */
+  left: 2px;
+  top: 2px;
+}
+
+/* Sun icon (light theme indicator) */
+.theme-toggle .sun-icon {
+  color: #f59e0b;                     /* Yellow/orange color */
+  right: 4px;
+  top: 2px;
+}
+
+/* Toggle switch slider */
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: rgb(var(--text-primary));
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* Light theme - move slider to right */
+[data-theme="light"] .theme-toggle::after {
+  transform: translateX(24px);
+}
+
+/* ========== SCROLL ANIMATIONS ========== */
+/* Enhanced fade-in animation for scroll triggers */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating animation for avatar and hero elements */
+.floating {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);      /* Gentle floating effect */
+  }
+}
+
+/* ========== AVATAR SPECIAL EFFECTS ========== */
+/* Rotating halo effect behind floating avatar */
+.floating.group::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: conic-gradient(from 0deg, rgb(var(--accent)), transparent, rgb(var(--accent)));
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: -1;                        /* Behind the avatar */
+  animation: rotate 8s linear infinite;
+}
+
+/* Show halo on hover */
+.floating.group:hover::before {
+  opacity: 0.3;
+}
+
+/* Continuous rotation animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Light theme avatar border adjustment */
+[data-theme="light"] .floating.group .bg-green-500 {
+  border-color: rgb(var(--bg-primary));
+}
+
+/* ========== GLASSMORPHISM BUTTON EFFECTS ========== */
+/* Modern glass button with backdrop blur */
+.glass-button {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);        /* Glassmorphism effect */
+  -webkit-backdrop-filter: blur(16px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Shimmer effect on hover */
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.glass-button:hover::before {
+  left: 100%;                         /* Slide shimmer across button */
+}
+
+/* Light theme glass button styling */
+[data-theme="light"] .glass-button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: rgb(17, 24, 39);
+}
+
+[data-theme="light"] .glass-button::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+}
+
+/* Glass button hover effects */
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.02); /* Lift and scale effect */
+  box-shadow: 
+    0 20px 40px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Light theme hover effects */
+[data-theme="light"] .glass-button:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(59, 130, 246, 0.2);
+  box-shadow: 
+    0 20px 40px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  color: rgb(59, 130, 246);
+}
+
+/* Active state (click) effect */
+.glass-button:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* Focus state for accessibility */
+.glass-button:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.3),
+    0 8px 32px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Icon animations within buttons */
+.glass-button i {
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover i {
+  transform: scale(1.1);
+}
+
+/* ========== BUTTON PULSE ANIMATIONS ========== */
+/* Subtle pulse animation for glass buttons */
+.glass-button {
+  animation: buttonPulse 6s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Light theme button pulse */
+[data-theme="light"] .glass-button {
+  animation: buttonPulseLight 6s ease-in-out infinite;
+}
+
+@keyframes buttonPulseLight {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Focus outline for accessibility */
+.glass-button:focus {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* ========== CARD COMPONENTS ========== */
+/* Project card styling with hover effects */
+.project-card {
+  background: rgb(var(--bg-secondary));
+  border: 1px solid rgba(var(--text-secondary) / 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer effect for project cards */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(var(--accent) / 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.project-card:hover::before {
+  left: 100%;                         /* Slide shimmer across card */
+}
+
+/* Project card hover effects */
+.project-card:hover {
+  transform: translateY(-8px);        /* Lift effect */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(var(--accent) / 0.3);
+}
+
+/* Focus states for accessibility */
+.project-card:focus-within {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Category badge styling */
+.category-badge {
+  background: rgba(var(--text-primary) / 0.1);
+  color: rgb(var(--text-primary));
+  border: 1px solid rgba(var(--text-primary) / 0.2);
+}
+
+/* Light theme category badge adjustments */
+[data-theme="light"] .category-badge {
+  background: rgba(var(--text-primary) / 0.15);
+  border: 1px solid rgba(var(--text-primary) / 0.3);
+}
+
+/* ========== TECHNOLOGY CARDS ========== */
+/* Technology showcase card styling */
+.tech-card {
+  background: rgb(var(--bg-secondary));
+  border: 1px solid rgba(var(--text-secondary) / 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer effect for tech cards */
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(var(--accent) / 0.05), transparent);
+  transition: left 0.6s ease;
+}
+
+.tech-card:hover::before {
+  left: 100%;
+}
+
+/* Tech card hover effects */
+.tech-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-color: rgba(var(--accent) / 0.3);
+}
+
+.tech-card:focus-within {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Technology icon styling */
+.tech-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass reflection effect on tech icons */
+.tech-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+/* Tech icon hover animation */
+.tech-card:hover .tech-icon {
+  transform: scale(1.1) rotate(5deg);  /* Scale and rotate effect */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Staggered animation delays for tech cards */
+.tech-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tech-card:nth-child(1) { animation-delay: 0.1s; }
+.tech-card:nth-child(2) { animation-delay: 0.2s; }
+.tech-card:nth-child(3) { animation-delay: 0.3s; }
+.tech-card:nth-child(4) { animation-delay: 0.4s; }
+.tech-card:nth-child(5) { animation-delay: 0.5s; }
+.tech-card:nth-child(6) { animation-delay: 0.6s; }
+.tech-card:nth-child(7) { animation-delay: 0.7s; }
+.tech-card:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes techCardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+/* Mobile breakpoint adjustments */
+@media (max-width: 768px) {
+  /* Hide desktop navigation */
+  nav {
+    display: none;
+  }
+  
+  /* Show mobile hamburger menu */
+  .burger-menu {
+    display: flex;
+  }
+
+  /* Show mobile menu container */
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Reorder theme toggle for better mobile layout */
+  .theme-toggle {
+    order: -1;                        /* Move before hamburger menu */
+    margin-right: 12px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 640px) {
+  /* Full width buttons on small screens */
+  .glass-button {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ========== THEME-SPECIFIC ADJUSTMENTS ========== */
+/* Override Tailwind classes with theme variables */
+.bg-neutral-950 {
+  background-color: rgb(var(--bg-primary)) !important;
+}
+
+.bg-neutral-900 {
+  background-color: rgb(var(--bg-secondary)) !important;
+}
+
+.text-neutral-400 {
+  color: rgb(var(--text-secondary)) !important;
+}
+
+.text-neutral-300 {
+  color: rgb(var(--text-primary)) !important;
+}
+
+.text-white {
+  color: rgb(var(--text-primary)) !important;
+}
+
+.text-white\/70 {
+  color: rgba(var(--text-primary) / 0.7) !important;
+}
+
+/* Light theme specific text adjustments */
+[data-theme="light"] .text-white\/70 {
+  color: rgba(var(--text-primary) / 0.8) !important;
+}
+
+/* Light theme shadow adjustments */
+[data-theme="light"] .project-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .tech-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .tech-card:hover .tech-icon {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Light theme border adjustments */
+[data-theme="light"] .border-neutral-800 {
+  border-color: rgba(var(--text-secondary) / 0.2) !important;
+}
+
+/* Light theme gradient adjustments */
+[data-theme="light"] .floating.group .bg-gradient-to-b {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.1)) !important;
+}
+
+[data-theme="light"] .floating.group .bg-gradient-to-br {
+  background: linear-gradient(to bottom right, rgb(75, 85, 99), rgb(31, 41, 55)) !important;
+}
+
+/* Light theme card border adjustments */
+[data-theme="light"] .project-card {
+  border-color: rgba(var(--text-secondary) / 0.15);
+}
+
+[data-theme="light"] .tech-card {
+  border-color: rgba(var(--text-secondary) / 0.15);
+}
+
+/* Light theme category badge */
+[data-theme="light"] .category-badge {
+  background: rgba(var(--text-primary) / 0.08);
+  border: 1px solid rgba(var(--text-primary) / 0.2);
+  color: rgb(var(--text-primary));
+}
+
+/* Light theme link colors */
+[data-theme="light"] .text-blue-400 {
+  color: rgb(37, 99, 235) !important;
+}
+
+[data-theme="light"] .text-blue-400:hover {
+  color: rgb(29, 78, 216) !important;
+}
+
+[data-theme="light"] .text-green-400 {
+  color: rgb(34, 197, 94) !important;
+}
+
+/* Light theme footer */
+[data-theme="light"] footer {
+  background-color: rgb(var(--bg-secondary)) !important;
+  color: rgb(var(--text-secondary)) !important;
+}
+
+[data-theme="light"] footer a:hover {
+  color: rgb(var(--text-primary)) !important;
+}
+
+/* ========== PERFORMANCE & ACCESSIBILITY ========== */
+/* Global transition optimization */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Typography fixes for descender letters (g, j, p, q, y) */
+h1, .text-5xl, .text-7xl {
+  line-height: 1.4 !important;       /* Prevent letter clipping */
+  padding: 0.5rem 0 !important;      /* Add vertical padding */
+  overflow: visible !important;       /* Ensure descenders are visible */
+}
+
+/* ========== CUSTOM ANIMATIONS ========== */
+/* Slower title pulse animation */
+h1.animate-pulse {
+  animation: pulse 3s ease-in-out infinite !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;                     /* Subtle opacity change */
+  }
+}
+
+/* Decorative dots pulse animation */
+.animate-pulse {
+  animation: gentlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 0.6;                     /* Start/end at 60% opacity */
+  }
+  50% {
+    opacity: 1;                       /* Peak at 100% opacity */
+  }
+}
+
+/* ========== SCROLL BEHAVIOR ========== */
+/* Smooth scroll margin for anchor navigation */
+section {
+  scroll-margin-top: 60px;           /* Account for fixed header */
+}
+
+/* ========== PERFORMANCE HINTS ========== */
+/* Optimize animations with will-change property */
+.fade-in {
+  will-change: opacity, transform;
+}
+
+.tech-card, .project-card {
+  will-change: transform;
+}
+
+/* ========== ACCESSIBILITY - REDUCED MOTION ========== */
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .floating,
+  .tech-card,
+  .project-card,
+  .glass-button {
+    animation: none !important;       /* Disable animations */
+    transition: none !important;      /* Disable transitions */
+  }
+}

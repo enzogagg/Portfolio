@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-neutral-900 text-white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projets – Enzo Gaggiotti</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="p-6 border-b border-neutral-800 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-semibold">Enzo Gaggiotti</a>
+    <nav class="space-x-4 text-neutral-400 text-sm">
+      <a href="projects.html" class="hover:text-white">Projets</a>
+      <a href="about.html" class="hover:text-white">À propos</a>
+      <a href="contact.html" class="hover:text-white">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-grow container mx-auto p-6 space-y-12">
+    <h1 class="text-3xl font-bold text-center">Mes projets</h1>
+
+    <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Exemple de projet -->
+      <div class="bg-neutral-800 p-6 rounded-xl shadow hover:shadow-xl transition">
+        <h2 class="text-xl font-semibold mb-2">Nom du projet</h2>
+        <p class="text-neutral-400 text-sm">Brève description du projet ici. Technologies utilisées, objectifs, etc.</p>
+        <a href="#" class="inline-block mt-4 text-blue-400 hover:underline text-sm">Voir plus</a>
+      </div>
+
+      <!-- Duplique ce bloc pour d'autres projets -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-6 text-center text-neutral-500 text-sm border-t border-neutral-800">
+    &copy; 2025 Enzo Gaggiotti. Tous droits réservés.
+  </footer>
+</body>
+</html>
