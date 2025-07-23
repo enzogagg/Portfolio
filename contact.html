@@ -171,10 +171,10 @@
           </div>
 
           <!-- Contact Form -->
-          <div class="bg-white/10 backdrop-blur-sm border-2 border-white/20 p-8 rounded-2xl shadow-xl fade-in">
+          <div class="contact-form-enhanced p-8 rounded-2xl shadow-xl fade-in">
             <form class="space-y-6" action="#" method="POST">
               <div>
-                <label for="name" class="block text-base font-black text-white mb-2">
+                <label for="name" class="block text-base font-black contact-form-label-enhanced mb-2">
                   Nom complet
                 </label>
                 <input
@@ -182,13 +182,13 @@
                   id="name"
                   name="name"
                   required
-                  class="w-full bg-white/5 border-2 border-white/20 rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors font-semibold"
+                  class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors font-semibold"
                   placeholder="Votre nom"
                 >
               </div>
 
               <div>
-                <label for="email" class="block text-base font-black text-white mb-2">
+                <label for="email" class="block text-base font-black contact-form-label-enhanced mb-2">
                   Adresse email
                 </label>
                 <input
@@ -196,31 +196,31 @@
                   id="email"
                   name="email"
                   required
-                  class="w-full bg-white/5 border-2 border-white/20 rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors font-semibold"
+                  class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors font-semibold"
                   placeholder="votre.email@exemple.com"
                 >
               </div>
 
               <div>
-                <label for="subject" class="block text-base font-black text-white mb-2">
+                <label for="subject" class="block text-base font-black contact-form-label-enhanced mb-2">
                   Sujet
                 </label>
                 <select
                   id="subject"
                   name="subject"
                   required
-                  class="w-full bg-white/5 border-2 border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors font-semibold"
+                  class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors font-semibold"
                 >
-                  <option value="" class="text-neutral-400">Sélectionnez un sujet</option>
-                  <option value="collaboration" class="text-white">Collaboration de projet</option>
-                  <option value="stage" class="text-white">Opportunité de stage</option>
-                  <option value="question" class="text-white">Question technique</option>
-                  <option value="other" class="text-white">Autre</option>
+                  <option value="">Sélectionnez un sujet</option>
+                  <option value="collaboration">Collaboration de projet</option>
+                  <option value="stage">Opportunité de stage</option>
+                  <option value="question">Question technique</option>
+                  <option value="other">Autre</option>
                 </select>
               </div>
 
               <div>
-                <label for="message" class="block text-base font-black text-white mb-2">
+                <label for="message" class="block text-base font-black contact-form-label-enhanced mb-2">
                   Message
                 </label>
                 <textarea
@@ -228,7 +228,7 @@
                   name="message"
                   rows="5"
                   required
-                  class="w-full bg-white/5 border-2 border-white/20 rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-colors resize-none font-semibold"
+                  class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors resize-none font-semibold"
                   placeholder="Décrivez votre projet ou votre question..."
                 ></textarea>
               </div>

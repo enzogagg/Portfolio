@@ -1129,3 +1129,79 @@ html:not(.dark) .response-time-icon {
 html:not(.dark) .response-time-text {
   color: #15803d;
 }
+
+/* ========== CONTACT FORM ENHANCED THEME INTEGRATION ========== */
+/* Contact form container styling */
+.contact-form-enhanced {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Contact form fields styling */
+.contact-form-field-enhanced {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.contact-form-field-enhanced::placeholder {
+  color: rgba(163, 163, 163, 0.8);
+}
+
+.contact-form-field-enhanced:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.contact-form-label-enhanced {
+  color: white;
+}
+
+/* Light mode overrides */
+html:not(.dark) .contact-form-enhanced {
+  background: rgba(0, 0, 0, 0.03);
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+html:not(.dark) .contact-form-field-enhanced {
+  background: rgba(0, 0, 0, 0.02);
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  color: #111827;
+}
+
+html:not(.dark) .contact-form-field-enhanced::placeholder {
+  color: rgba(75, 85, 99, 0.7);
+}
+
+html:not(.dark) .contact-form-field-enhanced:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+html:not(.dark) .contact-form-label-enhanced {
+  color: #111827;
+  font-weight: 800;
+}
+
+/* Select dropdown specific styles */
+html:not(.dark) .contact-form-field-enhanced option {
+  background: #ffffff;
+  color: #111827;
+}
+
+html:not(.dark) .contact-form-field-enhanced option:first-child {
+  color: #6b7280;
+}
+
+/* Focus ring enhancement for accessibility */
+.contact-form-field-enhanced:focus {
+  outline: none;
+}
+
+html:not(.dark) .contact-form-field-enhanced:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
