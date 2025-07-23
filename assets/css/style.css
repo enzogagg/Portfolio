@@ -952,3 +952,26 @@ section {
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
+
+/* ========== CONTACT ICONS STYLING ========== */
+/* Email icon */
+.contact-icon-email {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+}
+
+/* LinkedIn icon */
+.contact-icon-linkedin {
+  background: linear-gradient(135deg, #a855f7, #9333ea) !important;
+}
+
+/* GitHub icon */
+.contact-icon-github {
+  background: linear-gradient(135deg, #374151, #4b5563) !important;
+}
+
+/* Ensure icons stay white */
+.contact-icon-email i,
+.contact-icon-linkedin i,
+.contact-icon-github i {
+  color: white !important;
+}
