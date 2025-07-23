@@ -460,7 +460,7 @@ html:not(.dark) .theme-toggle::after {
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  color: rgb(17, 24, 39);
+  color: rgb(31, 41, 55); /* Couleur plus foncée pour meilleur contraste */
 }
 
 [data-theme="light"] .glass-button::before {
@@ -484,7 +484,7 @@ html:not(.dark) .theme-toggle::after {
   box-shadow: 
     0 20px 40px rgba(59, 130, 246, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 1);
-  color: rgb(59, 130, 246);
+  color: rgb(59, 130, 246); /* Couleur bleue au hover pour l'interactivité */
 }
 
 /* Active state (click) effect */
@@ -902,4 +902,53 @@ section {
     animation: none !important;       /* Disable animations */
     transition: none !important;      /* Disable transitions */
   }
+}
+
+/* ========== SKILL TAGS ========== */
+/* Simplified skill tags with better theme support */
+.skill-tag-simple {
+  /* Glassmorphism base styling for dark theme */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  
+  /* Layout and positioning */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  
+  /* Typography for dark theme */
+  font-size: 0.875rem;
+  font-weight: 500;
+  
+  /* Transitions for smooth interactions */
+  transition: all 0.3s ease;
+  cursor: default;
+  
+  /* Shadow for depth */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover effects for skill tags */
+.skill-tag-simple:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Light theme adaptation for skill tags */
+[data-theme="light"] .skill-tag-simple {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .skill-tag-simple:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
