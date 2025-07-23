@@ -1,46 +1,331 @@
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-900 text-white">
+<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
 <head>
+  <!-- Meta Information -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projets – Enzo Gaggiotti</title>
+  <title>Projets - Enzo Gaggiotti | Portfolio & Réalisations</title>
+  <meta name="description" content="Découvrez les projets et réalisations d'Enzo Gaggiotti en infrastructure, développement et technologies modernes.">
+
+  <!-- External Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- CSS Frameworks & Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="p-6 border-b border-neutral-800 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-semibold">Enzo Gaggiotti</a>
-    <nav class="space-x-4 text-neutral-400 text-sm">
-      <a href="projects.html" class="hover:text-white">Projets</a>
-      <a href="about.html" class="hover:text-white">À propos</a>
-      <a href="contact.html" class="hover:text-white">Contact</a>
-    </nav>
+  <!-- ========== HEADER NAVIGATION ========== -->
+  <header id="main-header">
+    <div class="header-container">
+      <!-- Logo / Home Link -->
+      <a href="index.html#top" aria-label="Accueil">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+          EG
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav>
+        <a href="index.html#top">Accueil</a>
+        <a href="projects.html" class="active">Projets</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Header Controls (Theme Toggle + Mobile Menu) -->
+      <div class="flex items-center gap-4">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème" tabindex="0">
+          <i class="fas fa-moon moon-icon icon"></i>
+          <i class="fas fa-sun sun-icon icon"></i>
+        </button>
+
+        <!-- Mobile Hamburger Menu -->
+        <div class="burger-menu" onclick="toggleMobileMenu()">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav>
+        <a href="index.html#top" onclick="closeMobileMenu()">Accueil</a>
+        <a href="projects.html" onclick="closeMobileMenu()">Projets</a>
+        <a href="about.html" onclick="closeMobileMenu()">À propos</a>
+        <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Main content -->
-  <main class="flex-grow container mx-auto p-6 space-y-12">
-    <h1 class="text-3xl font-bold text-center">Mes projets</h1>
+  <!-- ========== HERO SECTION ========== -->
+  <section class="flex flex-col items-center justify-center px-6 pt-32 pb-20 fade-in relative overflow-visible">
+    <!-- Effet de fond subtil -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
+    
+    <div class="text-center space-y-8 max-w-4xl relative z-10">
+      <div class="inline-block">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+          Mes Projets
+        </h1>
+      </div>
+      <p class="text-lg sm:text-xl text-neutral-400 leading-relaxed">
+        Découvrez mes réalisations en infrastructure, développement et innovation technologique.
+      </p>
+      
+      <!-- Decorative Animated Dots -->
+      <div class="flex justify-center gap-4 mt-8 opacity-60">
+        <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+        <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+        <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- Exemple de projet -->
-      <div class="bg-neutral-800 p-6 rounded-xl shadow hover:shadow-xl transition">
-        <h2 class="text-xl font-semibold mb-2">Nom du projet</h2>
-        <p class="text-neutral-400 text-sm">Brève description du projet ici. Technologies utilisées, objectifs, etc.</p>
-        <a href="#" class="inline-block mt-4 text-blue-400 hover:underline text-sm">Voir plus</a>
+  <!-- ========== PROJECTS SHOWCASE ========== -->
+  <main class="flex-grow container mx-auto px-6 pb-20">
+    
+    <!-- Filtres de projets -->
+    <div class="flex flex-wrap justify-center gap-4 mb-16 animate-on-scroll">
+      <button class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn active" data-filter="all">
+        <i class="fas fa-th-large mr-2"></i>Tous
+      </button>
+      <button class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn" data-filter="infrastructure">
+        <i class="fas fa-server mr-2"></i>Infrastructure
+      </button>
+      <button class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn" data-filter="web">
+        <i class="fas fa-code mr-2"></i>Développement Web
+      </button>
+      <button class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn" data-filter="system">
+        <i class="fas fa-cog mr-2"></i>Systèmes
+      </button>
+    </div>
+
+    <!-- Grille des projets -->
+    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 projects-grid">
+      
+      <!-- Projet 1 - Infrastructure Cloud -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 hover:scale-105 animate-on-scroll" data-category="infrastructure">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-cloud text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">Infrastructure</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          Infrastructure Cloud Hybride
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          Déploiement d'une infrastructure cloud hybride avec Docker, Kubernetes et Terraform. Automatisation complète avec CI/CD.
+        </p>
+        
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Docker</span>
+          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Kubernetes</span>
+          <span class="text-xs font-medium text-purple-300 bg-purple-300/10 px-2 py-1 rounded-md">Terraform</span>
+        </div>
+        
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-external-link-alt mr-2"></i>Démo
+          </a>
+        </div>
       </div>
 
-      <!-- Duplique ce bloc pour d'autres projets -->
-    </section>
+      <!-- Projet 2 - Portfolio Web -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 hover:scale-105 animate-on-scroll" data-category="web" style="animation-delay: 0.2s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-globe text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full">Web</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Portfolio Interactif
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          Site portfolio moderne avec animations fluides, thème sombre/clair et design responsive utilisant les dernières technologies web.
+        </p>
+        
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">HTML5</span>
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">CSS3</span>
+          <span class="text-xs font-medium text-yellow-300 bg-yellow-300/10 px-2 py-1 rounded-md">JavaScript</span>
+          <span class="text-xs font-medium text-cyan-300 bg-cyan-300/10 px-2 py-1 rounded-md">Tailwind</span>
+        </div>
+        
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-external-link-alt mr-2"></i>Voir Live
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 3 - Monitoring Système -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 hover:scale-105 animate-on-scroll" data-category="system" style="animation-delay: 0.4s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-chart-line text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-green-400 bg-green-400/10 px-3 py-1 rounded-full">Système</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+          Stack de Monitoring
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          Solution complète de monitoring avec Prometheus, Grafana et Alertmanager pour surveiller l'infrastructure en temps réel.
+        </p>
+        
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-red-300 bg-red-300/10 px-2 py-1 rounded-md">Prometheus</span>
+          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Grafana</span>
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Docker</span>
+        </div>
+        
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-external-link-alt mr-2"></i>Dashboard
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 4 - Application C++ -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 hover:scale-105 animate-on-scroll" data-category="system" style="animation-delay: 0.6s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-microchip text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-red-400 bg-red-400/10 px-3 py-1 rounded-full">Système</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+          Gestionnaire de Processus
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          Application système en C++ pour la gestion avancée des processus avec interface en temps réel et optimisations mémoire.
+        </p>
+        
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">C++</span>
+          <span class="text-xs font-medium text-gray-300 bg-gray-300/10 px-2 py-1 rounded-md">Linux</span>
+          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Qt</span>
+        </div>
+        
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-download mr-2"></i>Release
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 5 - API REST -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 hover:scale-105 animate-on-scroll" data-category="web" style="animation-delay: 0.8s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-api text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-indigo-400 bg-indigo-400/10 px-3 py-1 rounded-full">Web</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          API REST Sécurisée
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          API REST complète avec authentification JWT, validation des données et documentation Swagger intégrée.
+        </p>
+        
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Node.js</span>
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Express</span>
+          <span class="text-xs font-medium text-yellow-300 bg-yellow-300/10 px-2 py-1 rounded-md">MongoDB</span>
+        </div>
+        
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-book mr-2"></i>Docs
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 6 - Automation Scripts -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 hover:scale-105 animate-on-scroll" data-category="infrastructure" style="animation-delay: 1s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-robot text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full">Infrastructure</span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+          Scripts d'Automatisation
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          Collection de scripts Python et Bash pour l'automatisation des tâches d'administration système et déploiement.
+        </p>
+        
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Python</span>
+          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Bash</span>
+          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Ansible</span>
+        </div>
+        
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-play mr-2"></i>Tester
+          </a>
+        </div>
+      </div>
+
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="p-6 text-center text-neutral-500 text-sm border-t border-neutral-800">
-    &copy; 2025 Enzo Gaggiotti. Tous droits réservés.
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
+    <!-- Social Links -->
+    <div class="flex justify-center items-center gap-6 mb-4">
+      <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
+        <i class="fas fa-envelope text-2xl"></i>
+      </a>
+      <a href="https://github.com/enzogagg" class="hover:text-white transition" title="GitHub" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/" class="hover:text-white transition" title="LinkedIn" aria-label="LinkedIn">
+        <i class="fab fa-linkedin text-2xl"></i>
+      </a>
+    </div>
+
+    <!-- Copyright Notice -->
+    <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
   </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <!-- Custom JavaScript -->
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

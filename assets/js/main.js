@@ -350,6 +350,10 @@ function initializeApplication() {
     initializeScrollAnimations();
     initializePerformanceOptimizations();
 
+    // Page-specific functionality
+    initializeProjectsPage();
+    initializeProjectsScrollAnimations();
+
     console.log('✅ Portfolio Application initialized successfully');
   } catch (error) {
     console.error('❌ Error initializing application:', error);
@@ -371,3 +375,90 @@ document.addEventListener('DOMContentLoaded', initializeApplication);
 window.toggleTheme = toggleTheme;
 window.toggleMobileMenu = toggleMobileMenu;
 window.closeMobileMenu = closeMobileMenu;
+
+// ========== PROJECTS PAGE FUNCTIONALITY ==========
+/**
+ * Initialize project filtering and animations for projects page
+ * Only runs if project-related elements are present on the page
+ */
+function initializeProjectsPage() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  // Only initialize if we're on the projects page
+  if (filterButtons.length === 0 || projectCards.length === 0) {
+    return;
+  }
+
+  console.log('🎯 Initializing projects page functionality');
+
+  // Project filtering functionality
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      
+      // Update active button state
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Filter project cards with smooth animations
+      projectCards.forEach(card => {
+        const category = card.dataset.category;
+        if (filter === 'all' || category === filter) {
+          // Show card
+          card.style.display = 'block';
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.8)';
+          
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          // Hide card
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.8)';
+          
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+
+  console.log('✅ Projects page functionality initialized');
+}
+
+/**
+ * Enhanced scroll animations for projects page
+ * Extends the base scroll animations with project-specific behavior
+ */
+function initializeProjectsScrollAnimations() {
+  const projectElements = document.querySelectorAll('.animate-on-scroll');
+  
+  if (projectElements.length === 0) {
+    return;
+  }
+
+  console.log('🎯 Initializing projects scroll animations');
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('slide-up');
+      }
+    });
+  }, observerOptions);
+
+  projectElements.forEach(el => {
+    observer.observe(el);
+  });
+
+  console.log('✅ Projects scroll animations initialized');
+}
