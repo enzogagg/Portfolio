@@ -47,6 +47,22 @@ export class ScrollAnimations {
       return;
     }
 
+    // Force immediate visibility for filter buttons (critical UI elements)
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+      btn.classList.add('animate-in');
+    });
+
+    // Also ensure the filter container is visible
+    const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
+    if (filterContainer) {
+      filterContainer.style.opacity = '1';
+      filterContainer.style.transform = 'translateY(0)';
+      filterContainer.classList.add('animate-in');
+    }
+
     // Intersection Observer options
     const observerOptions = {
       threshold: 0.1,
