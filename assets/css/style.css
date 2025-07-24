@@ -650,15 +650,108 @@ html:not(.dark) .theme-toggle::after {
   transform: translateY(-2px);
 }
 
-/* Project card button enhancements */
-.project-card .flex.gap-3 a {
-  transition: all 0.3s ease;
+/* ========== PROJECT ACTION BUTTONS - ENHANCED INTEGRATION ========== */
+/* Base action button container styling */
+.project-card .flex.gap-3 {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
+/* Action button base styling with improved integration */
+.project-card .flex.gap-3 a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Dark theme default styling */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgb(255, 255, 255);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Action button shimmer effect */
+.project-card .flex.gap-3 a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%);
+  transition: left 0.6s ease;
+  z-index: -1;
+}
+
+/* Dark theme hover effects */
 .project-card .flex.gap-3 a:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.03);
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.2) 0%,
+    rgba(59, 130, 246, 0.1) 100%);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: rgb(147, 197, 253);
+  
+  box-shadow: 
+    0 12px 25px rgba(59, 130, 246, 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.project-card .flex.gap-3 a:hover::before {
+  left: 100%;
+}
+
+/* Icon enhancements */
+.project-card .flex.gap-3 a i {
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.project-card .flex.gap-3 a:hover i {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3));
+}
+
+/* Active state */
+.project-card .flex.gap-3 a:active {
+  transform: translateY(-2px) scale(1.01);
+  transition: all 0.1s ease;
+}
+
+/* Focus state for accessibility */
+.project-card .flex.gap-3 a:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.3),
+    0 12px 25px rgba(59, 130, 246, 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Light theme category badge adjustments */
@@ -1430,84 +1523,488 @@ html:not(.dark) .about-section-main-circle:hover {
   align-items: stretch;
 }
 
-/* Enhanced project filter buttons */
-.filter-btn {
+/* Enhanced project filter buttons - Optimized dark theme integration */
+.glass-button.filter-btn {
+  background: linear-gradient(135deg, 
+    rgba(23, 23, 23, 0.8) 0%, 
+    rgba(38, 38, 38, 0.8) 50%,
+    rgba(23, 23, 23, 0.8) 100%) !important;
+  border: 1px solid rgba(163, 163, 163, 0.15) !important;
+  color: rgba(163, 163, 163, 0.9) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-weight: 500 !important;
+  text-shadow: none;
+}
+
+/* Subtle glow effect for better integration */
+.glass-button.filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.02) 0%, 
+    rgba(147, 51, 234, 0.02) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glass-button.filter-btn:hover::before {
+  opacity: 1;
+}
+
+.glass-button.filter-btn.active {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.15) 0%, 
+    rgba(147, 51, 234, 0.15) 50%,
+    rgba(99, 102, 241, 0.15) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  color: rgb(147, 197, 253) !important;
+  box-shadow: 
+    0 2px 8px rgba(59, 130, 246, 0.2),
+    0 1px 4px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(147, 197, 253, 0.08) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+  transform: none;
+}
+
+.glass-button.filter-btn.active::before {
+  opacity: 1;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.05) 0%, 
+    rgba(147, 51, 234, 0.05) 100%);
+}
+
+.glass-button.filter-btn:hover:not(.active) {
+  background: linear-gradient(135deg, 
+    rgba(38, 38, 38, 0.85) 0%, 
+    rgba(54, 54, 54, 0.85) 50%,
+    rgba(38, 38, 38, 0.85) 100%) !important;
+  border-color: rgba(163, 163, 163, 0.25) !important;
+  color: rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  transform: translateY(-1px) !important;
+  font-weight: 500 !important;
+  text-shadow: none;
+}
+
+.glass-button.filter-btn:hover:not(.active)::before {
+  opacity: 0.5;
+}
+
+/* Dark theme filter button icons - Optimized integration */
+.glass-button.filter-btn i {
+  color: rgba(163, 163, 163, 0.9) !important;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  text-shadow: none;
+}
+
+.glass-button.filter-btn.active i {
+  color: rgb(147, 197, 253) !important;
+  opacity: 1;
+  text-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+}
+
+.glass-button.filter-btn:hover:not(.active) i {
+  color: rgba(226, 232, 240, 0.95) !important;
+  opacity: 1;
+  text-shadow: none;
+}
+
+/* ========== LIGHT THEME FILTER BUTTONS - OPTIMIZED INTEGRATION ========== */
+/* Light theme base styles for filter buttons */
+[data-theme="light"] .glass-button.filter-btn,
+html:not(.dark) .glass-button.filter-btn {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(248, 250, 252, 0.95) 50%,
+    rgba(241, 245, 249, 0.95) 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  color: rgb(71, 85, 105) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-weight: 500 !important;
+  text-shadow: none;
+}
+
+/* Light theme subtle glow effect */
+[data-theme="light"] .glass-button.filter-btn::before,
+html:not(.dark) .glass-button.filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.03) 0%, 
+    rgba(147, 51, 234, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+[data-theme="light"] .glass-button.filter-btn:hover::before,
+html:not(.dark) .glass-button.filter-btn:hover::before {
+  opacity: 1;
+}
+
+/* Light theme active state */
+[data-theme="light"] .glass-button.filter-btn.active,
+html:not(.dark) .glass-button.filter-btn.active {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.12) 0%, 
+    rgba(147, 51, 234, 0.12) 50%,
+    rgba(99, 102, 241, 0.12) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+  color: rgb(59, 130, 246) !important;
+  box-shadow: 
+    0 2px 8px rgba(59, 130, 246, 0.2),
+    0 1px 4px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
+  transform: none;
+}
+
+[data-theme="light"] .glass-button.filter-btn.active::before,
+html:not(.dark) .glass-button.filter-btn.active::before {
+  opacity: 1;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.08) 0%, 
+    rgba(147, 51, 234, 0.08) 100%);
+}
+
+/* Light theme hover state */
+[data-theme="light"] .glass-button.filter-btn:hover:not(.active),
+html:not(.dark) .glass-button.filter-btn:hover:not(.active) {
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 0.98) 0%, 
+    rgba(241, 245, 249, 0.98) 50%,
+    rgba(226, 232, 240, 0.98) 100%) !important;
+  border-color: rgba(148, 163, 184, 0.4) !important;
+  color: rgb(51, 65, 85) !important;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  transform: translateY(-1px) !important;
+  font-weight: 500 !important;
+  text-shadow: none;
+}
+
+[data-theme="light"] .glass-button.filter-btn:hover:not(.active)::before,
+html:not(.dark) .glass-button.filter-btn:hover:not(.active)::before {
+  opacity: 0.6;
+}
+
+/* Light theme filter button icons */
+[data-theme="light"] .glass-button.filter-btn i,
+html:not(.dark) .glass-button.filter-btn i {
+  color: rgb(71, 85, 105) !important;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  text-shadow: none;
+}
+
+[data-theme="light"] .glass-button.filter-btn.active i,
+html:not(.dark) .glass-button.filter-btn.active i {
+  color: rgb(59, 130, 246) !important;
+  opacity: 1;
+  text-shadow: 0 0 6px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="light"] .glass-button.filter-btn:hover:not(.active) i,
+html:not(.dark) .glass-button.filter-btn:hover:not(.active) i {
+  color: rgb(51, 65, 85) !important;
+  opacity: 1;
+  text-shadow: none;
+}
+
+/* Enhanced focus states for better accessibility - Light theme */
+[data-theme="light"] .glass-button.filter-btn:focus,
+html:not(.dark) .glass-button.filter-btn:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 2px;
+  box-shadow: 
+    0 2px 8px rgba(59, 130, 246, 0.25),
+    0 1px 4px rgba(59, 130, 246, 0.15),
+    0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Smooth integration with site's overall light theme aesthetic */
+[data-theme="light"] .glass-button.filter-btn,
+html:not(.dark) .glass-button.filter-btn {
+  /* Disable default glass button animations for filters */
+  animation: none !important;
+}
+
+/* ========== LEGACY STYLES REMOVED - REPLACED WITH FORCE COLOR APPLICATION ========== */
+
+/* Specific color overrides for different technology badges in light theme - keeping vibrant colors */
+/* ========== LEGACY RULES CLEANED UP ========== */
+
+/* ========== LIGHT THEME ACTION BUTTONS - REFINED INTEGRATION ========== */
+
+/* Light theme action button container */
+[data-theme="light"] .project-card .flex.gap-3,
+html:not(.dark) .project-card .flex.gap-3 {
+  border-top-color: rgba(148, 163, 184, 0.2);
+}
+
+/* Light theme action button base styling */
+[data-theme="light"] .project-card .flex.gap-3 a,
+html:not(.dark) .project-card .flex.gap-3 a {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.9) 50%,
+    rgba(241, 245, 249, 0.85) 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  color: rgb(51, 65, 85) !important;
+  
+  box-shadow: 
+    0 3px 10px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(148, 163, 184, 0.1) !important;
+  
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(110%) !important;
+}
+
+/* Light theme shimmer effect */
+[data-theme="light"] .project-card .flex.gap-3 a::before,
+html:not(.dark) .project-card .flex.gap-3 a::before {
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(59, 130, 246, 0.1) 50%,
+    transparent 100%);
+}
+
+/* Light theme hover effects */
+[data-theme="light"] .project-card .flex.gap-3 a:hover,
+html:not(.dark) .project-card .flex.gap-3 a:hover {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(59, 130, 246, 0.06) 50%,
+    rgba(59, 130, 246, 0.04) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  color: rgb(37, 99, 235) !important;
+  
+  box-shadow: 
+    0 10px 25px rgba(59, 130, 246, 0.25),
+    0 6px 15px rgba(59, 130, 246, 0.15),
+    0 3px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(59, 130, 246, 0.1) !important;
+  
+  text-shadow: 0 1px 3px rgba(59, 130, 246, 0.2);
+  transform: translateY(-4px) scale(1.03) !important;
+}
+
+/* Light theme icon styling */
+[data-theme="light"] .project-card .flex.gap-3 a i,
+html:not(.dark) .project-card .flex.gap-3 a i {
+  color: rgb(51, 65, 85) !important;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+}
+
+[data-theme="light"] .project-card .flex.gap-3 a:hover i,
+html:not(.dark) .project-card .flex.gap-3 a:hover i {
+  color: rgb(37, 99, 235) !important;
+  filter: drop-shadow(0 3px 6px rgba(59, 130, 246, 0.3));
+}
+
+/* Light theme focus state */
+[data-theme="light"] .project-card .flex.gap-3 a:focus-visible,
+html:not(.dark) .project-card .flex.gap-3 a:focus-visible {
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.15),
+    0 10px 25px rgba(59, 130, 246, 0.25),
+    0 6px 15px rgba(59, 130, 246, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95) !important;
+}
+
+/* ========== ENHANCED VISUAL HIERARCHY AND INTEGRATION ========== */
+
+/* Better spacing and alignment for project card headers */
+.project-card .flex.items-center.justify-between {
+  margin-bottom: 1.75rem !important;
+}
+
+/* Enhanced category badge with better integration */
+.project-card .flex.items-center.justify-between span {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 0.375rem 0.75rem !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(16px) saturate(150%) !important;
   position: relative;
   overflow: hidden;
 }
 
-.filter-btn.active {
-  background: linear-gradient(135deg, 
-    rgba(59, 130, 246, 0.2) 0%, 
-    rgba(147, 51, 234, 0.2) 100%);
-  border-color: rgba(59, 130, 246, 0.4);
-  color: rgb(59, 130, 246);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+.project-card .flex.items-center.justify-between span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
 }
 
-.filter-btn:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
+.project-card:hover .flex.items-center.justify-between span::before {
+  left: 100%;
 }
 
-/* Project card content alignment */
-.project-card > div:first-child {
+/* Enhanced project icon with improved shadows and borders */
+.project-card .w-12.h-12 {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative;
   z-index: 2;
 }
 
-/* Responsive grid improvements */
-@media (max-width: 768px) {
+.project-card:hover .w-12.h-12 {
+  transform: translateY(-3px) rotate(5deg) scale(1.05) !important;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .project-card:hover .w-12.h-12,
+html:not(.dark) .project-card:hover .w-12.h-12 {
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Better title styling and animation */
+.project-card h3 {
+  margin-bottom: 1.25rem !important;
+  position: relative;
+  z-index: 1;
+}
+
+.project-card:hover h3 {
+  transform: translateX(4px) !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Enhanced description with better typography */
+.project-card p.text-neutral-400 {
+  margin-bottom: 1.75rem !important;
+  font-size: 0.9rem !important;
+  line-height: 1.7 !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Improved technology badges container */
+.project-card .flex.flex-wrap.gap-2 {
+  margin-bottom: 1.75rem !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced technology badges with better interaction */
+.project-card .flex.flex-wrap.gap-2 span {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  padding: 0.4rem 0.7rem !important;
+  border-radius: 6px !important;
+  border: 1px solid !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px) saturate(150%) !important;
+}
+
+.project-card .flex.flex-wrap.gap-2 span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-card .flex.flex-wrap.gap-2 span:hover::before {
+  left: 100%;
+}
+
+/* ========== PROJECT FILTERING CLASSES ========== */
+/* Essential classes for project filtering functionality */
+
+.project-hidden {
+  opacity: 0 !important;
+  transform: scale(0.95) translateY(20px) !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+.project-filtering {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  opacity: 0.5 !important;
+  transform: scale(0.98) !important;
+}
+
+/* Ensure visible cards are properly displayed */
+.project-card:not(.project-hidden):not(.project-filtering) {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+/* Smooth transitions for filtering */
+.project-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Grid layout adjustments for filtered projects */
+.projects-grid {
+  display: grid !important;
+  gap: 2rem !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+}
+
+@media (min-width: 640px) {
   .projects-grid {
-    gap: 1.5rem;
-  }
-  
-  .project-card {
-    padding: 1.5rem !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
   }
 }
 
 @media (min-width: 1024px) {
   .projects-grid {
-    gap: 2.5rem;
+    grid-template-columns: repeat(3, 1fr) !important;
   }
-}
-
-/* Light theme filter button adjustments */
-[data-theme="light"] .filter-btn.active {
-  background: linear-gradient(135deg, 
-    rgba(59, 130, 246, 0.15) 0%, 
-    rgba(147, 51, 234, 0.15) 100%);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-}
-
-[data-theme="light"] .filter-btn:hover:not(.active) {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-/* ========== PROJECT FILTERING ANIMATIONS ========== */
-/* Classes for project filtering animations */
-.project-hidden {
-  display: none !important;
-  opacity: 0 !important;
-  transform: scale(0.8) !important;
-}
-
-.project-filtering {
-  opacity: 0.5 !important;
-  transform: scale(0.9) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/* Override CSS for visible project cards */
-.project-card:not(.project-hidden):not(.project-filtering) {
-  display: block !important;
-  opacity: 1 !important;
-  transform: scale(1) !important;
-}
-
-/* Smooth transition for showing cards */
-.project-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
