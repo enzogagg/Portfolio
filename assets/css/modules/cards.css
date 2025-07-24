@@ -260,6 +260,114 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* ========== MODERN PROJECT CARDS ENHANCEMENTS ========== */
+/* Enhanced technology tags for modern cards */
+.tech-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.tech-tag:hover::before {
+  left: 100%;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Light theme tech tags */
+[data-theme="light"] .tech-tag {
+  backdrop-filter: blur(12px) saturate(180%);
+}
+
+[data-theme="light"] .tech-tag::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+}
+
+[data-theme="light"] .tech-tag:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced project card icons in circles */
+.project-card .w-12.h-12.bg-gradient-to-br {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-card .w-12.h-12.bg-gradient-to-br::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.project-card:hover .w-12.h-12.bg-gradient-to-br {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Light theme icon adjustments */
+[data-theme="light"] .project-card .w-12.h-12.bg-gradient-to-br {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .project-card:hover .w-12.h-12.bg-gradient-to-br {
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced decorative glows */
+.project-card .absolute.-top-6.-right-6 {
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Improved gradient text effects */
+.bg-gradient-to-r.from-blue-400.via-purple-400.to-blue-400 {
+  background-size: 200% 100%;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 /* ========== SKILL TAGS ========== */
 /* Simplified skill tags with better theme support */
 .skill-tag-simple {

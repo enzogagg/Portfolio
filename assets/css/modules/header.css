@@ -21,6 +21,15 @@ header {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+/* Header hide/show animation states */
+header.header-hidden {
+  transform: translateY(-100%);       /* Hide header by moving it up */
+}
+
+header.header-visible {
+  transform: translateY(0);           /* Show header in normal position */
+}
+
 /* Light theme header adjustments */
 html:not(.dark) header {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
