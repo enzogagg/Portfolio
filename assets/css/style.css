@@ -1016,5 +1016,3 @@ html:not(.dark) .bg-gradient-to-br i.text-white,
 html:not(.dark) .bg-gradient-to-br i.text-white.dark\:text-white {
   color: white !important;
 }
-
-/* Remove the background override to allow colored backgrounds */
