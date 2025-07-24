@@ -11,16 +11,22 @@
  */
 export class AccessibilityManager {
   constructor() {
-    this.init();
+    this.isInitialized = false;
+    // Don't initialize DOM elements in constructor
   }
 
   /**
    * Initialize accessibility features
    */
   init() {
+    if (this.isInitialized) {
+      return;
+    }
+
     this.initializeKeyboardNavigation();
     this.initializeSmoothScroll();
     this.setupKeyboardShortcuts();
+    this.isInitialized = true;
 
     console.log('✅ Accessibility features initialized');
   }

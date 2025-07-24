@@ -420,7 +420,21 @@
 </footer>
 
   <!-- ========== JAVASCRIPT ========== -->
-  <!-- Modern Modular JavaScript Architecture -->
-  <script type="module" src="assets/js/app.js"></script>
+  <!-- Fallback for local file usage (file:// protocol) -->
+  <script>
+    // Check if we're loading from file:// protocol
+    if (window.location.protocol === 'file:') {
+      // Use standalone version for local files
+      const script = document.createElement('script');
+      script.src = 'assets/js/standalone.js';
+      document.head.appendChild(script);
+    } else {
+      // Use modular version for HTTP(S) served files
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'assets/js/app.js';
+      document.head.appendChild(script);
+    }
+  </script>
 </body>
 </html>

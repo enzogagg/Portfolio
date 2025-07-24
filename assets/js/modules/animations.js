@@ -15,17 +15,23 @@ export class ScrollAnimations {
     this.scrollThreshold = 100;
     this.header = null;
     this.animationObserver = null;
-
-    this.init();
+    this.isInitialized = false;
+    
+    // Don't initialize DOM elements in constructor
   }
 
   /**
    * Initialize scroll animations and header behavior
    */
   init() {
+    if (this.isInitialized) {
+      return;
+    }
+
     this.header = document.getElementById('main-header');
     this.setupScrollAnimations();
     this.setupHeaderScroll();
+    this.isInitialized = true;
 
     console.log('✅ Scroll animations initialized');
   }
@@ -58,9 +64,12 @@ export class ScrollAnimations {
         const delay = Math.random() * 0.3;
         target.style.animationDelay = `${delay}s`;
 
-        // Apply animation classes
-        target.classList.add('animate-fade-in');
-        target.classList.remove('animate-on-scroll');
+        // Apply animation classes based on element type
+        if (target.classList.contains('animate-on-scroll')) {
+          target.classList.add('animate-in');
+        } else if (target.classList.contains('fade-in')) {
+          target.classList.add('animate-fade-in');
+        }
 
         // Stop observing once animated
         this.animationObserver.unobserve(target);

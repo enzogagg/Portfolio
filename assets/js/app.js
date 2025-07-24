@@ -42,6 +42,9 @@ class PortfolioApp {
 
     console.log('🚀 Initializing Portfolio Application...');
 
+    // Add js-enabled class for progressive enhancement
+    document.body.classList.add('js-enabled');
+
     try {
       // Initialize core functionality first
       await this.initializeCore();
@@ -68,9 +71,14 @@ class PortfolioApp {
    * Initialize core application features
    */
   async initializeCore() {
-    // Load theme first (affects visual rendering)
+    // Initialize all modules explicitly
     this.modules.theme.load();
-
+    this.modules.navigation.init();
+    this.modules.animations.init();
+    this.modules.projects.init();
+    this.modules.accessibility.init();
+    this.modules.performance.init();
+    
     // Set initial navigation state
     this.modules.accessibility.setInitialNavigationState();
 
@@ -90,24 +98,34 @@ class PortfolioApp {
   }
 
   /**
-   * Setup global event listeners
+   * Setup global event listeners and expose global functions
    */
   setupGlobalEvents() {
-    // Handle visibility change for performance
+    // Expose theme toggle function globally for HTML onclick handlers
+    window.toggleTheme = () => {
+      this.modules.theme.toggle();
+    };
+
+    // Expose mobile menu functions globally
+    window.toggleMobileMenu = () => {
+      this.modules.navigation.toggleMobileMenu();
+    };
+
+    window.closeMobileMenu = () => {
+      this.modules.navigation.closeMobileMenu();
+    };
+
+    // Handle page visibility changes for performance optimization
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        console.log('Page hidden - pausing non-critical operations');
-      } else {
-        console.log('Page visible - resuming operations');
-      }
+      this.modules.performance.handleVisibilityChange();
     });
 
-    // Handle page unload cleanup
-    window.addEventListener('beforeunload', () => {
-      this.cleanup();
-    });
+    // Handle window resize for responsive adjustments
+    window.addEventListener('resize', this.debounce(() => {
+      this.modules.accessibility.handleResize();
+    }, 150));
 
-    console.log('✅ Global event listeners setup');
+    console.log('🔗 Global event listeners and functions setup complete');
   }
 
   /**

@@ -15,13 +15,17 @@ export class ProjectsFilter {
     this.projectCards = [];
     this.isInitialized = false;
 
-    this.init();
   }
 
   /**
    * Initialize projects filtering if elements are present
    */
   init() {
+    // Only initialize once
+    if (this.isInitialized) {
+      return;
+    }
+
     this.filterButtons = document.querySelectorAll('.filter-btn');
     this.projectCards = document.querySelectorAll('.project-card');
 

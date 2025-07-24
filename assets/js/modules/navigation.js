@@ -14,14 +14,19 @@ export class MobileNavigation {
     this.mobileMenu = null;
     this.burgerMenu = null;
     this.isOpen = false;
-
-    this.init();
+    this.isInitialized = false;
+    
+    // Don't initialize DOM elements in constructor
   }
 
   /**
    * Initialize mobile navigation elements and event listeners
    */
   init() {
+    if (this.isInitialized) {
+      return;
+    }
+
     this.mobileMenu = document.getElementById('mobile-menu');
     this.burgerMenu = document.querySelector('.burger-menu');
 
@@ -31,6 +36,7 @@ export class MobileNavigation {
     }
 
     this.setupEventListeners();
+    this.isInitialized = true;
     console.log('✅ Mobile navigation initialized');
   }
 

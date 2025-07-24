@@ -11,16 +11,22 @@
  */
 export class PerformanceManager {
   constructor() {
-    this.init();
+    this.isInitialized = false;
+    // Don't initialize DOM elements in constructor
   }
 
   /**
    * Initialize performance optimizations
    */
   init() {
+    if (this.isInitialized) {
+      return;
+    }
+
     this.initializeInteractiveOptimizations();
     this.setupPreloadOptimizations();
     this.monitorPerformance();
+    this.isInitialized = true;
 
     console.log('✅ Performance optimizations initialized');
   }
