@@ -392,6 +392,14 @@ function initializeProjectsPage() {
 
   console.log('🎯 Initializing projects page functionality');
 
+  // Reset any existing inline styles that might interfere with CSS
+  projectCards.forEach(card => {
+    card.style.display = '';
+    card.style.opacity = '';
+    card.style.transform = '';
+    card.classList.remove('project-hidden', 'project-filtering');
+  });
+
   // Project filtering functionality
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -401,26 +409,24 @@ function initializeProjectsPage() {
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
       
-      // Filter project cards with smooth animations
+      // Filter project cards with smooth animations using CSS classes
       projectCards.forEach(card => {
         const category = card.dataset.category;
         if (filter === 'all' || category === filter) {
           // Show card
-          card.style.display = 'block';
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.8)';
+          card.classList.remove('project-hidden');
+          card.classList.add('project-filtering');
           
           setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          }, 50);
+            card.classList.remove('project-filtering');
+          }, 300);
         } else {
           // Hide card
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.8)';
+          card.classList.add('project-filtering');
           
           setTimeout(() => {
-            card.style.display = 'none';
+            card.classList.add('project-hidden');
+            card.classList.remove('project-filtering');
           }, 300);
         }
       });
