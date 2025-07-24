@@ -953,255 +953,66 @@ section {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* ========== CONTACT ICONS STYLING ========== */
-/* Email icon */
-.contact-icon-email {
-  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+/* ========== TIMELINE PULSE ANIMATIONS ========== */
+/* Pulse ring animations for timeline points */
+@keyframes pulse-ring-blue {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
 }
 
-/* LinkedIn icon */
-.contact-icon-linkedin {
-  background: linear-gradient(135deg, #a855f7, #9333ea) !important;
+@keyframes pulse-ring-purple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
+  }
 }
 
-/* GitHub icon */
-.contact-icon-github {
-  background: linear-gradient(135deg, #374151, #4b5563) !important;
+@keyframes pulse-ring-indigo {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
 }
 
-/* Ensure icons stay white */
-.contact-icon-email i,
-.contact-icon-linkedin i,
-.contact-icon-github i {
+/* Apply pulse animations */
+.pulse-ring-blue {
+  animation: pulse-ring-blue 2s infinite;
+}
+
+.pulse-ring-purple {
+  animation: pulse-ring-purple 2s infinite 0.5s;
+}
+
+.pulse-ring-indigo {
+  animation: pulse-ring-indigo 2s infinite 1s;
+}
+
+/* ========== TIMELINE ICONS LIGHT MODE ========== */
+/* Force timeline icons to stay white in light mode */
+html:not(.dark) .timeline-icon i {
   color: white !important;
 }
 
-/* ========== CONTACT FORM THEME INTEGRATION ========== */
-/* Contact form styling for light theme (default) */
-.contact-form-container {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.contact-form-field {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
-}
-
-.contact-form-field::placeholder {
-  color: rgba(163, 163, 163, 0.8);
-}
-
-.contact-form-field:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-
-.contact-form-label {
-  color: white;
-}
-
-.contact-title-main {
-  color: white;
-}
-
-.contact-description {
-  color: rgb(209, 213, 219);
-}
-
-.contact-card-title {
-  color: white;
-}
-
-/* Dark theme (light mode) overrides */
-html:not(.dark) .contact-form-container {
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px solid rgba(0, 0, 0, 0.1);
-}
-
-html:not(.dark) .contact-form-field {
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px solid rgba(0, 0, 0, 0.15);
-  color: #111827;
-}
-
-html:not(.dark) .contact-form-field::placeholder {
-  color: rgba(75, 85, 99, 0.8);
-}
-
-html:not(.dark) .contact-form-field:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-
-html:not(.dark) .contact-form-label {
-  color: #111827;
-}
-
-html:not(.dark) .contact-title-main {
-  color: #111827;
-}
-
-html:not(.dark) .contact-description {
-  color: #4b5563;
-}
-
-html:not(.dark) .contact-card-title {
-  color: #111827;
-}
-
-/* Contact links for both themes */
-.contact-email-link {
-  color: #60a5fa;
-}
-
-.contact-email-link:hover {
-  color: #93c5fd;
-}
-
-html:not(.dark) .contact-email-link {
-  color: #1d4ed8;
-}
-
-html:not(.dark) .contact-email-link:hover {
-  color: #2563eb;
-}
-
-.contact-linkedin-link {
-  color: #c084fc;
-}
-
-.contact-linkedin-link:hover {
-  color: #ddd6fe;
-}
-
-html:not(.dark) .contact-linkedin-link {
-  color: #7c2d12;
-}
-
-html:not(.dark) .contact-linkedin-link:hover {
-  color: #92400e;
-}
-
-.contact-github-link {
-  color: #9ca3af;
-}
-
-.contact-github-link:hover {
-  color: #d1d5db;
-}
-
-html:not(.dark) .contact-github-link {
-  color: #374151;
-}
-
-html:not(.dark) .contact-github-link:hover {
-  color: #4b5563;
-}
-
-/* ========== RESPONSE TIME BLOCK THEME INTEGRATION ========== */
-/* Response time block styling for dark mode (default) */
-.response-time-block {
-  background: rgba(34, 197, 94, 0.1);
-  border: 2px solid rgba(34, 197, 94, 0.2);
-}
-
-.response-time-icon {
-  color: #4ade80;
-}
-
-.response-time-text {
-  color: #86efac;
-}
-
-/* Light mode (html:not(.dark)) overrides */
-html:not(.dark) .response-time-block {
-  background: rgba(34, 197, 94, 0.15);
-  border: 2px solid rgba(34, 197, 94, 0.3);
-}
-
-html:not(.dark) .response-time-icon {
-  color: #16a34a;
-}
-
-html:not(.dark) .response-time-text {
-  color: #15803d;
-}
-
-/* ========== CONTACT FORM ENHANCED THEME INTEGRATION ========== */
-/* Contact form container styling */
-.contact-form-enhanced {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Contact form fields styling */
-.contact-form-field-enhanced {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.contact-form-field-enhanced::placeholder {
-  color: rgba(163, 163, 163, 0.8);
-}
-
-.contact-form-field-enhanced:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-}
-
-.contact-form-label-enhanced {
-  color: white;
-}
-
-/* Light mode overrides */
-html:not(.dark) .contact-form-enhanced {
-  background: rgba(0, 0, 0, 0.03);
-  border: 2px solid rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(10px);
-}
-
-html:not(.dark) .contact-form-field-enhanced {
-  background: rgba(0, 0, 0, 0.02);
-  border: 2px solid rgba(0, 0, 0, 0.12);
-  color: #111827;
-}
-
-html:not(.dark) .contact-form-field-enhanced::placeholder {
-  color: rgba(75, 85, 99, 0.7);
-}
-
-html:not(.dark) .contact-form-field-enhanced:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-  background: rgba(0, 0, 0, 0.04);
-}
-
-html:not(.dark) .contact-form-label-enhanced {
-  color: #111827;
-  font-weight: 800;
-}
-
-/* Select dropdown specific styles */
-html:not(.dark) .contact-form-field-enhanced option {
-  background: #ffffff;
-  color: #111827;
-}
-
-html:not(.dark) .contact-form-field-enhanced option:first-child {
-  color: #6b7280;
-}
-
-/* Focus ring enhancement for accessibility */
-.contact-form-field-enhanced:focus {
-  outline: none;
-}
-
-html:not(.dark) .contact-form-field-enhanced:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+/* ========== FORCE WHITE ICONS IN COLORED CIRCLES ========== */
+/* Force icons in colored background circles to stay white in both themes */
+html:not(.dark) .bg-gradient-to-br i.text-white,
+html:not(.dark) .bg-gradient-to-br i.text-white.dark\:text-white {
+  color: white !important;
 }
