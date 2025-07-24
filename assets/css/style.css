@@ -1270,4 +1270,66 @@ html:not(.dark) .bg-gradient-to-br i.text-white.dark\:text-white {
   color: white !important;
 }
 
-/* Remove the background override to allow colored backgrounds */
+/* ========== ABOUT SECTION ICONS ========== */
+/* About section icon styling for both themes */
+.about-section-icon {
+  transition: all 0.3s ease;
+}
+
+/* Force white text in colored background circles for all themes */
+.bg-green-500 i,
+.bg-blue-500 i {
+  color: white !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure icons stay white in light mode too */
+html:not(.dark) .bg-green-500 i,
+html:not(.dark) .bg-blue-500 i {
+  color: white !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* About section main circle - enhanced background for light mode */
+html:not(.dark) .about-section-main-circle {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(147, 51, 234, 0.15)) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+}
+
+/* About section text colors for light theme (outside the circle) */
+html:not(.dark) .text-neutral-300 {
+  color: rgb(31, 41, 55) !important;
+}
+
+html:not(.dark) .text-neutral-400 {
+  color: rgb(75, 85, 99) !important;
+}
+
+/* Enhanced hover effects for about section icons */
+.bg-green-500:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+}
+
+.bg-blue-500:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Light theme hover effects */
+html:not(.dark) .bg-green-500:hover {
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+}
+
+html:not(.dark) .bg-blue-500:hover {
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Enhanced hover effect for main circle in light mode */
+html:not(.dark) .about-section-main-circle:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2)) !important;
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+  transform: scale(1.02);
+}
