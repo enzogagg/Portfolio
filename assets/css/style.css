@@ -1010,4 +1010,11 @@ html:not(.dark) .timeline-icon i {
   color: white !important;
 }
 
+/* ========== FORCE WHITE ICONS IN COLORED CIRCLES ========== */
+/* Force icons in colored background circles to stay white in both themes */
+html:not(.dark) .bg-gradient-to-br i.text-white,
+html:not(.dark) .bg-gradient-to-br i.text-white.dark\:text-white {
+  color: white !important;
+}
+
 /* Remove the background override to allow colored backgrounds */
