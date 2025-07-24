@@ -1,0 +1,24 @@
+/**
+ * =========================================
+ * CSS CUSTOM PROPERTIES (VARIABLES)
+ * Theme color palette and design tokens
+ * =========================================
+ */
+
+/* Dark theme color palette */
+:root {
+  --bg-primary: 10, 10, 10;          /* Primary background (dark gray) */
+  --bg-secondary: 23, 23, 23;        /* Secondary background (lighter dark) */
+  --text-primary: 255, 255, 255;     /* Primary text (white) */
+  --text-secondary: 163, 163, 163;   /* Secondary text (gray) */
+  --accent: 59, 130, 246;            /* Accent color (blue) */
+}
+
+/* Light theme color palette override */
+html:not(.dark) {
+  --bg-primary: 255, 255, 255;       /* Primary background (white) */
+  --bg-secondary: 243, 244, 246;     /* Secondary background (light gray) */
+  --text-primary: 17, 24, 39;        /* Primary text (dark gray) */
+  --text-secondary: 75, 85, 99;      /* Secondary text (medium gray) */
+  --accent: 59, 130, 246;            /* Accent color (blue - same as dark) */
+}
