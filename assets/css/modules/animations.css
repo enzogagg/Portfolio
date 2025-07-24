@@ -1,0 +1,248 @@
+/**
+ * =========================================
+ * CORE ANIMATIONS & KEYFRAMES
+ * Base animations used throughout the site
+ * =========================================
+ */
+
+/* ========== CRITICAL FILTER VISIBILITY FOR PRODUCTION ========== */
+/* Ultra-high priority: Force filter buttons to be always visible on Vercel */
+.filter-btn,
+.filter-btn.animate-on-scroll,
+.animate-on-scroll .filter-btn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  display: inline-flex !important;
+}
+
+/* ========== CORE ANIMATIONS ========== */
+/* Fade-in animation for scroll triggers */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Slide-up animation for enhanced entrance effects */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* Initial state for scroll-triggered animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fallback: Show filter buttons immediately if JavaScript is disabled or fails */
+.filter-btn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+}
+
+/* Progressive enhancement: Hide initially only if JS is enabled */
+.js-enabled .filter-btn.animate-on-scroll:not(.animate-in) {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Force visibility for production environments (Vercel) */
+.filter-btn.animate-on-scroll {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  transition: all 0.3s ease;
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced fade-in animation for scroll triggers */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+/* Floating animation for avatar and hero elements */
+.floating {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);      /* Gentle floating effect */
+  }
+}
+
+/* ========== AVATAR SPECIAL EFFECTS ========== */
+/* Rotating halo effect behind floating avatar */
+.floating.group::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: conic-gradient(from 0deg, rgb(var(--accent)), transparent, rgb(var(--accent)));
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: -1;                        /* Behind the avatar */
+  animation: rotate 8s linear infinite;
+}
+
+/* Show halo on hover */
+.floating.group:hover::before {
+  opacity: 0.3;
+}
+
+/* Continuous rotation animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== CUSTOM ANIMATIONS ========== */
+/* Slower title pulse animation */
+h1.animate-pulse {
+  animation: pulse 3s ease-in-out infinite !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;                     /* Subtle opacity change */
+  }
+}
+
+/* Decorative dots pulse animation */
+.animate-pulse {
+  animation: gentlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 0.6;                     /* Start/end at 60% opacity */
+  }
+  50% {
+    opacity: 1;                       /* Peak at 100% opacity */
+  }
+}
+
+/* ========== TIMELINE PULSE ANIMATIONS ========== */
+/* Pulse ring animations for timeline points */
+@keyframes pulse-ring-blue {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+@keyframes pulse-ring-purple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
+  }
+}
+
+@keyframes pulse-ring-indigo {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+/* Apply pulse animations */
+.pulse-ring-blue {
+  animation: pulse-ring-blue 2s infinite;
+}
+
+.pulse-ring-purple {
+  animation: pulse-ring-purple 2s infinite 0.5s;
+}
+
+.pulse-ring-indigo {
+  animation: pulse-ring-indigo 2s infinite 1s;
+}
+
+/* ========== PERFORMANCE HINTS ========== */
+/* Optimize animations with will-change property */
+.fade-in {
+  will-change: opacity, transform;
+}
+
+.tech-card, .project-card {
+  will-change: transform;
+}
+
+/* ========== ACCESSIBILITY - REDUCED MOTION ========== */
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .floating,
+  .tech-card,
+  .project-card,
+  .glass-button {
+    animation: none !important;       /* Disable animations */
+    transition: none !important;      /* Disable transitions */
+  }
+}
