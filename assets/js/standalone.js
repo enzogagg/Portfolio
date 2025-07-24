@@ -20,6 +20,9 @@
 
       console.log('🚀 Initializing Portfolio Application (Standalone)...');
 
+      // CRITICAL: Force filter visibility immediately for all environments
+      this.ensureFiltersVisible();
+
       // Add js-enabled class for progressive enhancement
       document.body.classList.add('js-enabled');
 
@@ -29,7 +32,7 @@
         this.initializeProjects();
         this.initializeAnimations();
         this.setupGlobalFunctions();
-        
+
         this.isInitialized = true;
         console.log('✅ Portfolio Application initialized successfully');
       } catch (error) {
@@ -40,7 +43,7 @@
     // Theme Management
     initializeTheme() {
       const storageKey = 'theme';
-      
+
       const setLightTheme = () => {
         document.documentElement.classList.remove('dark');
         document.documentElement.setAttribute('data-theme', 'light');
@@ -56,7 +59,7 @@
       const toggleTheme = () => {
         const html = document.documentElement;
         const isDark = html.classList.contains('dark');
-        
+
         if (isDark) {
           setLightTheme();
         } else {
@@ -109,13 +112,8 @@
 
       console.log('🎯 Initializing projects page functionality');
 
-      // Force visibility of filter container for file:// protocol
-      const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-16');
-      if (filterContainer && filterContainer.classList.contains('animate-on-scroll')) {
-        filterContainer.classList.add('animate-in');
-        filterContainer.style.opacity = '1';
-        filterContainer.style.transform = 'translateY(0)';
-      }
+      // Force visibility immediately for filter buttons and container
+      this.ensureFiltersVisible();
 
       // Reset project cards
       projectCards.forEach(card => {
@@ -123,7 +121,7 @@
         card.style.opacity = '';
         card.style.transform = '';
         card.classList.remove('project-hidden', 'project-filtering');
-        
+
         // Also ensure cards are visible
         if (card.classList.contains('animate-on-scroll')) {
           card.classList.add('animate-in');
@@ -173,6 +171,30 @@
       });
 
       console.log('✅ Projects page functionality initialized');
+    }
+
+    // Ensure filter buttons are always visible (critical for all environments)
+    ensureFiltersVisible() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
+
+      // Force visibility for all filter buttons
+      filterButtons.forEach(btn => {
+        btn.style.opacity = '1';
+        btn.style.transform = 'translateY(0)';
+        btn.style.visibility = 'visible';
+        btn.classList.add('animate-in');
+      });
+
+      // Force visibility for filter container
+      if (filterContainer) {
+        filterContainer.style.opacity = '1';
+        filterContainer.style.transform = 'translateY(0)';
+        filterContainer.style.visibility = 'visible';
+        filterContainer.classList.add('animate-in');
+      }
+
+      console.log('🔧 Filter visibility forced for production environment');
     }
 
     // Basic animations
@@ -236,11 +258,39 @@
 
   // Initialize when DOM is ready
   const app = new PortfolioApp();
-  
+
+  // Critical: Emergency filter visibility for standalone environment
+  function emergencyFilterVisibility() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
+
+    filterButtons.forEach(btn => {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+      btn.style.visibility = 'visible';
+      btn.classList.add('animate-in');
+    });
+
+    if (filterContainer) {
+      filterContainer.style.opacity = '1';
+      filterContainer.style.transform = 'translateY(0)';
+      filterContainer.style.visibility = 'visible';
+      filterContainer.classList.add('animate-in');
+    }
+  }
+
+  // Execute immediately
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => app.init());
+    document.addEventListener('DOMContentLoaded', () => {
+      emergencyFilterVisibility();
+      app.init();
+    });
   } else {
+    emergencyFilterVisibility();
     app.init();
   }
+
+  // Backup execution
+  setTimeout(emergencyFilterVisibility, 50);
 
 })();

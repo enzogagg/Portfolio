@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
 <head>
-  <!-- Meta Information -->
+  <!-- ========== META INFORMATION ========== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projets - Enzo Gaggiotti | Portfolio & Réalisations</title>
   <meta name="description" content="Découvrez les projets et réalisations d'Enzo Gaggiotti en infrastructure, développement et technologies modernes.">
 
-  <!-- External Fonts & Icons -->
+  <!-- ========== EXTERNAL RESOURCES ========== -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- CSS Frameworks & Styles -->
+  <!-- ========== CSS FRAMEWORKS & STYLES ========== -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -65,20 +65,23 @@
 
   <!-- ========== HERO SECTION ========== -->
   <section class="flex flex-col items-center justify-center px-6 pt-32 pb-20 fade-in relative overflow-visible">
-    <!-- Effet de fond subtil -->
+    <!-- Background gradient effect -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
 
     <div class="text-center space-y-8 max-w-4xl relative z-10">
+      <!-- Main title -->
       <div class="inline-block">
         <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
           Mes Projets
         </h1>
       </div>
+
+      <!-- Subtitle -->
       <p class="text-lg sm:text-xl text-neutral-400 leading-relaxed">
         Découvrez mes réalisations en infrastructure, développement et innovation technologique.
       </p>
 
-      <!-- Decorative Animated Dots -->
+      <!-- Decorative animated dots -->
       <div class="flex justify-center gap-4 mt-8 opacity-60">
         <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
         <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
@@ -90,7 +93,7 @@
   <!-- ========== PROJECTS SHOWCASE ========== -->
   <main class="flex-grow container mx-auto px-6 pb-20 pt-12">
 
-    <!-- Filtres de projets -->
+    <!-- ========== PROJECT FILTERS ========== -->
     <div class="flex flex-wrap justify-center gap-4 mb-20 animate-on-scroll mt-12">
       <button class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn active" data-filter="all">
         <i class="fas fa-th-large mr-2"></i>Tous
@@ -106,10 +109,12 @@
       </button>
     </div>
 
-    <!-- Grille des projets -->
+    <!-- ========== PROJECTS GRID ========== -->
     <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 projects-grid">
 
-      <!-- Projet 1 - Infrastructure Cloud -->
+      <!-- ========== INFRASTRUCTURE PROJECTS ========== -->
+
+      <!-- Project: Cloud Infrastructure -->
       <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="infrastructure">
         <div class="flex items-center justify-between mb-6">
           <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
@@ -117,20 +122,17 @@
           </div>
           <span class="text-xs font-semibold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">Infrastructure</span>
         </div>
-
         <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
           Infrastructure Cloud Hybride
         </h3>
         <p class="text-neutral-400 text-sm leading-relaxed mb-6">
           Déploiement d'une infrastructure cloud hybride avec Docker, Kubernetes et Terraform. Automatisation complète avec CI/CD.
         </p>
-
         <div class="flex flex-wrap gap-2 mb-6">
           <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Docker</span>
           <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Kubernetes</span>
           <span class="text-xs font-medium text-purple-300 bg-purple-300/10 px-2 py-1 rounded-md">Terraform</span>
         </div>
-
         <div class="flex gap-3">
           <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
             <i class="fab fa-github mr-2"></i>Code
@@ -141,7 +143,38 @@
         </div>
       </div>
 
-      <!-- Projet 2 - Portfolio Web -->
+      <!-- Project: Automation Scripts -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="infrastructure" style="animation-delay: 1s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-robot text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full">Infrastructure</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+          Scripts d'Automatisation
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          Collection de scripts Python et Bash pour l'automatisation des tâches d'administration système et déploiement.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Python</span>
+          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Bash</span>
+          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Ansible</span>
+        </div>
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-play mr-2"></i>Tester
+          </a>
+        </div>
+      </div>
+
+      <!-- ========== WEB DEVELOPMENT PROJECTS ========== -->
+
+      <!-- Project: Interactive Portfolio -->
       <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="web" style="animation-delay: 0.2s;">
         <div class="flex items-center justify-between mb-6">
           <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
@@ -149,21 +182,18 @@
           </div>
           <span class="text-xs font-semibold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full">Web</span>
         </div>
-
         <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
           Portfolio Interactif
         </h3>
         <p class="text-neutral-400 text-sm leading-relaxed mb-6">
           Site portfolio moderne avec animations fluides, thème sombre/clair et design responsive utilisant les dernières technologies web.
         </p>
-
         <div class="flex flex-wrap gap-2 mb-6">
           <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">HTML5</span>
           <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">CSS3</span>
           <span class="text-xs font-medium text-yellow-300 bg-yellow-300/10 px-2 py-1 rounded-md">JavaScript</span>
           <span class="text-xs font-medium text-cyan-300 bg-cyan-300/10 px-2 py-1 rounded-md">Tailwind</span>
         </div>
-
         <div class="flex gap-3">
           <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
             <i class="fab fa-github mr-2"></i>Code
@@ -174,71 +204,7 @@
         </div>
       </div>
 
-      <!-- Projet 3 - Monitoring Système -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.4s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-chart-line text-white text-xl"></i>
-          </div>
-          <span class="text-xs font-semibold text-green-400 bg-green-400/10 px-3 py-1 rounded-full">Système</span>
-        </div>
-
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-          Stack de Monitoring
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Solution complète de monitoring avec Prometheus, Grafana et Alertmanager pour surveiller l'infrastructure en temps réel.
-        </p>
-
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-red-300 bg-red-300/10 px-2 py-1 rounded-md">Prometheus</span>
-          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Grafana</span>
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Docker</span>
-        </div>
-
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-external-link-alt mr-2"></i>Dashboard
-          </a>
-        </div>
-      </div>
-
-      <!-- Projet 4 - Application C++ -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.6s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-microchip text-white text-xl"></i>
-          </div>
-          <span class="text-xs font-semibold text-red-400 bg-red-400/10 px-3 py-1 rounded-full">Système</span>
-        </div>
-
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-          Gestionnaire de Processus
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Application système en C++ pour la gestion avancée des processus avec interface en temps réel et optimisations mémoire.
-        </p>
-
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">C++</span>
-          <span class="text-xs font-medium text-gray-300 bg-gray-300/10 px-2 py-1 rounded-md">Linux</span>
-          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Qt</span>
-        </div>
-
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-download mr-2"></i>Release
-          </a>
-        </div>
-      </div>
-
-      <!-- Projet 5 - API REST -->
+      <!-- Project: REST API -->
       <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="web" style="animation-delay: 0.8s;">
         <div class="flex items-center justify-between mb-6">
           <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
@@ -246,20 +212,17 @@
           </div>
           <span class="text-xs font-semibold text-indigo-400 bg-indigo-400/10 px-3 py-1 rounded-full">Web</span>
         </div>
-
         <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
           API REST Sécurisée
         </h3>
         <p class="text-neutral-400 text-sm leading-relaxed mb-6">
           API REST complète avec authentification JWT, validation des données et documentation Swagger intégrée.
         </p>
-
         <div class="flex flex-wrap gap-2 mb-6">
           <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Node.js</span>
           <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Express</span>
           <span class="text-xs font-medium text-yellow-300 bg-yellow-300/10 px-2 py-1 rounded-md">MongoDB</span>
         </div>
-
         <div class="flex gap-3">
           <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
             <i class="fab fa-github mr-2"></i>Code
@@ -270,34 +233,62 @@
         </div>
       </div>
 
-      <!-- Projet 6 - Automation Scripts -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="infrastructure" style="animation-delay: 1s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-robot text-white text-xl"></i>
-          </div>
-          <span class="text-xs font-semibold text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full">Infrastructure</span>
-        </div>
+      <!-- ========== SYSTEM PROJECTS ========== -->
 
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-          Scripts d'Automatisation
+      <!-- Project: System Monitoring -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.4s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-chart-line text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-green-400 bg-green-400/10 px-3 py-1 rounded-full">Système</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+          Stack de Monitoring
         </h3>
         <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Collection de scripts Python et Bash pour l'automatisation des tâches d'administration système et déploiement.
+          Solution complète de monitoring avec Prometheus, Grafana et Alertmanager pour surveiller l'infrastructure en temps réel.
         </p>
-
         <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Python</span>
-          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Bash</span>
-          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Ansible</span>
+          <span class="text-xs font-medium text-red-300 bg-red-300/10 px-2 py-1 rounded-md">Prometheus</span>
+          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Grafana</span>
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Docker</span>
         </div>
-
         <div class="flex gap-3">
           <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
             <i class="fab fa-github mr-2"></i>Code
           </a>
           <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-play mr-2"></i>Tester
+            <i class="fas fa-external-link-alt mr-2"></i>Dashboard
+          </a>
+        </div>
+      </div>
+
+      <!-- Project: Process Manager -->
+      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.6s;">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center">
+            <i class="fas fa-microchip text-white text-xl"></i>
+          </div>
+          <span class="text-xs font-semibold text-red-400 bg-red-400/10 px-3 py-1 rounded-full">Système</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+          Gestionnaire de Processus
+        </h3>
+        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+          Application système en C++ pour la gestion avancée des processus avec interface en temps réel et optimisations mémoire.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">C++</span>
+          <span class="text-xs font-medium text-gray-300 bg-gray-300/10 px-2 py-1 rounded-md">Linux</span>
+          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Qt</span>
+        </div>
+        <div class="flex gap-3">
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fab fa-github mr-2"></i>Code
+          </a>
+          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
+            <i class="fas fa-download mr-2"></i>Release
           </a>
         </div>
       </div>
@@ -324,57 +315,22 @@
     <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
   </footer>
 
-  <!-- ========== JAVASCRIPT ========== -->
-  <!-- Critical: Force filter buttons visibility immediately for Vercel -->
-  <script>
-    // Force immediate visibility for filter buttons on production
-    function ensureFiltersVisible() {
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
-      
-      filterButtons.forEach(btn => {
-        btn.style.opacity = '1';
-        btn.style.transform = 'translateY(0)';
-        btn.style.visibility = 'visible';
-        btn.classList.add('animate-in');
-      });
-      
-      if (filterContainer) {
-        filterContainer.style.opacity = '1';
-        filterContainer.style.transform = 'translateY(0)';
-        filterContainer.style.visibility = 'visible';
-        filterContainer.classList.add('animate-in');
-      }
-      
-      console.log('🔧 Filters forced visible for production');
-    }
-    
-    // Execute immediately
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', ensureFiltersVisible);
-    } else {
-      ensureFiltersVisible();
-    }
-    
-    // Also execute after a short delay to be sure
-    setTimeout(ensureFiltersVisible, 100);
-  </script>
+  <!-- ========== JAVASCRIPT INITIALIZATION ========== -->
 
-  <!-- Fallback for local file usage (file:// protocol) -->
+  <!-- Dynamic script loading based on environment -->
   <script>
-    // Check if we're loading from file:// protocol
-    if (window.location.protocol === 'file:') {
-      // Use standalone version for local files
-      const script = document.createElement('script');
+    // Load appropriate JavaScript bundle based on protocol
+    const isLocalFile = window.location.protocol === 'file:';
+    const script = document.createElement('script');
+
+    if (isLocalFile) {
       script.src = 'assets/js/standalone.js';
-      document.head.appendChild(script);
     } else {
-      // Use modular version for HTTP(S) served files
-      const script = document.createElement('script');
       script.type = 'module';
       script.src = 'assets/js/app.js';
-      document.head.appendChild(script);
     }
+
+    document.head.appendChild(script);
   </script>
 </body>
 </html>
