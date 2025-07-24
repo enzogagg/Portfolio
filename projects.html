@@ -325,6 +325,41 @@
   </footer>
 
   <!-- ========== JAVASCRIPT ========== -->
+  <!-- Critical: Force filter buttons visibility immediately for Vercel -->
+  <script>
+    // Force immediate visibility for filter buttons on production
+    function ensureFiltersVisible() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
+      
+      filterButtons.forEach(btn => {
+        btn.style.opacity = '1';
+        btn.style.transform = 'translateY(0)';
+        btn.style.visibility = 'visible';
+        btn.classList.add('animate-in');
+      });
+      
+      if (filterContainer) {
+        filterContainer.style.opacity = '1';
+        filterContainer.style.transform = 'translateY(0)';
+        filterContainer.style.visibility = 'visible';
+        filterContainer.classList.add('animate-in');
+      }
+      
+      console.log('🔧 Filters forced visible for production');
+    }
+    
+    // Execute immediately
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', ensureFiltersVisible);
+    } else {
+      ensureFiltersVisible();
+    }
+    
+    // Also execute after a short delay to be sure
+    setTimeout(ensureFiltersVisible, 100);
+  </script>
+
   <!-- Fallback for local file usage (file:// protocol) -->
   <script>
     // Check if we're loading from file:// protocol

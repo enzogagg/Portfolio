@@ -4,6 +4,17 @@
    Author: Enzo Gaggiotti
    ========================================= */
 
+/* ========== CRITICAL FILTER VISIBILITY FOR PRODUCTION ========== */
+/* Ultra-high priority: Force filter buttons to be always visible on Vercel */
+.filter-btn,
+.filter-btn.animate-on-scroll,
+.animate-on-scroll .filter-btn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  display: inline-flex !important;
+}
+
 /* ========== CORE ANIMATIONS ========== */
 /* Fade-in animation for scroll triggers */
 @keyframes fadeIn {

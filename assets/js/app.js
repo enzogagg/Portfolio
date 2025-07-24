@@ -42,6 +42,9 @@ class PortfolioApp {
 
     console.log('🚀 Initializing Portfolio Application...');
 
+    // CRITICAL: Force filter visibility immediately for Vercel
+    this.forceFilterVisibility();
+
     // Add js-enabled class for progressive enhancement
     document.body.classList.add('js-enabled');
 
@@ -65,6 +68,31 @@ class PortfolioApp {
       console.error('❌ Error initializing application:', error);
       throw error;
     }
+  }
+
+  /**
+   * Force filter buttons to be visible immediately (critical for Vercel)
+   */
+  forceFilterVisibility() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
+    
+    filterButtons.forEach(btn => {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+      btn.style.visibility = 'visible';
+      btn.style.display = 'inline-flex';
+      btn.classList.add('animate-in');
+    });
+    
+    if (filterContainer) {
+      filterContainer.style.opacity = '1';
+      filterContainer.style.transform = 'translateY(0)';
+      filterContainer.style.visibility = 'visible';
+      filterContainer.classList.add('animate-in');
+    }
+    
+    console.log('🔧 Filter visibility forced for production');
   }
 
   /**
@@ -214,13 +242,26 @@ class PortfolioApp {
 const app = new PortfolioApp();
 
 /**
- * Initialize application when DOM is ready
+ * Initialize application immediately for production (Vercel)
  */
-document.addEventListener('DOMContentLoaded', () => {
+function initializeImmediately() {
   app.init().catch(error => {
     console.error('Failed to initialize application:', error);
   });
-});
+}
+
+/**
+ * Initialize application when DOM is ready
+ */
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeImmediately);
+} else {
+  // DOM is already ready, initialize immediately
+  initializeImmediately();
+}
+
+// Also initialize after a short delay to be absolutely sure
+setTimeout(initializeImmediately, 50);
 
 // Expose global functions for HTML compatibility
 globalThis.toggleTheme = toggleTheme;
