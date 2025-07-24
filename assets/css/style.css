@@ -1003,3 +1003,11 @@ section {
 .pulse-ring-indigo {
   animation: pulse-ring-indigo 2s infinite 1s;
 }
+
+/* ========== TIMELINE ICONS LIGHT MODE ========== */
+/* Force timeline icons to stay white in light mode */
+html:not(.dark) .timeline-icon i {
+  color: white !important;
+}
+
+/* Remove the background override to allow colored backgrounds */
