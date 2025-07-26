@@ -29,7 +29,6 @@ This portfolio supports both local file usage and server deployment:
 │       ├── app.js          # Main application (ES6 modules)
 │       ├── standalone.js   # Standalone version (file:// compatible)
 │       └── modules/        # Modular JavaScript architecture
-│           ├── theme.js        # Theme switching (light/dark)
 │           ├── navigation.js   # Mobile menu and navigation
 │           ├── projects.js     # Project filtering system
 │           ├── animations.js   # Scroll animations

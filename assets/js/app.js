@@ -6,8 +6,7 @@
 
 'use strict';
 
-// Import all modules
-import { themeManager, toggleTheme } from './modules/theme.js';
+// Import all modules (theme module removed)
 import { mobileNavigation, toggleMobileMenu, closeMobileMenu } from './modules/navigation.js';
 import { scrollAnimations } from './modules/animations.js';
 import { projectsFilter } from './modules/projects.js';
@@ -22,7 +21,6 @@ class PortfolioApp {
   constructor() {
     this.isInitialized = false;
     this.modules = {
-      theme: themeManager,
       navigation: mobileNavigation,
       animations: scrollAnimations,
       projects: projectsFilter,
@@ -76,7 +74,7 @@ class PortfolioApp {
   forceFilterVisibility() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
-    
+
     filterButtons.forEach(btn => {
       btn.style.opacity = '1';
       btn.style.transform = 'translateY(0)';
@@ -84,14 +82,14 @@ class PortfolioApp {
       btn.style.display = 'inline-flex';
       btn.classList.add('animate-in');
     });
-    
+
     if (filterContainer) {
       filterContainer.style.opacity = '1';
       filterContainer.style.transform = 'translateY(0)';
       filterContainer.style.visibility = 'visible';
       filterContainer.classList.add('animate-in');
     }
-    
+
     console.log('🔧 Filter visibility forced for production');
   }
 
@@ -99,14 +97,13 @@ class PortfolioApp {
    * Initialize core application features
    */
   async initializeCore() {
-    // Initialize all modules explicitly
-    this.modules.theme.load();
+    // Initialize all modules explicitly (theme module removed)
     this.modules.navigation.init();
     this.modules.animations.init();
     this.modules.projects.init();
     this.modules.accessibility.init();
     this.modules.performance.init();
-    
+
     // Set initial navigation state
     this.modules.accessibility.setInitialNavigationState();
 
@@ -129,11 +126,6 @@ class PortfolioApp {
    * Setup global event listeners and expose global functions
    */
   setupGlobalEvents() {
-    // Expose theme toggle function globally for HTML onclick handlers
-    window.toggleTheme = () => {
-      this.modules.theme.toggle();
-    };
-
     // Expose mobile menu functions globally
     window.toggleMobileMenu = () => {
       this.modules.navigation.toggleMobileMenu();
@@ -154,6 +146,24 @@ class PortfolioApp {
     }, 150));
 
     console.log('🔗 Global event listeners and functions setup complete');
+  }
+
+  /**
+   * Debounce utility function
+   * @param {Function} func Function to debounce
+   * @param {number} wait Wait time in milliseconds
+   * @returns {Function} Debounced function
+   */
+  debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
   }
 
   /**
@@ -181,7 +191,6 @@ class PortfolioApp {
   getStatus() {
     return {
       initialized: this.isInitialized,
-      currentTheme: this.modules.theme.getCurrentTheme(),
       mobileMenuOpen: this.modules.navigation.isMenuOpen(),
       projectsFilterReady: this.modules.projects.isReady(),
       currentPage: this.getCurrentPageType()
@@ -208,7 +217,6 @@ class PortfolioApp {
 
     console.group('📊 Application Status');
     console.log('Initialized:', status.initialized);
-    console.log('Current Theme:', status.currentTheme);
     console.log('Page Type:', status.currentPage);
     console.log('Projects Filter Ready:', status.projectsFilterReady);
     console.groupEnd();
@@ -263,8 +271,7 @@ if (document.readyState === 'loading') {
 // Also initialize after a short delay to be absolutely sure
 setTimeout(initializeImmediately, 50);
 
-// Expose global functions for HTML compatibility
-globalThis.toggleTheme = toggleTheme;
+// Expose global functions for HTML compatibility (theme function removed)
 globalThis.toggleMobileMenu = toggleMobileMenu;
 globalThis.closeMobileMenu = closeMobileMenu;
 

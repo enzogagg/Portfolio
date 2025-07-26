@@ -1,7 +1,7 @@
 /**
  * =========================================
  * HEADER & NAVIGATION COMPONENTS
- * Fixed header, desktop/mobile navigation, and theme toggle
+ * Fixed header, desktop/mobile navigation
  * =========================================
  */
 
@@ -21,17 +21,13 @@ header {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Light theme header adjustments */
-html:not(.dark) header {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-bottom: 2px solid rgba(var(--text-secondary) / 0.5);
+/* Header hide/show animation states */
+header.header-hidden {
+  transform: translateY(-100%);       /* Hide header by moving it up */
 }
 
-/* Dark theme header adjustments */
-html.dark header {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  border-bottom: 2px solid rgba(var(--text-secondary) / 0.8);
-  background: rgba(var(--bg-primary) / 1);
+header.header-visible {
+  transform: translateY(0);           /* Show header in normal position */
 }
 
 /* Header container with centered content */
@@ -145,13 +141,6 @@ nav a:hover::after {
   transition: transform 0.3s ease;
 }
 
-/* Dark theme mobile menu adjustments */
-[data-theme="dark"] .mobile-menu {
-  background: rgba(var(--bg-primary) / 1);
-  border-bottom: 2px solid rgba(var(--text-secondary) / 0.8);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-}
-
 /* Active state - slide down mobile menu */
 .mobile-menu.active {
   transform: translateY(0);
@@ -209,85 +198,6 @@ nav a:hover::after {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* ========== THEME TOGGLE SWITCH ========== */
-/* Toggle switch container */
-.theme-toggle {
-  background: rgba(var(--text-secondary) / 0.2);
-  border: 1px solid rgba(var(--text-secondary) / 0.3);
-  border-radius: 20px;
-  width: 50px;
-  height: 24px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  outline: none !important;
-}
-
-/* Hover effect for toggle */
-.theme-toggle:hover {
-  background: rgba(var(--text-secondary) / 0.3);
-}
-
-/* Focus state for accessibility */
-.theme-toggle:focus {
-  outline: none !important;
-  box-shadow: 0 0 0 2px rgba(var(--accent) / 0.5);
-}
-
-.theme-toggle:active {
-  outline: none !important;
-}
-
-/* Theme icons positioning */
-.theme-toggle .icon {
-  font-size: 10px;
-  transition: color 0.3s ease;
-  z-index: 3;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-}
-
-/* Moon icon (dark theme indicator) */
-.theme-toggle .moon-icon {
-  color: #6366f1;                     /* Purple color */
-  left: 2px;
-  top: 2px;
-}
-
-/* Sun icon (light theme indicator) */
-.theme-toggle .sun-icon {
-  color: #f59e0b;                     /* Yellow/orange color */
-  right: 4px;
-  top: 2px;
-}
-
-/* Toggle switch slider */
-.theme-toggle::after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background: rgb(var(--text-primary));
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 2;
-}
-
-/* Light theme - move slider to right (when NOT in dark mode) */
-html:not(.dark) .theme-toggle::after {
-  transform: translateX(24px);
-}
-
 /* ========== RESPONSIVE DESIGN ========== */
 /* Mobile breakpoint adjustments */
 @media (max-width: 768px) {
@@ -295,7 +205,7 @@ html:not(.dark) .theme-toggle::after {
   nav {
     display: none;
   }
-  
+
   /* Show mobile hamburger menu */
   .burger-menu {
     display: flex;
@@ -304,11 +214,5 @@ html:not(.dark) .theme-toggle::after {
   /* Show mobile menu container */
   .mobile-menu {
     display: block;
-  }
-
-  /* Reorder theme toggle for better mobile layout */
-  .theme-toggle {
-    order: -1;                        /* Move before hamburger menu */
-    margin-right: 12px;
   }
 }

@@ -35,14 +35,8 @@
         <a href="contact.html">Contact</a>
       </nav>
 
-      <!-- Header Controls (Theme Toggle + Mobile Menu) -->
+      <!-- Header Controls (Mobile Menu) -->
       <div class="flex items-center gap-4">
-        <!-- Theme Toggle Button -->
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème" tabindex="0">
-          <i class="fas fa-moon moon-icon icon"></i>
-          <i class="fas fa-sun sun-icon icon"></i>
-        </button>
-
         <!-- Mobile Hamburger Menu -->
         <div class="burger-menu" onclick="toggleMobileMenu()">
           <div class="burger-line"></div>
@@ -349,44 +343,88 @@
   <!-- ========== RECENT PROJECTS SECTION ========== -->
   <section id="projects" class="py-20 bg-neutral-950 text-center">
     <!-- Section Header -->
-    <h2 class="text-4xl font-bold mb-16 fade-in">Projets récents</h2>
-    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto fade-in px-6">
-      <div class="project-card p-8 rounded-2xl shadow-md">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-2xl font-semibold">Zappy</h3>
-          <i class="fas fa-gamepad text-2xl text-blue-400"></i>
+    <div class="mb-16 fade-in">
+      <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+        Projets récents
+      </h2>
+      <p class="text-neutral-400 text-lg">Découvrez mes réalisations les plus marquantes</p>
+    </div>
+
+    <!-- Projects Grid with better spacing -->
+    <div class="grid gap-12 md:grid-cols-2 max-w-6xl mx-auto fade-in px-6">
+
+      <!-- Zappy Project Card - Cohesive Design -->
+      <div class="project-card-home group">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg gaming">
+              <i class="fas fa-gamepad project-icon"></i>
+            </div>
+            <div class="project-status-badge">
+              <div class="status-dot completed"></div>
+              <span>Terminé</span>
+            </div>
+          </div>
         </div>
-        <p class="text-neutral-400 mb-6 text-sm leading-relaxed">
-          Un jeu réseau multi-client développé en C, C++ et Python avec interface graphique.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="category-badge text-xs px-2 py-1 rounded">C</span>
-          <span class="category-badge text-xs px-2 py-1 rounded">C++</span>
-          <span class="category-badge text-xs px-2 py-1 rounded">Python</span>
+
+        <div class="project-content">
+          <h3 class="project-title">Zappy</h3>
+          <p class="project-category">Jeu Réseau Multi-client</p>
+          <p class="project-description">
+            Un jeu réseau multi-client sophistiqué développé en C, C++ et Python. Intègre une interface graphique moderne avec une architecture client-serveur robuste et des fonctionnalités temps réel avancées.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag c">C</span>
+            <span class="tech-tag cpp">C++</span>
+            <span class="tech-tag python">Python</span>
+            <span class="tech-tag network">Network</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="zappy.html" class="project-btn btn-primary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Voir le projet</span>
+            </a>
+          </div>
         </div>
-        <a href="zappy.html" class="text-blue-400 hover:text-blue-300 transition font-medium group">
-          En savoir plus
-          <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform inline-block"></i>
-        </a>
       </div>
 
-      <div class="project-card p-8 rounded-2xl shadow-md">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-2xl font-semibold">Box domotique aquarium</h3>
-          <i class="fas fa-fish text-2xl text-green-400"></i>
+      <!-- Aquarium Project Card - Cohesive Design -->
+      <div class="project-card-home group">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg aquarium">
+              <i class="fas fa-fish project-icon"></i>
+            </div>
+            <div class="project-status-badge">
+              <div class="status-dot active"></div>
+              <span>Actif</span>
+            </div>
+          </div>
         </div>
-        <p class="text-neutral-400 mb-6 text-sm leading-relaxed">
-          Solution IoT de monitoring d'aquarium avec ESP32, capteurs et Home Assistant.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="category-badge text-xs px-2 py-1 rounded">ESP32</span>
-          <span class="category-badge text-xs px-2 py-1 rounded">IoT</span>
-          <span class="category-badge text-xs px-2 py-1 rounded">Home Assistant</span>
+
+        <div class="project-content">
+          <h3 class="project-title">Box Domotique Aquarium</h3>
+          <p class="project-category">Solution IoT & Monitoring</p>
+          <p class="project-description">
+            Solution IoT complète de monitoring d'aquarium avec ESP32, capteurs multiples et intégration Home Assistant. Surveillance intelligente avec alertes automatisées et contrôle à distance.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag esp32">ESP32</span>
+            <span class="tech-tag iot">IoT</span>
+            <span class="tech-tag ha">Home Assistant</span>
+            <span class="tech-tag sensors">Sensors</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="aquarium.html" class="project-btn btn-primary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Voir le projet</span>
+            </a>
+          </div>
         </div>
-        <a href="aquarium.html" class="text-blue-400 hover:text-blue-300 transition font-medium group">
-          En savoir plus
-          <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform inline-block"></i>
-        </a>
       </div>
     </div>
     <div class="mt-16 text-center">

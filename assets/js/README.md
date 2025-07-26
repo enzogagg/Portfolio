@@ -13,7 +13,6 @@ assets/js/
 ├── app.js                    # Main entry point (ES6 modules)
 ├── standalone.js             # Standalone version (file:// compatible)
 └── modules/
-    ├── theme.js              # Light/dark theme management
     ├── navigation.js         # Mobile navigation and menu
     ├── animations.js         # Scroll animations and header
     ├── projects.js           # Project filtering
@@ -56,21 +55,6 @@ if (window.location.protocol === 'file:') {
 - **Performance**: Immediate execution, no module loading
 
 ## 🎯 Modules and Responsibilities
-
-### 🎨 **theme.js** - Theme Management
-```javascript
-import { themeManager, toggleTheme } from './modules/theme.js';
-```
-- Automatic switching between light/dark themes
-- User preference persistence
-- Dynamic CSS classes
-- Compatible with HTML onclick handlers
-
-**Features:**
-- `toggle()` - Switch between themes
-- `load()` - Load saved theme
-- `getCurrentTheme()` - Return current theme
-- `isDarkTheme()` - Check if dark theme is active
 
 ### 📱 **navigation.js** - Mobile Navigation
 ```javascript
@@ -221,7 +205,6 @@ class PortfolioApp {
 ### Global Functions (Compatibility)
 ```javascript
 // These functions remain globally available for HTML onclick
-toggleTheme()
 toggleMobileMenu()
 closeMobileMenu()
 ```
@@ -291,7 +274,7 @@ window.portfolioApp.restart()
 2. **File Protocol**: `standalone.js` enables direct file access without servers
 3. **HTTP Protocol**: `app.js` provides optimized modular experience
 4. **Browser Support**: Standalone works everywhere, modular requires ES2015+
-5. **Global Functions**: `toggleTheme()`, `toggleMobileMenu()`, etc. work in both versions
+5. **Global Functions**: `toggleMobileMenu()`, etc. work in both versions
 6. **Performance**: Each version is optimized for its use case
 7. **Accessibility**: Full keyboard and screen reader support in both versions
 

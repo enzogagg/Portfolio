@@ -99,13 +99,6 @@ export class AccessibilityManager {
           });
           break;
 
-        case 't':
-          // Toggle theme with 't' key
-          import('./theme.js').then(({ toggleTheme }) => {
-            toggleTheme();
-          });
-          break;
-
         case 'h':
           // Go to home/top
           e.preventDefault();
@@ -115,7 +108,7 @@ export class AccessibilityManager {
         case '?':
           // Show keyboard shortcuts help (could be implemented)
           e.preventDefault();
-          console.log('Keyboard shortcuts: T = Toggle theme, H = Home, ESC = Close menu');
+          console.log('Keyboard shortcuts: H = Home, ESC = Close menu');
           break;
       }
     });

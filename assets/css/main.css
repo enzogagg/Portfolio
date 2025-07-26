@@ -3,27 +3,7 @@
  * PORTFOLIO CSS MAIN STYLESHEET
  * Modern Interactive Portfolio Website
  * Author: Enzo Gaggiotti
- * ========================================= 
- * 
- * REFACTORED ARCHITECTURE:
- * This file imports all CSS modules in logical order:
- * 1. Variables (CSS custom properties and themes)
- * 2. Base styles (global resets and base typography)
- * 3. Animations (keyframes and animation classes)
- * 4. Header & Navigation (fixed header and nav components)
- * 5. Buttons (glassmorphism buttons and interactive elements)
- * 6. Cards (project cards, tech cards, and content containers)
- * 7. Project Actions (buttons within project cards)
- * 8. Contact Components (forms and contact-specific elements)
- * 9. Special Components (about section, timeline, unique elements)
- * 
- * Benefits of this modular approach:
- * - Better maintainability and organization
- * - Easier debugging and development
- * - Reusable components across pages
- * - Clear separation of concerns
- * - Preserved original design and functionality
- */
+ * =========================================
 
 /* ========== CORE FOUNDATION ========== */
 @import url('./modules/variables.css');      /* CSS custom properties and theme colors */
@@ -41,12 +21,6 @@
 /* ========== SPECIALIZED COMPONENTS ========== */
 @import url('./modules/contact.css');        /* Contact forms, icons, and interactions */
 @import url('./modules/special-components.css'); /* About section, timeline, unique elements */
-
-.glass-button:hover {
-  background: rgba(64, 64, 64, 0.35) !important;
-  border-color: rgba(59, 130, 246, 0.4) !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
-}
 
 /* ========== CRITICAL PRODUCTION FIXES ========== */
 /* High priority overrides for production environments (Vercel) */

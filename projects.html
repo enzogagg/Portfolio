@@ -35,14 +35,8 @@
         <a href="contact.html">Contact</a>
       </nav>
 
-      <!-- Header Controls (Theme Toggle + Mobile Menu) -->
+      <!-- Header Controls (Mobile Menu) -->
       <div class="flex items-center gap-4">
-        <!-- Theme Toggle Button -->
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Changer de thème" tabindex="0">
-          <i class="fas fa-moon moon-icon icon"></i>
-          <i class="fas fa-sun sun-icon icon"></i>
-        </button>
-
         <!-- Mobile Hamburger Menu -->
         <div class="burger-menu" onclick="toggleMobileMenu()">
           <div class="burger-line"></div>
@@ -115,181 +109,246 @@
       <!-- ========== INFRASTRUCTURE PROJECTS ========== -->
 
       <!-- Project: Cloud Infrastructure -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="infrastructure">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-cloud text-white text-xl"></i>
+      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="infrastructure">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg infrastructure">
+              <i class="fas fa-cloud project-icon"></i>
+            </div>
           </div>
-          <span class="text-xs font-semibold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">Infrastructure</span>
+          <div class="project-status-badge">
+            <div class="status-dot completed"></div>
+            <span>Infrastructure</span>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-          Infrastructure Cloud Hybride
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Déploiement d'une infrastructure cloud hybride avec Docker, Kubernetes et Terraform. Automatisation complète avec CI/CD.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Docker</span>
-          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Kubernetes</span>
-          <span class="text-xs font-medium text-purple-300 bg-purple-300/10 px-2 py-1 rounded-md">Terraform</span>
-        </div>
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-external-link-alt mr-2"></i>Démo
-          </a>
+
+        <div class="project-content">
+          <h3 class="project-title">Infrastructure Cloud Hybride</h3>
+          <p class="project-description">
+            Déploiement d'une infrastructure cloud hybride avec Docker, Kubernetes et Terraform. Automatisation complète avec CI/CD pour une scalabilité optimale.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag docker">Docker</span>
+            <span class="tech-tag kubernetes">Kubernetes</span>
+            <span class="tech-tag terraform">Terraform</span>
+            <span class="tech-tag cicd">CI/CD</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="project-btn btn-primary">
+              <i class="fab fa-github"></i>
+              <span>Code</span>
+            </a>
+            <a href="#" class="project-btn btn-secondary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Démo</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- Project: Automation Scripts -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="infrastructure" style="animation-delay: 1s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-robot text-white text-xl"></i>
+      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="infrastructure" style="animation-delay: 0.1s;">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg automation">
+              <i class="fas fa-robot project-icon"></i>
+            </div>
           </div>
-          <span class="text-xs font-semibold text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full">Infrastructure</span>
+          <div class="project-status-badge">
+            <div class="status-dot active"></div>
+            <span>Infrastructure</span>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-          Scripts d'Automatisation
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Collection de scripts Python et Bash pour l'automatisation des tâches d'administration système et déploiement.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Python</span>
-          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Bash</span>
-          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Ansible</span>
-        </div>
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-play mr-2"></i>Tester
-          </a>
+
+        <div class="project-content">
+          <h3 class="project-title">Scripts d'Automatisation</h3>
+          <p class="project-description">
+            Collection de scripts Python et Bash pour l'automatisation des tâches d'administration système et déploiement avec Ansible.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag python">Python</span>
+            <span class="tech-tag bash">Bash</span>
+            <span class="tech-tag ansible">Ansible</span>
+            <span class="tech-tag linux">Linux</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="project-btn btn-primary">
+              <i class="fab fa-github"></i>
+              <span>Code</span>
+            </a>
+            <a href="#" class="project-btn btn-secondary">
+              <i class="fas fa-play"></i>
+              <span>Tester</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- ========== WEB DEVELOPMENT PROJECTS ========== -->
 
       <!-- Project: Interactive Portfolio -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="web" style="animation-delay: 0.2s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-globe text-white text-xl"></i>
+      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="web" style="animation-delay: 0.2s;">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg web">
+              <i class="fas fa-globe project-icon"></i>
+            </div>
           </div>
-          <span class="text-xs font-semibold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full">Web</span>
+          <div class="project-status-badge">
+            <div class="status-dot active"></div>
+            <span>Web</span>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-          Portfolio Interactif
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Site portfolio moderne avec animations fluides, thème sombre/clair et design responsive utilisant les dernières technologies web.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">HTML5</span>
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">CSS3</span>
-          <span class="text-xs font-medium text-yellow-300 bg-yellow-300/10 px-2 py-1 rounded-md">JavaScript</span>
-          <span class="text-xs font-medium text-cyan-300 bg-cyan-300/10 px-2 py-1 rounded-md">Tailwind</span>
-        </div>
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-external-link-alt mr-2"></i>Voir Live
-          </a>
+
+        <div class="project-content">
+          <h3 class="project-title">Portfolio Interactif</h3>
+          <p class="project-description">
+            Site portfolio moderne avec animations fluides, design responsive et architecture modulaire utilisant les dernières technologies web.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag html">HTML5</span>
+            <span class="tech-tag css">CSS3</span>
+            <span class="tech-tag javascript">JavaScript</span>
+            <span class="tech-tag tailwind">Tailwind</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="project-btn btn-primary">
+              <i class="fab fa-github"></i>
+              <span>Code</span>
+            </a>
+            <a href="#" class="project-btn btn-secondary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Voir Live</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- Project: REST API -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="web" style="animation-delay: 0.8s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-api text-white text-xl"></i>
+      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="web" style="animation-delay: 0.3s;">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg api">
+              <i class="fas fa-code project-icon"></i>
+            </div>
           </div>
-          <span class="text-xs font-semibold text-indigo-400 bg-indigo-400/10 px-3 py-1 rounded-full">Web</span>
+          <div class="project-status-badge">
+            <div class="status-dot completed"></div>
+            <span>Web</span>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-          API REST Sécurisée
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          API REST complète avec authentification JWT, validation des données et documentation Swagger intégrée.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Node.js</span>
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Express</span>
-          <span class="text-xs font-medium text-yellow-300 bg-yellow-300/10 px-2 py-1 rounded-md">MongoDB</span>
-        </div>
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-book mr-2"></i>Docs
-          </a>
+
+        <div class="project-content">
+          <h3 class="project-title">API REST Sécurisée</h3>
+          <p class="project-description">
+            API REST complète avec authentification JWT, validation des données et documentation Swagger intégrée pour une architecture robuste.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag nodejs">Node.js</span>
+            <span class="tech-tag express">Express</span>
+            <span class="tech-tag mongodb">MongoDB</span>
+            <span class="tech-tag jwt">JWT</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="project-btn btn-primary">
+              <i class="fab fa-github"></i>
+              <span>Code</span>
+            </a>
+            <a href="#" class="project-btn btn-secondary">
+              <i class="fas fa-book"></i>
+              <span>Docs</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- ========== SYSTEM PROJECTS ========== -->
 
       <!-- Project: System Monitoring -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.4s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-chart-line text-white text-xl"></i>
+      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.4s;">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg monitoring">
+              <i class="fas fa-chart-line project-icon"></i>
+            </div>
           </div>
-          <span class="text-xs font-semibold text-green-400 bg-green-400/10 px-3 py-1 rounded-full">Système</span>
+          <div class="project-status-badge">
+            <div class="status-dot active"></div>
+            <span>Système</span>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-          Stack de Monitoring
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Solution complète de monitoring avec Prometheus, Grafana et Alertmanager pour surveiller l'infrastructure en temps réel.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-red-300 bg-red-300/10 px-2 py-1 rounded-md">Prometheus</span>
-          <span class="text-xs font-medium text-orange-300 bg-orange-300/10 px-2 py-1 rounded-md">Grafana</span>
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">Docker</span>
-        </div>
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-external-link-alt mr-2"></i>Dashboard
-          </a>
+
+        <div class="project-content">
+          <h3 class="project-title">Stack de Monitoring</h3>
+          <p class="project-description">
+            Solution complète de monitoring avec Prometheus, Grafana et Alertmanager pour surveiller l'infrastructure en temps réel.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag prometheus">Prometheus</span>
+            <span class="tech-tag grafana">Grafana</span>
+            <span class="tech-tag docker">Docker</span>
+            <span class="tech-tag alerting">Alerting</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="project-btn btn-primary">
+              <i class="fab fa-github"></i>
+              <span>Code</span>
+            </a>
+            <a href="#" class="project-btn btn-secondary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- Project: Process Manager -->
-      <div class="project-card glass-button p-8 rounded-2xl transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.6s;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center">
-            <i class="fas fa-microchip text-white text-xl"></i>
+      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.5s;">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg system">
+              <i class="fas fa-microchip project-icon"></i>
+            </div>
           </div>
-          <span class="text-xs font-semibold text-red-400 bg-red-400/10 px-3 py-1 rounded-full">Système</span>
+          <div class="project-status-badge">
+            <div class="status-dot completed"></div>
+            <span>Système</span>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-          Gestionnaire de Processus
-        </h3>
-        <p class="text-neutral-400 text-sm leading-relaxed mb-6">
-          Application système en C++ pour la gestion avancée des processus avec interface en temps réel et optimisations mémoire.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-xs font-medium text-blue-300 bg-blue-300/10 px-2 py-1 rounded-md">C++</span>
-          <span class="text-xs font-medium text-gray-300 bg-gray-300/10 px-2 py-1 rounded-md">Linux</span>
-          <span class="text-xs font-medium text-green-300 bg-green-300/10 px-2 py-1 rounded-md">Qt</span>
-        </div>
-        <div class="flex gap-3">
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fab fa-github mr-2"></i>Code
-          </a>
-          <a href="#" class="flex-1 glass-button py-2 px-4 rounded-lg text-center text-sm font-medium transition-all duration-300 hover:scale-105">
-            <i class="fas fa-download mr-2"></i>Release
-          </a>
+
+        <div class="project-content">
+          <h3 class="project-title">Gestionnaire de Processus</h3>
+          <p class="project-description">
+            Application système en C++ pour la gestion avancée des processus avec interface en temps réel et optimisations mémoire.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag cpp">C++</span>
+            <span class="tech-tag linux">Linux</span>
+            <span class="tech-tag qt">Qt</span>
+            <span class="tech-tag realtime">Real-time</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#" class="project-btn btn-primary">
+              <i class="fab fa-github"></i>
+              <span>Code</span>
+            </a>
+            <a href="#" class="project-btn btn-secondary">
+              <i class="fas fa-download"></i>
+              <span>Release</span>
+            </a>
+          </div>
         </div>
       </div>
 

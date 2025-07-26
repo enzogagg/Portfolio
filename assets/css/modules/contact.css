@@ -2,6 +2,7 @@
  * =========================================
  * CONTACT COMPONENTS & FORMS
  * Contact forms, icons, and enhanced theme integration
+ * Dark mode only - Light theme removed
  * =========================================
  */
 
@@ -29,7 +30,7 @@
 }
 
 /* ========== CONTACT FORM THEME INTEGRATION ========== */
-/* Contact form styling for light theme (default) */
+/* Contact form styling for dark theme */
 .contact-form-container {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
@@ -67,58 +68,13 @@
   color: white;
 }
 
-/* Dark theme (light mode) overrides */
-html:not(.dark) .contact-form-container {
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px solid rgba(0, 0, 0, 0.1);
-}
-
-html:not(.dark) .contact-form-field {
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px solid rgba(0, 0, 0, 0.15);
-  color: #111827;
-}
-
-html:not(.dark) .contact-form-field::placeholder {
-  color: rgba(75, 85, 99, 0.8);
-}
-
-html:not(.dark) .contact-form-field:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-
-html:not(.dark) .contact-form-label {
-  color: #111827;
-}
-
-html:not(.dark) .contact-title-main {
-  color: #111827;
-}
-
-html:not(.dark) .contact-description {
-  color: #4b5563;
-}
-
-html:not(.dark) .contact-card-title {
-  color: #111827;
-}
-
-/* Contact links for both themes */
+/* Contact links styling */
 .contact-email-link {
   color: #60a5fa;
 }
 
 .contact-email-link:hover {
   color: #93c5fd;
-}
-
-html:not(.dark) .contact-email-link {
-  color: #1d4ed8;
-}
-
-html:not(.dark) .contact-email-link:hover {
-  color: #2563eb;
 }
 
 .contact-linkedin-link {
@@ -129,14 +85,6 @@ html:not(.dark) .contact-email-link:hover {
   color: #ddd6fe;
 }
 
-html:not(.dark) .contact-linkedin-link {
-  color: #7c2d12;
-}
-
-html:not(.dark) .contact-linkedin-link:hover {
-  color: #92400e;
-}
-
 .contact-github-link {
   color: #9ca3af;
 }
@@ -145,16 +93,8 @@ html:not(.dark) .contact-linkedin-link:hover {
   color: #d1d5db;
 }
 
-html:not(.dark) .contact-github-link {
-  color: #374151;
-}
-
-html:not(.dark) .contact-github-link:hover {
-  color: #4b5563;
-}
-
 /* ========== RESPONSE TIME BLOCK THEME INTEGRATION ========== */
-/* Response time block styling for dark mode (default) */
+/* Response time block styling for dark mode */
 .response-time-block {
   background: rgba(34, 197, 94, 0.1);
   border: 2px solid rgba(34, 197, 94, 0.2);
@@ -166,20 +106,6 @@ html:not(.dark) .contact-github-link:hover {
 
 .response-time-text {
   color: #86efac;
-}
-
-/* Light mode (html:not(.dark)) overrides */
-html:not(.dark) .response-time-block {
-  background: rgba(34, 197, 94, 0.15);
-  border: 2px solid rgba(34, 197, 94, 0.3);
-}
-
-html:not(.dark) .response-time-icon {
-  color: #16a34a;
-}
-
-html:not(.dark) .response-time-text {
-  color: #15803d;
 }
 
 /* ========== CONTACT FORM ENHANCED THEME INTEGRATION ========== */
@@ -204,56 +130,9 @@ html:not(.dark) .response-time-text {
 .contact-form-field-enhanced:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  outline: none;
 }
 
 .contact-form-label-enhanced {
   color: white;
-}
-
-/* Light mode overrides */
-html:not(.dark) .contact-form-enhanced {
-  background: rgba(0, 0, 0, 0.03);
-  border: 2px solid rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(10px);
-}
-
-html:not(.dark) .contact-form-field-enhanced {
-  background: rgba(0, 0, 0, 0.02);
-  border: 2px solid rgba(0, 0, 0, 0.12);
-  color: #111827;
-}
-
-html:not(.dark) .contact-form-field-enhanced::placeholder {
-  color: rgba(75, 85, 99, 0.7);
-}
-
-html:not(.dark) .contact-form-field-enhanced:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-  background: rgba(0, 0, 0, 0.04);
-}
-
-html:not(.dark) .contact-form-label-enhanced {
-  color: #111827;
-  font-weight: 800;
-}
-
-/* Select dropdown specific styles */
-html:not(.dark) .contact-form-field-enhanced option {
-  background: #ffffff;
-  color: #111827;
-}
-
-html:not(.dark) .contact-form-field-enhanced option:first-child {
-  color: #6b7280;
-}
-
-/* Focus ring enhancement for accessibility */
-.contact-form-field-enhanced:focus {
-  outline: none;
-}
-
-html:not(.dark) .contact-form-field-enhanced:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
 }
