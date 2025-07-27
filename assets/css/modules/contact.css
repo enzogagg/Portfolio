@@ -351,7 +351,422 @@ textarea.contact-form-field-enhanced {
   border-radius: var(--card-radius);
   padding: var(--spacing-xl);
 
+  box-shadow: var(--shadow-lg);
   transition: all var(--duration-normal) var(--ease-out);
+  will-change: transform, background-color, box-shadow;
+}
+
+.contact-card:hover {
+  background: rgba(var(--bg-tertiary), var(--glass-opacity-strong));
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(var(--border-primary), 0.4);
+}
+
+/* =====================================================================================================
+   PREMIUM CONTACT METHOD CARDS
+   ===================================================================================================== */
+
+/**
+ * Ultra-Modern Contact Method Cards
+ * Premium glassmorphism design with advanced effects
+ */
+.contact-method-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 24px;
+  
+  /* Advanced Glassmorphism */
+  background: linear-gradient(135deg,
+    rgba(var(--bg-secondary), 0.95) 0%,
+    rgba(var(--bg-secondary), 0.85) 50%,
+    rgba(var(--bg-secondary), 0.9) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  
+  /* Premium Border & Shadow */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Smooth Transitions */
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, box-shadow, border-color;
+  cursor: pointer;
+  
+  /* Link Reset */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.contact-method-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.25),
+    0 12px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+}
+
+/**
+ * Premium Card Content Layout
+ */
+.contact-card-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 3;
+}
+
+/**
+ * Advanced Icon Wrapper with Pulse Effect
+ */
+.contact-icon-wrapper {
+  position: relative;
+}
+
+.contact-icon-enhanced {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+  overflow: hidden;
+}
+
+.contact-method-card:hover .contact-icon-enhanced {
+  transform: scale(1.15) rotate(3deg);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+}
+
+.contact-icon-enhanced i {
+  font-size: 28px;
+  color: white !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  position: relative;
+}
+
+/**
+ * Pulse Ring Animation
+ */
+.icon-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: inherit;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.contact-method-card:hover .icon-pulse-ring {
+  animation-duration: 1.2s;
+}
+
+/**
+ * Enhanced Contact Info Section
+ */
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-method-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: rgb(var(--text-primary));
+  margin-bottom: 6px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.contact-method-link {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.contact-method-description {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgb(var(--text-secondary));
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.contact-meta-icon {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/**
+ * Card Arrow Indicator
+ */
+.contact-card-arrow {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+}
+
+.contact-method-card:hover .contact-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/**
+ * Advanced Shimmer Effect
+ */
+.contact-card-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%);
+  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.contact-method-card:hover .contact-card-shimmer {
+  left: 100%;
+}
+
+/**
+ * Enhanced Brand-Specific Styling
+ */
+
+/* Premium Email Card */
+.contact-icon-email {
+  background: linear-gradient(135deg, 
+    #667EEA 0%, 
+    #764BA2 50%, 
+    #F093FB 100%);
+  position: relative;
+}
+
+.contact-icon-email::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.8) 0%, 
+    rgba(118, 75, 162, 0.8) 50%, 
+    rgba(240, 147, 251, 0.8) 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-method-card:hover .contact-icon-email::before {
+  opacity: 1;
+}
+
+.email-link {
+  color: #A78BFA;
+  background: linear-gradient(135deg, #A78BFA, #C4B5FD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.email-link:hover {
+  transform: translateX(4px);
+  background: linear-gradient(135deg, #C4B5FD, #DDD6FE);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.email-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, 
+    rgba(167, 139, 250, 0.15) 0%, 
+    transparent 70%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.contact-method-card:hover .email-glow {
+  opacity: 1;
+}
+
+/* Premium LinkedIn Card */
+.contact-icon-linkedin {
+  background: linear-gradient(135deg, 
+    #0077B5 0%, 
+    #005885 50%, 
+    #00A0DC 100%);
+  position: relative;
+}
+
+.contact-icon-linkedin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(0, 119, 181, 0.8) 0%, 
+    rgba(0, 88, 133, 0.8) 50%, 
+    rgba(0, 160, 220, 0.8) 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-method-card:hover .contact-icon-linkedin::before {
+  opacity: 1;
+}
+
+.linkedin-link {
+  color: #60A5FA;
+  background: linear-gradient(135deg, #60A5FA, #93C5FD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.linkedin-link:hover {
+  transform: translateX(4px);
+  background: linear-gradient(135deg, #93C5FD, #BFDBFE);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.linkedin-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, 
+    rgba(96, 165, 250, 0.15) 0%, 
+    transparent 70%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.contact-method-card:hover .linkedin-glow {
+  opacity: 1;
+}
+
+/* Premium GitHub Card */
+.contact-icon-github {
+  background: linear-gradient(135deg, 
+    #24292E 0%, 
+    #1B1F23 50%, 
+    #0D1117 100%);
+  position: relative;
+}
+
+.contact-icon-github::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(36, 41, 46, 0.9) 0%, 
+    rgba(27, 31, 35, 0.9) 50%, 
+    rgba(13, 17, 23, 0.9) 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-method-card:hover .contact-icon-github::before {
+  opacity: 1;
+}
+
+.github-link {
+  color: #D1D5DB;
+  background: linear-gradient(135deg, #D1D5DB, #F3F4F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.github-link:hover {
+  transform: translateX(4px);
+  background: linear-gradient(135deg, #F3F4F6, #FFFFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.github-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, 
+    rgba(209, 213, 219, 0.1) 0%, 
+    transparent 70%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.contact-method-card:hover .github-glow {
+  opacity: 1;
 }
 
 .contact-card:hover {
