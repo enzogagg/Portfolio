@@ -444,6 +444,127 @@
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
+/* =====================================================================================================
+   SKILL TAGS & BADGES
+   ===================================================================================================== */
+
+/**
+ * Simple Skill Tags
+ * Enhanced glassmorphism skill tags matching tech-card design
+ */
+.skill-tag-simple {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  margin: 6px;
+  position: relative;
+  overflow: hidden;
+  
+  /* Glassmorphism Effect - Matching tech-cards */
+  background: linear-gradient(135deg,
+    rgba(var(--bg-secondary), 0.9) 0%,
+    rgba(var(--bg-secondary), 0.7) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* Border and Shadow - Matching tech-cards */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Typography */
+  color: rgb(var(--text-primary));
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  
+  /* Transitions - Matching tech-cards */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow, border-color;
+  cursor: default;
+}
+
+.skill-tag-simple:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(79, 172, 254, 0.2);
+  border-color: rgba(79, 172, 254, 0.3);
+}
+
+/* Shimmer effect matching tech-cards */
+.skill-tag-simple::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(79, 172, 254, 0.1),
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.skill-tag-simple:hover::before {
+  left: 100%;
+}
+
+.skill-tag-simple i {
+  font-size: 14px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.skill-tag-simple:hover i {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.skill-tag-simple span {
+  color: rgb(var(--text-primary)) !important;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+/* Responsive adjustments for skill tags */
+@media (max-width: 640px) {
+  .skill-tag-simple {
+    padding: 10px 14px;
+    margin: 4px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  
+  .skill-tag-simple i {
+    font-size: 12px;
+  }
+  
+  .skill-tag-simple span {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .skill-tag-simple {
+    padding: 11px 16px;
+    margin: 5px;
+  }
+  
+  .skill-tag-simple i {
+    font-size: 13px;
+  }
+  
+  .skill-tag-simple span {
+    font-size: 12.5px;
+  }
+}
+
 /**
  * Icon Hover Effects
  * Enhanced animations for skill and interest icons
