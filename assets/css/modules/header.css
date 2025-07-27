@@ -1,218 +1,628 @@
 /**
- * =========================================
- * HEADER & NAVIGATION COMPONENTS
- * Fixed header, desktop/mobile navigation
- * =========================================
- */
+ * =====================================================================================================
+ * PORTFOLIO - HEADER & NAVIGATION SYSTEM
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: header.css
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Système de navigation principal avec design minimaliste inspiré d'Apple.
+ * Inclut header fixe avec glassmorphism, navigation responsive, menu mobile,
+ * et éléments interactifs conformes à l'accessibilité.
+ *
+ * Features:
+ * - Header fixe avec effet glassmorphism
+ * - Navigation desktop centrée avec effets hover
+ * - Menu mobile avec overlay coulissant
+ * - Design Apple minimaliste adapté au thème sombre
+ * - Transitions fluides et animations GPU-accelerated
+ * - Support complet de l'accessibilité (WCAG)
+ *
+ * Browser Support: Modern browsers avec backdrop-filter
+ * Dependencies: variables.css, animations.css
+ *
+ * =====================================================================================================
+ *//* =====================================================================================================
+   HEADER FOUNDATION
+   ===================================================================================================== */
 
-/* ========== HEADER & NAVIGATION ========== */
-/* Fixed header with glassmorphism effect */
+/**
+ * Main Header Container
+ * Apple-inspired minimalist design adapted for dark theme
+ */
 header {
+  /* Positioning */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  backdrop-filter: blur(15px);        /* Glassmorphism blur effect */
-  background: rgba(var(--bg-primary) / 0.98);
-  border-bottom: 2px solid rgba(var(--text-secondary) / 0.4);
-  box-shadow: 0 4px 20px rgba(var(--text-secondary) / 0.2);
-  z-index: 100;                       /* Ensure header stays on top */
-  height: 48px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  height: var(--header-height);
+  z-index: var(--z-fixed);
+
+  /* Dark Apple-inspired Glassmorphism */
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  /* Subtle Border */
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+
+  /* Clean Shadow */
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
+
+  /* Smooth Transitions */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Performance Optimization */
+  will-change: background-color, backdrop-filter;
 }
 
-/* Header hide/show animation states */
+/**
+ * Header Auto-Hide States
+ * Smooth header visibility transitions
+ */
 header.header-hidden {
-  transform: translateY(-100%);       /* Hide header by moving it up */
+  transform: translateY(-100%);
 }
 
 header.header-visible {
-  transform: translateY(0);           /* Show header in normal position */
+  transform: translateY(0);
 }
 
-/* Header container with centered content */
+/**
+ * Enhanced state on scroll
+ */
+header.scrolled {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+/**
+ * Header Inner Container
+ * Clean, centered layout with Apple-like spacing
+ */
 .header-container {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 24px;
   position: relative;
 }
 
-/* Logo styling with hover effects */
-.logo-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 9999px;             /* Perfect circle */
-  object-fit: cover;
-  transition: filter 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
-  border: 2px solid rgba(var(--accent) / 0.5);
+/* =====================================================================================================
+   LOGO SYSTEM
+   ===================================================================================================== */
+
+/**
+ * Brand Logo Component
+ * Apple-inspired minimal logo design
+ */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  /* Focus Styles */
+  outline: none;
 }
 
-.logo-img:hover {
-  filter: brightness(1.2);
-  transform: scale(1.05);
+.logo:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.logo-img:focus {
-  outline: 2px solid rgb(var(--accent));
+.logo:focus-visible {
+  outline: 2px solid rgba(0, 122, 255, 0.8);
   outline-offset: 2px;
 }
 
-/* ========== DESKTOP NAVIGATION ========== */
-/* Centered navigation menu */
-nav {
+/**
+ * Logo Image Styling
+ * Clean, simple circular avatar
+ */
+.logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: none;
+
+  /* Clean Transitions */
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  /* Subtle Shadow */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo:active .logo-img {
+  transform: scale(0.98);
+}
+
+/**
+ * Logo Text (Optional)
+ * Brand name or title next to logo
+ */
+.logo-text {
+  margin-left: var(--spacing-md);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: rgb(var(--text-primary));
+  white-space: nowrap;
+}
+
+/* =====================================================================================================
+   DESKTOP NAVIGATION
+   ===================================================================================================== */
+
+/**
+ * Primary Navigation Menu
+ * Apple-inspired clean horizontal navigation
+ */
+.nav-primary {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);        /* Perfect horizontal centering */
+  transform: translateX(-50%);
+
+  /* Layout */
   display: flex;
-  gap: 2rem;
-  font-size: 0.875rem;
-  color: rgb(var(--text-secondary));
-  font-weight: 300;
-  letter-spacing: 0.1em;              /* Subtle letter spacing for elegance */
+  align-items: center;
+  gap: 8px;
+
+  /* Typography */
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
-/* Navigation link styling */
-nav a {
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.2s ease;
-  line-height: 48px;                  /* Match header height */
+/**
+ * Navigation Links
+ * Apple-style navigation items adapted for dark theme
+ */
+.nav-link {
   position: relative;
-  padding: 0 4px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+
+  /* Clean Transitions */
+  transition: all 0.2s ease;
+
+  /* Focus Management */
+  outline: none;
 }
 
-/* Hover effects for navigation links */
-nav a:hover {
-  color: rgb(var(--text-primary));
-  transform: translateY(-1px);        /* Subtle lift effect */
+/**
+ * Navigation Link States
+ * Subtle Apple-style hover and active states for dark theme
+ */
+.nav-link:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Focus states for accessibility */
-nav a:focus {
-  outline: 2px solid rgb(var(--accent));
+.nav-link:focus-visible {
+  outline: 2px solid rgba(0, 122, 255, 0.8);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
-nav a:focus:not(:focus-visible) {
-  outline: none;                      /* Hide focus for mouse users */
+.nav-link.active {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 500;
 }
 
-/* Active navigation state */
-nav a.active {
-  color: rgb(var(--accent));
-}
-
-/* Animated underline effect */
-nav a::after {
+/**
+ * Navigation Link Underline Effect
+ * Subtle Apple-style active indicator
+ */
+.nav-link::after {
   content: '';
   position: absolute;
-  bottom: 12px;
-  left: 0;
+  bottom: 2px;
+  left: 50%;
   width: 0;
-  height: 2px;
-  background: rgb(var(--accent));
-  transition: width 0.3s ease;
+  height: 1px;
+  background: rgba(0, 122, 255, 0.8);
+  transform: translateX(-50%);
+  transition: width 0.2s ease;
 }
 
-nav a:hover::after {
-  width: 100%;                        /* Expand underline on hover */
+.nav-link.active::after {
+  width: calc(100% - 16px);
 }
 
-/* ========== MOBILE NAVIGATION ========== */
-/* Mobile menu overlay */
-.mobile-menu {
-  display: none;                      /* Hidden by default */
-  position: fixed;
-  top: 48px;                          /* Below header */
-  left: 0;
-  width: 100%;
-  background: rgba(var(--bg-primary) / 0.98);
-  backdrop-filter: blur(15px);        /* Consistent glassmorphism */
-  border-bottom: 2px solid rgba(var(--text-secondary) / 0.4);
-  box-shadow: 0 4px 20px rgba(var(--text-secondary) / 0.2);
-  padding: 20px;
-  transform: translateY(-100%);       /* Initially hidden above */
-  transition: transform 0.3s ease;
-}
+/* =====================================================================================================
+   MOBILE NAVIGATION SYSTEM
+   ===================================================================================================== */
 
-/* Active state - slide down mobile menu */
-.mobile-menu.active {
-  transform: translateY(0);
-}
-
-/* Mobile navigation layout */
-.mobile-menu nav {
-  position: static;
-  transform: none;
-  flex-direction: column;             /* Stack vertically */
-  gap: 1rem;
-  text-align: center;
-}
-
-/* Mobile navigation link styling */
-.mobile-menu nav a {
-  line-height: 1.5;
-  padding: 12px;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
-}
-
-.mobile-menu nav a:hover {
-  background: rgba(var(--text-secondary) / 0.1);
-}
-
-/* Hamburger menu button */
+/**
+ * Hamburger Menu Button
+ * Clean Apple-style hamburger for mobile
+ */
 .burger-menu {
-  display: none;                      /* Hidden on desktop */
+  display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
-  gap: 4px;
-  padding: 8px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+
+  /* Clean Transitions */
+  transition: background-color 0.2s ease;
+  outline: none;
 }
 
-/* Individual hamburger lines */
+.burger-menu:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.burger-menu:focus-visible {
+  outline: 2px solid rgba(0, 122, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/**
+ * Hamburger Lines
+ * Simple, clean lines for dark theme
+ */
 .burger-line {
-  width: 20px;
-  height: 2px;
-  background: rgb(var(--text-primary));
-  transition: all 0.3s ease;
+  width: 18px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 1px;
+  margin: 2.5px 0;
+
+  /* Animation Properties */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
 }
 
-/* Hamburger to X animation */
+/**
+ * Hamburger Animation States
+ * Transform lines into X when active
+ */
 .burger-menu.active .burger-line:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
 
 .burger-menu.active .burger-line:nth-child(2) {
-  opacity: 0;                         /* Hide middle line */
+  opacity: 0;
+  transform: scale(0);
 }
 
 .burger-menu.active .burger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
-/* Mobile breakpoint adjustments */
-@media (max-width: 768px) {
+/**
+ * Mobile Menu Overlay
+ * Apple-inspired mobile menu for dark theme
+ */
+.mobile-menu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  max-height: calc(100vh - var(--header-height));
+
+  /* Dark Glassmorphism */
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+
+  /* Minimal Border */
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+
+  /* Animation */
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Z-index */
+  z-index: var(--z-dropdown);
+
+  /* Scrolling */
+  overflow-y: auto;
+}
+
+/**
+ * Active Mobile Menu State
+ * Smooth slide down animation
+ */
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/**
+ * Mobile Navigation Container
+ * Clean content wrapper
+ */
+.mobile-nav {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/**
+ * Mobile Navigation Links
+ * Apple-style mobile navigation for dark theme
+ */
+.mobile-nav .nav-link,
+.mobile-nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+
+  /* Clean Transitions */
+  transition: all 0.2s ease;
+
+  /* Touch Target */
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+
+  /* Focus Management */
+  outline: none;
+}
+
+.mobile-nav .nav-link:hover,
+.mobile-nav-link:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav .nav-link:focus-visible,
+.mobile-nav-link:focus-visible {
+  outline: 2px solid rgba(0, 122, 255, 0.8);
+  outline-offset: 2px;
+}
+
+.mobile-nav .nav-link.active,
+.mobile-nav-link.active {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+}
+
+/* =====================================================================================================
+   RESPONSIVE BREAKPOINTS
+   ===================================================================================================== */
+
+/**
+ * Mobile-First Responsive Design
+ * Progressive enhancement for larger screens
+ */
+
+/* Mobile Styles (Default) */
+@media (max-width: 767px) {
   /* Hide desktop navigation */
-  nav {
+  .nav-primary {
     display: none;
   }
 
-  /* Show mobile hamburger menu */
+  /* Show mobile hamburger */
   .burger-menu {
     display: flex;
   }
 
-  /* Show mobile menu container */
-  .mobile-menu {
-    display: block;
+  /* Adjust header padding */
+  .header-container {
+    padding: 0 var(--spacing-md);
+  }
+
+  /* Hide logo text on very small screens */
+  .logo-text {
+    display: none;
   }
 }
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  /* Hide mobile elements */
+  .burger-menu,
+  .mobile-menu {
+    display: none;
+  }
+
+  /* Show desktop navigation */
+  .nav-primary {
+    display: flex;
+  }
+
+  /* Show logo text */
+  .logo-text {
+    display: block;
+  }
+
+  /* Increase header padding */
+  .header-container {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  /* Increase navigation gap */
+  .nav-primary {
+    gap: var(--spacing-2xl);
+  }
+
+  /* Larger logo */
+  .logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Maximum header padding */
+  .header-container {
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+/* =====================================================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ===================================================================================================== */
+
+/**
+ * Screen Reader Support
+ * Hidden labels and descriptions for assistive technology
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/**
+ * Focus Management
+ * Enhanced focus styles for keyboard navigation
+ */
+.focus-trap {
+  outline: none;
+}
+
+/**
+ * Skip Navigation Link
+ * Accessibility feature for keyboard users
+ */
+.skip-nav {
+  position: absolute;
+  top: -40px;
+  left: var(--spacing-base);
+  background: rgb(var(--accent-primary));
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-base);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  z-index: var(--z-maximum);
+
+  transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-nav:focus {
+  top: var(--spacing-base);
+}
+
+/* =====================================================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ===================================================================================================== */
+
+/**
+ * GPU Acceleration
+ * Optimize frequently animated elements
+ */
+.header-container,
+.mobile-menu,
+.burger-line {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/**
+ * Reduce Motion Support
+ * Respect user's motion preferences
+ */
+@media (prefers-reduced-motion: reduce) {
+  header,
+  .mobile-menu,
+  .nav-link,
+  .mobile-nav-link,
+  .burger-line,
+  .logo-img {
+    transition-duration: var(--duration-instant) !important;
+    animation: none !important;
+  }
+
+  .nav-link::after {
+    transition: none !important;
+  }
+}
+
+/* =====================================================================================================
+   HIGH CONTRAST MODE SUPPORT
+   ===================================================================================================== */
+
+/**
+ * Enhanced Contrast
+ * Better visibility for users who need high contrast
+ */
+@media (prefers-contrast: high) {
+  header {
+    background: rgb(var(--bg-primary));
+    border-bottom: 2px solid rgb(var(--text-primary));
+  }
+
+  .nav-link,
+  .mobile-nav-link {
+    border: 1px solid rgb(var(--text-secondary));
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible,
+  .mobile-nav-link:hover,
+  .mobile-nav-link:focus-visible {
+    border-color: rgb(var(--text-primary));
+    background: rgb(var(--bg-secondary));
+  }
+
+  .burger-line {
+    background: rgb(var(--text-primary));
+  }
+}
+
+/* =====================================================================================================
+   PRINT STYLES
+   ===================================================================================================== */
+
+/**
+ * Print Optimization
+ * Hide navigation elements when printing
+ */
+@media print {
+  header,
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+/* =====================================================================================================
+   END OF HEADER MODULE
+   ===================================================================================================== */

@@ -1,27 +1,72 @@
-/* ========== BUTTON STYLES ========== */
+/**
+ * =====================================================================================================
+ * PORTFOLIO - BUTTON COMPONENTS MODULE
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: buttons.css
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Système de boutons complet avec effets glassmorphism, animations hover
+ * et états interactifs pour interfaces web modernes.
+ *
+ * Features:
+ * - Boutons glass (éléments UI principaux)
+ * - Boutons de filtre (filtrage projets)
+ * - Boutons de navigation
+ * - États interactifs et animations
+ * - Support complet de l'accessibilité
+ * - Design responsive et touch-friendly
+ *
+ * Dependencies: variables.css, animations.css
+ * Browser Support: Modern browsers avec backdrop-filter
+ *
+ * =====================================================================================================
+ */
 
-/* ========== GLASSMORPHISM BUTTON EFFECTS ========== */
-/* Modern glass button with backdrop blur - Dark mode only */
+/* =====================================================================================================
+   GLASSMORPHISM BUTTONS
+   ===================================================================================================== */
+
+/**
+ * Primary glass button component
+ * Features modern glassmorphism effects with backdrop blur
+ */
 .glass-button {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);        /* Glassmorphism effect */
-  -webkit-backdrop-filter: blur(16px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  color: white;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
+  /* Core Layout */
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Shadows & Lighting */
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* Typography */
+  color: white;
+  font-weight: 600;
+
+  /* Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Shimmer effect on hover */
+/**
+ * Shimmer animation effect for glass buttons
+ * Creates a light sweep across the button on hover
+ */
 .glass-button::before {
   content: '';
   position: absolute;
@@ -29,46 +74,55 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent);
   transition: left 0.6s ease;
+  pointer-events: none;
 }
 
 .glass-button:hover::before {
-  left: 100%;                         /* Slide shimmer across button */
+  left: 100%;
 }
 
-/* Glass button hover effects - Dark mode only */
+/**
+ * Glass button hover effects
+ * Enhanced visual feedback with scaling and glow
+ */
 .glass-button:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-3px) scale(1.02); /* Lift and scale effect */
+  transform: translateY(-3px) scale(1.02);
   box-shadow:
-    0 20px 40px rgba(59, 130, 246, 0.3),
+    0 20px 40px rgba(79, 172, 254, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Active state (click) effect */
+/**
+ * Active and focus states for glass buttons
+ */
 .glass-button:active {
   transform: translateY(-1px) scale(0.98);
   transition: all 0.1s ease;
 }
 
-/* Focus state for accessibility */
 .glass-button:focus {
   outline: none;
   box-shadow:
-    0 0 0 3px rgba(59, 130, 246, 0.3),
+    0 0 0 3px rgba(79, 172, 254, 0.3),
     0 8px 32px rgba(31, 38, 135, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Focus outline for accessibility */
 .glass-button:focus-visible {
-  outline: 2px solid rgb(var(--accent));
+  outline: 2px solid rgba(79, 172, 254, 0.8);
   outline-offset: 2px;
 }
 
-/* Icon animations within buttons */
+/**
+ * Icon animations within glass buttons
+ */
 .glass-button i {
   transition: all 0.3s ease;
 }
@@ -77,9 +131,73 @@
   transform: scale(1.1);
 }
 
-/* ========== BUTTON PULSE ANIMATIONS ========== */
-/* Subtle pulse animation for glass buttons - Dark mode only */
-.glass-button {
+/* =====================================================================================================
+   FILTER BUTTONS
+   ===================================================================================================== */
+
+/**
+ * Project filter buttons with enhanced styling
+ */
+.filter-btn {
+  /* Inherit glass button properties */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Filter-specific styling */
+  border-radius: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/**
+ * Active filter button state
+ */
+.filter-btn.active {
+  background: linear-gradient(135deg,
+    rgba(79, 172, 254, 0.8) 0%,
+    rgba(59, 130, 246, 0.8) 100%);
+  border-color: rgba(79, 172, 254, 0.6);
+  color: white;
+  box-shadow:
+    0 8px 20px rgba(79, 172, 254, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/**
+ * Filter button hover effects
+ */
+.filter-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.filter-btn.active:hover {
+  background: linear-gradient(135deg,
+    rgba(79, 172, 254, 0.9) 0%,
+    rgba(59, 130, 246, 0.9) 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 12px 24px rgba(79, 172, 254, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* =====================================================================================================
+   BUTTON ANIMATIONS
+   ===================================================================================================== */
+
+/**
+ * Subtle pulse animation for interactive buttons
+ */
+.glass-button,
+.filter-btn {
   animation: buttonPulse 6s ease-in-out infinite;
 }
 
@@ -91,39 +209,42 @@
   }
   50% {
     box-shadow:
-      0 8px 32px rgba(31, 38, 135, 0.25),
+      0 12px 36px rgba(31, 38, 135, 0.25),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
 }
 
-/* ========== FILTER BUTTONS SPECIAL HANDLING ========== */
-/* Active filter button styling */
-.filter-btn.active {
-  background: rgba(59, 130, 246, 0.2) !important;
-  border-color: rgba(59, 130, 246, 0.4) !important;
-  color: rgb(147, 197, 253) !important;
-  box-shadow:
-    0 8px 25px rgba(59, 130, 246, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+/* =====================================================================================================
+   RESPONSIVE DESIGN
+   ===================================================================================================== */
+
+/**
+ * Mobile adjustments for buttons
+ */
+@media (max-width: 768px) {
+  .glass-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .filter-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8rem;
+  }
 }
 
-/* Fallback: Show filter buttons immediately if JavaScript is disabled or fails */
-.filter-btn {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
+@media (max-width: 480px) {
+  .glass-button {
+    padding: 0.65rem 1rem;
+    font-size: 0.825rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
 }
 
-/* Progressive enhancement: Hide initially only if JS is enabled */
-.js-enabled .filter-btn.animate-on-scroll:not(.animate-in) {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* Force visibility for production environments (Vercel) */
-.filter-btn.animate-on-scroll {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
-  transition: all 0.3s ease;
-}
+/* =====================================================================================================
+   END OF BUTTON COMPONENTS MODULE
+   ===================================================================================================== */

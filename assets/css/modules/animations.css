@@ -1,83 +1,59 @@
 /**
- * =========================================
- * CORE ANIMATIONS & KEYFRAMES
- * Base animations used throughout the site
- * =========================================
+ * =====================================================================================================
+ * PORTFOLIO - ANIMATIONS & MOTION DESIGN SYSTEM
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: animations.css
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Système d'animations et de motion design pour micro-interactions et feedback visuel.
+ * Inclut keyframes, transitions, animations au scroll et effets spécialisés.
+ *
+ * Features:
+ * - Keyframes fondamentales et animations core
+ * - Animations au scroll (progressive disclosure)
+ * - Animations interactives (hover, focus, click)
+ * - Effets de chargement et shimmer
+ * - Effets spécialisés (avatar, timeline, glassmorphism)
+ * - Optimisation performance avec GPU acceleration
+ * - Support accessibilité (prefers-reduced-motion)
+ *
+ * Dependencies: variables.css
+ * Browser Support: Modern browsers avec animation support
+ *
+ * =====================================================================================================
  */
 
-/* ========== CRITICAL FILTER VISIBILITY FOR PRODUCTION ========== */
-/* Ultra-high priority: Force filter buttons to be always visible on Vercel */
-.filter-btn,
-.filter-btn.animate-on-scroll,
-.animate-on-scroll .filter-btn {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
-  display: inline-flex !important;
-}
+/* =====================================================================================================
+   CORE KEYFRAME ANIMATIONS
+   ===================================================================================================== */
 
-/* ========== CORE ANIMATIONS ========== */
-/* Fade-in animation for scroll triggers */
+/**
+ * Fundamental Animation Keyframes
+ * Base animations used throughout the application
+ */
+
+/* Fade animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.fade-in {
-  animation: fadeIn 1s ease forwards;
-}
-
-/* Slide-up animation for enhanced entrance effects */
-@keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-.slide-up {
-  animation: slideUp 0.8s ease forwards;
-}
-
-/* Initial state for scroll-triggered animations */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.animate-on-scroll.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Fallback: Show filter buttons immediately if JavaScript is disabled or fails */
-.filter-btn {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
-}
-
-/* Progressive enhancement: Hide initially only if JS is enabled */
-.js-enabled .filter-btn.animate-on-scroll:not(.animate-in) {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* Force visibility for production environments (Vercel) */
-.filter-btn.animate-on-scroll {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  visibility: visible !important;
-  transition: all 0.3s ease;
-}
-
-.animate-fade-in {
-  animation: fadeInUp 0.6s ease-out forwards;
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeInUp {
@@ -91,50 +67,86 @@
   }
 }
 
-/* Enhanced fade-in animation for scroll triggers */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1.2s ease-out forwards;
-}
-
-/* Floating animation for avatar and hero elements */
-.floating {
-  animation: float 8s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  50% {
-    transform: translateY(-10px);      /* Gentle floating effect */
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* ========== AVATAR SPECIAL EFFECTS ========== */
-/* Rotating halo effect behind floating avatar */
-.floating.group::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  background: conic-gradient(from 0deg, rgb(var(--accent)), transparent, rgb(var(--accent)));
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  z-index: -1;                        /* Behind the avatar */
-  animation: rotate 8s linear infinite;
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Show halo on hover */
-.floating.group:hover::before {
-  opacity: 0.3;
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Continuous rotation animation */
+/* Scale animations */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Slide animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rotation animations */
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -144,105 +156,559 @@
   }
 }
 
-/* ========== CUSTOM ANIMATIONS ========== */
-/* Slower title pulse animation */
-h1.animate-pulse {
-  animation: pulse 3s ease-in-out infinite !important;
+@keyframes rotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 
+/* Pulse animations */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
   }
   50% {
-    opacity: 0.8;                     /* Subtle opacity change */
+    opacity: 0.7;
   }
-}
-
-/* Decorative dots pulse animation */
-.animate-pulse {
-  animation: gentlePulse 2.5s ease-in-out infinite;
 }
 
 @keyframes gentlePulse {
   0%, 100% {
-    opacity: 0.6;                     /* Start/end at 60% opacity */
+    opacity: 0.8;
   }
   50% {
-    opacity: 1;                       /* Peak at 100% opacity */
+    opacity: 1;
   }
 }
 
-/* ========== TIMELINE PULSE ANIMATIONS ========== */
-/* Pulse ring animations for timeline points */
-@keyframes pulse-ring-blue {
-  0% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+/* Bounce animation */
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-10px);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    transform: translateY(-5px);
   }
-  100% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  90% {
+    transform: translateY(-2px);
   }
 }
 
-@keyframes pulse-ring-purple {
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
   0% {
-    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+    background-position: -200px 0;
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
+    background-position: calc(200px + 100%) 0;
   }
 }
 
-@keyframes pulse-ring-indigo {
-  0% {
-    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
-  }
-}
+/* =====================================================================================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ===================================================================================================== */
 
-/* Apply pulse animations */
-.pulse-ring-blue {
-  animation: pulse-ring-blue 2s infinite;
-}
+/**
+ * Scroll Animation System
+ * Progressive disclosure and entrance effects
+ */
 
-.pulse-ring-purple {
-  animation: pulse-ring-purple 2s infinite 0.5s;
-}
-
-.pulse-ring-indigo {
-  animation: pulse-ring-indigo 2s infinite 1s;
-}
-
-/* ========== PERFORMANCE HINTS ========== */
-/* Optimize animations with will-change property */
-.fade-in {
+/* Base scroll animation setup */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
   will-change: opacity, transform;
 }
 
-.tech-card, .project-card {
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for groups */
+.animate-on-scroll.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.animate-on-scroll.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.animate-on-scroll.delay-300 {
+  transition-delay: 0.3s;
+}
+
+.animate-on-scroll.delay-400 {
+  transition-delay: 0.4s;
+}
+
+.animate-on-scroll.delay-500 {
+  transition-delay: 0.5s;
+}
+
+/* Scroll animation variants */
+.animate-fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--duration-slow) var(--ease-out) forwards;
+}
+
+/* =====================================================================================================
+   INTERACTIVE ANIMATIONS
+   ===================================================================================================== */
+
+/**
+ * Hover and Interactive Effects
+ * Feedback animations for user interactions
+ */
+
+/* Button hover animations */
+.btn-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.btn-hover-scale:hover {
+  transform: scale(1.05);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-hover-glow:hover {
+  box-shadow: var(--glow-accent);
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}
+
+/* Card hover animations */
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.card-hover-scale:hover {
+  transform: scale(1.02);
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.card-hover-glow:hover {
+  box-shadow: var(--glow-accent);
+  border-color: rgba(var(--accent-primary), 0.3);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+/* Link hover animations */
+.link-hover-underline {
+  position: relative;
+  overflow: hidden;
+}
+
+.link-hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgb(var(--accent-primary));
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.link-hover-underline:hover::after {
+  width: 100%;
+}
+
+/* =====================================================================================================
+   LOADING ANIMATIONS
+   ===================================================================================================== */
+
+/**
+ * Loading States and Shimmer Effects
+ * Visual feedback for loading content
+ */
+
+/* Shimmer loading effect */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--bg-surface), 0.3) 0%,
+    rgba(var(--bg-surface), 0.5) 50%,
+    rgba(var(--bg-surface), 0.3) 100%
+  );
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: rgba(var(--bg-surface), 0.3);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--text-primary), 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Pulsing loader */
+.pulse-loader {
+  animation: pulse var(--duration-slower) var(--ease-in-out) infinite;
+}
+
+/* Spinning loader */
+.spin-loader {
+  animation: rotate 1s linear infinite;
+}
+
+/* =====================================================================================================
+   SPECIALIZED EFFECTS
+   ===================================================================================================== */
+
+/**
+ * Unique Animation Effects
+ * Specialized animations for specific components
+ */
+
+/* Floating avatar effect */
+.floating-avatar {
+  animation: float 6s var(--ease-in-out) infinite;
   will-change: transform;
 }
 
-/* ========== ACCESSIBILITY - REDUCED MOTION ========== */
-/* Respect user's motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .fade-in,
-  .floating,
-  .tech-card,
-  .project-card,
-  .glass-button {
-    animation: none !important;       /* Disable animations */
-    transition: none !important;      /* Disable transitions */
+/* Avatar halo effect */
+.avatar-halo {
+  position: relative;
+}
+
+.avatar-halo::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(var(--accent-primary), 0.5),
+    transparent,
+    rgba(var(--accent-primary), 0.5)
+  );
+  border-radius: 50%;
+  opacity: 0;
+  z-index: -1;
+  animation: rotate 8s linear infinite;
+  transition: opacity var(--duration-slow) var(--ease-out);
+}
+
+.avatar-halo:hover::before {
+  opacity: 1;
+}
+
+/* Timeline pulse effects */
+@keyframes pulse-ring-primary {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-primary), 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(var(--accent-primary), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-primary), 0);
   }
 }
+
+@keyframes pulse-ring-secondary {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-secondary), 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(var(--accent-secondary), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-secondary), 0);
+  }
+}
+
+.pulse-ring-primary {
+  animation: pulse-ring-primary 2s infinite;
+}
+
+.pulse-ring-secondary {
+  animation: pulse-ring-secondary 2s infinite 0.5s;
+}
+
+/* Typewriter effect */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid rgb(var(--accent-primary));
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end) forwards,
+             blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgb(var(--accent-primary));
+  }
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* =====================================================================================================
+   FILTER BUTTON CRITICAL VISIBILITY FIX
+   ===================================================================================================== */
+
+/**
+ * Critical Production Fix
+ * Ensures filter buttons are always visible regardless of animation state
+ * This addresses deployment issues where animations could hide interactive elements
+ */
+
+.filter-btn,
+.filter-btn.animate-on-scroll,
+.animate-on-scroll .filter-btn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  display: inline-flex !important;
+  will-change: auto;
+}
+
+/* Progressive enhancement for JavaScript-enabled environments */
+.js-enabled .filter-btn.animate-on-scroll:not(.animate-in) {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+/* Fallback for no-JavaScript environments */
+.no-js .animate-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ===================================================================================================== */
+
+/**
+ * Performance Enhancements
+ * GPU acceleration and optimization hints
+ */
+
+/* Will-change property for frequently animated elements */
+.animate-on-scroll,
+.floating-avatar,
+.tech-card,
+.project-card,
+.glass-button {
+  will-change: transform, opacity;
+}
+
+/* GPU acceleration for complex animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize expensive properties */
+.optimize-transforms {
+  will-change: transform;
+}
+
+.optimize-opacity {
+  will-change: opacity;
+}
+
+/* Reset will-change after animation completes */
+.animation-complete {
+  will-change: auto;
+}
+
+/* =====================================================================================================
+   ACCESSIBILITY SUPPORT
+   ===================================================================================================== */
+
+/**
+ * Accessibility Compliance
+ * Respects user preferences for reduced motion
+ */
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Remove specific animations */
+  .floating-avatar,
+  .pulse-loader,
+  .spin-loader,
+  .loading-shimmer,
+  .typewriter {
+    animation: none !important;
+  }
+
+  /* Keep opacity changes but remove transforms */
+  .animate-on-scroll {
+    transform: none !important;
+    transition: opacity var(--duration-fast) var(--ease-out) !important;
+  }
+
+  /* Ensure visibility of interactive elements */
+  .filter-btn,
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .loading-shimmer,
+  .skeleton::after {
+    background: rgb(var(--text-primary));
+    opacity: 0.1;
+  }
+
+  .pulse-ring-primary,
+  .pulse-ring-secondary {
+    animation: none;
+    box-shadow: 0 0 0 2px rgb(var(--text-primary));
+  }
+}
+
+/* =====================================================================================================
+   UTILITY ANIMATION CLASSES
+   ===================================================================================================== */
+
+/**
+ * Utility Classes
+ * Quick animation utilities for common use cases
+ */
+
+/* Duration utilities */
+.animate-fast {
+  animation-duration: var(--duration-fast) !important;
+  transition-duration: var(--duration-fast) !important;
+}
+
+.animate-normal {
+  animation-duration: var(--duration-normal) !important;
+  transition-duration: var(--duration-normal) !important;
+}
+
+.animate-slow {
+  animation-duration: var(--duration-slow) !important;
+  transition-duration: var(--duration-slow) !important;
+}
+
+/* Easing utilities */
+.ease-out {
+  animation-timing-function: var(--ease-out) !important;
+  transition-timing-function: var(--ease-out) !important;
+}
+
+.ease-in {
+  animation-timing-function: var(--ease-in) !important;
+  transition-timing-function: var(--ease-in) !important;
+}
+
+.ease-bounce {
+  animation-timing-function: var(--ease-bounce) !important;
+  transition-timing-function: var(--ease-bounce) !important;
+}
+
+/* Animation state utilities */
+.animation-paused {
+  animation-play-state: paused;
+}
+
+.animation-running {
+  animation-play-state: running;
+}
+
+.animation-infinite {
+  animation-iteration-count: infinite;
+}
+
+/* =====================================================================================================
+   END OF ANIMATIONS MODULE
+   ===================================================================================================== */

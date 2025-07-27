@@ -1,362 +1,230 @@
 /**
- * =========================================
- * CARD COMPONENTS - DARK MODE ONLY
- * Project cards, technology cards, and interactive elements
- * =========================================
+ * =====================================================================================================
+ * PORTFOLIO - CARD COMPONENTS MODULE
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: cards.css
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Système de composants cartes pour projets, technologies et éléments interactifs.
+ * Design moderne avec effets glassmorphism et animations fluides.
+ *
+ * Features:
+ * - Cartes projet (homepage & page projets)
+ * - Cartes technologiques avec couleurs spécifiques
+ * - Système de filtrage avec animations
+ * - États interactifs et effets hover
+ * - Design responsive et accessible
+ * - Effets shimmer et glow sur interaction
+ *
+ * Dependencies: variables.css, animations.css
+ * Browser Support: Modern browsers avec backdrop-filter
+ *
+ * =====================================================================================================
  */
 
-/* ========== HOME PAGE PROJECT CARDS - COHESIVE DESIGN ========== */
-/* Project cards matching the site's glassmorphism aesthetic */
+/* =====================================================================================================
+   PROJECT CARDS - HOMEPAGE SECTION
+   ===================================================================================================== */
+
+/**
+ * Base project card component for homepage display
+ * Features: Glassmorphism effects, hover animations, responsive design
+ */
 .project-card-home {
-  /* Consistent glassmorphism with tech-cards */
-  background: linear-gradient(135deg,
-    rgba(var(--bg-secondary), 0.9) 0%,
-    rgba(var(--bg-secondary), 0.7) 100%);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  /* Consistent layout and transitions */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  border-radius: 1.5rem;
-  padding: 2rem;
-
-  /* Consistent shadow system matching tech-cards */
-  box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-
-  /* Layout structure */
+  /* Core Layout */
   display: flex;
   flex-direction: column;
-  text-align: left;
   min-height: 400px;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+
+  /* Glassmorphism Effect */
+  background: linear-gradient(135deg,
+    rgba(var(--bg-secondary), 0.95) 0%,
+    rgba(var(--bg-secondary), 0.85) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Shadows & Transitions */
+  box-shadow:
+    0 10px 40px rgba(31, 38, 135, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Project card hover effects matching tech-cards */
+/**
+ * Homepage project card hover effects
+ * Enhanced visual feedback with scaling and glow effects
+ */
 .project-card-home:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
+  transform: translateY(-12px) scale(1.03);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
     0 0 0 1px rgba(79, 172, 254, 0.2);
   border-color: rgba(79, 172, 254, 0.3);
 }
 
-/* Project card header */
-.project-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+/**
+ * Shimmer animation effect for project cards
+ * Creates a subtle light sweep across the card on hover
+ */
+.project-card-home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(79, 172, 254, 0.15),
+    transparent);
+  transition: left 0.8s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Project icon matching tech-icon style */
-.project-icon-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex: 1;
+.project-card-home:hover::before {
+  left: 100%;
 }
 
-.project-icon-bg {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  position: relative;
-}
+/* =====================================================================================================
+   PROJECT CARDS - PROJECTS PAGE SECTION
+   ===================================================================================================== */
 
-.project-icon-bg.gaming {
-  background: linear-gradient(135deg,
-    rgba(147, 51, 234, 0.8) 0%,
-    rgba(147, 51, 234, 0.6) 100%);
-}
-
-.project-icon-bg.aquarium {
-  background: linear-gradient(135deg,
-    rgba(16, 185, 129, 0.8) 0%,
-    rgba(16, 185, 129, 0.6) 100%);
-}
-
-.project-icon {
-  font-size: 1.75rem;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-/* Project icon hover effects matching tech-cards */
-.project-card-home:hover .project-icon-bg {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
-}
-
-.project-card-home:hover .project-icon {
-  transform: scale(1.1);
-}
-
-/* Status badge */
-.project-status-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(156, 163, 175, 0.8);
-  background: rgba(var(--bg-primary), 0.5);
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.status-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.status-dot.completed {
-  background: rgba(156, 163, 175, 0.6);
-}
-
-.status-dot.active {
-  background: #10b981;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
-  animation: statusPulse 2s infinite;
-}
-
-@keyframes statusPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.1); }
-}
-
-/* Project content */
-.project-content {
-  flex: 1;
+/**
+ * Enhanced project cards for dedicated projects page
+ * More detailed layout with advanced interactive features
+ */
+.project-card-enhanced {
+  /* Core Layout */
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
+  min-height: 450px;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
 
-.project-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-}
-
-.project-category {
-  font-size: 0.875rem;
-  color: rgba(79, 172, 254, 0.8);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-}
-
-.project-description {
-  color: rgba(156, 163, 175, 0.8);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  flex: 1;
-}
-
-/* Project technologies matching existing tech-tag style */
-.project-technologies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.tech-tag {
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  border: 1px solid;
-}
-
-.tech-tag.c {
-  background: rgba(147, 51, 234, 0.1);
-  border-color: rgba(147, 51, 234, 0.3);
-  color: rgba(196, 181, 253, 0.9);
-}
-
-.tech-tag.cpp {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.3);
-  color: rgba(147, 197, 253, 0.9);
-}
-
-.tech-tag.python {
-  background: rgba(250, 204, 21, 0.1);
-  border-color: rgba(250, 204, 21, 0.3);
-  color: rgba(254, 240, 138, 0.9);
-}
-
-.tech-tag.network {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: rgba(239, 68, 68, 0.3);
-  color: rgba(252, 165, 165, 0.9);
-}
-
-.tech-tag.esp32 {
-  background: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.3);
-  color: rgba(196, 181, 253, 0.9);
-}
-
-.tech-tag.iot {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
-  color: rgba(110, 231, 183, 0.9);
-}
-
-.tech-tag.ha {
-  background: rgba(6, 182, 212, 0.1);
-  border-color: rgba(6, 182, 212, 0.3);
-  color: rgba(103, 232, 249, 0.9);
-}
-
-.tech-tag.sensors {
-  background: rgba(245, 101, 101, 0.1);
-  border-color: rgba(245, 101, 101, 0.3);
-  color: rgba(252, 165, 165, 0.9);
-}
-
-.tech-tag:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Project actions */
-.project-actions {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: flex-start;
-  margin-top: auto;
-}
-
-.project-btn {
-  padding: 0.875rem 1.5rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, rgba(79, 172, 254, 0.8), rgba(0, 122, 255, 0.8));
-  border-color: rgba(79, 172, 254, 0.5);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, rgba(79, 172, 254, 1), rgba(0, 122, 255, 1));
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(79, 172, 254, 0.3);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .project-card-home {
-    padding: 1.5rem;
-    min-height: 350px;
-  }
-
-  .project-card-header {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .project-icon-container {
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .project-icon-bg {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .project-icon {
-    font-size: 1.5rem;
-  }
-
-  .project-title {
-    font-size: 1.25rem;
-  }
-}
-
-/* ========== PROJECTS PAGE ENHANCED CARDS ========== */
-/* Enhanced project cards for projects page with improved layout */
-.project-card-enhanced {
-  /* Enhanced glassmorphism */
+  /* Enhanced Glassmorphism */
   background: linear-gradient(135deg,
     rgba(var(--bg-secondary), 0.95) 0%,
     rgba(var(--bg-secondary), 0.8) 100%);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 
-  /* Modern layout */
-  border-radius: 1.5rem;
-  padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-
-  /* Enhanced shadows */
+  /* Premium Shadows */
   box-shadow:
-    0 10px 40px rgba(31, 38, 135, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-
-  /* Layout structure */
-  display: flex;
-  flex-direction: column;
-  min-height: 420px;
+    0 15px 45px rgba(31, 38, 135, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced hover effects */
+/**
+ * Enhanced project card hover effects
+ * More dramatic visual feedback for projects page
+ */
 .project-card-enhanced:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(79, 172, 254, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-15px) scale(1.04);
+  box-shadow:
+    0 30px 60px -12px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(79, 172, 254, 0.25);
   border-color: rgba(79, 172, 254, 0.4);
 }
 
-/* Project card header for enhanced cards */
-.project-card-enhanced .project-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+/**
+ * Shimmer effect for enhanced cards
+ */
+.project-card-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(79, 172, 254, 0.15),
+    transparent);
+  transition: left 0.8s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Icon variations for different project types */
+.project-card-enhanced:hover::before {
+  left: 100%;
+}
+
+/* =====================================================================================================
+   PROJECT CARD STRUCTURE COMPONENTS
+   ===================================================================================================== */
+
+/**
+ * Project card header section
+ * Contains icon, status badge, and category information
+ */
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/**
+ * Project icon container with background effects
+ */
+.project-icon-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-icon-bg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-icon {
+  font-size: 1.75rem;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/**
+ * Project icon hover animations
+ */
+.project-card-home:hover .project-icon-bg,
+.project-card-enhanced:hover .project-icon-bg {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+}
+
+.project-card-home:hover .project-icon,
+.project-card-enhanced:hover .project-icon {
+  transform: scale(1.1);
+}
+
+/**
+ * Category-specific icon backgrounds
+ */
 .project-icon-bg.infrastructure {
   background: linear-gradient(135deg,
     rgba(59, 130, 246, 0.8) 0%,
@@ -393,772 +261,132 @@
     rgba(220, 38, 38, 0.6) 100%);
 }
 
-/* Enhanced tech tags with more specific colors */
-.tech-tag.docker {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.3);
-  color: rgba(147, 197, 253, 0.9);
+.project-icon-bg.gaming {
+  background: linear-gradient(135deg,
+    rgba(168, 85, 247, 0.8) 0%,
+    rgba(147, 51, 234, 0.6) 100%);
 }
 
-.tech-tag.kubernetes {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.3);
-  color: rgba(134, 239, 172, 0.9);
+.project-icon-bg.aquarium {
+  background: linear-gradient(135deg,
+    rgba(6, 182, 212, 0.8) 0%,
+    rgba(14, 165, 233, 0.6) 100%);
 }
 
-.tech-tag.terraform {
-  background: rgba(147, 51, 234, 0.1);
-  border-color: rgba(147, 51, 234, 0.3);
-  color: rgba(196, 181, 253, 0.9);
-}
-
-.tech-tag.cicd {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: rgba(99, 102, 241, 0.3);
-  color: rgba(165, 180, 252, 0.9);
-}
-
-.tech-tag.ansible {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: rgba(239, 68, 68, 0.3);
-  color: rgba(252, 165, 165, 0.9);
-}
-
-.tech-tag.bash {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.3);
-  color: rgba(134, 239, 172, 0.9);
-}
-
-.tech-tag.linux {
-  background: rgba(75, 85, 99, 0.1);
-  border-color: rgba(75, 85, 99, 0.3);
-  color: rgba(156, 163, 175, 0.9);
-}
-
-.tech-tag.html {
-  background: rgba(251, 146, 60, 0.1);
-  border-color: rgba(251, 146, 60, 0.3);
-  color: rgba(253, 186, 116, 0.9);
-}
-
-.tech-tag.css {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.3);
-  color: rgba(147, 197, 253, 0.9);
-}
-
-.tech-tag.javascript {
-  background: rgba(250, 204, 21, 0.1);
-  border-color: rgba(250, 204, 21, 0.3);
-  color: rgba(254, 240, 138, 0.9);
-}
-
-.tech-tag.tailwind {
-  background: rgba(6, 182, 212, 0.1);
-  border-color: rgba(6, 182, 212, 0.3);
-  color: rgba(103, 232, 249, 0.9);
-}
-
-.tech-tag.nodejs {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.3);
-  color: rgba(134, 239, 172, 0.9);
-}
-
-.tech-tag.express {
-  background: rgba(75, 85, 99, 0.1);
-  border-color: rgba(75, 85, 99, 0.3);
-  color: rgba(156, 163, 175, 0.9);
-}
-
-.tech-tag.mongodb {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.3);
-  color: rgba(134, 239, 172, 0.9);
-}
-
-.tech-tag.jwt {
-  background: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.3);
-  color: rgba(196, 181, 253, 0.9);
-}
-
-.tech-tag.prometheus {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: rgba(239, 68, 68, 0.3);
-  color: rgba(252, 165, 165, 0.9);
-}
-
-.tech-tag.grafana {
-  background: rgba(251, 146, 60, 0.1);
-  border-color: rgba(251, 146, 60, 0.3);
-  color: rgba(253, 186, 116, 0.9);
-}
-
-.tech-tag.alerting {
-  background: rgba(220, 38, 38, 0.1);
-  border-color: rgba(220, 38, 38, 0.3);
-  color: rgba(248, 113, 113, 0.9);
-}
-
-.tech-tag.qt {
-  background: rgba(34, 197, 94, 0.1);
-  border-color: rgba(34, 197, 94, 0.3);
-  color: rgba(134, 239, 172, 0.9);
-}
-
-.tech-tag.realtime {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: rgba(99, 102, 241, 0.3);
-  color: rgba(165, 180, 252, 0.9);
-}
-
-/* Enhanced responsive design */
-@media (max-width: 768px) {
-  .project-card-enhanced {
-    padding: 1.5rem;
-    min-height: 380px;
-  }
-
-  .project-card-enhanced .project-card-header {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .project-icon-container {
-    justify-content: space-between;
-    width: 100%;
-  }
-}
-
-/* Card background pattern */
-.card-pattern {
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
-    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%);
-  background-size: 100% 100%, 100% 100%, 20px 20px;
-}
-
-.card-pattern.aquarium {
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.3) 0%, transparent 50%),
-    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%);
-}
-
-/* Card inner content */
-.card-inner {
-  position: relative;
-  padding: 2.5rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-}
-
-/* Card header with number and status */
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.project-number {
-  font-size: 3rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
-}
-
-.project-status {
+/**
+ * Project status badge component
+ */
+.project-status-badge {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+  color: rgba(156, 163, 175, 0.8);
+  background: rgba(var(--bg-primary), 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
-.status-indicator {
+.status-dot {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  position: relative;
+  transition: all 0.3s ease;
 }
 
-.status-indicator.completed {
-  background: linear-gradient(135deg, #6b7280, #9ca3af);
-  box-shadow: 0 0 10px rgba(107, 114, 128, 0.3);
+.status-dot.completed {
+  background: rgba(156, 163, 175, 0.6);
 }
 
-.status-indicator.active {
-  background: linear-gradient(135deg, #10b981, #34d399);
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+.status-dot.active {
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
   animation: statusPulse 2s infinite;
 }
 
-/* Main card section */
-.card-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* Enhanced project icon */
-.project-icon-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.project-icon-enhanced {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  font-size: 2rem;
-  color: white;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  overflow: hidden;
-}
-
-.project-icon-enhanced.gaming {
-  background: linear-gradient(135deg,
-    rgba(147, 51, 234, 0.8) 0%,
-    rgba(79, 70, 229, 0.8) 50%,
-    rgba(147, 51, 234, 0.8) 100%);
-  border: 1px solid rgba(147, 51, 234, 0.5);
-}
-
-.project-icon-enhanced.aquarium {
-  background: linear-gradient(135deg,
-    rgba(16, 185, 129, 0.8) 0%,
-    rgba(6, 182, 212, 0.8) 50%,
-    rgba(16, 185, 129, 0.8) 100%);
-  border: 1px solid rgba(16, 185, 129, 0.5);
-}
-
-.icon-glow {
-  position: absolute;
-  inset: -2px;
-  border-radius: 1.5rem;
-  background: inherit;
-  filter: blur(10px);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-}
-
-/* Project info section */
-.project-info {
-  text-align: center;
-}
-
-.project-title-enhanced {
-  font-size: 1.75rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.project-subtitle {
-  font-size: 0.875rem;
-  color: rgba(59, 130, 246, 0.8);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-}
-
-.project-description-enhanced {
-  color: rgba(156, 163, 175, 0.9);
-  line-height: 1.7;
-  font-size: 0.95rem;
-  text-align: center;
-}
-
-/* Technologies section */
-.card-technologies {
-  margin: 1.5rem 0;
-}
-
-.tech-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
-}
-
-.tech-pill {
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: 1px solid;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Technology-specific colors */
-.tech-pill.c {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), transparent);
-  border-color: rgba(147, 51, 234, 0.4);
-  color: rgba(196, 181, 253, 0.9);
-}
-
-.tech-pill.cpp {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), transparent);
-  border-color: rgba(59, 130, 246, 0.4);
-  color: rgba(147, 197, 253, 0.9);
-}
-
-.tech-pill.python {
-  background: linear-gradient(135deg, rgba(250, 204, 21, 0.15), transparent);
-  border-color: rgba(250, 204, 21, 0.4);
-  color: rgba(254, 240, 138, 0.9);
-}
-
-.tech-pill.network {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), transparent);
-  border-color: rgba(239, 68, 68, 0.4);
-  color: rgba(252, 165, 165, 0.9);
-}
-
-.tech-pill.esp32 {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), transparent);
-  border-color: rgba(168, 85, 247, 0.4);
-  color: rgba(196, 181, 253, 0.9);
-}
-
-.tech-pill.iot {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), transparent);
-  border-color: rgba(16, 185, 129, 0.4);
-  color: rgba(110, 231, 183, 0.9);
-}
-
-.tech-pill.ha {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), transparent);
-  border-color: rgba(6, 182, 212, 0.4);
-  color: rgba(103, 232, 249, 0.9);
-}
-
-.tech-pill.sensors {
-  background: linear-gradient(135deg, rgba(245, 101, 101, 0.15), transparent);
-  border-color: rgba(245, 101, 101, 0.4);
-  color: rgba(252, 165, 165, 0.9);
-}
-
-/* Project content area */
-.project-card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Card footer with CTA */
-.card-footer {
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  display: flex;
-  justify-content: center;
-}
-
-.project-cta {
-  background: linear-gradient(135deg,
-    rgba(59, 130, 246, 0.8) 0%,
-    rgba(79, 70, 229, 0.8) 100%);
-  border: 1px solid rgba(59, 130, 246, 0.5);
-  border-radius: 2rem;
-  padding: 0.875rem 2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: white;
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.project-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.cta-arrow {
-  transition: transform 0.3s ease;
-}
-
-.project-cta:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow:
-    0 15px 30px rgba(59, 130, 246, 0.3),
-    0 5px 15px rgba(0, 0, 0, 0.2);
-  border-color: rgba(59, 130, 246, 0.8);
-}
-
-.project-cta:hover::before {
-  opacity: 1;
-}
-
-.project-cta:hover .cta-arrow {
-  transform: translateX(4px);
-}
-
-/* Card shine effect */
-.card-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.03) 50%,
-    transparent
-  );
-  transition: left 0.6s ease;
-  pointer-events: none;
-}
-
-.project-card-enhanced:hover .card-shine {
-  left: 100%;
-}
-
-/* Enhanced card hover effects */
-.project-card-enhanced:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 30px 80px -10px rgba(0, 0, 0, 0.5),
-    0 15px 40px -5px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(59, 130, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.project-card-enhanced:hover .card-pattern {
-  opacity: 0.08;
-}
-
-.project-card-enhanced:hover .project-icon-enhanced {
-  transform: scale(1.15) rotate(5deg);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
-}
-
-.project-card-enhanced:hover .icon-glow {
-  opacity: 0.6;
-}
-
-.project-card-enhanced:hover .project-number {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.project-card-enhanced:hover .tech-pill {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Enhanced animations */
 @keyframes statusPulse {
   0%, 100% {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
   }
   50% {
     opacity: 0.7;
-    transform: scale(1.2);
-    box-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
+    transform: scale(1.1);
   }
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .project-card-enhanced {
-    min-height: 420px;
-  }
-
-  .card-inner {
-    padding: 2rem;
-  }
-
-  .project-number {
-    font-size: 2.5rem;
-  }
-
-  .project-icon-enhanced {
-    width: 4rem;
-    height: 4rem;
-    font-size: 1.75rem;
-  }
-
-  .project-title-enhanced {
-    font-size: 1.5rem;
-  }
-
-  .tech-grid {
-    gap: 0.5rem;
-  }
-
-  .tech-pill {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.7rem;
-  }
+/**
+ * Project content section
+ */
+.project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
-@media (max-width: 480px) {
-  .project-card-enhanced {
-    min-height: 380px;
-  }
-
-  .card-inner {
-    padding: 1.5rem;
-  }
-
-  .project-number {
-    font-size: 2rem;
-  }
-
-  .card-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .card-main {
-    gap: 1rem;
-  }
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
-/* Technology badges matching site's category-badge style */
-.tech-stack {
+.project-description {
+  color: rgba(156, 163, 175, 0.9);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+/* =====================================================================================================
+   TECHNOLOGY TAGS SYSTEM
+   ===================================================================================================== */
+
+/**
+ * Technology tags container
+ */
+.project-technologies {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.tech-badge {
-  /* Match category-badge styling from existing site */
-  background: linear-gradient(135deg,
-    rgba(79, 172, 254, 0.15) 0%,
-    rgba(79, 172, 254, 0.08) 100%) !important;
-  color: rgba(79, 172, 254, 0.9) !important;
-  border: 1px solid rgba(79, 172, 254, 0.2) !important;
-  backdrop-filter: blur(8px) !important;
-
-  /* Consistent sizing and spacing */
-  padding: 0.25rem 0.75rem !important;
-  border-radius: 0.375rem !important;
-  font-size: 0.75rem !important;
-  font-weight: 500 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-
-  /* Smooth transitions */
-  transition: all 0.3s ease !important;
-  display: inline-block !important;
-}
-
-.tech-badge:hover {
-  background: linear-gradient(135deg,
-    rgba(79, 172, 254, 0.25) 0%,
-    rgba(79, 172, 254, 0.15) 100%) !important;
-  transform: translateY(-1px) !important;
-  border-color: rgba(79, 172, 254, 0.4) !important;
-  color: rgba(79, 172, 254, 1) !important;
-}
-
-/* Project link matching glass-button style */
-.project-link {
-  /* Match glass-button styling */
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  box-shadow:
-    0 8px 32px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-
-  /* Layout and typography */
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.75rem !important;
-  padding: 0.75rem 1.5rem !important;
-  border-radius: 0.75rem !important;
-
-  /* Text styling */
-  color: white !important;
-  text-decoration: none !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
-
-  /* Smooth transitions */
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-/* Shimmer effect matching glass-button */
-.project-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.6s ease;
-}
-
-.project-link:hover::before {
-  left: 100%;
-}
-
-/* Project link hover effects matching glass-button */
-.project-link:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 
-    0 15px 30px rgba(79, 172, 254, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-}
-
-.link-text {
-  transition: transform 0.3s ease;
-}
-
-.link-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.link-icon i {
-  font-size: 0.75rem;
-  transition: transform 0.3s ease;
-}
-
-.project-link:hover .link-text {
-  transform: translateX(2px);
-}
-
-.project-link:hover .link-icon i {
-  transform: translateX(3px);
-}
-
-/* Focus states for accessibility */
-.project-card:focus-within {
-  outline: 2px solid rgba(79, 172, 254, 0.6);
-  outline-offset: 4px;
-}
-
-/* Remove old complex hover effects and simplify structure */
-#projects .project-card {
-  all: unset;
-}
-
-/* Clean up - remove unused styles */
-
-
-
-
-
-/* ========== TECHNOLOGY CARDS ========== */
-/* Technology showcase card styling with better specificity */
-.tech-card {
-  background: linear-gradient(135deg,
-    rgba(var(--bg-secondary), 0.9) 0%,
-    rgba(var(--bg-secondary), 0.7) 100%) !important;
-  backdrop-filter: blur(15px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  padding: 1.5rem !important;
-  border-radius: 1rem !important;
-  text-align: center !important;
-}
-
-.tech-card:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(79, 172, 254, 0.2) !important;
-  border-color: rgba(79, 172, 254, 0.3) !important;
-}
-
-/* Technology icon styling with better visibility */
-.tech-icon {
-  width: 4rem !important;
-  height: 4rem !important;
-  border-radius: 0.75rem !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 auto 1rem auto !important;
-  transition: all 0.3s ease !important;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) !important;
-}
-
-.tech-card:hover .tech-icon {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
-}
-
-/* ========== TECHNOLOGY TAGS ========== */
-/* Enhanced tech tag styling */
+/**
+ * Base technology tag styling
+ */
 .tech-tag {
-  background: linear-gradient(135deg,
-    rgba(var(--text-primary), 0.15) 0%,
-    rgba(var(--text-primary), 0.08) 100%);
-  border: 1px solid rgba(var(--text-primary), 0.2);
-  color: rgb(var(--text-primary));
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid;
   backdrop-filter: blur(8px);
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
+/**
+ * Technology tag hover effects
+ */
+.tech-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/**
+ * Shimmer effect for technology tags
+ */
 .tech-tag::before {
   content: '';
   position: absolute;
@@ -1174,45 +402,346 @@
   left: 100%;
 }
 
-.tech-tag:hover {
+/**
+ * Technology-specific color schemes
+ */
+
+/* Infrastructure Technologies */
+.tech-tag.docker {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: rgba(147, 197, 253, 0.9);
+}
+
+.tech-tag.kubernetes {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: rgba(134, 239, 172, 0.9);
+}
+
+.tech-tag.terraform {
+  background: rgba(147, 51, 234, 0.15);
+  border-color: rgba(147, 51, 234, 0.4);
+  color: rgba(196, 181, 253, 0.9);
+}
+
+.tech-tag.cicd {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: rgba(165, 180, 252, 0.9);
+}
+
+/* Programming Languages */
+.tech-tag.python {
+  background: rgba(250, 204, 21, 0.15);
+  border-color: rgba(250, 204, 21, 0.4);
+  color: rgba(254, 240, 138, 0.9);
+}
+
+.tech-tag.javascript {
+  background: rgba(250, 204, 21, 0.15);
+  border-color: rgba(250, 204, 21, 0.4);
+  color: rgba(254, 240, 138, 0.9);
+}
+
+.tech-tag.cpp {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: rgba(147, 197, 253, 0.9);
+}
+
+.tech-tag.c {
+  background: rgba(147, 51, 234, 0.15);
+  border-color: rgba(147, 51, 234, 0.4);
+  color: rgba(196, 181, 253, 0.9);
+}
+
+/* Web Technologies */
+.tech-tag.html {
+  background: rgba(251, 146, 60, 0.15);
+  border-color: rgba(251, 146, 60, 0.4);
+  color: rgba(253, 186, 116, 0.9);
+}
+
+.tech-tag.css {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: rgba(147, 197, 253, 0.9);
+}
+
+.tech-tag.nodejs {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: rgba(134, 239, 172, 0.9);
+}
+
+.tech-tag.express {
+  background: rgba(75, 85, 99, 0.15);
+  border-color: rgba(75, 85, 99, 0.4);
+  color: rgba(156, 163, 175, 0.9);
+}
+
+/* Databases */
+.tech-tag.mongodb {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: rgba(134, 239, 172, 0.9);
+}
+
+/* DevOps & Tools */
+.tech-tag.ansible {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: rgba(252, 165, 165, 0.9);
+}
+
+.tech-tag.bash {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: rgba(134, 239, 172, 0.9);
+}
+
+.tech-tag.linux {
+  background: rgba(75, 85, 99, 0.15);
+  border-color: rgba(75, 85, 99, 0.4);
+  color: rgba(156, 163, 175, 0.9);
+}
+
+/* Monitoring & Analytics */
+.tech-tag.prometheus {
+  background: rgba(251, 146, 60, 0.15);
+  border-color: rgba(251, 146, 60, 0.4);
+  color: rgba(253, 186, 116, 0.9);
+}
+
+.tech-tag.grafana {
+  background: rgba(251, 146, 60, 0.15);
+  border-color: rgba(251, 146, 60, 0.4);
+  color: rgba(253, 186, 116, 0.9);
+}
+
+.tech-tag.alerting {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: rgba(252, 165, 165, 0.9);
+}
+
+/* Authentication & Security */
+.tech-tag.jwt {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: rgba(165, 180, 252, 0.9);
+}
+
+/* Frontend Frameworks */
+.tech-tag.tailwind {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: rgba(103, 232, 249, 0.9);
+}
+
+/* Hardware & IoT */
+.tech-tag.qt {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: rgba(134, 239, 172, 0.9);
+}
+
+.tech-tag.iot {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
+  color: rgba(196, 181, 253, 0.9);
+}
+
+.tech-tag.realtime {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: rgba(252, 165, 165, 0.9);
+}
+
+/* =====================================================================================================
+   PROJECT ACTIONS & BUTTONS
+   ===================================================================================================== */
+
+/**
+ * Project actions container
+ */
+.project-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-start;
+  margin-top: auto;
+}
+
+/**
+ * Base project button styling
+ */
+.project-btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/**
+ * Primary button styling (GitHub/Code links)
+ */
+.btn-primary {
+  background: linear-gradient(135deg,
+    rgba(79, 172, 254, 0.8),
+    rgba(0, 122, 255, 0.8));
+  border-color: rgba(79, 172, 254, 0.5);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg,
+    rgba(79, 172, 254, 1),
+    rgba(0, 122, 255, 1));
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-color: rgba(var(--text-primary), 0.4);
+  box-shadow: 0 8px 16px rgba(79, 172, 254, 0.4);
 }
 
-/* ========== SKILL TAGS ========== */
-/* Simplified skill tag styling with improved visibility */
-.skill-tag-simple {
-  background: rgba(var(--text-primary), 0.1) !important;
-  border: 1px solid rgba(var(--text-primary), 0.2) !important;
-  color: rgb(var(--text-primary)) !important;
-  transition: all 0.3s ease !important;
-  backdrop-filter: blur(5px) !important;
-  padding: 0.75rem 1.5rem !important;
-  border-radius: 2rem !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  font-weight: 500 !important;
+/**
+ * Secondary button styling (Demo/Docs/Tester links)
+ */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.skill-tag-simple:hover {
-  background: rgba(var(--text-primary), 0.15) !important;
-  border-color: rgba(var(--text-primary), 0.3) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* ========== FILTERING ANIMATIONS ========== */
-/* Base project card state for filtering */
+/**
+ * Button shimmer effect
+ */
+.project-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.project-btn:hover::before {
+  left: 100%;
+}
+
+/* =====================================================================================================
+   TECHNOLOGY SHOWCASE CARDS
+   ===================================================================================================== */
+
+/**
+ * Technology cards for skills display
+ */
+.tech-card {
+  background: linear-gradient(135deg,
+    rgba(var(--bg-secondary), 0.9) 0%,
+    rgba(var(--bg-secondary), 0.7) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+/**
+ * Technology card hover effects
+ */
+.tech-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(79, 172, 254, 0.2);
+  border-color: rgba(79, 172, 254, 0.3);
+}
+
+/**
+ * Technology card shimmer effect
+ */
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(79, 172, 254, 0.1),
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.tech-card:hover::before {
+  left: 100%;
+}
+
+/**
+ * Technology icon styling
+ */
+.tech-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.tech-card:hover .tech-icon {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* =====================================================================================================
+   PROJECT FILTERING SYSTEM
+   ===================================================================================================== */
+
+/**
+ * Project filtering animations and states
+ */
+.project-card-home,
+.project-card-enhanced,
 .project-card {
   opacity: 1;
   transform: scale(1);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: auto;
 }
 
-/* Project filtering states */
+/**
+ * Hidden state for filtered projects
+ */
 .project-hidden {
   opacity: 0 !important;
   transform: scale(0.8) !important;
@@ -1221,37 +750,163 @@
   visibility: hidden !important;
 }
 
+/**
+ * Filtering transition state
+ */
 .project-filtering {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  opacity: 0.5 !important;
+  transform: scale(0.95) !important;
 }
 
-/* Ensure cards are visible by default */
-.project-card:not(.project-hidden),
-.project-card-enhanced:not(.project-hidden) {
+/**
+ * Ensure visible cards maintain proper state
+ */
+.project-card-home:not(.project-hidden),
+.project-card-enhanced:not(.project-hidden),
+.project-card:not(.project-hidden) {
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
 }
 
-/* Shimmer effect for tech tag spans */
-.project-card .flex.flex-wrap.gap-2 span {
-  position: relative;
-  overflow: hidden;
+/* =====================================================================================================
+   ACCESSIBILITY & FOCUS STATES
+   ===================================================================================================== */
+
+/**
+ * Enhanced focus states for accessibility
+ */
+.project-card-home:focus-within:not(.project-hidden):not(.project-filtering),
+.project-card-enhanced:focus-within:not(.project-hidden):not(.project-filtering),
+.project-card:focus-within:not(.project-hidden):not(.project-filtering) {
+  outline: 2px solid rgb(79, 172, 254);
+  outline-offset: 4px;
+  transform: translateY(-4px);
 }
 
-.project-card .flex.flex-wrap.gap-2 span::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s ease;
+/**
+ * Button focus states
+ */
+.project-btn:focus-visible {
+  outline: 2px solid rgb(79, 172, 254);
+  outline-offset: 2px;
 }
 
-.project-card .flex.flex-wrap.gap-2 span:hover::before {
-  left: 100%;
+/* =====================================================================================================
+   RESPONSIVE DESIGN
+   ===================================================================================================== */
+
+/**
+ * Tablet breakpoint adjustments
+ */
+@media (max-width: 1024px) {
+  .project-card-home,
+  .project-card-enhanced {
+    min-height: 380px;
+    padding: 2rem;
+  }
+
+  .project-icon-bg {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .project-icon {
+    font-size: 1.5rem;
+  }
 }
 
-/* ========== END OF CARD COMPONENTS ========== */
+/**
+ * Mobile breakpoint adjustments
+ */
+@media (max-width: 768px) {
+  .project-card-home,
+  .project-card-enhanced {
+    min-height: 350px;
+    padding: 1.5rem;
+  }
+
+  .project-card-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .project-icon-container {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .project-icon-bg {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .project-icon {
+    font-size: 1.25rem;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-btn {
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/**
+ * Small mobile adjustments
+ */
+@media (max-width: 480px) {
+  .project-card-home,
+  .project-card-enhanced {
+    min-height: 320px;
+    padding: 1.25rem;
+  }
+
+  .project-technologies {
+    gap: 0.375rem;
+  }
+
+  .tech-tag {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* =====================================================================================================
+   GRID LAYOUT SYSTEM
+   ===================================================================================================== */
+
+/**
+ * Projects grid container
+ */
+.projects-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+@media (min-width: 640px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =====================================================================================================
+   END OF CARD COMPONENTS MODULE
+   ===================================================================================================== */

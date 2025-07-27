@@ -1,7 +1,31 @@
-// ========================================
-// PROJECTS FILTERING MODULE
-// Handles project card filtering and animations
-// ========================================
+/**
+ * =====================================================================================================
+ * PORTFOLIO - MODULE PROJETS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: projects.js
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Module de filterage des projets avec animations fluides
+ * et gestion d'état des boutons de filtre.
+ *
+ * Features:
+ * - Filtrage de projets par technologie
+ * - Animations d'apparition/disparition fluides
+ * - Gestion d'état des boutons filtres
+ * - Compteur de projets visibles
+ * - Persistance de l'état de filtre
+ * - Transitions optimisées CSS/JS
+ *
+ * Dependencies: Aucune - module autonome
+ * Browser Support: ES6+ modules, modern browsers
+ *
+ * =====================================================================================================
+ */
 
 'use strict';
 

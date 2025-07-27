@@ -1,69 +1,387 @@
 /**
- * =========================================
- * BASE STYLES & GLOBAL OVERRIDES
- * Global styling, body, and theme integration
- * =========================================
+ * =====================================================================================================
+ * PORTFOLIO - BASE STYLES & GLOBAL FOUNDATIONS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: base.css
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Styles de base et fondations globales du portfolio.
+ * Inclut reset CSS, typographie globale et règles d'accessibilité.
+ *
+ * Features:
+ * - Reset CSS moderne basé sur normalize.css
+ * - Configuration typographique globale
+ * - Règles de layout et comportement des conteneurs
+ * - Support complet de l'accessibilité (WCAG)
+ * - Optimisation du rendu de texte
+ * - Variables CSS et custom properties
+ *
+ * Dependencies: variables.css
+ * Browser Support: Modern browsers, graceful fallbacks
+ *
+ * =====================================================================================================
  */
 
-/* ========== GLOBAL STYLES ========== */
-/* Base body styling with theme support */
+/* =====================================================================================================
+   CSS RESET & NORMALIZATION
+   ===================================================================================================== */
+
+/**
+ * Modern CSS Reset
+ * Based on Josh Comeau's CSS Reset with custom additions
+ */
+
+/* Box sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Document and viewport setup */
+html {
+  /* Prevent iOS font size adjust after device orientation change */
+  -webkit-text-size-adjust: 100%;
+  /* Enable smooth scrolling */
+  scroll-behavior: smooth;
+  /* Set base font size for rem calculations */
+  font-size: 16px;
+  /* Optimize text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body foundation */
 body {
-  font-family: 'Inter', sans-serif;
-  padding-top: 48px;                 /* Account for fixed header height */
+  /* Reset line height to normal */
+  line-height: var(--leading-normal);
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  /* Set minimum height */
+  min-height: 100vh;
+  /* Apply base typography */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  /* Apply dark theme colors */
   background-color: rgb(var(--bg-primary));
   color: rgb(var(--text-primary));
-  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Account for fixed header */
+  padding-top: var(--header-height);
+  /* Smooth theme transitions */
+  transition: background-color var(--duration-normal) var(--ease-out),
+              color var(--duration-normal) var(--ease-out);
 }
 
-/* Ensure Tailwind and custom CSS work together */
-html.bg-neutral-950 {
-  background-color: rgb(10, 10, 10) !important;
+/* Media elements reset */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-html.text-white {
-  color: rgb(255, 255, 255) !important;
+/* Form elements reset */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
-/* Override Tailwind for specific components */
-.tech-card * {
-  color: inherit !important;
+/* Button reset */
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
-.skill-tag-simple span {
-  color: white !important;
+/* List reset */
+ul,
+ol {
+  list-style: none;
 }
 
-.project-card * {
-  color: inherit !important;
+/* Link reset */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* ========== PERFORMANCE & ACCESSIBILITY ========== */
-/* Global transition optimization */
-* {
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+/* Table reset */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-/* Typography fixes for descender letters (g, j, p, q, y) */
-h1, .text-5xl, .text-7xl {
-  line-height: 1.4 !important;       /* Prevent letter clipping */
-  padding: 0.5rem 0 !important;      /* Add vertical padding */
-  overflow: visible !important;       /* Ensure descenders are visible */
+/* Remove default focus outline - we'll add custom ones */
+:focus {
+  outline: none;
 }
 
-/* ========== SCROLL BEHAVIOR ========== */
-/* Smooth scroll margin for anchor navigation */
+/* =====================================================================================================
+   TYPOGRAPHY FOUNDATIONS
+   ===================================================================================================== */
+
+/**
+ * Global Typography System
+ * Optimized for readability and visual hierarchy
+ */
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  color: rgb(var(--text-primary));
+  margin: 0;
+  /* Prevent descender clipping */
+  padding: 0.1em 0;
+  overflow: visible;
+}
+
+/* Specific heading sizes */
+h1 {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-semibold);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-semibold);
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+}
+
+h5 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+}
+
+h6 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+}
+
+/* Paragraph styles */
+p {
+  line-height: var(--leading-relaxed);
+  color: rgb(var(--text-secondary));
+  margin: 0;
+}
+
+/* Strong and emphasis */
+strong, b {
+  font-weight: var(--font-semibold);
+  color: rgb(var(--text-primary));
+}
+
+em, i {
+  font-style: italic;
+}
+
+/* Code elements */
+code {
+  font-family: var(--font-secondary);
+  font-size: 0.9em;
+  background: rgba(var(--bg-surface), 0.5);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  border: var(--glass-border);
+}
+
+pre {
+  font-family: var(--font-secondary);
+  background: rgba(var(--bg-surface), 0.3);
+  padding: var(--spacing-base);
+  border-radius: var(--card-radius);
+  border: var(--glass-border);
+  overflow-x: auto;
+}
+
+/* =====================================================================================================
+   LAYOUT FOUNDATIONS
+   ===================================================================================================== */
+
+/**
+ * Global Layout System
+ * Consistent spacing and positioning
+ */
+
+/* Container system */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-base);
+}
+
+/* Section spacing */
 section {
-  scroll-margin-top: 60px;           /* Account for fixed header */
+  /* Account for fixed header in anchor navigation */
+  scroll-margin-top: calc(var(--header-height) + var(--spacing-base));
+  padding: var(--spacing-2xl) 0;
 }
 
-/* ========== THEME-SPECIFIC ADJUSTMENTS ========== */
-/* Override Tailwind classes with theme variables */
+/* Main content area */
+main {
+  min-height: calc(100vh - var(--header-height));
+  position: relative;
+  z-index: var(--z-base);
+}
+
+/* =====================================================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ===================================================================================================== */
+
+/**
+ * Accessibility Features
+ * WCAG compliance and user experience improvements
+ */
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent-primary));
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: rgb(var(--accent-primary));
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  z-index: var(--z-maximum);
+  transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: rgb(var(--text-primary)) !important;
+  }
+
+  button, a {
+    outline: 1px solid rgb(var(--text-primary));
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ===================================================================================================== */
+
+/**
+ * Performance Enhancements
+ * Optimized rendering and animation performance
+ */
+
+/* GPU acceleration for frequently animated elements */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Optimize repaints */
+.optimize-repaint {
+  contain: layout style paint;
+}
+
+/* Optimize text rendering */
+.optimize-text {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* =====================================================================================================
+   TAILWIND CSS INTEGRATION & OVERRIDES
+   ===================================================================================================== */
+
+/**
+ * Tailwind CSS Compatibility
+ * Ensures custom CSS variables work with Tailwind classes
+ */
+
+/* Override Tailwind background colors */
 .bg-neutral-950 {
   background-color: rgb(var(--bg-primary)) !important;
 }
 
 .bg-neutral-900 {
   background-color: rgb(var(--bg-secondary)) !important;
+}
+
+.bg-neutral-800 {
+  background-color: rgb(var(--bg-tertiary)) !important;
+}
+
+/* Override Tailwind text colors */
+.text-white {
+  color: rgb(var(--text-primary)) !important;
 }
 
 .text-neutral-400 {
@@ -74,12 +392,205 @@ section {
   color: rgb(var(--text-primary)) !important;
 }
 
-.text-white {
+.text-white\/70 {
+  color: rgba(var(--text-primary), 0.7) !important;
+}
+
+.text-neutral-500 {
+  color: rgb(var(--text-muted)) !important;
+}
+
+/* Override Tailwind border colors */
+.border-neutral-800 {
+  border-color: rgb(var(--border-primary)) !important;
+}
+
+.border-neutral-700 {
+  border-color: rgb(var(--border-secondary)) !important;
+}
+
+/* =====================================================================================================
+   COMPONENT-SPECIFIC GLOBAL OVERRIDES
+   ===================================================================================================== */
+
+/**
+ * Global Component Fixes
+ * Ensures consistent styling across all components
+ */
+
+/* Tech cards global fix */
+.tech-card * {
+  color: inherit !important;
+}
+
+/* Skill tags global fix */
+.skill-tag-simple span {
   color: rgb(var(--text-primary)) !important;
 }
 
-.text-white\/70 {
-  color: rgba(var(--text-primary) / 0.7) !important;
+/* Project cards global fix */
+.project-card *,
+.project-card-home *,
+.project-card-enhanced * {
+  color: inherit !important;
 }
 
-/* ========== END OF BASE STYLES ========== */
+/* Filter buttons global fix */
+.filter-btn * {
+  color: inherit !important;
+}
+
+/* =====================================================================================================
+   UTILITY CLASSES
+   ===================================================================================================== */
+
+/**
+ * Custom Utility Classes
+ * Commonly used styling patterns
+ */
+
+/* Glass effect utilities */
+.glass-effect {
+  background: rgba(var(--bg-tertiary), var(--glass-opacity-medium));
+  backdrop-filter: blur(var(--blur-lg));
+  border: var(--glass-border);
+}
+
+.glass-effect-strong {
+  background: rgba(var(--bg-tertiary), var(--glass-opacity-strong));
+  backdrop-filter: blur(var(--blur-xl));
+  border: var(--glass-border-hover);
+}
+
+/* Text utilities */
+.text-gradient {
+  background: linear-gradient(135deg, rgb(var(--accent-primary)), rgb(var(--accent-light)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Interactive utilities */
+.interactive {
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.interactive:hover {
+  transform: translateY(var(--translate-hover));
+}
+
+/* Layout utilities */
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* =====================================================================================================
+   RESPONSIVE DESIGN FOUNDATIONS
+   ===================================================================================================== */
+
+/**
+ * Mobile-First Responsive Design
+ * Base styles are mobile, then enhanced for larger screens
+ */
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  body {
+    padding-top: calc(var(--header-height) - 0.5rem);
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  section {
+    padding: var(--spacing-3xl) 0;
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+
+  section {
+    padding: var(--spacing-4xl) 0;
+  }
+}
+
+/* =====================================================================================================
+   PRINT STYLES
+   ===================================================================================================== */
+
+/**
+ * Print Stylesheet
+ * Optimized for print and PDF generation
+ */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    padding-top: 0;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  a {
+    text-decoration: underline;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* =====================================================================================================
+   END OF BASE MODULE
+   ===================================================================================================== */

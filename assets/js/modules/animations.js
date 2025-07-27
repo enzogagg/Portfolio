@@ -1,7 +1,31 @@
-// ========================================
-// SCROLL ANIMATIONS MODULE
-// Handles scroll-triggered animations and header behavior
-// ========================================
+/**
+ * =====================================================================================================
+ * PORTFOLIO - MODULE ANIMATIONS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: animations.js
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Module de gestion des animations au scroll et comportements
+ * d'apparition avec Intersection Observer optimisé.
+ *
+ * Features:
+ * - Animations d'apparition au scroll
+ * - Intersection Observer performant
+ * - Auto-masquage du header intelligent
+ * - Gestion de la direction de scroll
+ * - Animations fluides et optimisées GPU
+ * - Debouncing pour les performances
+ *
+ * Dependencies: Intersection Observer API
+ * Browser Support: Modern browsers avec Intersection Observer
+ *
+ * =====================================================================================================
+ */
 
 'use strict';
 
@@ -16,7 +40,7 @@ export class ScrollAnimations {
     this.header = null;
     this.animationObserver = null;
     this.isInitialized = false;
-    
+
     // Don't initialize DOM elements in constructor
   }
 

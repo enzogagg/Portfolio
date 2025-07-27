@@ -1,18 +1,53 @@
-// ========================================
-// PORTFOLIO - STANDALONE VERSION
-// Compatible with file:// protocol (no server needed)
-// ========================================
+/**
+ * =====================================================================================================
+ * PORTFOLIO - APPLICATION STANDALONE
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: standalone.js
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Version standalone du portfolio fonctionnant sans serveur local
+ * (compatible file://) avec toutes les fonctionnalités en un seul fichier.
+ *
+ * Features:
+ * - Fichier unique pour utilisation standalone
+ * - Mode sombre exclusif sans commutation de thème
+ * - Navigation mobile avec menu hamburger Apple-style
+ * - Auto-masquage du header au scroll
+ * - Animations et transitions fluides
+ * - Filtrage de projets avec état persistant
+ * - Gestionnaire d'accessibilité intégré
+ * - Compatible protocole file://
+ *
+ * Dependencies: Aucune - fichier autonome
+ * Browser Support: ES6+ sans modules, modern browsers
+ *
+ * =====================================================================================================
+ */
 
 'use strict';
 
 (function() {
-  // Portfolio Application
+  /**
+   * Portfolio Standalone Application
+   * Main application class that manages all functionality
+   */
   class PortfolioApp {
     constructor() {
       this.isInitialized = false;
       this.modules = {};
+      this.lastScrollY = window.scrollY;
+      this.scrollDirection = 'up';
+      this.isHeaderVisible = true;
     }
 
+    /**
+     * Initialize the entire application
+     */
     async init() {
       if (this.isInitialized || document.readyState === 'loading') {
         return;
@@ -20,277 +55,565 @@
 
       console.log('🚀 Initializing Portfolio Application (Standalone)...');
 
-      // CRITICAL: Force filter visibility immediately for all environments
+      // Critical: Ensure filter buttons are always visible
       this.ensureFiltersVisible();
 
-      // Add js-enabled class for progressive enhancement
+      // Add progressive enhancement class
       document.body.classList.add('js-enabled');
+      document.documentElement.classList.add('dark'); // Force dark mode only
 
       try {
-        this.initializeTheme();
+        // Initialize all modules
         this.initializeNavigation();
         this.initializeProjects();
         this.initializeAnimations();
+        this.initializeAccessibility();
         this.setupGlobalFunctions();
+        this.setupEventListeners();
 
         this.isInitialized = true;
         console.log('✅ Portfolio Application initialized successfully');
       } catch (error) {
         console.error('❌ Error initializing application:', error);
+        // Ensure filters are visible even if initialization fails
+        this.ensureFiltersVisible();
       }
     }
 
-    // Theme Management
-    initializeTheme() {
-      const storageKey = 'theme';
-
-      const setLightTheme = () => {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem(storageKey, 'light');
-      };
-
-      const setDarkTheme = () => {
-        document.documentElement.classList.add('dark');
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem(storageKey, 'dark');
-      };
-
-      const toggleTheme = () => {
-        const html = document.documentElement;
-        const isDark = html.classList.contains('dark');
-
-        if (isDark) {
-          setLightTheme();
-        } else {
-          setDarkTheme();
-        }
-      };
-
-      // Load saved theme
-      const savedTheme = localStorage.getItem(storageKey);
-      if (savedTheme === 'light') {
-        setLightTheme();
-      } else {
-        setDarkTheme();
-      }
-
-      this.modules.theme = { toggle: toggleTheme };
-    }
-
-    // Navigation Management
-    initializeNavigation() {
-      const toggleMobileMenu = () => {
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu) {
-          mobileMenu.classList.toggle('active');
-        }
-      };
-
-      const closeMobileMenu = () => {
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu) {
-          mobileMenu.classList.remove('active');
-        }
-      };
-
-      this.modules.navigation = {
-        toggleMobileMenu,
-        closeMobileMenu
-      };
-    }
-
-    // Projects Filtering
-    initializeProjects() {
+    /**
+     * Critical Filter Visibility Fix
+     * Ensures filter buttons are always visible in all environments
+     */
+    ensureFiltersVisible() {
       const filterButtons = document.querySelectorAll('.filter-btn');
-      const projectCards = document.querySelectorAll('.project-card');
 
-      if (filterButtons.length === 0 || projectCards.length === 0) {
-        console.log('Projects page elements not found, skipping initialization');
-        return;
-      }
-
-      console.log('🎯 Initializing projects page functionality');
-
-      // Force visibility immediately for filter buttons and container
-      this.ensureFiltersVisible();
-
-      // Reset project cards
-      projectCards.forEach(card => {
-        card.style.display = '';
-        card.style.opacity = '';
-        card.style.transform = '';
-        card.classList.remove('project-hidden', 'project-filtering');
-
-        // Also ensure cards are visible
-        if (card.classList.contains('animate-on-scroll')) {
-          card.classList.add('animate-in');
+      filterButtons.forEach(btn => {
+        if (btn) {
+          btn.style.opacity = '1';
+          btn.style.transform = 'translateY(0)';
+          btn.style.visibility = 'visible';
+          btn.style.display = 'inline-flex';
         }
       });
 
-      // Filter function
-      const filterProjects = (filter) => {
-        console.log(`Filtering projects by: ${filter}`);
+      // Double-check after a brief delay
+      setTimeout(() => {
+        filterButtons.forEach(btn => {
+          if (btn) {
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+            btn.style.visibility = 'visible';
+            btn.style.display = 'inline-flex';
+          }
+        });
+      }, 100);
+
+      console.log('🔧 Filter visibility enforced');
+    }
+
+    /**
+     * Navigation Module
+     * Mobile menu and header functionality
+     */
+    initializeNavigation() {
+      const mobileMenuToggle = document.querySelector('.burger-menu');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      // Mobile menu toggle functionality
+      const toggleMobileMenu = () => {
+        if (mobileMenu && mobileMenuToggle) {
+          const isActive = mobileMenu.classList.contains('active');
+
+          mobileMenu.classList.toggle('active');
+          mobileMenuToggle.classList.toggle('active');
+
+          // Manage body scroll
+          document.body.style.overflow = isActive ? 'auto' : 'hidden';
+
+          // Update ARIA attributes
+          mobileMenuToggle.setAttribute('aria-expanded', !isActive);
+          mobileMenu.setAttribute('aria-hidden', isActive);
+        }
+      };
+
+      // Close mobile menu
+      const closeMobileMenu = () => {
+        if (mobileMenu && mobileMenuToggle) {
+          mobileMenu.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+          document.body.style.overflow = 'auto';
+
+          // Update ARIA attributes
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+        }
+      };
+
+      // Event listeners
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileMenuToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMobileMenu();
+          }
+        });
+      }
+
+      // Close menu when clicking nav links
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+          if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            closeMobileMenu();
+          }
+        }
+      });
+
+      // Initialize header auto-hide
+      this.initializeHeaderAutoHide();
+
+      this.modules.navigation = {
+        toggle: toggleMobileMenu,
+        close: closeMobileMenu
+      };
+
+      console.log('📱 Navigation module initialized');
+    }
+
+    /**
+     * Header Auto-Hide Functionality
+     * Hide/show header based on scroll direction
+     */
+    initializeHeaderAutoHide() {
+      const header = document.querySelector('header');
+      if (!header) return;
+
+      let ticking = false;
+
+      const updateHeader = () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > this.lastScrollY && currentScrollY > 100) {
+          // Scrolling down
+          if (this.scrollDirection !== 'down') {
+            this.scrollDirection = 'down';
+            header.classList.add('header-hidden');
+            header.classList.remove('header-visible');
+            this.isHeaderVisible = false;
+          }
+        } else if (currentScrollY < this.lastScrollY) {
+          // Scrolling up
+          if (this.scrollDirection !== 'up') {
+            this.scrollDirection = 'up';
+            header.classList.remove('header-hidden');
+            header.classList.add('header-visible');
+            this.isHeaderVisible = true;
+          }
+        }
+
+        // Add scrolled class for enhanced glassmorphism
+        if (currentScrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        this.lastScrollY = currentScrollY;
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    /**
+     * Projects Module
+     * Project filtering and search functionality
+     */
+    initializeProjects() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card, .project-card-enhanced');
+      const projectsContainer = document.querySelector('.projects-grid, .grid');
+
+      if (!filterButtons.length || !projectCards.length) {
+        console.log('📁 No projects or filters found');
+        return;
+      }
+
+      // Filter functionality
+      const filterProjects = (category) => {
+        console.log(`🔍 Filtering projects by: ${category}`);
 
         projectCards.forEach(card => {
-          const category = card.dataset.category;
+          const cardCategories = card.dataset.category ?
+            card.dataset.category.toLowerCase().split(' ') : [];
 
-          if (filter === 'all' || category === filter) {
-            // Show card
-            card.classList.remove('project-hidden');
-            card.classList.add('project-filtering');
+          const shouldShow = category === 'all' || cardCategories.includes(category.toLowerCase());
 
+          if (shouldShow) {
+            card.style.display = 'block';
+            card.classList.remove('hidden');
+            card.classList.add('visible');
+
+            // Trigger entrance animation
             setTimeout(() => {
-              card.classList.remove('project-filtering');
-            }, 300);
+              card.classList.add('animate-in');
+            }, 50);
           } else {
-            // Hide card
-            card.classList.add('project-filtering');
+            card.style.display = 'none';
+            card.classList.add('hidden');
+            card.classList.remove('visible', 'animate-in');
+          }
+        });
 
-            setTimeout(() => {
-              card.classList.add('project-hidden');
-              card.classList.remove('project-filtering');
-            }, 300);
+        // Update active filter button
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-blue-500', 'text-white');
+          btn.classList.add('bg-white/10', 'text-white/70');
+        });
+
+        const activeButton = document.querySelector(`[data-filter="${category}"]`);
+        if (activeButton) {
+          activeButton.classList.add('active', 'bg-blue-500', 'text-white');
+          activeButton.classList.remove('bg-white/10', 'text-white/70');
+        }
+
+        // Trigger container animation
+        if (projectsContainer) {
+          projectsContainer.classList.add('filtering');
+          setTimeout(() => {
+            projectsContainer.classList.remove('filtering');
+          }, 300);
+        }
+      };
+
+      // Set up filter button event listeners
+      filterButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const category = button.dataset.filter || 'all';
+          filterProjects(category);
+        });
+
+        // Keyboard support
+        button.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const category = button.dataset.filter || 'all';
+            filterProjects(category);
+          }
+        });
+      });
+
+      // Initialize with 'all' filter
+      filterProjects('all');
+
+      // Ensure filters remain visible
+      this.ensureFiltersVisible();
+
+      // Re-check filter visibility periodically
+      setInterval(() => {
+        this.ensureFiltersVisible();
+      }, 2000);
+
+      this.modules.projects = { filter: filterProjects };
+      console.log('📁 Projects module initialized');
+    }
+
+    /**
+     * Animations Module
+     * Scroll-triggered animations and visual effects
+     */
+    initializeAnimations() {
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+
+            // Add staggered delay for multiple elements
+            const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100;
+            entry.target.style.transitionDelay = `${delay}ms`;
+
+            // Unobserve after animation
+            observer.unobserve(entry.target);
           }
         });
       };
 
-      // Update active button
-      const updateActiveButton = (activeButton) => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        activeButton.classList.add('active');
-      };
+      const observer = new IntersectionObserver(animateOnScroll, observerOptions);
 
-      // Setup event listeners
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const filter = button.dataset.filter;
-          filterProjects(filter);
-          updateActiveButton(button);
-        });
+      // Observe elements with animation classes
+      const animatedElements = document.querySelectorAll('.animate-on-scroll, .fade-in, .slide-up');
+      animatedElements.forEach(el => {
+        observer.observe(el);
       });
 
-      console.log('✅ Projects page functionality initialized');
-    }
-
-    // Ensure filter buttons are always visible (critical for all environments)
-    ensureFiltersVisible() {
+      // Special handling for filter buttons
       const filterButtons = document.querySelectorAll('.filter-btn');
-      const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
-
-      // Force visibility for all filter buttons
       filterButtons.forEach(btn => {
+        // Force immediate visibility
         btn.style.opacity = '1';
         btn.style.transform = 'translateY(0)';
         btn.style.visibility = 'visible';
         btn.classList.add('animate-in');
       });
 
-      // Force visibility for filter container
-      if (filterContainer) {
-        filterContainer.style.opacity = '1';
-        filterContainer.style.transform = 'translateY(0)';
-        filterContainer.style.visibility = 'visible';
-        filterContainer.classList.add('animate-in');
-      }
+      // Floating animations for special elements
+      const floatingElements = document.querySelectorAll('.floating, .floating-avatar');
+      floatingElements.forEach(el => {
+        el.style.animationPlayState = 'running';
+      });
 
-      console.log('🔧 Filter visibility forced for production environment');
+      this.modules.animations = { observer };
+      console.log('✨ Animations module initialized');
     }
 
-    // Basic animations
-    initializeAnimations() {
-      // For file:// protocol, immediately show all animate-on-scroll elements
-      if (window.location.protocol === 'file:') {
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-          el.classList.add('animate-in');
+    /**
+     * Accessibility Module
+     * Keyboard navigation and ARIA compliance
+     */
+    initializeAccessibility() {
+      // Skip to main content functionality
+      const skipLink = document.querySelector('.skip-nav, .skip-link');
+      if (skipLink) {
+        skipLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          const main = document.querySelector('main');
+          if (main) {
+            main.focus();
+            main.scrollIntoView({ behavior: 'smooth' });
+          }
         });
-        console.log('✅ Forced animation visibility for file:// protocol');
-        return;
       }
 
-      // Intersection Observer for scroll animations
-      if ('IntersectionObserver' in window) {
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
+      // Keyboard navigation for interactive elements
+      const interactiveElements = document.querySelectorAll(
+        'button, [role="button"], .filter-btn, .project-action-btn, .nav-link'
+      );
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animate-in');
+      interactiveElements.forEach(element => {
+        // Ensure proper focus states
+        element.addEventListener('focus', () => {
+          element.classList.add('focus-visible');
+        });
+
+        element.addEventListener('blur', () => {
+          element.classList.remove('focus-visible');
+        });
+
+        // Keyboard activation
+        element.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            if (!element.href) { // Don't prevent default for links
+              e.preventDefault();
+              element.click();
             }
-          });
-        }, observerOptions);
-
-        // Observe elements with animate-on-scroll class
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-          observer.observe(el);
+          }
         });
+      });
 
-        console.log('✅ Intersection Observer animations initialized');
-      } else {
-        // Fallback: immediately show all elements if IntersectionObserver not supported
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-          el.classList.add('animate-in');
-        });
-        console.log('✅ Fallback animation visibility applied');
-      }
-    }
+      // Announce page changes for screen readers
+      const announcePageChange = (message) => {
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.setAttribute('aria-atomic', 'true');
+        announcement.className = 'sr-only';
+        announcement.textContent = message;
 
-    // Setup global functions
-    setupGlobalFunctions() {
-      window.toggleTheme = () => {
-        this.modules.theme.toggle();
+        document.body.appendChild(announcement);
+
+        setTimeout(() => {
+          document.body.removeChild(announcement);
+        }, 1000);
       };
 
+      // Focus management for modal-like elements
+      const trapFocus = (element) => {
+        const focusable = element.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+
+        if (focusable.length) {
+          focusable[0].focus();
+        }
+      };
+
+      this.modules.accessibility = {
+        announce: announcePageChange,
+        trapFocus: trapFocus
+      };
+
+      console.log('♿ Accessibility module initialized');
+    }
+
+    /**
+     * Global Functions Setup
+     * Expose necessary functions to global scope
+     */
+    setupGlobalFunctions() {
+      // Make navigation functions globally available
       window.toggleMobileMenu = () => {
-        this.modules.navigation.toggleMobileMenu();
+        if (this.modules.navigation) {
+          this.modules.navigation.toggle();
+        }
       };
 
       window.closeMobileMenu = () => {
-        this.modules.navigation.closeMobileMenu();
+        if (this.modules.navigation) {
+          this.modules.navigation.close();
+        }
       };
 
-      console.log('🔗 Global functions setup complete');
+      // Make project filtering globally available
+      window.filterProjects = (category) => {
+        if (this.modules.projects) {
+          this.modules.projects.filter(category);
+        }
+      };
+
+      // Debug function for development
+      window.portfolioDebug = () => {
+        console.log('Portfolio App Debug Info:', {
+          initialized: this.isInitialized,
+          modules: Object.keys(this.modules),
+          scrollDirection: this.scrollDirection,
+          headerVisible: this.isHeaderVisible
+        });
+      };
+
+      console.log('🌐 Global functions exposed');
+    }
+
+    /**
+     * Event Listeners Setup
+     * Global event listeners for the application
+     */
+    setupEventListeners() {
+      // Handle page visibility changes
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          // Re-ensure filter visibility when page becomes visible
+          this.ensureFiltersVisible();
+        }
+      });
+
+      // Handle window resize
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          // Close mobile menu on resize to desktop
+          if (window.innerWidth > 768 && this.modules.navigation) {
+            this.modules.navigation.close();
+          }
+
+          // Re-ensure filter visibility after resize
+          this.ensureFiltersVisible();
+        }, 250);
+      });
+
+      // Handle escape key for closing modals/menus
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (this.modules.navigation) {
+            this.modules.navigation.close();
+          }
+        }
+      });
+
+      // Handle smooth scrolling for anchor links
+      document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (anchor && anchor.getAttribute('href') !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (target) {
+            const offsetTop = target.offsetTop - 80; // Account for header
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+
+      console.log('👂 Event listeners set up');
+    }
+
+    /**
+     * Performance Monitoring
+     * Basic performance monitoring and optimization
+     */
+    monitorPerformance() {
+      // Monitor scroll performance
+      let scrolling = false;
+      window.addEventListener('scroll', () => {
+        if (!scrolling) {
+          requestAnimationFrame(() => {
+            scrolling = false;
+          });
+          scrolling = true;
+        }
+      }, { passive: true });
+
+      // Monitor filter performance
+      const originalFilter = this.modules.projects?.filter;
+      if (originalFilter) {
+        this.modules.projects.filter = (category) => {
+          const start = performance.now();
+          originalFilter(category);
+          const end = performance.now();
+          console.log(`Filter operation took ${end - start} milliseconds`);
+        };
+      }
     }
   }
 
-  // Initialize when DOM is ready
+  /**
+   * Application Initialization
+   * Initialize the app when DOM is ready
+   */
   const app = new PortfolioApp();
 
-  // Critical: Emergency filter visibility for standalone environment
-  function emergencyFilterVisibility() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
-
-    filterButtons.forEach(btn => {
-      btn.style.opacity = '1';
-      btn.style.transform = 'translateY(0)';
-      btn.style.visibility = 'visible';
-      btn.classList.add('animate-in');
-    });
-
-    if (filterContainer) {
-      filterContainer.style.opacity = '1';
-      filterContainer.style.transform = 'translateY(0)';
-      filterContainer.style.visibility = 'visible';
-      filterContainer.classList.add('animate-in');
-    }
-  }
-
-  // Execute immediately
+  // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      emergencyFilterVisibility();
-      app.init();
-    });
+    document.addEventListener('DOMContentLoaded', () => app.init());
   } else {
-    emergencyFilterVisibility();
     app.init();
   }
 
-  // Backup execution
-  setTimeout(emergencyFilterVisibility, 50);
+  // Fallback initialization after window load
+  window.addEventListener('load', () => {
+    if (!app.isInitialized) {
+      app.init();
+    }
+  });
+
+  // Expose app to global scope for debugging
+  window.PortfolioApp = app;
+
+  console.log('📋 Standalone application loaded');
 
 })();
+
+/* =====================================================================================================
+   END OF STANDALONE APPLICATION
+   ===================================================================================================== */

@@ -1,16 +1,356 @@
 /**
- * =========================================
- * CSS CUSTOM PROPERTIES (VARIABLES)
- * Dark theme color palette and design tokens
- * Light theme removed - Dark mode only
- * =========================================
+ * =====================================================================================================
+ * PORTFOLIO - CSS CUSTOM PROPERTIES & DESIGN TOKENS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: variables.css
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Variables CSS centralisées définissant le système de design du portfolio.
+ * Inclut couleurs, espacements, typographie, animations et effets glassmorphism.
+ *
+ * Features:
+ * - Palette de couleurs dark mode complète
+ * - Système d'espacement cohérent
+ * - Variables typographiques (familles, tailles, poids)
+ * - Durées et fonctions d'easing pour animations
+ * - Propriétés glassmorphism (blur, opacité, bordures)
+ * - Breakpoints responsive design
+ *
+ * Usage: rgba(var(--bg-primary), 0.8) | rgb(var(--text-primary))
+ * Dependencies: Aucune
+ *
+ * =====================================================================================================
  */
 
-/* Dark theme color palette */
 :root {
-  --bg-primary: 10, 10, 10;          /* Primary background (neutral-950 equivalent) */
-  --bg-secondary: 23, 23, 23;        /* Secondary background (neutral-900 equivalent) */
-  --text-primary: 255, 255, 255;     /* Primary text (white) */
-  --text-secondary: 163, 163, 163;   /* Secondary text (neutral-400) */
-  --accent: 59, 130, 246;            /* Accent color (blue-500) */
+  /* =====================================================================================================
+     COLOR SYSTEM - Dark Mode Only
+     ===================================================================================================== */
+
+  /**
+   * Background Colors
+   * RGB values for alpha channel compatibility
+   */
+  --bg-primary: 10, 10, 10;          /* Main background - Deep neutral */
+  --bg-secondary: 23, 23, 23;        /* Secondary background - Dark neutral */
+  --bg-tertiary: 38, 38, 38;         /* Card backgrounds - Medium neutral */
+  --bg-surface: 51, 51, 51;          /* Surface elements - Light neutral */
+  --bg-hover: 64, 64, 64;            /* Hover states - Interactive neutral */
+
+  /**
+   * Text Colors
+   * High contrast for accessibility compliance
+   */
+  --text-primary: 255, 255, 255;     /* Primary text - Pure white */
+  --text-secondary: 163, 163, 163;   /* Secondary text - Light gray */
+  --text-muted: 115, 115, 115;       /* Muted text - Medium gray */
+  --text-placeholder: 82, 82, 82;    /* Placeholder text - Dark gray */
+
+  /**
+   * Accent & Brand Colors
+   * Blue-based palette for modern professional look
+   */
+  --accent-primary: 59, 130, 246;    /* Primary accent - Blue 500 */
+  --accent-secondary: 37, 99, 235;   /* Secondary accent - Blue 600 */
+  --accent-hover: 29, 78, 216;       /* Hover accent - Blue 700 */
+  --accent-light: 147, 197, 253;     /* Light accent - Blue 300 */
+
+  /**
+   * Status Colors
+   * For success, warning, error states
+   */
+  --success: 34, 197, 94;            /* Success green */
+  --warning: 245, 158, 11;           /* Warning amber */
+  --error: 239, 68, 68;              /* Error red */
+  --info: 59, 130, 246;              /* Info blue */
+
+  /**
+   * Border Colors
+   * Subtle borders for glassmorphism
+   */
+  --border-primary: 64, 64, 64;      /* Primary borders */
+  --border-secondary: 38, 38, 38;    /* Secondary borders */
+  --border-accent: 59, 130, 246;     /* Accent borders */
+
+  /* =====================================================================================================
+     TYPOGRAPHY SYSTEM
+     ===================================================================================================== */
+
+  /**
+   * Font Families
+   * Modern font stack with fallbacks
+   */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /**
+   * Font Sizes
+   * Responsive typography scale
+   */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+
+  /**
+   * Font Weights
+   * Semantic weight naming
+   */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  /**
+   * Line Heights
+   * Optimal readability ratios
+   */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* =====================================================================================================
+     SPACING SYSTEM
+     ===================================================================================================== */
+
+  /**
+   * Spacing Scale
+   * Consistent spacing for layouts
+   */
+  --spacing-xs: 0.25rem;    /* 4px */
+  --spacing-sm: 0.5rem;     /* 8px */
+  --spacing-md: 0.75rem;    /* 12px */
+  --spacing-base: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;     /* 24px */
+  --spacing-xl: 2rem;       /* 32px */
+  --spacing-2xl: 3rem;      /* 48px */
+  --spacing-3xl: 4rem;      /* 64px */
+  --spacing-4xl: 6rem;      /* 96px */
+  --spacing-5xl: 8rem;      /* 128px */
+
+  /**
+   * Container Sizes
+   * Responsive container widths
+   */
+  --container-xs: 320px;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+
+  /* =====================================================================================================
+     GLASSMORPHISM EFFECTS
+     ===================================================================================================== */
+
+  /**
+   * Backdrop Blur
+   * Modern glassmorphism aesthetic
+   */
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 12px;
+  --blur-xl: 16px;
+  --blur-2xl: 24px;
+
+  /**
+   * Glass Opacity
+   * Transparency levels for glass effects
+   */
+  --glass-opacity-light: 0.1;
+  --glass-opacity-medium: 0.15;
+  --glass-opacity-strong: 0.2;
+  --glass-opacity-solid: 0.8;
+
+  /**
+   * Glass Borders
+   * Subtle borders for glass components
+   */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-border-hover: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-border-accent: 1px solid rgba(var(--accent-primary), 0.3);
+
+  /* =====================================================================================================
+     ANIMATION SYSTEM
+     ===================================================================================================== */
+
+  /**
+   * Animation Duration
+   * Consistent timing for interactions
+   */
+  --duration-instant: 0.1s;
+  --duration-fast: 0.2s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.5s;
+  --duration-slower: 0.8s;
+
+  /**
+   * Easing Functions
+   * Smooth, natural motion curves
+   */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /**
+   * Transform Values
+   * Common transform values for animations
+   */
+  --scale-hover: 1.05;
+  --scale-active: 0.95;
+  --translate-hover: -2px;
+
+  /* =====================================================================================================
+     SHADOW SYSTEM
+     ===================================================================================================== */
+
+  /**
+   * Box Shadows
+   * Layered shadow system for depth
+   */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /**
+   * Glow Effects
+   * Accent color glows for interactive elements
+   */
+  --glow-accent: 0 0 20px rgba(var(--accent-primary), 0.3);
+  --glow-accent-strong: 0 0 30px rgba(var(--accent-primary), 0.5);
+
+  /* =====================================================================================================
+     RESPONSIVE BREAKPOINTS
+     ===================================================================================================== */
+
+  /**
+   * Breakpoint Values
+   * Mobile-first responsive design
+   */
+  --bp-xs: 320px;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+
+  /* =====================================================================================================
+     Z-INDEX SCALE
+     ===================================================================================================== */
+
+  /**
+   * Z-Index Layers
+   * Consistent layering system
+   */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+  --z-toast: 80;
+  --z-maximum: 9999;
+
+  /* =====================================================================================================
+     COMPONENT-SPECIFIC VARIABLES
+     ===================================================================================================== */
+
+  /**
+   * Header Variables
+   */
+  --header-height: 4rem;
+  --header-blur: var(--blur-lg);
+  --header-opacity: 0.95;
+
+  /**
+   * Card Variables
+   */
+  --card-radius: 1rem;
+  --card-padding: var(--spacing-lg);
+  --card-gap: var(--spacing-base);
+
+  /**
+   * Button Variables
+   */
+  --btn-radius: 0.5rem;
+  --btn-padding-x: var(--spacing-lg);
+  --btn-padding-y: var(--spacing-md);
+  --btn-transition: all var(--duration-normal) var(--ease-out);
+
+  /**
+   * Form Variables
+   */
+  --input-radius: 0.5rem;
+  --input-padding: var(--spacing-md);
+  --input-border: var(--glass-border);
+  --input-focus-border: var(--glass-border-accent);
 }
+
+/* =====================================================================================================
+   REDUCED MOTION PREFERENCES
+   ===================================================================================================== */
+
+/**
+ * Accessibility: Respect user's motion preferences
+ * Reduces animations for users who prefer less motion
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0.01s;
+    --duration-fast: 0.01s;
+    --duration-normal: 0.01s;
+    --duration-slow: 0.01s;
+    --duration-slower: 0.01s;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================================================
+   HIGH CONTRAST MODE SUPPORT
+   ===================================================================================================== */
+
+/**
+ * Accessibility: Enhanced contrast for users who need it
+ */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: 255, 255, 255;
+    --text-secondary: 255, 255, 255;
+    --bg-primary: 0, 0, 0;
+    --bg-secondary: 0, 0, 0;
+    --border-primary: 255, 255, 255;
+    --glass-border: 2px solid rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* =====================================================================================================
+   END OF VARIABLES MODULE
+   ===================================================================================================== */

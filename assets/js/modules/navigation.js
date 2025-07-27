@@ -1,7 +1,31 @@
-// ========================================
-// MOBILE NAVIGATION MODULE
-// Handles mobile menu toggle and keyboard navigation
-// ========================================
+/**
+ * =====================================================================================================
+ * PORTFOLIO - MODULE NAVIGATION
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: navigation.js
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Module de gestion de la navigation mobile avec menu hamburger
+ * Apple-style et interactions clavier accessibles.
+ *
+ * Features:
+ * - Menu hamburger avec animations fluides
+ * - Navigation clavier accessible (ARIA)
+ * - Fermeture automatique sur clic à l'extérieur
+ * - Gestion d'état du menu mobile
+ * - Auto-masquage du header au scroll
+ * - Support complet de l'accessibilité
+ *
+ * Dependencies: Aucune - module autonome
+ * Browser Support: ES6+ modules, modern browsers
+ *
+ * =====================================================================================================
+ */
 
 'use strict';
 
@@ -15,7 +39,7 @@ export class MobileNavigation {
     this.burgerMenu = null;
     this.isOpen = false;
     this.isInitialized = false;
-    
+
     // Don't initialize DOM elements in constructor
   }
 

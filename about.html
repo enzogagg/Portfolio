@@ -1,3 +1,32 @@
+<!--
+=====================================================================================================
+PORTFOLIO - PAGE À PROPOS
+=====================================================================================================
+
+Author: Enzo Gaggiotti
+Project: Portfolio Personnel
+File: about.html
+Version: 2.1.0
+Last Updated: July 2025
+
+Description:
+Page de présentation personnelle incluant parcours, compétences,
+intérêts et timeline éducative avec composants spéciaux.
+
+Features:
+- Section profil avec image et bio interactive
+- Timeline éducative et professionnelle
+- Grille de compétences techniques et soft skills
+- Icônes d'intérêts avec couleurs spécifiques
+- Composants spéciaux avec animations flottantes
+- Navigation Apple minimaliste cohérente
+- Design responsive mobile-first
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers avec backdrop-filter
+
+=====================================================================================================
+-->
 <!DOCTYPE html>
 <html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
 <head>
@@ -21,18 +50,18 @@
   <header id="main-header">
     <div class="header-container">
       <!-- Logo / Home Link -->
-      <a href="index.html#top" aria-label="Accueil">
-        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+      <a href="index.html#top" class="logo" aria-label="Accueil">
+        <div class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
           EG
         </div>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav>
-        <a href="index.html#top">Accueil</a>
-        <a href="projects.html">Projets</a>
-        <a href="about.html" class="active">À propos</a>
-        <a href="contact.html">Contact</a>
+      <nav class="nav-primary">
+        <a href="index.html#top" class="nav-link">Accueil</a>
+        <a href="projects.html" class="nav-link">Projets</a>
+        <a href="about.html" class="nav-link active">À propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </nav>
 
       <!-- Header Controls (Mobile Menu) -->
@@ -48,11 +77,11 @@
 
     <!-- Mobile Navigation Menu -->
     <div class="mobile-menu" id="mobile-menu">
-      <nav>
-        <a href="index.html#top" onclick="closeMobileMenu()">Accueil</a>
-        <a href="projects.html" onclick="closeMobileMenu()">Projets</a>
-        <a href="about.html" onclick="closeMobileMenu()" class="active">À propos</a>
-        <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+      <nav class="mobile-nav">
+        <a href="index.html#top" class="nav-link" onclick="closeMobileMenu()">Accueil</a>
+        <a href="projects.html" class="nav-link" onclick="closeMobileMenu()">Projets</a>
+        <a href="about.html" class="nav-link active" onclick="closeMobileMenu()">À propos</a>
+        <a href="contact.html" class="nav-link" onclick="closeMobileMenu()">Contact</a>
       </nav>
     </div>
   </header>
@@ -152,21 +181,21 @@
           <h2 class="text-3xl font-bold mb-6 text-white">Mon parcours</h2>
           <div class="space-y-6 text-neutral-300 leading-relaxed text-lg">
           <p>
-            Je m'appelle Enzo, j'ai 20 ans et je suis actuellement étudiant en <strong class="text-blue-400">troisième année à Epitech Lyon</strong>. 
+            Je m'appelle Enzo, j'ai 20 ans et je suis actuellement étudiant en <strong class="text-blue-400">troisième année à Epitech Lyon</strong>.
             Passionné par les systèmes, les réseaux et l'automatisation, je développe une approche orientée infrastructure, fiabilité et efficacité.
           </p>
           <p>
-            Mon parcours à Epitech m'a permis de renforcer mes compétences techniques tout en m'ouvrant à des projets concrets mêlant développement bas niveau, 
-            conception logicielle et travail en équipe. J'ai notamment contribué à des projets en C, C++, Python et JavaScript, avec une attention particulière 
+            Mon parcours à Epitech m'a permis de renforcer mes compétences techniques tout en m'ouvrant à des projets concrets mêlant développement bas niveau,
+            conception logicielle et travail en équipe. J'ai notamment contribué à des projets en C, C++, Python et JavaScript, avec une attention particulière
             portée à la qualité du code, à l'architecture logicielle et à l'intégration continue.
           </p>
           <p>
-            En dehors du cadre scolaire, je consacre une grande partie de mon temps libre à des initiatives personnelles. J'ai conçu une box domotique sur ESP32 
-            pour la gestion de mon aquarium, intégrée à Home Assistant avec capteurs physiques et automatisations sur mesure. Je maintiens également mon propre 
+            En dehors du cadre scolaire, je consacre une grande partie de mon temps libre à des initiatives personnelles. J'ai conçu une box domotique sur ESP32
+            pour la gestion de mon aquarium, intégrée à Home Assistant avec capteurs physiques et automatisations sur mesure. Je maintiens également mon propre
             cluster Proxmox, un pare-feu pfSense, des services auto-hébergés (Plex, Sonarr, Radarr...), et j'expérimente des environnements réseau avec du matériel UniFi.
           </p>
           <p>
-            Je suis à la croisée entre développement logiciel et ingénierie système. Ce qui m'anime : <strong class="text-purple-400">comprendre en profondeur, 
+            Je suis à la croisée entre développement logiciel et ingénierie système. Ce qui m'anime : <strong class="text-purple-400">comprendre en profondeur,
             faire simple et robuste, et automatiser pour mieux innover</strong>.
           </p>
           </div>

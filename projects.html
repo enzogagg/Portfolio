@@ -1,3 +1,32 @@
+<!--
+=====================================================================================================
+PORTFOLIO - PAGE PROJETS
+=====================================================================================================
+
+Author: Enzo Gaggiotti
+Project: Portfolio Personnel
+File: projects.html
+Version: 2.1.0
+Last Updated: July 2025
+
+Description:
+Page dédiée aux projets et réalisations avec galerie interactive,
+filtres par technologie et cartes détaillées avec actions.
+
+Features:
+- Galerie de projets avec système de filtrage
+- Cartes projets avec glassmorphism
+- Boutons d'action (démonstration, GitHub)
+- Tags technologiques avec couleurs spécifiques
+- Navigation Apple minimaliste cohérente
+- Animations et transitions fluides
+- Design responsive mobile-first
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers avec backdrop-filter
+
+=====================================================================================================
+-->
 <!DOCTYPE html>
 <html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
 <head>
@@ -21,18 +50,18 @@
   <header id="main-header">
     <div class="header-container">
       <!-- Logo / Home Link -->
-      <a href="index.html#top" aria-label="Accueil">
-        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+      <a href="index.html#top" class="logo" aria-label="Accueil">
+        <div class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
           EG
         </div>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav>
-        <a href="index.html#top">Accueil</a>
-        <a href="projects.html" class="active">Projets</a>
-        <a href="about.html">À propos</a>
-        <a href="contact.html">Contact</a>
+      <nav class="nav-primary">
+        <a href="index.html#top" class="nav-link">Accueil</a>
+        <a href="projects.html" class="nav-link active">Projets</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </nav>
 
       <!-- Header Controls (Mobile Menu) -->
@@ -48,11 +77,11 @@
 
     <!-- Mobile Navigation Menu -->
     <div class="mobile-menu" id="mobile-menu">
-      <nav>
-        <a href="index.html#top" onclick="closeMobileMenu()">Accueil</a>
-        <a href="projects.html" onclick="closeMobileMenu()">Projets</a>
-        <a href="about.html" onclick="closeMobileMenu()">À propos</a>
-        <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+      <nav class="mobile-nav">
+        <a href="index.html#top" class="nav-link" onclick="closeMobileMenu()">Accueil</a>
+        <a href="projects.html" class="nav-link" onclick="closeMobileMenu()">Projets</a>
+        <a href="about.html" class="nav-link" onclick="closeMobileMenu()">À propos</a>
+        <a href="contact.html" class="nav-link" onclick="closeMobileMenu()">Contact</a>
       </nav>
     </div>
   </header>

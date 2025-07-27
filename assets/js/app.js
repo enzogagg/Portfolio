@@ -1,8 +1,32 @@
-// ========================================
-// PORTFOLIO MAIN APPLICATION
-// Modern Modular Portfolio Website
-// Author: Enzo Gaggiotti
-// ========================================
+/**
+ * =====================================================================================================
+ * PORTFOLIO - APPLICATION PRINCIPALE
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Portfolio Personnel
+ * File: app.js
+ * Version: 2.1.0
+ * Last Updated: July 2025
+ *
+ * Description:
+ * Application JavaScript principale orchestrant tous les modules
+ * du portfolio avec architecture modulaire et gestion d'état.
+ *
+ * Features:
+ * - Architecture modulaire avec import/export ES6
+ * - Gestion de la navigation mobile Apple-style
+ * - Système d'animations et transitions fluides
+ * - Filtrage de projets avec état persistant
+ * - Gestionnaire d'accessibilité WCAG
+ * - Optimisations de performance
+ * - Gestion d'événements centralisée
+ *
+ * Dependencies: modules/navigation.js, modules/animations.js, modules/projects.js
+ * Browser Support: ES6+ modules, modern browsers
+ *
+ * =====================================================================================================
+ */
 
 'use strict';
 
@@ -108,6 +132,74 @@ class PortfolioApp {
     this.modules.accessibility.setInitialNavigationState();
 
     console.log('✅ Core features initialized');
+  }
+
+  /**
+   * Header Auto-Hide Functionality
+   */
+  initializeHeaderAutoHide() {
+    const header = document.getElementById('main-header') || document.querySelector('header');
+    if (!header) {
+      console.log('Header not found, skipping auto-hide initialization');
+      return;
+    }
+
+    let lastScrollY = window.scrollY;
+    let isScrolling = false;
+
+    // Throttle scroll events for better performance
+    const throttle = (func, delay) => {
+      let timeoutId;
+      let lastExecTime = 0;
+      return function (...args) {
+        const currentTime = Date.now();
+
+        if (currentTime - lastExecTime > delay) {
+          func.apply(this, args);
+          lastExecTime = currentTime;
+        } else {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => func.apply(this, args), delay);
+        }
+      };
+    };
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollThreshold = 100; // Start hiding after 100px of scroll
+
+      // Don't hide header if we're at the top of the page
+      if (currentScrollY < scrollThreshold) {
+        header.classList.remove('header-hidden');
+        header.classList.add('header-visible');
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Hide header when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+        // Scrolling down - hide header
+        header.classList.add('header-hidden');
+        header.classList.remove('header-visible');
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show header
+        header.classList.remove('header-hidden');
+        header.classList.add('header-visible');
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    // Use throttled scroll handler
+    const throttledHandleScroll = throttle(handleScroll, 16); // ~60fps
+
+    // Add scroll event listener
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+
+    // Initialize header state
+    header.classList.add('header-visible');
+
+    console.log('🎯 Header auto-hide functionality initialized');
   }
 
   /**
