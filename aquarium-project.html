@@ -1,0 +1,268 @@
+<!--
+=====================================================================================================
+PORTFOLIO - PROJET : BOX DOMOTIQUE AQUARIUM
+=====================================================================================================
+Author: Enzo Gaggiotti
+Project: Portfolio Personnel
+File: aquarium-project.html
+Version: 1.1.0
+Last Updated: July 2025
+
+Description:
+Page détaillée du projet Box Domotique Aquarium, design harmonisé avec la page projets du portfolio.
+
+Features:
+- Présentation du projet et des objectifs
+- Schémas électroniques et explications techniques
+- Aperçu du dashboard Home Assistant
+- Liste des capteurs et automatisations
+- Liens vers le code et ressources
+- Design glassmorphism, tags colorés, boutons animés, responsive
+=====================================================================================================
+-->
+<!DOCTYPE html>
+<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Box Domotique Aquarium - Projet IoT & Domotique | Enzo Gaggiotti</title>
+  <meta name="description" content="Projet personnel : Box domotique pour aquarium avec ESP32, capteurs complexes, automatisations et intégration Home Assistant. DIY, électronique, code et dashboard domotique.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body class="min-h-screen flex flex-col">
+  <!-- Minimalist loader -->
+  <div id="minimal-loader">
+    <div class="minimal-spinner"></div>
+  </div>
+  <script>
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('minimal-loader');
+      if(loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 500);
+      }
+    });
+  </script>
+
+  <!-- HEADER NAVIGATION -->
+  <header id="main-header">
+    <div class="header-container">
+      <a href="index.html#top" class="logo" aria-label="Accueil">
+        <div class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">EG</div>
+      </a>
+      <nav class="nav-primary">
+        <a href="index.html#top" class="nav-link">Accueil</a>
+        <a href="projects.html" class="nav-link">Projets</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <!-- HERO SECTION OPTIMISÉE -->
+  <section class="relative overflow-visible flex flex-col items-center justify-center px-6 pt-32 pb-20 fade-in">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-blue-500/5 pointer-events-none"></div>
+    <div class="relative z-10 w-full max-w-4xl mx-auto text-center">
+      <div class="flex flex-col items-center gap-4">
+        <div class="project-icon-container mx-auto mb-4">
+          <div class="project-icon-bg iot" style="width:72px;height:72px;display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-fish project-icon text-blue-400 text-5xl"></i>
+          </div>
+        </div>
+        <div class="project-status-badge mx-auto mb-2">
+          <div class="status-dot active"></div>
+          <span>IoT / Domotique</span>
+        </div>
+        <h1 class="project-title text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.15] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse mb-2">
+          Box Domotique Aquarium
+        </h1>
+        <div class="project-technologies flex flex-wrap gap-2 justify-center mb-2">
+          <span class="tech-tag esp32">ESP32</span>
+          <span class="tech-tag esphome">ESPHome</span>
+          <span class="tech-tag homeassistant">Home Assistant</span>
+        </div>
+        <p class="project-description text-xl sm:text-2xl text-neutral-300 leading-relaxed max-w-2xl mx-auto mb-4">
+          Un projet DIY mêlant électronique, code, automatisation et domotique pour la gestion intelligente d'un aquarium.<br>
+          <span class="text-blue-400 font-semibold">ESP32</span>, <span class="text-purple-400 font-semibold">ESPHome</span>, <span class="text-blue-300 font-semibold">Home Assistant</span> & capteurs avancés.
+        </p>
+        <div class="project-actions flex justify-center gap-4 mt-4">
+          <a href="#" class="project-btn btn-primary">
+            <i class="fab fa-github"></i>
+            <span>Code</span>
+          </a>
+          <a href="#" class="project-btn btn-secondary">
+            <i class="fas fa-external-link-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CARD ENHANCED (Glassmorphism) -->
+  <main class="flex-grow container mx-auto px-6 pb-20 pt-12">
+    <!-- SECTION PROJET ENCADRÉE HARMONISÉE -->
+    <section class="mb-16 fade-in">
+      <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 projects-grid">
+        <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="iot" style="animation-delay: 0.05s;">
+          <div class="project-card-header">
+            <div class="project-icon-container">
+              <div class="project-icon-bg iot">
+                <i class="fas fa-fish project-icon text-blue-400"></i>
+              </div>
+            </div>
+            <div class="project-status-badge">
+              <div class="status-dot active"></div>
+              <span>IoT / Domotique</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Box Domotique Aquarium</h3>
+            <p class="project-description">
+              Projet personnel mêlant électronique, code et automatisation.<br>
+              Capteurs complexes (pH, TDS, température), ESP32, ESPHome et intégration Home Assistant.<br>
+              Dashboard domotique, automatisations, calibration et design PCB DIY pour une gestion intelligente.
+            </p>
+            <div class="project-technologies">
+              <span class="tech-tag esp32">ESP32</span>
+              <span class="tech-tag esphome">ESPHome</span>
+              <span class="tech-tag homeassistant">Home Assistant</span>
+            </div>
+            <div class="project-actions">
+              <a href="#" class="project-btn btn-primary">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a href="#" class="project-btn btn-secondary">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Dashboard</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aperçu technique -->
+    <!-- Timeline & Aperçu technique harmonisés -->
+    <section class="mb-16 fade-in">
+      <h2 class="text-2xl font-bold mb-6 text-center">Étapes clés & Aperçu technique</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="project-card-enhanced glass-button p-6 flex flex-col items-center">
+          <h3 class="project-title text-lg font-bold mb-4">Schéma électronique & PCB</h3>
+          <img src="assets/images/aquarium-pcb.png" alt="Schéma PCB aquarium" class="rounded-xl shadow-lg mb-4" />
+          <span class="tech-tag sensors mb-2">Design PCB</span>
+          <p class="project-description text-neutral-300 text-sm">Design sur-mesure pour fiabilité et facilité d'intégration.</p>
+        </div>
+        <div class="project-card-enhanced glass-button p-6 flex flex-col items-center">
+          <h3 class="project-title text-lg font-bold mb-4">Dashboard Home Assistant</h3>
+          <img src="assets/images/aquarium-dashboard.png" alt="Dashboard Home Assistant aquarium" class="rounded-xl shadow-lg mb-4" />
+          <span class="tech-tag homeassistant mb-2">Home Assistant</span>
+          <p class="project-description text-neutral-300 text-sm">Interface personnalisée pour le monitoring et le contrôle en temps réel.</p>
+        </div>
+      </div>
+      <div class="mt-12">
+        <h3 class="font-semibold text-lg mb-4 text-center">Timeline du projet</h3>
+        <div class="grid md:grid-cols-5 gap-6">
+          <div class="project-card-enhanced glass-button p-4 flex flex-col items-center">
+            <span class="project-status-badge mb-2"><div class="status-dot active"></div>Idée</span>
+            <h4 class="font-bold text-blue-300">Conception</h4>
+            <p class="text-neutral-400 text-xs text-center">Définition des besoins, choix des capteurs et conception initiale.</p>
+          </div>
+          <div class="project-card-enhanced glass-button p-4 flex flex-col items-center">
+            <span class="project-status-badge mb-2"><div class="status-dot active"></div>PCB</span>
+            <h4 class="font-bold text-purple-300">Prototypage</h4>
+            <p class="text-neutral-400 text-xs text-center">Réalisation du PCB, tests électroniques et validation hardware.</p>
+          </div>
+          <div class="project-card-enhanced glass-button p-4 flex flex-col items-center">
+            <span class="project-status-badge mb-2"><div class="status-dot active"></div>Code</span>
+            <h4 class="font-bold text-blue-300">Développement</h4>
+            <p class="text-neutral-400 text-xs text-center">Programmation ESP32, intégration ESPHome et Home Assistant.</p>
+          </div>
+          <div class="project-card-enhanced glass-button p-4 flex flex-col items-center">
+            <span class="project-status-badge mb-2"><div class="status-dot active"></div>Dashboard</span>
+            <h4 class="font-bold text-purple-300">Automatisations</h4>
+            <p class="text-neutral-400 text-xs text-center">Création du dashboard, automatisations et routines domotiques.</p>
+          </div>
+          <div class="project-card-enhanced glass-button p-4 flex flex-col items-center">
+            <span class="project-status-badge mb-2"><div class="status-dot active"></div>Finalisation</span>
+            <h4 class="font-bold text-blue-300">Calibration</h4>
+            <p class="text-neutral-400 text-xs text-center">Calibration des capteurs, fiabilisation et documentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automatisations & routines harmonisées -->
+    <section class="mb-16 fade-in">
+      <h2 class="text-2xl font-bold mb-6 text-center">Automatisations & routines</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="project-card-enhanced glass-button p-6 flex flex-col justify-center">
+          <h3 class="project-title text-lg font-bold mb-2 text-blue-300">Exemple d'automatisation</h3>
+          <pre class="bg-neutral-950 rounded p-4 text-xs text-blue-200 overflow-x-auto mb-0">automation:
+  - alias: "Alerte pH critique aquarium"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.aquarium_ph
+        below: 6.5
+    action:
+      - service: notify.mobile_app
+        data:
+          message: "Alerte : pH trop bas dans l'aquarium !"
+</pre>
+        </div>
+        <div class="project-card-enhanced glass-button p-6 flex flex-col justify-center">
+          <ul class="list-disc list-inside text-neutral-400 mb-8">
+            <li>Alertes automatiques en cas de valeurs critiques</li>
+            <li>Actions programmées (nourrissage, éclairage, etc.)</li>
+            <li>Routines de maintenance et notifications</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ressources & documentation harmonisées -->
+    <section class="mb-16 fade-in">
+      <h2 class="text-2xl font-bold mb-6 text-center">Ressources & documentation</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="project-card-enhanced glass-button p-6 flex flex-col justify-center">
+          <ul class="list-disc list-inside text-neutral-400 mb-8">
+            <li><a href="#" class="underline text-blue-400">Dépôt GitHub du projet</a></li>
+            <li><a href="#" class="underline text-blue-400">Documentation ESPHome</a></li>
+            <li><a href="#" class="underline text-blue-400">Guide d'intégration Home Assistant</a></li>
+          </ul>
+        </div>
+        <div class="project-card-enhanced glass-button p-6 flex flex-col justify-center items-center">
+          <h3 class="project-title text-lg font-bold mb-2 text-purple-300">Contact & partage</h3>
+          <p class="text-neutral-400 text-sm mb-2">Des questions ou envie de collaborer ? N'hésitez pas à me contacter ou à consulter le dépôt GitHub !</p>
+          <a href="mailto:enzo.gaggiotti@epitech.eu" class="project-btn btn-primary mt-2">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
+    <div class="flex justify-center items-center gap-6 mb-4">
+      <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
+        <i class="fas fa-envelope text-2xl"></i>
+      </a>
+      <a href="https://github.com/enzogagg" class="hover:text-white transition" title="GitHub" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/" class="hover:text-white transition" title="LinkedIn" aria-label="LinkedIn">
+        <i class="fab fa-linkedin text-2xl"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+  </footer>
+</body>
+</html>

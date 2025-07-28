@@ -44,6 +44,7 @@
    ===================================================================================================== */
 @import url('./modules/contact.css');        /* Contact forms and social interactions */
 @import url('./modules/special-components.css'); /* About section, timeline, hero elements */
+@import url('./modules/loader.css');         /* Loader minimaliste */
 
 /* =====================================================================================================
    PRODUCTION OPTIMIZATIONS

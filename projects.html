@@ -168,78 +168,41 @@ Browser Support: Modern browsers avec backdrop-filter
       <button class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn" data-filter="system">
         <i class="fas fa-cog mr-2"></i>Systèmes
       </button>
+      <button class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn" data-filter="iot">
+        <i class="fas fa-fish mr-2"></i>IoT / Domotique
+      </button>
     </div>
 
     <!-- ========== PROJECTS GRID ========== -->
     <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 projects-grid">
 
       <!-- ========== INFRASTRUCTURE PROJECTS ========== -->
-
-      <!-- Project: Cloud Infrastructure -->
-      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="infrastructure">
+      <!-- Project: Box Domotique Aquarium (Featured) -->
+      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="iot" style="animation-delay: 0.05s;">
         <div class="project-card-header">
           <div class="project-icon-container">
-            <div class="project-icon-bg infrastructure">
-              <i class="fas fa-cloud project-icon"></i>
-            </div>
-          </div>
-          <div class="project-status-badge">
-            <div class="status-dot completed"></div>
-            <span>Infrastructure</span>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-title">Infrastructure Cloud Hybride</h3>
-          <p class="project-description">
-            Déploiement d'une infrastructure cloud hybride avec Docker, Kubernetes et Terraform. Automatisation complète avec CI/CD pour une scalabilité optimale.
-          </p>
-
-          <div class="project-technologies">
-            <span class="tech-tag docker">Docker</span>
-            <span class="tech-tag kubernetes">Kubernetes</span>
-            <span class="tech-tag terraform">Terraform</span>
-            <span class="tech-tag cicd">CI/CD</span>
-          </div>
-
-          <div class="project-actions">
-            <a href="#" class="project-btn btn-primary">
-              <i class="fab fa-github"></i>
-              <span>Code</span>
-            </a>
-            <a href="#" class="project-btn btn-secondary">
-              <i class="fas fa-external-link-alt"></i>
-              <span>Démo</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project: Automation Scripts -->
-      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="infrastructure" style="animation-delay: 0.1s;">
-        <div class="project-card-header">
-          <div class="project-icon-container">
-            <div class="project-icon-bg automation">
-              <i class="fas fa-robot project-icon"></i>
+            <div class="project-icon-bg iot">
+              <i class="fas fa-fish project-icon text-blue-400"></i>
             </div>
           </div>
           <div class="project-status-badge">
             <div class="status-dot active"></div>
-            <span>Infrastructure</span>
+            <span>IoT / Domotique</span>
           </div>
         </div>
 
         <div class="project-content">
-          <h3 class="project-title">Scripts d'Automatisation</h3>
+          <h3 class="project-title">Box Domotique Aquarium</h3>
           <p class="project-description">
-            Collection de scripts Python et Bash pour l'automatisation des tâches d'administration système et déploiement avec Ansible.
+            Projet personnel mêlant électronique, code et automatisation.<br>
+            Capteurs complexes (pH, TDS, température), ESP32, ESPHome et intégration Home Assistant.<br>
+            Dashboard domotique, automatisations, calibration et design PCB DIY pour une gestion intelligente.
           </p>
 
           <div class="project-technologies">
-            <span class="tech-tag python">Python</span>
-            <span class="tech-tag bash">Bash</span>
-            <span class="tech-tag ansible">Ansible</span>
-            <span class="tech-tag linux">Linux</span>
+            <span class="tech-tag esp32">ESP32</span>
+            <span class="tech-tag esphome">ESPHome</span>
+            <span class="tech-tag homeassistant">Home Assistant</span>
           </div>
 
           <div class="project-actions">
@@ -247,9 +210,9 @@ Browser Support: Modern browsers avec backdrop-filter
               <i class="fab fa-github"></i>
               <span>Code</span>
             </a>
-            <a href="#" class="project-btn btn-secondary">
-              <i class="fas fa-play"></i>
-              <span>Tester</span>
+            <a href="aquarium-project.html" class="project-btn btn-secondary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Détails</span>
             </a>
           </div>
         </div>
@@ -296,131 +259,7 @@ Browser Support: Modern browsers avec backdrop-filter
           </div>
         </div>
       </div>
-
-      <!-- Project: REST API -->
-      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="web" style="animation-delay: 0.3s;">
-        <div class="project-card-header">
-          <div class="project-icon-container">
-            <div class="project-icon-bg api">
-              <i class="fas fa-code project-icon"></i>
-            </div>
-          </div>
-          <div class="project-status-badge">
-            <div class="status-dot completed"></div>
-            <span>Web</span>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-title">API REST Sécurisée</h3>
-          <p class="project-description">
-            API REST complète avec authentification JWT, validation des données et documentation Swagger intégrée pour une architecture robuste.
-          </p>
-
-          <div class="project-technologies">
-            <span class="tech-tag nodejs">Node.js</span>
-            <span class="tech-tag express">Express</span>
-            <span class="tech-tag mongodb">MongoDB</span>
-            <span class="tech-tag jwt">JWT</span>
-          </div>
-
-          <div class="project-actions">
-            <a href="#" class="project-btn btn-primary">
-              <i class="fab fa-github"></i>
-              <span>Code</span>
-            </a>
-            <a href="#" class="project-btn btn-secondary">
-              <i class="fas fa-book"></i>
-              <span>Docs</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ========== SYSTEM PROJECTS ========== -->
-
-      <!-- Project: System Monitoring -->
-      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.4s;">
-        <div class="project-card-header">
-          <div class="project-icon-container">
-            <div class="project-icon-bg monitoring">
-              <i class="fas fa-chart-line project-icon"></i>
-            </div>
-          </div>
-          <div class="project-status-badge">
-            <div class="status-dot active"></div>
-            <span>Système</span>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-title">Stack de Monitoring</h3>
-          <p class="project-description">
-            Solution complète de monitoring avec Prometheus, Grafana et Alertmanager pour surveiller l'infrastructure en temps réel.
-          </p>
-
-          <div class="project-technologies">
-            <span class="tech-tag prometheus">Prometheus</span>
-            <span class="tech-tag grafana">Grafana</span>
-            <span class="tech-tag docker">Docker</span>
-            <span class="tech-tag alerting">Alerting</span>
-          </div>
-
-          <div class="project-actions">
-            <a href="#" class="project-btn btn-primary">
-              <i class="fab fa-github"></i>
-              <span>Code</span>
-            </a>
-            <a href="#" class="project-btn btn-secondary">
-              <i class="fas fa-external-link-alt"></i>
-              <span>Dashboard</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project: Process Manager -->
-      <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="system" style="animation-delay: 0.5s;">
-        <div class="project-card-header">
-          <div class="project-icon-container">
-            <div class="project-icon-bg system">
-              <i class="fas fa-microchip project-icon"></i>
-            </div>
-          </div>
-          <div class="project-status-badge">
-            <div class="status-dot completed"></div>
-            <span>Système</span>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <h3 class="project-title">Gestionnaire de Processus</h3>
-          <p class="project-description">
-            Application système en C++ pour la gestion avancée des processus avec interface en temps réel et optimisations mémoire.
-          </p>
-
-          <div class="project-technologies">
-            <span class="tech-tag cpp">C++</span>
-            <span class="tech-tag linux">Linux</span>
-            <span class="tech-tag qt">Qt</span>
-            <span class="tech-tag realtime">Real-time</span>
-          </div>
-
-          <div class="project-actions">
-            <a href="#" class="project-btn btn-primary">
-              <i class="fab fa-github"></i>
-              <span>Code</span>
-            </a>
-            <a href="#" class="project-btn btn-secondary">
-              <i class="fas fa-download"></i>
-              <span>Release</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
+    </main>
 
   <!-- ========== FOOTER ========== -->
   <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
