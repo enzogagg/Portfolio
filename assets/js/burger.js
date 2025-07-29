@@ -31,4 +31,10 @@ window.addEventListener('DOMContentLoaded', function() {
     menu.style.display = 'none';
     menu.style.opacity = '0';
   }
+
+  // Ajout du listener sur le burger
+  const burger = document.querySelector('.burger-menu');
+  if (burger) {
+    burger.addEventListener('click', toggleMobileMenu);
+  }
 });
