@@ -43,46 +43,13 @@ Browser Support: Modern browsers avec backdrop-filter
   <!-- CSS Frameworks & Styles -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/loader.css">
 </head>
 <body class="min-h-screen flex flex-col">
   <!-- Minimalist loader -->
   <div id="minimal-loader">
     <div class="minimal-spinner"></div>
   </div>
-  <style>
-    #minimal-loader {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(245,245,247,0.95);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.5s;
-    }
-    .minimal-spinner {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 3px solid #e5e5e7;
-      border-top: 3px solid #222;
-      animation: spin 1s linear infinite;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
-  <script>
-    window.addEventListener('load', function() {
-      const loader = document.getElementById('minimal-loader');
-      if(loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => loader.style.display = 'none', 500);
-      }
-    });
-  </script>
 
   <!-- ========== HEADER NAVIGATION ========== -->
   <header id="main-header">
@@ -539,16 +506,15 @@ Browser Support: Modern browsers avec backdrop-filter
   </footer>
 
   <!-- ========== JAVASCRIPT ========== -->
-  <!-- Fallback for local file usage (file:// protocol) -->
+  <script src="assets/js/loader.js"></script>
+  <script src="assets/js/burger.js"></script>
+  <!-- Fallback pour usage local (file:// protocol) -->
   <script>
-    // Check if we're loading from file:// protocol
     if (window.location.protocol === 'file:') {
-      // Use standalone version for local files
       const script = document.createElement('script');
       script.src = 'assets/js/standalone.js';
       document.head.appendChild(script);
     } else {
-      // Use modular version for HTTP(S) served files
       const script = document.createElement('script');
       script.type = 'module';
       script.src = 'assets/js/app.js';
