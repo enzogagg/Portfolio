@@ -137,15 +137,9 @@ export class ProjectsFilter {
    * Reset any existing inline styles that might interfere with CSS
    */
   resetProjectCards() {
-    this.projectCards.forEach(card => {
-      card.style.display = '';
-      card.style.opacity = '';
-      card.style.transform = '';
-      card.style.visibility = '';
-      card.classList.remove('project-hidden', 'project-filtering');
-    });
-
-    console.log('🔄 Project cards reset to default state');
+    // Ne rien faire au chargement, laisser l'animation au scroll gérer l'apparition
+    // Les styles sont gérés uniquement lors d'un filtre
+    console.log('🔄 Project cards left to default state (no forced hide on load)');
   }
 
   /**
