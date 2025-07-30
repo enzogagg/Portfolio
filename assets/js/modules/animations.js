@@ -185,7 +185,7 @@ export class ScrollAnimations {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('slide-up');
+          entry.target.classList.add('animate-in');
         }
       });
     }, observerOptions);
