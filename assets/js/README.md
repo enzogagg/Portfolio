@@ -11,6 +11,9 @@ The JavaScript code uses a **dual architecture** approach to provide maximum com
 ```
 assets/js/
 ├── app.js                    # Main entry point (ES6 modules)
+├── loader.js                 # Minimalist loader animation
+├── burger.js                 # Mobile burger menu
+├── matomo.js                 # Matomo analytics tracking
 ├── standalone.js             # Standalone version (file:// compatible)
 └── modules/
     ├── navigation.js         # Mobile navigation and menu
@@ -215,6 +218,18 @@ closeMobileMenu()
 window.portfolioApp.getStatus()
 window.portfolioApp.restart()
 ```
+
+## 📊 Suivi Analytics (Matomo)
+
+- Le suivi Matomo est centralisé dans le fichier `matomo.js`.
+- À inclure dans le `<head>` de chaque page HTML :
+
+```html
+<script src="assets/js/matomo.js"></script>
+```
+
+- Aucun script Matomo inline dans le HTML : tout est géré via ce fichier JS pour la maintenabilité et la conformité RGPD.
+- Le code Matomo est compatible avec tous les modes (modulaire et standalone).
 
 ## 📊 Architecture Benefits
 
