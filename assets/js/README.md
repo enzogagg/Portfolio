@@ -13,7 +13,7 @@ assets/js/
 ├── app.js                    # Main entry point (ES6 modules)
 ├── loader.js                 # Minimalist loader animation
 ├── burger.js                 # Mobile burger menu
-├── matomo.js                 # Matomo analytics tracking
+<!-- Matomo tracking is now integrated inline in HTML, not as a JS file -->
 ├── standalone.js             # Standalone version (file:// compatible)
 └── modules/
     ├── navigation.js         # Mobile navigation and menu
@@ -219,17 +219,31 @@ window.portfolioApp.getStatus()
 window.portfolioApp.restart()
 ```
 
+
 ## 📊 Suivi Analytics (Matomo)
 
-- Le suivi Matomo est centralisé dans le fichier `matomo.js`.
-- À inclure dans le `<head>` de chaque page HTML :
+- Le code de suivi Matomo doit être intégré directement dans le HTML, juste avant la balise `</head>` de chaque page.
+- Ne pas utiliser de fichier JS externe pour Matomo : suivez la recommandation officielle pour garantir la détection et le bon fonctionnement.
 
+Exemple :
 ```html
-<script src="assets/js/matomo.js"></script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//192.168.100.46/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
 ```
 
-- Aucun script Matomo inline dans le HTML : tout est géré via ce fichier JS pour la maintenabilité et la conformité RGPD.
-- Le code Matomo est compatible avec tous les modes (modulaire et standalone).
+- Vérifiez la détection dans Matomo après déploiement.
 
 ## 📊 Architecture Benefits
 
