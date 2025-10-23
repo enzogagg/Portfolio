@@ -46,23 +46,25 @@ Browser Support: Modern browsers avec backdrop-filter
 </head>
 <!-- Matomo -->
 <script>
-  var _paq = window._paq = window._paq || [];
+  var _paq = globalThis._paq = globalThis._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setCookieDomain", "*.portfolio.ega.ovh"]);
-  _paq.push(["setDomains", ["*.portfolio.ega.ovh"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
   (function() {
     var u="https://matomo.ega.ovh/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
+    _paq.push(
+      ["setCookieDomain", "*.portfolio.ega.ovh"],
+      ["setDomains", ["*.portfolio.ega.ovh"]],
+      ["setTrackerUrl", u+'matomo.php'],
+      ["setSiteId", '1'],
+      ['trackPageView'],
+      ['enableLinkTracking']
+    );
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
 <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
-</head>
+
 <body class="min-h-screen flex flex-col">
 
   <!-- ========== HEADER NAVIGATION ========== -->
@@ -76,7 +78,7 @@ Browser Support: Modern browsers avec backdrop-filter
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="nav-primary">
+      <nav class="nav-primary", aria-label="Navigation principale">
         <a href="index.html#top" class="nav-link">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -96,7 +98,7 @@ Browser Support: Modern browsers avec backdrop-filter
 
     <!-- Mobile Navigation Menu -->
     <div class="mobile-menu" id="mobile-menu">
-      <nav class="mobile-nav">
+      <nav class="mobile-nav", aria-label="Navigation mobile">
         <a href="index.html#top" class="nav-link">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -221,17 +223,36 @@ Browser Support: Modern browsers avec backdrop-filter
         <!-- Description -->
         <div class="space-y-4 text-lg leading-relaxed max-w-2xl">
           <p class="text-neutral-300">
-            Portfolio personnel moderne, conçu from scratch pour mettre en avant mes compétences web et mon identité visuelle.
+            Site web développé from scratch en HTML/CSS/JavaScript pour présenter mon profil et mes projets.
+            Responsive, accessible, sans framework lourd.
           </p>
+          <div class="grid grid-cols-2 gap-4 text-sm pt-4">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-calendar text-blue-400"></i>
+              <span class="text-neutral-400">Juillet 2025</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-clock text-purple-400"></i>
+              <span class="text-neutral-400">~15h de dev</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-code text-green-400"></i>
+              <span class="text-neutral-400">~2000 lignes</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-file text-orange-400"></i>
+              <span class="text-neutral-400">6 pages HTML</span>
+            </div>
+          </div>
         </div>
 
         <!-- Actions simplifiées -->
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6">
-          <a href="https://github.com/enzogagg/portfolio" class="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white flex items-center gap-3">
+          <a href="https://github.com/enzogagg/portfolio" class="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white flex items-center gap-3 hover:scale-105 transition-transform">
             <i class="fab fa-github text-xl"></i>
             <span>Code Source</span>
           </a>
-          <a href="index.html" class="group px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3">
+          <a href="index.html" class="group px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3 hover:bg-white/10 transition-colors">
             <i class="fas fa-external-link-alt text-lg"></i>
             <span>Voir le Site</span>
           </a>
@@ -242,1326 +263,521 @@ Browser Support: Modern browsers avec backdrop-filter
 
   <!-- ========== PROJECT OVERVIEW ========== -->
   <main class="flex-grow container mx-auto px-6 pb-20">
-    <!-- ========== POURQUOI CE PROJET ? (VULGARISATION) ========== -->
-    <section class="relative py-20 fade-in">
-      <div class="absolute inset-0 opacity-10 pointer-events-none -z-10">
-        <div class="absolute top-10 left-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl animate-pulse"></div>
-        <div class="absolute bottom-10 right-10 w-40 h-40 bg-green-400/10 rounded-full blur-2xl animate-pulse" style="animation-delay: 1s;"></div>
+
+    <!-- ========== TECH STACK ========== -->
+    <section class="py-20 fade-in">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-layer-group text-blue-400"></i>
+            <span class="text-sm font-medium text-blue-400">Stack Technique</span>
+          </div>
+          <h2 class="text-4xl font-bold mb-4">Technologies utilisées</h2>
+          <p class="text-neutral-400">Volontairement simple et vanilla pour comprendre les fondamentaux</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- HTML -->
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                <i class="fab fa-html5 text-2xl text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">HTML5</h3>
+                <p class="text-sm text-neutral-400">Sémantique & accessible</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-sm text-neutral-300">
+              <li>• Structure sémantique (header, main, section)</li>
+              <li>• Meta tags pour SEO</li>
+              <li>• Attributs ARIA pour accessibilité</li>
+            </ul>
+          </div>
+
+          <!-- CSS -->
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                <i class="fab fa-css3-alt text-2xl text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">CSS3 + Tailwind</h3>
+                <p class="text-sm text-neutral-400">Design moderne</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-sm text-neutral-300">
+              <li>• Tailwind CSS (via CDN)</li>
+              <li>• CSS custom pour animations</li>
+              <li>• Variables CSS pour thème</li>
+              <li>• Flexbox & Grid pour layout</li>
+            </ul>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-lg flex items-center justify-center">
+                <i class="fab fa-js text-2xl text-white"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">JavaScript</h3>
+                <p class="text-sm text-neutral-400">Vanilla ES6+</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-sm text-neutral-300">
+              <li>• ES6 modules pour structure</li>
+              <li>• Intersection Observer pour animations</li>
+              <li>• Event listeners pour interactions</li>
+              <li>• Fallback standalone pour file://</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="mt-12 bg-gradient-to-br from-neutral-900 to-neutral-800 border border-white/10 rounded-2xl p-8">
+          <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+            <i class="fas fa-sitemap text-purple-400"></i>
+            <span>Architecture du projet</span>
+          </h3>
+          <div class="bg-black/50 rounded-xl p-6 font-mono text-sm overflow-x-auto">
+            <pre class="text-green-400">portfolio/
+├── index.html              # Page d'accueil
+├── projects.html           # Liste des projets
+├── about.html              # À propos
+├── contact.html            # Contact
+├── aquarium-project.html   # Détail projet aquarium
+├── portfolio-project.html  # Détail projet portfolio (cette page)
+└── assets/
+    ├── css/
+    │   ├── main.css                    # Styles principaux
+    │   └── modules/                    # CSS modulaire
+    │       ├── animations.css          # Keyframes & transitions
+    │       ├── buttons.css             # Composants boutons
+    │       ├── cards.css               # Cartes projet
+    │       ├── header.css              # Navigation
+    │       └── variables.css           # Variables CSS
+    ├── js/
+    │   ├── app.js                      # Point d'entrée ES6
+    │   ├── standalone.js               # Version sans modules
+    │   ├── loader.js                   # Animation chargement
+    │   ├── burger.js                   # Menu mobile
+    │   └── modules/
+    │       ├── animations.js           # Scroll animations
+    │       ├── navigation.js           # Navigation mobile
+    │       ├── projects.js             # Filtrage projets
+    │       ├── accessibility.js        # Raccourcis clavier
+    │       └── performance.js          # Optimisations
+    └── images/
+        └── *.png                       # Assets graphiques</pre>
+          </div>
+          <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+            <div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+              <div class="font-semibold text-blue-400 mb-2">Total fichiers</div>
+              <div class="text-2xl font-bold">~25 fichiers</div>
+            </div>
+            <div class="bg-purple-500/10 border border-purple-500/20 rounded-lg p-4">
+              <div class="font-semibold text-purple-400 mb-2">Lignes de code</div>
+              <div class="text-2xl font-bold">~2000 lignes</div>
+            </div>
+            <div class="bg-green-500/10 border border-green-500/20 rounded-lg p-4">
+              <div class="font-semibold text-green-400 mb-2">Poids total</div>
+              <div class="text-2xl font-bold">< 500 KB</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- ========== DÉVELOPPEMENT ========== -->
+    <section class="py-20 fade-in bg-neutral-900/50 rounded-3xl">
       <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <div class="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full backdrop-blur-xl mb-6 shadow-lg">
-            <i class="fas fa-question-circle text-yellow-400 text-xl animate-pulse"></i>
-            <span class="text-base font-semibold text-yellow-400 tracking-wide">Pourquoi ce projet&nbsp;?</span>
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-hammer text-green-400"></i>
+            <span class="text-sm font-medium text-green-400">Process de développement</span>
           </div>
-          <h2 class="text-4xl font-black mb-4 bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent drop-shadow-lg">Un portfolio, mais pourquoi&nbsp;?</h2>
-          <div class="grid md:grid-cols-2 gap-8 mt-8">
-            <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-2xl p-8 shadow-lg flex flex-col items-center">
-              <i class="fas fa-bullseye text-4xl text-yellow-400 mb-4 animate-pulse"></i>
-              <h3 class="text-xl font-bold text-yellow-400 mb-2">Objectifs</h3>
-              <ul class="list-disc list-inside text-neutral-300 space-y-2 text-left">
-                <li>Créer une vitrine personnelle, unique et moderne.</li>
-                <li>Rendre le web accessible à tous, sans jargon ni complexité.</li>
-                <li>Montrer qu’on peut apprendre et progresser sans être expert.</li>
+          <h2 class="text-4xl font-bold mb-4">Comment j'ai construit ce site</h2>
+        </div>
+
+        <div class="space-y-8">
+          <!-- Étape 1 -->
+          <div class="flex gap-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center font-bold text-xl">
+              1
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold mb-2">Design & Structure</h3>
+              <p class="text-neutral-300 mb-3">
+                J'ai commencé par définir la structure des pages et le design system. Inspiration Apple pour la nav,
+                glassmorphism pour les cartes, palette de couleurs cohérente (bleu/violet).
+              </p>
+              <div class="bg-black/30 rounded-lg p-4 border border-white/10">
+                <p class="text-sm text-neutral-400 mb-2"><strong>Durée :</strong> 2-3 heures</p>
+                <p class="text-sm text-neutral-400"><strong>Décisions clés :</strong> Mobile-first, dark mode uniquement, navigation minimaliste</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Étape 2 -->
+          <div class="flex gap-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center font-bold text-xl">
+              2
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold mb-2">HTML & CSS de base</h3>
+              <p class="text-neutral-300 mb-3">
+                Création des pages HTML avec structure sémantique. Intégration de Tailwind pour le layout rapide,
+                puis ajout de CSS custom pour les animations et effets spéciaux.
+              </p>
+              <div class="bg-black/30 rounded-lg p-4 border border-white/10">
+                <p class="text-sm text-neutral-400 mb-2"><strong>Durée :</strong> 4-5 heures</p>
+                <p class="text-sm text-neutral-400"><strong>Difficultés :</strong> Responsive design, compatibilité backdrop-filter Safari</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Étape 3 -->
+          <div class="flex gap-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center font-bold text-xl">
+              3
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold mb-2">JavaScript & Interactivité</h3>
+              <p class="text-neutral-300 mb-3">
+                Développement du JS modulaire : menu burger, animations au scroll, filtrage des projets.
+                J'ai créé une version standalone pour compatibilité file:// et une version ES6 modules pour production.
+              </p>
+              <div class="bg-black/30 rounded-lg p-4 border border-white/10">
+                <p class="text-sm text-neutral-400 mb-2"><strong>Durée :</strong> 5-6 heures</p>
+                <p class="text-sm text-neutral-400"><strong>Défis :</strong> Intersection Observer, gestion du menu mobile, dual architecture JS</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Étape 4 -->
+          <div class="flex gap-6">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center font-bold text-xl">
+              4
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold mb-2">Optimisation & Tests</h3>
+              <p class="text-neutral-300 mb-3">
+                Tests sur différents navigateurs et tailles d'écran. Optimisation des performances,
+                ajout de preload pour les fonts, lazy loading images, amélioration de l'accessibilité (ARIA, keyboard nav).
+              </p>
+              <div class="bg-black/30 rounded-lg p-4 border border-white/10">
+                <p class="text-sm text-neutral-400 mb-2"><strong>Durée :</strong> 2-3 heures</p>
+                <p class="text-sm text-neutral-400"><strong>Améliorations :</strong> SEO, meta tags, accessibilité clavier, performance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DÉFIS TECHNIQUES ========== -->
+    <section class="py-20 fade-in">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-bug text-red-400"></i>
+            <span class="text-sm font-medium text-red-400">Problèmes rencontrés</span>
+          </div>
+          <h2 class="text-4xl font-bold mb-4">Défis techniques & solutions</h2>
+          <p class="text-neutral-400">Les vrais problèmes que j'ai dû résoudre</p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Défi 1 -->
+          <div class="bg-red-500/5 border border-red-500/20 rounded-2xl p-6 hover:bg-red-500/10 transition-all">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
+                <i class="fas fa-mobile-alt text-red-400"></i>
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2 text-white">Menu burger mobile qui ne se fermait pas</h3>
+                <p class="text-neutral-300 mb-3">
+                  Le menu burger s'ouvrait mais ne se fermait pas au clic sur un lien. Problème : les event listeners
+                  n'étaient pas correctement attachés aux liens dynamiques.
+                </p>
+                <div class="bg-black/50 rounded-lg p-4 text-sm font-mono overflow-x-auto">
+                  <div class="text-green-400 mb-2">// Solution : event delegation</div>
+                  <div class="text-neutral-300">document.querySelector('.mobile-menu').addEventListener('click', (e) => {</div>
+                  <div class="text-neutral-300 ml-4">if (e.target.classList.contains('nav-link')) {</div>
+                  <div class="text-neutral-300 ml-8">closeMobileMenu();</div>
+                  <div class="text-neutral-300 ml-4">}</div>
+                  <div class="text-neutral-300">});</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Défi 2 -->
+          <div class="bg-orange-500/5 border border-orange-500/20 rounded-2xl p-6 hover:bg-orange-500/10 transition-all">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                <i class="fas fa-eye text-orange-400"></i>
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2 text-white">Animations au scroll trop lourdes</h3>
+                <p class="text-neutral-300 mb-3">
+                  J'utilisais un event listener sur scroll qui vérifiait la position de chaque élément à chaque frame.
+                  Performance catastrophique sur mobile (drops à 30 FPS).
+                </p>
+                <div class="bg-black/50 rounded-lg p-4 text-sm font-mono overflow-x-auto">
+                  <div class="text-green-400 mb-2">// Solution : Intersection Observer API</div>
+                  <div class="text-neutral-300">const observer = new IntersectionObserver((entries) => {</div>
+                  <div class="text-neutral-300 ml-4">entries.forEach(entry => {</div>
+                  <div class="text-neutral-300 ml-8">if (entry.isIntersecting) {</div>
+                  <div class="text-neutral-300 ml-12">entry.target.classList.add('animate-in');</div>
+                  <div class="text-neutral-300 ml-8">}</div>
+                  <div class="text-neutral-300 ml-4">});</div>
+                  <div class="text-neutral-300">}, { threshold: 0.1 });</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Défi 3 -->
+          <div class="bg-yellow-500/5 border border-yellow-500/20 rounded-2xl p-6 hover:bg-yellow-500/10 transition-all">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-yellow-500/20 rounded-lg flex items-center justify-center">
+                <i class="fas fa-file-code text-yellow-400"></i>
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2 text-white">ES6 modules bloqués en file://</h3>
+                <p class="text-neutral-300 mb-3">
+                  Les imports ES6 sont bloqués par CORS quand on ouvre le HTML directement (protocole file://).
+                  Impossible de tester localement sans serveur.
+                </p>
+                <div class="bg-black/50 rounded-lg p-4 text-sm font-mono overflow-x-auto">
+                  <div class="text-green-400 mb-2">// Solution : dual architecture avec détection</div>
+                  <div class="text-neutral-300">if (window.location.protocol === 'file:') {</div>
+                  <div class="text-neutral-300 ml-4">loadScript('standalone.js');  // Version sans modules</div>
+                  <div class="text-neutral-300">} else {</div>
+                  <div class="text-neutral-300 ml-4">loadScript('app.js', { type: 'module' });  // Version ES6</div>
+                  <div class="text-neutral-300">}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Défi 4 -->
+          <div class="bg-purple-500/5 border border-purple-500/20 rounded-2xl p-6 hover:bg-purple-500/10 transition-all">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                <i class="fas fa-filter text-purple-400"></i>
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2 text-white">Filtrage qui cache les projets au chargement</h3>
+                <p class="text-neutral-300 mb-3">
+                  Le script de filtrage appliquait display:none sur tous les projets au chargement, puis les réaffichait.
+                  Résultat : flash de contenu vide pendant 200ms.
+                </p>
+                <div class="bg-black/50 rounded-lg p-4 text-sm font-mono overflow-x-auto">
+                  <div class="text-green-400 mb-2">// Solution : ne filtrer que sur action utilisateur</div>
+                  <div class="text-neutral-300">function initProjectsFilter() {</div>
+                  <div class="text-neutral-300 ml-4">// Pas de filtre au chargement initial</div>
+                  <div class="text-neutral-300 ml-4">filterButtons.forEach(btn => {</div>
+                  <div class="text-neutral-300 ml-8">btn.addEventListener('click', () => applyFilter());</div>
+                  <div class="text-neutral-300 ml-4">});</div>
+                  <div class="text-neutral-300">}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CE QUE J'AI APPRIS ========== -->
+    <section class="py-20 fade-in bg-neutral-900/50 rounded-3xl">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-graduation-cap text-blue-400"></i>
+            <span class="text-sm font-medium text-blue-400">Compétences acquises</span>
+          </div>
+          <h2 class="text-4xl font-bold mb-4">Ce que j'ai appris</h2>
+          <p class="text-neutral-400">Compétences concrètes développées durant ce projet</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+              <i class="fas fa-code text-blue-400"></i>
+              <span>Développement web</span>
+            </h3>
+            <ul class="space-y-2 text-neutral-300">
+              <li>• Structure HTML sémantique et accessible (ARIA, roles)</li>
+              <li>• CSS moderne (Flexbox, Grid, animations, variables)</li>
+              <li>• JavaScript ES6+ (modules, async, API DOM)</li>
+              <li>• Responsive design mobile-first avec Tailwind</li>
+              <li>• Compatibilité cross-browser (Safari, Firefox, Chrome)</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+              <i class="fas fa-tachometer-alt text-green-400"></i>
+              <span>Performance web</span>
+            </h3>
+            <ul class="space-y-2 text-neutral-300">
+              <li>• Intersection Observer pour animations performantes</li>
+              <li>• Lazy loading des images et ressources</li>
+              <li>• Optimisation CSS (modules, minification)</li>
+              <li>• Debounce/throttle des event listeners</li>
+              <li>• Lighthouse audits et optimisations</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+              <i class="fas fa-universal-access text-purple-400"></i>
+              <span>Accessibilité</span>
+            </h3>
+            <ul class="space-y-2 text-neutral-300">
+              <li>• ARIA labels et attributs pour screen readers</li>
+              <li>• Navigation complète au clavier (Tab, Esc, Enter)</li>
+              <li>• Contraste WCAG AA minimum</li>
+              <li>• Focus management et skip links</li>
+              <li>• Tests avec lecteurs d'écran</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+              <i class="fas fa-tools text-orange-400"></i>
+              <span>Workflow & outils</span>
+            </h3>
+            <ul class="space-y-2 text-neutral-300">
+              <li>• Git pour versioning (commits atomiques, branches)</li>
+              <li>• Architecture modulaire CSS et JS</li>
+              <li>• Debugging avec Chrome/Firefox DevTools</li>
+              <li>• Tests cross-browser et mobile</li>
+              <li>• Déploiement GitHub Pages avec domaine custom</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MÉTRIQUES & PERFORMANCE ========== -->
+    <section class="py-20 fade-in">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-chart-line text-green-400"></i>
+            <span class="text-sm font-medium text-green-400">Performance & Stats</span>
+          </div>
+          <h2 class="text-4xl font-bold mb-4">Métriques du site</h2>
+          <p class="text-neutral-400">Chiffres réels mesurés avec Lighthouse et DevTools Chrome</p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-6 mb-12">
+          <div class="bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 rounded-xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-5xl font-black text-green-400 mb-2">95</div>
+            <div class="text-sm text-neutral-400">Performance</div>
+            <div class="text-xs text-neutral-500 mt-1">Lighthouse Score</div>
+          </div>
+          <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-5xl font-black text-blue-400 mb-2">100</div>
+            <div class="text-sm text-neutral-400">Accessibility</div>
+            <div class="text-xs text-neutral-500 mt-1">Lighthouse Score</div>
+          </div>
+          <div class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-5xl font-black text-purple-400 mb-2">< 1s</div>
+            <div class="text-sm text-neutral-400">First Paint</div>
+            <div class="text-xs text-neutral-500 mt-1">Temps de chargement</div>
+          </div>
+          <div class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-xl p-6 text-center hover:scale-105 transition-transform">
+            <div class="text-5xl font-black text-orange-400 mb-2">< 500</div>
+            <div class="text-sm text-neutral-400">KB Total</div>
+            <div class="text-xs text-neutral-500 mt-1">Poids (sans Tailwind CDN)</div>
+          </div>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+            <i class="fas fa-info-circle text-blue-400"></i>
+            <span>Détails techniques</span>
+          </h3>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold text-neutral-400 mb-3 uppercase text-sm">Frontend</h4>
+              <ul class="space-y-2 text-neutral-300 text-sm">
+                <li>• 6 pages HTML (index, projects, about, contact, 2 détails projet)</li>
+                <li>• ~800 lignes de CSS (main.css + 10 modules)</li>
+                <li>• ~600 lignes de JavaScript (app.js + 5 modules)</li>
+                <li>• Tailwind CSS 3.x via CDN</li>
+                <li>• Font Awesome 6.4 pour icônes</li>
+                <li>• Google Fonts (Inter) préchargée</li>
               </ul>
             </div>
-            <div class="bg-orange-500/10 border border-orange-500/20 rounded-2xl p-8 shadow-lg flex flex-col items-center">
-              <i class="fas fa-lightbulb text-4xl text-orange-400 mb-4 animate-pulse"></i>
-              <h3 class="text-xl font-bold text-orange-400 mb-2">Pourquoi ce choix&nbsp;?</h3>
-              <ul class="list-disc list-inside text-neutral-300 space-y-2 text-left">
-                <li>Refuser les modèles tout faits pour apprendre en créant.</li>
-                <li>Partager une expérience authentique et pédagogique.</li>
-                <li>Inspirer les curieux et les passionnés à se lancer.</li>
+            <div>
+              <h4 class="font-semibold text-neutral-400 mb-3 uppercase text-sm">Hébergement & Déploiement</h4>
+              <ul class="space-y-2 text-neutral-300 text-sm">
+                <li>• GitHub Pages (hébergement gratuit)</li>
+                <li>• Domaine custom : portfolio.ega.ovh</li>
+                <li>• HTTPS activé automatiquement</li>
+                <li>• Déploiement automatique via git push</li>
+                <li>• Matomo analytics (self-hosted sur matomo.ega.ovh)</li>
+                <li>• Temps de build : ~5 secondes</li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="text-center mb-12 mt-16">
-          <div class="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-full backdrop-blur-xl mb-6 shadow-lg">
-            <i class="fas fa-bullhorn text-green-400 text-xl animate-pulse"></i>
-            <span class="text-base font-semibold text-green-400 tracking-wide">Impact</span>
-          </div>
-          <h2 class="text-4xl font-black mb-4 bg-gradient-to-r from-white via-green-200 to-white bg-clip-text text-transparent drop-shadow-lg">Quel impact&nbsp;?</h2>
-          <div class="grid md:grid-cols-2 gap-8 mt-8">
-            <div class="bg-green-500/10 border border-green-500/20 rounded-2xl p-8 shadow-lg flex flex-col items-center">
-              <i class="fas fa-users text-4xl text-green-400 mb-4 animate-pulse"></i>
-              <h3 class="text-xl font-bold text-green-400 mb-2">Pour qui&nbsp;?</h3>
-              <ul class="list-disc list-inside text-neutral-300 space-y-2 text-left">
-                <li>Les passionnés de web et de design.</li>
-                <li>Les curieux qui veulent comprendre le développement.</li>
-                <li>Ceux qui cherchent à s’inspirer ou à se lancer.</li>
-              </ul>
-            </div>
-            <div class="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-8 shadow-lg flex flex-col items-center">
-              <i class="fas fa-heart text-4xl text-blue-400 mb-4 animate-pulse"></i>
-              <h3 class="text-xl font-bold text-blue-400 mb-2">L’impact concret</h3>
-              <ul class="list-disc list-inside text-neutral-300 space-y-2 text-left">
-                <li>Démystifier le web et le rendre accessible.</li>
-                <li>Montrer qu’on peut progresser par la passion et la curiosité.</li>
-                <li>Donner envie de créer, d’apprendre et de partager.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-center mt-10">
-          <div class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-500/10 via-green-500/10 to-blue-500/10 border border-white/20 rounded-2xl backdrop-blur-xl shadow-lg">
-            <i class="fas fa-users text-blue-400 animate-pulse"></i>
-            <span class="text-lg font-semibold text-white">Accessible à tous, passionnés ou curieux</span>
+
+        <!-- Améliorations futures -->
+        <div class="mt-12 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 border border-yellow-500/20 rounded-2xl p-8">
+          <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
             <i class="fas fa-lightbulb text-yellow-400"></i>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== PROJECT STORY ========== -->
-    <section class="relative py-20 fade-in">
-      <!-- Animated background elements -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute top-20 left-20 w-40 h-40 border border-yellow-500/20 rounded-full animate-pulse"></div>
-        <div class="absolute bottom-32 right-24 w-32 h-32 border border-green-500/20 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
-        <div class="absolute top-1/2 left-1/2 w-24 h-24 border border-purple-500/20 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
-      </div>
-
-      <div class="relative z-10 max-w-5xl mx-auto px-6">
-        <!-- Section Header -->
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full backdrop-blur-sm mb-6">
-            <i class="fas fa-book-open text-yellow-400"></i>
-            <span class="text-sm font-medium text-yellow-400">Parcours de Développement</span>
-          </div>
-          <h2 class="text-5xl font-black mb-6">
-            <span class="bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent">📖 L'Histoire </span>
-            <span class="bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">du Projet</span>
-          </h2>
-          <p class="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed">
-            Du concept à la réalisation : découvrez les étapes clés d'un parcours de développement passionnant
-          </p>
-        </div>
-
-        <!-- Enhanced Timeline -->
-        <div class="relative">
-          <!-- Timeline line -->
-          <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-500 via-green-500 to-purple-500 transform md:-translate-x-1/2"></div>
-
-          <!-- Timeline Steps -->
-          <div class="space-y-16">
-            <!-- Phase 1: Conception -->
-            <div class="relative group">
-              <!-- Timeline marker -->
-              <div class="absolute left-8 md:left-1/2 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full border-4 border-neutral-900 transform md:-translate-x-1/2 group-hover:scale-125 transition-transform duration-300 z-10">
-                <div class="absolute inset-0 bg-yellow-400 rounded-full animate-ping opacity-20"></div>
-              </div>
-
-              <!-- Content -->
-              <div class="ml-20 md:ml-0 md:grid md:grid-cols-2 md:gap-16 items-center">
-                <div class="md:text-right space-y-6">
-                  <!-- Phase indicator -->
-                  <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-xs font-medium text-yellow-400 mb-4">
-                    <i class="fas fa-lightbulb"></i>
-                    <span>Phase 1 • 3ème semaine Juillet 2025</span>
-                  </div>
-                  <h3 class="text-3xl font-bold text-white mb-4">💡 Conception & Vision</h3>
-                  <p class="text-lg text-neutral-300 leading-relaxed">
-                    <strong>L'étincelle créative.</strong> Face au besoin de créer une présence en ligne professionnelle,
-                    j'ai décidé de relever le défi de développer mon portfolio entièrement from scratch. L'objectif :
-                    maîtriser les technologies web modernes tout en créant quelque chose d'unique.
-                  </p>
-
-                  <!-- Key decisions -->
-                  <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-yellow-500/5 border border-yellow-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-2">
-                        <i class="fas fa-palette text-yellow-400"></i>
-                        <span class="font-semibold text-white">Design System</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">Inspiration Apple + Glassmorphism</p>
-                    </div>
-                    <div class="bg-yellow-500/5 border border-yellow-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-2">
-                        <i class="fas fa-mobile-alt text-yellow-400"></i>
-                        <span class="font-semibold text-white">Mobile-First</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">Responsive par nature</p>
-                    </div>
-                  </div>
-
-                  <!-- Quote -->
-                  <div class="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-2xl p-6 backdrop-blur-sm">
-                    <div class="flex items-start gap-4">
-                      <i class="fas fa-quote-left text-2xl text-yellow-400/50 mt-1"></i>
-                      <div>
-                        <p class="text-neutral-200 italic mb-2">"Pourquoi utiliser un template quand on peut apprendre en construisant ?"</p>
-                        <cite class="text-sm text-yellow-400 font-medium">— Ma philosophie de développement</cite>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Visual element for desktop -->
-                <div class="hidden md:block">
-                  <div class="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-3xl p-8 transform group-hover:scale-105 transition-all duration-500">
-                    <div class="text-center">
-                      <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                        <i class="fas fa-rocket text-white text-2xl"></i>
-                      </div>
-                      <h4 class="text-xl font-bold text-white mb-4">Objectifs Définis</h4>
-                      <div class="space-y-2 text-sm">
-                        <div class="flex items-center justify-between">
-                          <span class="text-neutral-400">Pages principales</span>
-                          <span class="text-yellow-400 font-semibold">5 pages</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                          <span class="text-neutral-400">Architecture CSS</span>
-                          <span class="text-yellow-400 font-semibold">Modulaire</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                          <span class="text-neutral-400">Approche design</span>
-                          <span class="text-yellow-400 font-semibold">Mobile-First</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <span>Améliorations futures</span>
+          </h3>
+          <div class="grid md:grid-cols-2 gap-4 text-neutral-300 text-sm">
+            <div>
+              <h4 class="font-semibold text-white mb-2">Technique</h4>
+              <ul class="space-y-1">
+                <li>• Passer à un bundler (Vite) pour optimiser le JS</li>
+                <li>• Ajouter du TypeScript pour la robustesse</li>
+                <li>• Implémenter PWA (service worker, offline)</li>
+                <li>• Optimiser les images (WebP, lazy loading natif)</li>
+              </ul>
             </div>
-
-            <!-- Phase 2: Development -->
-            <div class="relative group">
-              <!-- Timeline marker -->
-              <div class="absolute left-8 md:left-1/2 w-6 h-6 bg-gradient-to-br from-green-400 to-green-500 rounded-full border-4 border-neutral-900 transform md:-translate-x-1/2 group-hover:scale-125 transition-transform duration-300 z-10">
-                <div class="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-20"></div>
-              </div>
-
-              <!-- Content -->
-              <div class="ml-20 md:ml-0 md:grid md:grid-cols-2 md:gap-16 items-center">
-                <!-- Visual element for desktop -->
-                <div class="hidden md:block order-1">
-                  <div class="bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-3xl p-8 transform group-hover:scale-105 transition-all duration-500">
-                    <div class="text-center">
-                      <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                        <i class="fas fa-code text-white text-2xl"></i>
-                      </div>
-                      <h4 class="text-xl font-bold text-white mb-6">Métriques de Développement</h4>
-                      <!-- Progress bars -->
-                      <div class="space-y-4">
-                        <div>
-                          <div class="flex justify-between text-sm mb-2">
-                            <span class="text-neutral-400">HTML Structure</span>
-                            <span class="text-green-400">100%</span>
-                          </div>
-                          <div class="w-full bg-neutral-800 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-2 rounded-full" style="width: 100%"></div>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="flex justify-between text-sm mb-2">
-                            <span class="text-neutral-400">CSS Modules</span>
-                            <span class="text-green-400">100%</span>
-                          </div>
-                          <div class="w-full bg-neutral-800 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-2 rounded-full" style="width: 100%"></div>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="flex justify-between text-sm mb-2">
-                            <span class="text-neutral-400">JavaScript</span>
-                            <span class="text-green-400">95%</span>
-                          </div>
-                          <div class="w-full bg-neutral-800 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-2 rounded-full" style="width: 95%"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="md:order-2 space-y-6">
-                  <!-- Phase indicator -->
-                  <div class="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full text-xs font-medium text-green-400 mb-4">
-                    <i class="fas fa-code"></i>
-                    <span>Phase 2 • 4ème semaine Juillet 2025</span>
-                  </div>
-                  <h3 class="text-3xl font-bold text-white mb-4">⚡ Développement Intensif</h3>
-                  <p class="text-lg text-neutral-300 leading-relaxed">
-                    <strong>Le code prend vie.</strong> Trois mois d'implémentation intensive où chaque ligne de code
-                    a été pensée pour la performance et la maintenabilité. Architecture CSS modulaire, animations
-                    fluides et attention portée aux détails pour une expérience utilisateur exceptionnelle.
-                  </p>
-
-                  <!-- Tech achievements -->
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-green-500/5 border border-green-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                          <i class="fab fa-html5 text-green-400"></i>
-                        </div>
-                        <span class="font-semibold text-white">HTML5 Sémantique</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">Structure claire et accessible</p>
-                    </div>
-                    <div class="bg-green-500/5 border border-green-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                          <i class="fab fa-css3-alt text-green-400"></i>
-                        </div>
-                        <span class="font-semibold text-white">CSS Modulaire</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">9 modules organisés</p>
-                    </div>
-                    <div class="bg-green-500/5 border border-green-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                          <i class="fab fa-js-square text-green-400"></i>
-                        </div>
-                        <span class="font-semibold text-white">JavaScript ES6+</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">Interactions dynamiques</p>
-                    </div>
-                    <div class="bg-green-500/5 border border-green-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                          <i class="fas fa-magic text-green-400"></i>
-                        </div>
-                        <span class="font-semibold text-white">Animations</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">Transitions fluides</p>
-                    </div>
-                  </div>
-
-                  <!-- Development metrics -->
-                  <div class="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-2xl p-6 backdrop-blur-sm">
-                    <h4 class="text-lg font-bold text-white mb-4">Métriques de la phase</h4>
-                    <div class="grid grid-cols-3 gap-4 text-center">
-                      <div>
-                        <div class="text-2xl font-black text-green-400 mb-1">3</div>
-                        <div class="text-xs text-neutral-500 uppercase">Mois</div>
-                      </div>
-                      <div>
-                        <div class="text-2xl font-black text-green-400 mb-1">500+</div>
-                        <div class="text-xs text-neutral-500 uppercase">Commits</div>
-                      </div>
-                      <div>
-                        <div class="text-2xl font-black text-green-400 mb-1">15+</div>
-                        <div class="text-xs text-neutral-500 uppercase">Fichiers</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Phase 3: Launch -->
-            <div class="relative group">
-              <!-- Timeline marker -->
-              <div class="absolute left-8 md:left-1/2 w-6 h-6 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full border-4 border-neutral-900 transform md:-translate-x-1/2 group-hover:scale-125 transition-transform duration-300 z-10">
-                <div class="absolute inset-0 bg-purple-400 rounded-full animate-ping opacity-20"></div>
-              </div>
-
-              <!-- Content -->
-              <div class="ml-20 md:ml-0 md:grid md:grid-cols-2 md:gap-16 items-center">
-                <div class="md:text-right space-y-6">
-                  <!-- Phase indicator -->
-                  <div class="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs font-medium text-purple-400 mb-4">
-                    <i class="fas fa-rocket"></i>
-                    <span>Phase 3 • 1ère semaine Août 2025</span>
-                  </div>
-                  <h3 class="text-3xl font-bold text-white mb-4">🚀 Lancement & Optimisation</h3>
-                  <p class="text-lg text-neutral-300 leading-relaxed">
-                    <strong>La mise en orbite.</strong> Tests cross-browser, optimisations de performance,
-                    corrections de bugs et déploiement. Le portfolio prend vie et devient une vitrine
-                    professionnelle reflétant mes compétences techniques et ma passion pour le développement.
-                  </p>
-
-                  <!-- Success metrics -->
-                  <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-purple-500/5 border border-purple-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-2">
-                        <i class="fas fa-check-circle text-purple-400"></i>
-                        <span class="font-semibold text-white">Tests Validés</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">Chrome, Firefox, Safari, Edge</p>
-                    </div>
-                    <div class="bg-purple-500/5 border border-purple-500/20 rounded-xl p-4">
-                      <div class="flex items-center gap-3 mb-2">
-                        <i class="fas fa-tachometer-alt text-purple-400"></i>
-                        <span class="font-semibold text-white">Performance</span>
-                      </div>
-                      <p class="text-sm text-neutral-400">Chargement ultra-rapide</p>
-                    </div>
-                  </div>
-
-                  <!-- Final result -->
-                  <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-6 backdrop-blur-sm">
-                    <div class="flex items-start gap-4">
-                      <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-trophy text-white text-xl"></i>
-                      </div>
-                      <div>
-                        <h4 class="text-lg font-bold text-white mb-2">Mission Accomplie</h4>
-                        <p class="text-neutral-300 text-sm">Portfolio responsive et moderne déployé avec succès. Une base solide pour présenter mes projets et compétences.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Visual element for desktop -->
-                <div class="hidden md:block">
-                  <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8 transform group-hover:scale-105 transition-all duration-500">
-                    <div class="text-center">
-                      <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                        <i class="fas fa-chart-line text-white text-2xl"></i>
-                      </div>
-                      <h4 class="text-xl font-bold text-white mb-6">Résultats Finaux</h4>
-                      <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 bg-purple-500/10 rounded-xl">
-                          <span class="text-neutral-300">Compatibilité</span>
-                          <div class="flex gap-1">
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                          </div>
-                        </div>
-                        <div class="flex items-center justify-between p-3 bg-purple-500/10 rounded-xl">
-                          <span class="text-neutral-300">Responsive</span>
-                          <span class="text-purple-400 font-bold">100%</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 bg-purple-500/10 rounded-xl">
-                          <span class="text-neutral-300">Performance</span>
-                          <span class="text-green-400 font-bold">Excellente</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom CTA -->
-        <div class="text-center mt-20">
-          <div class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-500/10 via-green-500/10 to-purple-500/10 border border-white/20 rounded-2xl backdrop-blur-sm">
-            <i class="fas fa-heart text-red-400 animate-pulse"></i>
-            <span class="text-lg font-semibold text-white">Développé avec passion et dédication</span>
-            <i class="fas fa-code text-blue-400"></i>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== TECHNOLOGIES CONSTELLATION ========== -->
-    <section class="relative py-32 overflow-hidden">
-      <!-- Dynamic Background -->
-      <div class="absolute inset-0">
-        <!-- Animated mesh gradient -->
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/3 via-purple-500/5 to-cyan-500/3"></div>
-
-        <!-- Floating tech particles -->
-        <div class="absolute top-20 left-[10%] w-1 h-1 bg-blue-400 rounded-full animate-ping opacity-60"></div>
-        <div class="absolute top-40 right-[15%] w-2 h-2 bg-purple-400 rounded-full animate-pulse opacity-40" style="animation-delay: 0.5s;"></div>
-        <div class="absolute bottom-32 left-[25%] w-1.5 h-1.5 bg-green-400 rounded-full animate-bounce opacity-50" style="animation-delay: 1s;"></div>
-        <div class="absolute top-1/2 right-[30%] w-1 h-1 bg-orange-400 rounded-full animate-ping opacity-70" style="animation-delay: 1.5s;"></div>
-        <div class="absolute bottom-40 right-[20%] w-2 h-2 bg-cyan-400 rounded-full animate-pulse opacity-30" style="animation-delay: 2s;"></div>
-
-        <!-- Geometric shapes -->
-        <div class="absolute top-32 left-20 w-24 h-24 border border-blue-500/10 rounded-full transform rotate-45 animate-spin" style="animation-duration: 20s;"></div>
-        <div class="absolute bottom-28 right-32 w-32 h-32 border border-purple-500/10 rounded-full transform rotate-12 animate-spin" style="animation-duration: 25s; animation-direction: reverse;"></div>
-      </div>
-
-      <div class="relative z-10 max-w-8xl mx-auto px-6">
-        <!-- Revolutionary Header -->
-        <div class="text-center mb-28">
-          <div class="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 border border-blue-500/20 rounded-full backdrop-blur-xl mb-8">
-            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-            <span class="text-sm font-medium text-blue-400 tracking-wide">ÉCOSYSTÈME TECHNOLOGIQUE</span>
-            <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
-          </div>
-
-          <h2 class="text-5xl font-black mb-6">
-            <span class="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent">⚡ Stack </span>
-            <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">Révolutionnaire</span>
-          </h2>
-
-          <p class="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed mb-12">
-            Une constellation de technologies modernes orchestrée pour créer des expériences web
-            <span class="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text font-semibold">extraordinaires</span>
-          </p>
-
-          <!-- Animated divider -->
-          <div class="flex items-center justify-center gap-4">
-            <div class="w-12 h-px bg-gradient-to-r from-transparent to-blue-500"></div>
-            <div class="w-3 h-3 border-2 border-blue-400 rounded-full animate-spin"></div>
-            <div class="w-24 h-px bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500"></div>
-            <div class="w-3 h-3 border-2 border-purple-400 rounded-full animate-spin" style="animation-direction: reverse; animation-delay: 0.5s;"></div>
-            <div class="w-12 h-px bg-gradient-to-l from-transparent to-cyan-500"></div>
-          </div>
-        </div>
-
-        <!-- Interactive Tech Constellation -->
-        <div class="mb-20">
-          <!-- Core Trinity -->
-          <div class="grid lg:grid-cols-3 gap-8 mb-16">
-            <!-- HTML5 Mastery -->
-            <div class="group relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-700"></div>
-              <div class="relative bg-gradient-to-br from-orange-500/5 to-red-500/5 border border-gradient-to-br border-orange-500/20 rounded-3xl p-8 backdrop-blur-xl transform group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 h-full">
-                <!-- Floating icon -->
-                <div class="relative mb-8">
-                  <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl mx-auto flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-500 relative">
-                    <i class="fab fa-html5 text-3xl text-white"></i>
-                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                      <span class="text-xs font-bold text-white">5</span>
-                    </div>
-                  </div>
-                  <!-- Orbiting elements -->
-                  <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-32">
-                    <div class="absolute top-2 left-2 w-2 h-2 bg-orange-400 rounded-full animate-ping"></div>
-                    <div class="absolute bottom-2 right-2 w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
-                  </div>
-                </div>
-
-                <div class="text-center">
-                  <h3 class="text-2xl font-black text-white mb-4">HTML5 Sémantique</h3>
-                  <p class="text-neutral-400 mb-8 leading-relaxed">
-                    Structure <span class="text-orange-400 font-semibold">intelligente</span> et accessible,
-                    optimisée pour les moteurs de recherche et l'accessibilité universelle.
-                  </p>
-
-                  <!-- Skill metrics -->
-                  <div class="space-y-4">
-                    <div class="flex items-center justify-between p-3 bg-orange-500/10 rounded-xl border border-orange-500/20">
-                      <span class="text-sm font-medium text-neutral-300">Expertise</span>
-                      <div class="flex items-center gap-2">
-                        <div class="w-16 h-2 bg-neutral-800 rounded-full overflow-hidden">
-                          <div class="w-full h-full bg-gradient-to-r from-orange-500 to-red-400 rounded-full animate-pulse"></div>
-                        </div>
-                        <span class="text-sm font-bold text-orange-400">98%</span>
-                      </div>
-                    </div>
-
-                    <!-- Feature badges -->
-                    <div class="flex flex-wrap gap-2 justify-center">
-                      <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">SEO Master</span>
-                      <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">A11y Ready</span>
-                      <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">Schema.org</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- CSS3 Artistry -->
-            <div class="group relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-700"></div>
-              <div class="relative bg-gradient-to-br from-blue-500/5 to-cyan-500/5 border border-blue-500/20 rounded-3xl p-8 backdrop-blur-xl transform group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 h-full">
-                <div class="relative mb-8">
-                  <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl mx-auto flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-500 relative">
-                    <i class="fab fa-css3-alt text-3xl text-white"></i>
-                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
-                      <span class="text-xs font-bold text-white">3</span>
-                    </div>
-                  </div>
-                  <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-32">
-                    <div class="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-                    <div class="absolute bottom-2 left-2 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-ping" style="animation-delay: 0.7s;"></div>
-                  </div>
-                </div>
-
-                <div class="text-center">
-                  <h3 class="text-2xl font-black text-white mb-4">CSS3 Modulaire</h3>
-                  <p class="text-neutral-400 mb-8 leading-relaxed">
-                    Architecture <span class="text-blue-400 font-semibold">révolutionnaire</span> en 9 modules,
-                    avec glassmorphism avancé et animations cinématographiques.
-                  </p>
-
-                  <div class="space-y-4">
-                    <div class="flex items-center justify-between p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
-                      <span class="text-sm font-medium text-neutral-300">Expertise</span>
-                      <div class="flex items-center gap-2">
-                        <div class="w-16 h-2 bg-neutral-800 rounded-full overflow-hidden">
-                          <div class="w-full h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-pulse"></div>
-                        </div>
-                        <span class="text-sm font-bold text-blue-400">96%</span>
-                      </div>
-                    </div>
-
-                    <div class="flex flex-wrap gap-2 justify-center">
-                      <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">Glassmorphism</span>
-                      <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">Grid Master</span>
-                      <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">Variables</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- JavaScript Mastery -->
-            <div class="group relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-700"></div>
-              <div class="relative bg-gradient-to-br from-yellow-500/5 to-orange-500/5 border border-yellow-500/20 rounded-3xl p-8 backdrop-blur-xl transform group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 h-full">
-                <div class="relative mb-8">
-                  <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl mx-auto flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-500 relative">
-                    <i class="fab fa-js-square text-3xl text-neutral-900"></i>
-                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center">
-                      <span class="text-xs font-bold text-white">ES6+</span>
-                    </div>
-                  </div>
-                  <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-32">
-                    <div class="absolute top-2 left-2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                    <div class="absolute bottom-2 right-2 w-1.5 h-1.5 bg-orange-400 rounded-full animate-bounce" style="animation-delay: 0.3s;"></div>
-                  </div>
-                </div>
-
-                <div class="text-center">
-                  <h3 class="text-2xl font-black text-white mb-4">JavaScript ES6+</h3>
-                  <p class="text-neutral-400 mb-8 leading-relaxed">
-                    Code <span class="text-yellow-400 font-semibold">moderne</span> et performant,
-                    avec async/await, modules ES6 et interactions dynamiques fluides.
-                  </p>
-
-                  <div class="space-y-4">
-                    <div class="flex items-center justify-between p-3 bg-yellow-500/10 rounded-xl border border-yellow-500/20">
-                      <span class="text-sm font-medium text-neutral-300">Expertise</span>
-                      <div class="flex items-center gap-2">
-                        <div class="w-16 h-2 bg-neutral-800 rounded-full overflow-hidden">
-                          <div class="w-4/5 h-full bg-gradient-to-r from-yellow-500 to-orange-400 rounded-full animate-pulse"></div>
-                        </div>
-                        <span class="text-sm font-bold text-yellow-400">88%</span>
-                      </div>
-                    </div>
-
-                    <div class="flex flex-wrap gap-2 justify-center">
-                      <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30">ES6+ Modules</span>
-                      <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30">Async/Await</span>
-                      <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30">Vanilla JS</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Advanced Capabilities Matrix -->
-          <div class="grid lg:grid-cols-2 gap-12 mb-20">
-            <!-- Design Excellence -->
-            <div class="group relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-1000"></div>
-              <div class="relative bg-gradient-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-3xl p-10 backdrop-blur-xl">
-                <!-- Header -->
-                <div class="flex items-center gap-6 mb-10">
-                  <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500">
-                    <i class="fas fa-magic text-2xl text-white"></i>
-                  </div>
-                  <div>
-                    <h3 class="text-3xl font-black text-white mb-2">🎨 Design System</h3>
-                    <p class="text-neutral-400">Expérience visuelle révolutionnaire</p>
-                  </div>
-                </div>
-
-                <!-- Feature Grid -->
-                <div class="grid grid-cols-2 gap-6">
-                  <div class="group/item bg-purple-500/10 border border-purple-500/20 rounded-2xl p-6 transform group-hover/item:scale-105 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                      <i class="fas fa-layer-group text-white"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white mb-2 text-center">Glassmorphism</h4>
-                    <p class="text-sm text-neutral-400 text-center mb-3">Effets de verre ultra-avancés</p>
-                    <div class="text-center">
-                      <span class="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">Backdrop-filter</span>
-                    </div>
-                  </div>
-
-                  <div class="group/item bg-pink-500/10 border border-pink-500/20 rounded-2xl p-6 transform group-hover/item:scale-105 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                      <i class="fas fa-mobile-alt text-white"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white mb-2 text-center">Responsive</h4>
-                    <p class="text-sm text-neutral-400 text-center mb-3">Mobile-first perfection</p>
-                    <div class="text-center">
-                      <span class="px-2 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs font-medium border border-pink-500/30">100% Adaptive</span>
-                    </div>
-                  </div>
-
-                  <div class="group/item bg-purple-500/10 border border-purple-500/20 rounded-2xl p-6 transform group-hover/item:scale-105 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                      <i class="fas fa-palette text-white"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white mb-2 text-center">Animations</h4>
-                    <p class="text-sm text-neutral-400 text-center mb-3">Transitions cinématographiques</p>
-                    <div class="text-center">
-                      <span class="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">60fps</span>
-                    </div>
-                  </div>
-
-                  <div class="group/item bg-pink-500/10 border border-pink-500/20 rounded-2xl p-6 transform group-hover/item:scale-105 transition-all duration-300">
-                    <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                      <i class="fas fa-eye text-white"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white mb-2 text-center">UX/UI</h4>
-                    <p class="text-sm text-neutral-400 text-center mb-3">Interface intuitive</p>
-                    <div class="text-center">
-                      <span class="px-2 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs font-medium border border-pink-500/30">User-Centric</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Development Ecosystem -->
-            <div class="group relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-1000"></div>
-              <div class="relative bg-gradient-to-br from-green-500/5 to-emerald-500/5 border border-green-500/20 rounded-3xl p-10 backdrop-blur-xl">
-                <!-- Header -->
-                <div class="flex items-center gap-6 mb-10">
-                  <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500">
-                    <i class="fas fa-rocket text-2xl text-white"></i>
-                  </div>
-                  <div>
-                    <h3 class="text-3xl font-black text-white mb-2">⚡ DevOps Stack</h3>
-                    <p class="text-neutral-400">Écosystème de développement moderne</p>
-                  </div>
-                </div>
-
-                <!-- Tools List -->
-                <div class="space-y-4">
-                  <div class="flex items-center gap-4 p-4 bg-green-500/10 rounded-xl border border-green-500/20 transform hover:scale-105 transition-all duration-300">
-                    <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                      <i class="fab fa-git-alt text-white"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white">Git & GitHub</h4>
-                      <p class="text-sm text-neutral-400">Contrôle de version professionnel</p>
-                    </div>
-                    <div class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">Master</div>
-                  </div>
-
-                  <div class="flex items-center gap-4 p-4 bg-green-500/10 rounded-xl border border-green-500/20 transform hover:scale-105 transition-all duration-300">
-                    <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                      <i class="fas fa-code text-white"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white">VS Code</h4>
-                      <p class="text-sm text-neutral-400">IDE optimisé avec extensions</p>
-                    </div>
-                    <div class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">Pro</div>
-                  </div>
-
-                  <div class="flex items-center gap-4 p-4 bg-green-500/10 rounded-xl border border-green-500/20 transform hover:scale-105 transition-all duration-300">
-                    <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                      <i class="fab fa-figma text-white"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white">Figma Design</h4>
-                      <p class="text-sm text-neutral-400">Prototypage et design system</p>
-                    </div>
-                    <div class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">Expert</div>
-                  </div>
-
-                  <div class="flex items-center gap-4 p-4 bg-green-500/10 rounded-xl border border-green-500/20 transform hover:scale-105 transition-all duration-300">
-                    <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center">
-                      <i class="fas fa-terminal text-white"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h4 class="font-bold text-white">Terminal</h4>
-                      <p class="text-sm text-neutral-400">Ligne de commande avancée</p>
-                    </div>
-                    <div class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">Ninja</div>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <h4 class="font-semibold text-white mb-2">Contenu</h4>
+              <ul class="space-y-1">
+                <li>• Ajouter une section blog/articles</li>
+                <li>• Formulaire de contact fonctionnel (API)</li>
+                <li>• Mode clair/sombre avec toggle</li>
+                <li>• Internationalisation (FR/EN)</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== DEVELOPMENT ODYSSEY ========== -->
-    <section class="relative py-32 overflow-hidden">
-      <!-- Dynamic Background -->
-      <div class="absolute inset-0">
-        <!-- Animated mesh gradient -->
-        <div class="absolute inset-0 bg-gradient-to-br from-green-500/3 via-blue-500/5 to-purple-500/3"></div>
-
-        <!-- Floating development particles -->
-        <div class="absolute top-24 left-[12%] w-1.5 h-1.5 bg-green-400 rounded-full animate-ping opacity-60"></div>
-        <div class="absolute top-48 right-[18%] w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-40" style="animation-delay: 0.7s;"></div>
-        <div class="absolute bottom-36 left-[28%] w-1 h-1 bg-purple-400 rounded-full animate-bounce opacity-50" style="animation-delay: 1.2s;"></div>
-        <div class="absolute top-2/3 right-[35%] w-1.5 h-1.5 bg-orange-400 rounded-full animate-ping opacity-70" style="animation-delay: 1.8s;"></div>
-
-        <!-- Geometric code shapes -->
-        <div class="absolute top-40 left-16 w-28 h-28 border border-green-500/10 rounded-full transform rotate-12 animate-spin" style="animation-duration: 30s;"></div>
-        <div class="absolute bottom-32 right-28 w-36 h-36 border border-blue-500/10 rounded-full transform rotate-45 animate-spin" style="animation-duration: 35s; animation-direction: reverse;"></div>
-      </div>
-
-      <div class="relative z-10 max-w-8xl mx-auto px-6">
-        <!-- Revolutionary Header -->
-        <div class="text-center mb-32">
-          <div class="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500/10 via-blue-500/10 to-purple-500/10 border border-green-500/20 rounded-full backdrop-blur-xl mb-8">
-            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span class="text-sm font-medium text-green-400 tracking-wide">PARCOURS DE DÉVELOPPEMENT</span>
-            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
-          </div>
-
-          <h2 class="text-5xl font-black mb-6">
-            <span class="bg-gradient-to-r from-white via-green-200 to-white bg-clip-text text-transparent">🚀 Odyssée </span>
-            <span class="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">Technique</span>
-          </h2>
-
-          <p class="text-xl text-neutral-400 max-w-4xl mx-auto leading-relaxed mb-12">
-            Un voyage passionnant à travers les phases de développement, de la conception initiale
-            <span class="text-transparent bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text font-semibold">jusqu'au déploiement</span>
-          </p>
-
-          <!-- Animated progress line -->
-          <div class="flex items-center justify-center gap-4">
-            <div class="w-16 h-px bg-gradient-to-r from-transparent to-green-500"></div>
-            <div class="w-4 h-4 border-2 border-green-400 rounded-full animate-spin"></div>
-            <div class="w-32 h-px bg-gradient-to-r from-green-500 via-blue-500 to-purple-500"></div>
-            <div class="w-4 h-4 border-2 border-purple-400 rounded-full animate-spin" style="animation-direction: reverse; animation-delay: 0.5s;"></div>
-            <div class="w-16 h-px bg-gradient-to-l from-transparent to-purple-500"></div>
-          </div>
-        </div>
-
-        <!-- Advanced Development Timeline -->
-        <div class="relative">
-          <!-- Enhanced timeline spine -->
-          <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 via-blue-500 via-purple-500 to-orange-500 transform -translate-x-1/2 rounded-full shadow-lg"></div>
-
-          <!-- Development Phases -->
-          <div class="space-y-32">
-            <!-- Phase 1: Strategic Planning -->
-            <div class="group relative">
-              <!-- Timeline marker -->
-              <div class="absolute left-1/2 w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl border-4 border-neutral-900 transform -translate-x-1/2 group-hover:scale-110 transition-all duration-500 z-20 flex items-center justify-center shadow-2xl">
-                <i class="fas fa-lightbulb text-2xl text-white"></i>
-                <div class="absolute inset-0 bg-green-400 rounded-2xl animate-ping opacity-20"></div>
-              </div>
-
-              <!-- Content -->
-              <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Left: Visual -->
-                <div class="order-2 lg:order-1">
-                  <div class="group/card relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/20 rounded-3xl blur-2xl group-hover/card:blur-3xl transition-all duration-1000"></div>
-                    <div class="relative bg-gradient-to-br from-green-500/5 to-emerald-500/10 border border-green-500/20 rounded-3xl p-10 backdrop-blur-xl transform group-hover/card:scale-105 transition-all duration-700">
-                      <!-- Phase number -->
-                      <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center shadow-xl">
-                        <span class="text-white font-black text-xl">01</span>
-                      </div>
-
-                      <!-- Planning visualization -->
-                      <div class="space-y-6">
-                        <div class="text-center mb-8">
-                          <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl mx-auto flex items-center justify-center mb-4 transform group-hover/card:rotate-6 transition-transform duration-500">
-                            <i class="fas fa-drafting-compass text-3xl text-white"></i>
-                          </div>
-                          <h3 class="text-2xl font-black text-white">Conception Stratégique</h3>
-                        </div>
-
-                        <!-- Planning metrics -->
-                        <div class="grid grid-cols-2 gap-4">
-                          <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                            <div class="text-2xl font-black text-green-400 mb-1">5</div>
-                            <div class="text-xs text-neutral-400">Pages Web</div>
-                          </div>
-                          <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                            <div class="text-2xl font-black text-green-400 mb-1">3</div>
-                            <div class="text-xs text-neutral-400">Semaines</div>
-                          </div>
-                          <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                            <div class="text-2xl font-black text-green-400 mb-1">15+</div>
-                            <div class="text-xs text-neutral-400">Wireframes</div>
-                          </div>
-                          <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                            <div class="text-2xl font-black text-green-400 mb-1">100%</div>
-                            <div class="text-xs text-neutral-400">Mobile-First</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Right: Description -->
-                <div class="order-1 lg:order-2 space-y-8">
-                  <div class="bg-gradient-to-br from-green-500/5 to-emerald-500/5 border border-green-500/20 rounded-3xl p-10 backdrop-blur-xl">
-                    <h3 class="text-4xl font-black text-white mb-6">💡 Phase de Conception</h3>
-                    <p class="text-lg text-neutral-300 mb-8 leading-relaxed">
-                      <strong class="text-green-400">Vision et stratégie.</strong> Définition des objectifs, 
-                      architecture de l'information et création de l'identité visuelle. Une phase cruciale 
-                      qui pose les fondations d'un projet <span class="text-green-400 font-semibold">révolutionnaire</span>.
-                    </p>
-
-                    <!-- Key achievements -->
-                    <div class="space-y-4">
-                      <div class="flex items-center gap-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-sitemap text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Architecture Définie</h4>
-                          <p class="text-sm text-neutral-400">Structure complète des 5 pages principales</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-center gap-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-palette text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Design System</h4>
-                          <p class="text-sm text-neutral-400">Palette, typographie et composants</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-center gap-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-mobile-alt text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Stratégie Mobile-First</h4>
-                          <p class="text-sm text-neutral-400">Expérience optimisée tous écrans</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Phase 2: Technical Development -->
-            <div class="group relative">
-              <!-- Timeline marker -->
-              <div class="absolute left-1/2 w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl border-4 border-neutral-900 transform -translate-x-1/2 group-hover:scale-110 transition-all duration-500 z-20 flex items-center justify-center shadow-2xl">
-                <i class="fas fa-code text-2xl text-white"></i>
-                <div class="absolute inset-0 bg-blue-400 rounded-2xl animate-ping opacity-20"></div>
-              </div>
-
-              <!-- Content -->
-              <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Left: Description -->
-                <div class="space-y-8">
-                  <div class="bg-gradient-to-br from-blue-500/5 to-cyan-500/5 border border-blue-500/20 rounded-3xl p-10 backdrop-blur-xl">
-                    <h3 class="text-4xl font-black text-white mb-6">⚡ Développement Intensif</h3>
-                    <p class="text-lg text-neutral-300 mb-8 leading-relaxed">
-                      <strong class="text-blue-400">Code et architecture.</strong> Implémentation de l'architecture CSS modulaire, 
-                      développement des composants interactifs et intégration des animations. La phase où les idées 
-                      prennent <span class="text-blue-400 font-semibold">vie</span>.
-                    </p>
-
-                    <!-- Development stack -->
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                      <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-html5 text-2xl text-orange-400 mb-2"></i>
-                        <div class="text-sm font-bold text-white">HTML5</div>
-                        <div class="text-xs text-neutral-400">Sémantique</div>
-                      </div>
-                      <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-css3-alt text-2xl text-blue-400 mb-2"></i>
-                        <div class="text-sm font-bold text-white">CSS3</div>
-                        <div class="text-xs text-neutral-400">Modulaire</div>
-                      </div>
-                      <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-js-square text-2xl text-yellow-400 mb-2"></i>
-                        <div class="text-sm font-bold text-white">JavaScript</div>
-                        <div class="text-xs text-neutral-400">ES6+</div>
-                      </div>
-                      <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-git-alt text-2xl text-red-400 mb-2"></i>
-                        <div class="text-sm font-bold text-white">Git</div>
-                        <div class="text-xs text-neutral-400">Versioning</div>
-                      </div>
-                    </div>
-
-                    <!-- Progress timeline -->
-                    <div class="space-y-3">
-                      <div class="flex items-center gap-4">
-                        <div class="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                        <span class="text-sm text-neutral-300">Structure HTML sémantique</span>
-                        <div class="flex-1 h-1 bg-neutral-800 rounded-full overflow-hidden">
-                          <div class="w-full h-full bg-gradient-to-r from-blue-500 to-blue-400 animate-pulse"></div>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-4">
-                        <div class="w-3 h-3 bg-cyan-400 rounded-full animate-pulse" style="animation-delay: 0.3s;"></div>
-                        <span class="text-sm text-neutral-300">Architecture CSS modulaire</span>
-                        <div class="flex-1 h-1 bg-neutral-800 rounded-full overflow-hidden">
-                          <div class="w-full h-full bg-gradient-to-r from-cyan-500 to-cyan-400 animate-pulse" style="animation-delay: 0.3s;"></div>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-4">
-                        <div class="w-3 h-3 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.6s;"></div>
-                        <span class="text-sm text-neutral-300">Interactions JavaScript</span>
-                        <div class="flex-1 h-1 bg-neutral-800 rounded-full overflow-hidden">
-                          <div class="w-full h-full bg-gradient-to-r from-purple-500 to-purple-400 animate-pulse" style="animation-delay: 0.6s;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Right: Visual -->
-                <div class="group/card relative">
-                  <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/20 rounded-3xl blur-2xl group-hover/card:blur-3xl transition-all duration-1000"></div>
-                  <div class="relative bg-gradient-to-br from-blue-500/5 to-cyan-500/10 border border-blue-500/20 rounded-3xl p-10 backdrop-blur-xl transform group-hover/card:scale-105 transition-all duration-700">
-                    <!-- Phase number -->
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-xl">
-                      <span class="text-white font-black text-xl">02</span>
-                    </div>
-
-                    <!-- Development metrics dashboard -->
-                    <div class="text-center mb-8">
-                      <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl mx-auto flex items-center justify-center mb-4 transform group-hover/card:rotate-6 transition-transform duration-500">
-                        <i class="fas fa-laptop-code text-3xl text-white"></i>
-                      </div>
-                      <h3 class="text-2xl font-black text-white">Code Architecture</h3>
-                    </div>
-
-                    <!-- Code metrics -->
-                    <div class="space-y-4">
-                      <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4">
-                          <span class="text-white font-bold">Lignes de Code</span>
-                          <span class="text-2xl font-black text-blue-400">2500+</span>
-                        </div>
-                        <div class="w-full bg-neutral-800 rounded-full h-2">
-                          <div class="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full animate-pulse" style="width: 85%"></div>
-                        </div>
-                      </div>
-
-                      <div class="bg-cyan-500/10 border border-cyan-500/20 rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4">
-                          <span class="text-white font-bold">Modules CSS</span>
-                          <span class="text-2xl font-black text-cyan-400">9</span>
-                        </div>
-                        <div class="w-full bg-neutral-800 rounded-full h-2">
-                          <div class="bg-gradient-to-r from-cyan-500 to-cyan-400 h-2 rounded-full animate-pulse" style="width: 100%"></div>
-                        </div>
-                      </div>
-
-                      <div class="bg-purple-500/10 border border-purple-500/20 rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4">
-                          <span class="text-white font-bold">Composants</span>
-                          <span class="text-2xl font-black text-purple-400">25+</span>
-                        </div>
-                        <div class="w-full bg-neutral-800 rounded-full h-2">
-                          <div class="bg-gradient-to-r from-purple-500 to-purple-400 h-2 rounded-full animate-pulse" style="width: 92%"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Phase 3: Testing & Optimization -->
-            <div class="group relative">
-              <!-- Timeline marker -->
-              <div class="absolute left-1/2 w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl border-4 border-neutral-900 transform -translate-x-1/2 group-hover:scale-110 transition-all duration-500 z-20 flex items-center justify-center shadow-2xl">
-                <i class="fas fa-flask text-2xl text-white"></i>
-                <div class="absolute inset-0 bg-purple-400 rounded-2xl animate-ping opacity-20"></div>
-              </div>
-
-              <!-- Content -->
-              <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Left: Visual -->
-                <div class="order-2 lg:order-1 group/card relative">
-                  <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/20 rounded-3xl blur-2xl group-hover/card:blur-3xl transition-all duration-1000"></div>
-                  <div class="relative bg-gradient-to-br from-purple-500/5 to-pink-500/10 border border-purple-500/20 rounded-3xl p-10 backdrop-blur-xl transform group-hover/card:scale-105 transition-all duration-700">
-                    <!-- Phase number -->
-                    <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
-                      <span class="text-white font-black text-xl">03</span>
-                    </div>
-
-                    <!-- Testing dashboard -->
-                    <div class="text-center mb-8">
-                      <div class="w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl mx-auto flex items-center justify-center mb-4 transform group-hover/card:rotate-6 transition-transform duration-500">
-                        <i class="fas fa-bug text-3xl text-white"></i>
-                      </div>
-                      <h3 class="text-2xl font-black text-white">Quality Assurance</h3>
-                    </div>
-
-                    <!-- Browser compatibility matrix -->
-                    <div class="grid grid-cols-2 gap-3 mb-6">
-                      <div class="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-chrome text-lg text-yellow-400 mb-1"></i>
-                        <div class="text-xs text-white font-bold">Chrome</div>
-                        <div class="text-xs text-green-400">100%</div>
-                      </div>
-                      <div class="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-firefox text-lg text-orange-400 mb-1"></i>
-                        <div class="text-xs text-white font-bold">Firefox</div>
-                        <div class="text-xs text-green-400">98%</div>
-                      </div>
-                      <div class="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-safari text-lg text-blue-400 mb-1"></i>
-                        <div class="text-xs text-white font-bold">Safari</div>
-                        <div class="text-xs text-green-400">95%</div>
-                      </div>
-                      <div class="bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 text-center transform hover:scale-105 transition-all duration-300">
-                        <i class="fab fa-edge text-lg text-cyan-400 mb-1"></i>
-                        <div class="text-xs text-white font-bold">Edge</div>
-                        <div class="text-xs text-green-400">98%</div>
-                      </div>
-                    </div>
-
-                    <!-- Performance score -->
-                    <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6">
-                      <div class="text-center">
-                        <div class="text-3xl font-black text-white mb-2">A+</div>
-                        <div class="text-sm text-purple-400 font-bold">Performance Score</div>
-                        <div class="text-xs text-neutral-500 mt-1">Lighthouse Audit</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Right: Description -->
-                <div class="order-1 lg:order-2 space-y-8">
-                  <div class="bg-gradient-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-3xl p-10 backdrop-blur-xl">
-                    <h3 class="text-4xl font-black text-white mb-6">🔬 Tests & Optimisation</h3>
-                    <p class="text-lg text-neutral-300 mb-8 leading-relaxed">
-                      <strong class="text-purple-400">Qualité et performance.</strong> Phase critique de validation, 
-                      tests cross-browser et optimisation des performances. Chaque détail est vérifié pour garantir 
-                      une expérience utilisateur <span class="text-purple-400 font-semibold">parfaite</span>.
-                    </p>
-
-                    <!-- Testing achievements -->
-                    <div class="space-y-4">
-                      <div class="flex items-center gap-4 p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-globe text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Tests Multi-navigateurs</h4>
-                          <p class="text-sm text-neutral-400">Compatibilité validée sur 4+ navigateurs</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-center gap-4 p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-mobile-alt text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Tests Responsive</h4>
-                          <p class="text-sm text-neutral-400">Validation sur mobile, tablette, desktop</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-center gap-4 p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-tachometer-alt text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Optimisation Performance</h4>
-                          <p class="text-sm text-neutral-400">Score A+ validé par Lighthouse</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Phase 4: Launch & Success -->
-            <div class="group relative">
-              <!-- Timeline marker -->
-              <div class="absolute left-1/2 w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl border-4 border-neutral-900 transform -translate-x-1/2 group-hover:scale-110 transition-all duration-500 z-20 flex items-center justify-center shadow-2xl">
-                <i class="fas fa-rocket text-2xl text-white"></i>
-                <div class="absolute inset-0 bg-orange-400 rounded-2xl animate-ping opacity-20"></div>
-              </div>
-
-              <!-- Content -->
-              <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Left: Description -->
-                <div class="space-y-8">
-                  <div class="bg-gradient-to-br from-orange-500/5 to-red-500/5 border border-orange-500/20 rounded-3xl p-10 backdrop-blur-xl">
-                    <h3 class="text-4xl font-black text-white mb-6">🚀 Lancement Réussi</h3>
-                    <p class="text-lg text-neutral-300 mb-8 leading-relaxed">
-                      <strong class="text-orange-400">Mission accomplie.</strong> Le portfolio est désormais en ligne, 
-                      fonctionnel et optimisé. Un projet qui démontre la maîtrise technique et la passion pour 
-                      le développement web <span class="text-orange-400 font-semibold">moderne</span>.
-                    </p>
-
-                    <!-- Launch achievements -->
-                    <div class="space-y-4">
-                      <div class="flex items-center gap-4 p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-check-circle text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Déploiement Réussi</h4>
-                          <p class="text-sm text-neutral-400">Portfolio en ligne et opérationnel</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-center gap-4 p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-shield-alt text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Sécurité & Performance</h4>
-                          <p class="text-sm text-neutral-400">HTTPS, optimisations avancées</p>
-                        </div>
-                      </div>
-
-                      <div class="flex items-center gap-4 p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl transform hover:scale-105 transition-all duration-300">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center">
-                          <i class="fas fa-star text-white"></i>
-                        </div>
-                        <div>
-                          <h4 class="font-bold text-white">Objectifs Atteints</h4>
-                          <p class="text-sm text-neutral-400">Portfolio professionnel de qualité</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Right: Visual -->
-                <div class="group/card relative">
-                  <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-500/20 rounded-3xl blur-2xl group-hover/card:blur-3xl transition-all duration-1000"></div>
-                  <div class="relative bg-gradient-to-br from-orange-500/5 to-red-500/10 border border-orange-500/20 rounded-3xl p-10 backdrop-blur-xl transform group-hover/card:scale-105 transition-all duration-700">
-                    <!-- Phase number -->
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center shadow-xl">
-                      <span class="text-white font-black text-xl">04</span>
-                    </div>
-
-                    <!-- Success celebration -->
-                    <div class="text-center mb-8">
-                      <div class="w-24 h-24 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl mx-auto flex items-center justify-center mb-4 transform group-hover/card:rotate-6 transition-transform duration-500 animate-pulse">
-                        <i class="fas fa-trophy text-3xl text-white"></i>
-                      </div>
-                      <h3 class="text-2xl font-black text-white">Mission Accomplie</h3>
-                    </div>
-
-                    <!-- Final metrics -->
-                    <div class="space-y-6">
-                      <div class="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-6 text-center">
-                        <div class="text-3xl font-black text-green-400 mb-2">✅</div>
-                        <div class="text-white font-bold">Projet Terminé</div>
-                        <div class="text-xs text-neutral-400 mt-1">100% des objectifs atteints</div>
-                      </div>
-
-                      <div class="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-xl p-6 text-center">
-                        <div class="text-3xl font-black text-blue-400 mb-2">🌐</div>
-                        <div class="text-white font-bold">En Ligne</div>
-                        <div class="text-xs text-neutral-400 mt-1">Accessible mondialement</div>
-                      </div>
-
-                      <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6 text-center">
-                        <div class="text-3xl font-black text-purple-400 mb-2">🎯</div>
-                        <div class="text-white font-bold">Professionnel</div>
-                        <div class="text-xs text-neutral-400 mt-1">Qualité production</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Epic Conclusion Banner -->
-        <div class="relative mt-32">
-          <div class="absolute inset-0 bg-gradient-to-r from-green-500/5 via-blue-500/10 via-purple-500/10 to-orange-500/5 rounded-3xl blur-2xl"></div>
-          <div class="relative bg-gradient-to-r from-green-500/5 via-blue-500/5 via-purple-500/5 to-orange-500/5 border border-white/20 rounded-3xl p-12 backdrop-blur-2xl">
-            <!-- Header -->
-            <div class="text-center mb-12">
-              <div class="inline-flex items-center gap-4 mb-6">
-                <div class="w-16 h-16 bg-gradient-to-br from-green-400 via-blue-500 to-purple-500 rounded-2xl flex items-center justify-center animate-pulse">
-                  <i class="fas fa-medal text-white text-2xl"></i>
-                </div>
-                <div>
-                  <h3 class="text-4xl font-black text-white">🎉 Odyssée Terminée</h3>
-                  <p class="text-neutral-400 text-lg">Un parcours de développement exemplaire</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Final stats -->
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl mx-auto mb-4 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                  <span class="text-2xl font-black text-white">4</span>
-                </div>
-                <div class="text-sm text-neutral-400 uppercase tracking-wider">Phases</div>
-                <div class="text-xs text-green-400 mt-1">Complétées</div>
-              </div>
-
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mx-auto mb-4 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                  <span class="text-2xl font-black text-white">1</span>
-                </div>
-                <div class="text-sm text-neutral-400 uppercase tracking-wider">Mois</div>
-                <div class="text-xs text-blue-400 mt-1">Développement</div>
-              </div>
-
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mx-auto mb-4 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                  <span class="text-2xl font-black text-white">15+</span>
-                </div>
-                <div class="text-sm text-neutral-400 uppercase tracking-wider">Fichiers</div>
-                <div class="text-xs text-purple-400 mt-1">Créés</div>
-              </div>
-
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl mx-auto mb-4 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                  <span class="text-2xl font-black text-white">97%</span>
-                </div>
-                <div class="text-sm text-neutral-400 uppercase tracking-wider">Compatibilité</div>
-                <div class="text-xs text-orange-400 mt-1">Navigateurs</div>
-              </div>
-
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl mx-auto mb-4 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                  <span class="text-2xl font-black text-white">A+</span>
-                </div>
-                <div class="text-sm text-neutral-400 uppercase tracking-wider">Performance</div>
-                <div class="text-xs text-pink-400 mt-1">Lighthouse</div>
-              </div>
-            </div>
-
-            <!-- Epic conclusion -->
-            <div class="text-center">
-              <div class="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-green-500/20 via-blue-500/20 to-purple-500/20 border border-white/30 rounded-2xl backdrop-blur-sm transform hover:scale-105 transition-all duration-300">
-                <i class="fas fa-code text-green-400 text-xl animate-pulse"></i>
-                <span class="text-xl font-black text-white">Portfolio Développé avec Excellence & Passion</span>
-                <i class="fas fa-heart text-red-400 text-xl animate-pulse"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  </main>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
-    <!-- Social Links -->
-    <div class="flex justify-center items-center gap-6 mb-4">
-      <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
-        <i class="fas fa-envelope text-2xl"></i>
-      </a>
       <a href="https://github.com/enzogagg" class="hover:text-white transition" title="GitHub" aria-label="GitHub">
         <i class="fab fa-github text-2xl"></i>
       </a>
       <a href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/" class="hover:text-white transition" title="LinkedIn" aria-label="LinkedIn">
         <i class="fab fa-linkedin text-2xl"></i>
       </a>
-    </div>
 
     <!-- Copyright Notice -->
     <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
-  </footer>
 
   <!-- ========== JAVASCRIPT INITIALIZATION ========== -->
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/burger.js"></script>
   <!-- Fallback pour usage local (file:// protocol) -->
   <script>
-    if (window.location.protocol === 'file:') {
+    if (globalThis.location.protocol === 'file:') {
       const script = document.createElement('script');
       script.src = 'assets/js/standalone.js';
       document.head.appendChild(script);

@@ -34,15 +34,11 @@
  * Handles scroll-triggered animations using Intersection Observer
  */
 export class ScrollAnimations {
-  constructor() {
-    this.lastScrollPosition = 0;
-    this.scrollThreshold = 100;
-    this.header = null;
-    this.animationObserver = null;
-    this.isInitialized = false;
-
-    // Don't initialize DOM elements in constructor
-  }
+  lastScrollPosition = 0;
+  scrollThreshold = 100;
+  header = null;
+  animationObserver = null;
+  isInitialized = false;
 
   /**
    * Initialize scroll animations and header behavior
@@ -73,11 +69,11 @@ export class ScrollAnimations {
 
     // Force immediate visibility for filter buttons (critical UI elements)
     const filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(btn => {
+    for (const btn of filterButtons) {
       btn.style.opacity = '1';
       btn.style.transform = 'translateY(0)';
       btn.classList.add('animate-in');
-    });
+    }
 
     // Also ensure the filter container is visible
     const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
@@ -95,8 +91,8 @@ export class ScrollAnimations {
 
     // Create observer instance
     this.animationObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
 
         const target = entry.target;
 
@@ -113,13 +109,13 @@ export class ScrollAnimations {
 
         // Stop observing once animated
         this.animationObserver.unobserve(target);
-      });
+      }
     }, observerOptions);
 
     // Start observing all animated elements
-    animatedElements.forEach(element => {
+    for (const element of animatedElements) {
       this.animationObserver.observe(element);
-    });
+    }
 
     console.log(`Started observing ${animatedElements.length} animated elements`);
   }
@@ -183,16 +179,16 @@ export class ScrollAnimations {
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      for (const entry of entries) {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
         }
-      });
+      }
     }, observerOptions);
 
-    projectElements.forEach(el => {
+    for (const el of projectElements) {
       observer.observe(el);
-    });
+    }
 
     console.log('✅ Projects scroll animations initialized');
   }

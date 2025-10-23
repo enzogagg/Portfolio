@@ -62,13 +62,13 @@ export class ProjectsFilter {
       console.log(`🔍 Found ${this.projectCards.length} project cards`);
 
       // Debug: Log each found element
-      this.filterButtons.forEach((btn, index) => {
+      for (const [index, btn] of Array.from(this.filterButtons).entries()) {
         console.log(`  Filter button ${index}: "${btn.textContent.trim()}" (data-filter: "${btn.dataset.filter}")`);
-      });
+      }
 
-      this.projectCards.forEach((card, index) => {
+      for (const [index, card] of Array.from(this.projectCards).entries()) {
         console.log(`  Project card ${index}: ${card.className} (data-category: "${card.dataset.category}")`);
-      });
+      }
 
       // Only initialize if we're on the projects page
       if (this.filterButtons.length === 0 || this.projectCards.length === 0) {
@@ -109,7 +109,7 @@ export class ProjectsFilter {
    * Ensure filter buttons are visible regardless of animation state
    */
   ensureFilterVisibility() {
-    this.filterButtons.forEach(button => {
+    for (const button of this.filterButtons) {
       // Force visibility
       button.style.opacity = '1';
       button.style.transform = 'translateY(0)';
@@ -119,7 +119,7 @@ export class ProjectsFilter {
       if (button.classList.contains('animate-on-scroll')) {
         button.classList.add('animate-in');
       }
-    });
+    }
 
     // Also ensure the container is visible
     const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
@@ -149,7 +149,7 @@ export class ProjectsFilter {
     console.log(`🎯 Setting up ${this.filterButtons.length} filter buttons`);
     console.log(`🎯 Found ${this.projectCards.length} project cards`);
 
-    this.filterButtons.forEach((button, index) => {
+    for (const [index, button] of Array.from(this.filterButtons).entries()) {
       console.log(`📌 Setting up button ${index}: "${button.textContent.trim()}" (data-filter: "${button.dataset.filter}")`);
 
       // Remove any existing event listeners
@@ -168,7 +168,7 @@ export class ProjectsFilter {
       });
 
       console.log(`✅ Event listener added to button ${index}`);
-    });
+    }
 
     // Update our reference to the new buttons
     this.filterButtons = document.querySelectorAll('.filter-btn');
@@ -185,7 +185,7 @@ export class ProjectsFilter {
     let showCount = 0;
     let hideCount = 0;
 
-    this.projectCards.forEach((card, index) => {
+    for (const [index, card] of Array.from(this.projectCards).entries()) {
       const category = card.dataset.category;
       console.log(`Card ${index}: category="${category}", filter="${filter}"`);
 
@@ -196,7 +196,7 @@ export class ProjectsFilter {
         this.hideCard(card);
         hideCount++;
       }
-    });
+    }
 
     console.log(`Filter result: ${showCount} shown, ${hideCount} hidden`);
   }
@@ -236,7 +236,9 @@ export class ProjectsFilter {
    * @param {Element} activeButton - The clicked filter button
    */
   updateActiveButton(activeButton) {
-    this.filterButtons.forEach(btn => btn.classList.remove('active'));
+    for (const btn of this.filterButtons) {
+      btn.classList.remove('active');
+    }
     activeButton.classList.add('active');
   }
 

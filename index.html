@@ -1,29 +1,28 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PAGE D'ACCUEIL
+PORTFOLIO - Home Page
 =====================================================================================================
 
 Author: Enzo Gaggiotti
-Project: Portfolio Personnel
+Project: Personal Portfolio
 File: index.html
 Version: 2.1.0
 Last Updated: July 2025
 
 Description:
-Page d'accueil du portfolio présentant le profil, les compétences et
-les projets avec navigation Apple-inspirée et design glassmorphism.
+Home page of the portfolio showcasing profile, skills, and projects with Apple-inspired navigation and glassmorphism design.
 
 Features:
-- Navigation Apple minimaliste avec glassmorphism
-- Section héro avec présentation interactive
-- Galerie de projets avec filtrage
-- Cartes de compétences techniques
-- Design responsive mobile-first
-- Mode sombre exclusif
-- Animations fluides et micro-interactions
+- Minimalist Apple-style navigation with glassmorphism
+- Hero section with interactive presentation
+- Project gallery with filtering
+- Technical skills cards
+- Mobile-first responsive design
+- Exclusive dark mode
+- Smooth animations and micro-interactions
 
 Dependencies: main.css, font-awesome, inter-font
-Browser Support: Modern browsers avec backdrop-filter
+Browser Support: Modern browsers with backdrop-filter
 
 =====================================================================================================
 -->
@@ -46,24 +45,24 @@ Browser Support: Modern browsers avec backdrop-filter
   <link rel="stylesheet" href="assets/css/loader.css">
 </head>
 <!-- Matomo -->
-<<script>
-  var _paq = window._paq = window._paq || [];
+<script>
+  var _paq = globalThis._paq = globalThis._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setCookieDomain", "*.portfolio.ega.ovh"]);
-  _paq.push(["setDomains", ["*.portfolio.ega.ovh"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
+  _paq.push(
+    ["setCookieDomain", "*.portfolio.ega.ovh"],
+    ["setDomains", ["*.portfolio.ega.ovh"]],
+    ['trackPageView'],
+    ['enableLinkTracking']
+  );
   (function() {
     var u="https://matomo.ega.ovh/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
+    _paq.push(['setTrackerUrl', u+'matomo.php'], ['setSiteId', '1']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
 <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
-</head>
 <body class="min-h-screen flex flex-col">
 
   <!-- Minimalist loader -->
@@ -81,7 +80,7 @@ Browser Support: Modern browsers avec backdrop-filter
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="nav-primary">
+      <nav class="nav-primary", aria-label="Navigation principale">
         <a href="#top" class="nav-link active">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -101,7 +100,7 @@ Browser Support: Modern browsers avec backdrop-filter
 
     <!-- Mobile Navigation Menu -->
     <div class="mobile-menu" id="mobile-menu">
-      <nav class="mobile-nav">
+      <nav class="mobile-nav", aria-label="Navigation mobile">
         <a href="#top" class="nav-link">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -346,10 +345,8 @@ Browser Support: Modern browsers avec backdrop-filter
         </div>
       </div>
 </div>
-</section>
 
   </div>
-    </div>
   </section>
 
   <!-- ========== ABOUT SECTION ========== -->
@@ -537,7 +534,7 @@ Browser Support: Modern browsers avec backdrop-filter
   <script src="assets/js/burger.js"></script>
   <!-- Fallback pour usage local (file:// protocol) -->
   <script>
-    if (window.location.protocol === 'file:') {
+    if (globalThis.location.protocol === 'file:') {
       const script = document.createElement('script');
       script.src = 'assets/js/standalone.js';
       document.head.appendChild(script);

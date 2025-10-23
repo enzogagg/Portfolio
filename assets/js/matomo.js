@@ -1,11 +1,10 @@
 // Matomo tracking code
-var _paq = window._paq = window._paq || [];
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
+const _paq = globalThis._paq = globalThis._paq || [];
 (function() {
-  var u="//192.168.100.46/";
-  _paq.push(['setTrackerUrl', u+'matomo.php']);
-  _paq.push(['setSiteId', '1']);
-  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-  g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  const cmds = [['trackPageView'], ['enableLinkTracking']];
+  const u = "//192.168.100.46/";
+  cmds.push(['setTrackerUrl', u + 'matomo.php'], ['setSiteId', '1']);
+  _paq.push(...cmds);
+  const d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+  g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
 })();
