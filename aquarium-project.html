@@ -1,23 +1,23 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PROJET : BOX DOMOTIQUE AQUARIUM
+PORTFOLIO - PROJECT : BOX DOMOTIQUE AQUARIUM
 =====================================================================================================
 Author: Enzo Gaggiotti
-Project: Portfolio Personnel
+Project: Personal Portfolio
 File: aquarium-project.html
 Version: 1.1.0
 Last Updated: July 2025
 
 Description:
-Page détaillée du projet Box Domotique Aquarium, design harmonisé avec la page projets du portfolio.
+Page to present the Aquarium Smart Home Box project with a design harmonized with the portfolio projects page.
 
 Features:
-- Présentation du projet et des objectifs
-- Schémas électroniques et explications techniques
-- Aperçu du dashboard Home Assistant
-- Liste des capteurs et automatisations
-- Liens vers le code et ressources
-- Design glassmorphism, tags colorés, boutons animés, responsive
+- Presentation of the project and objectives
+- Electronic diagrams and technical explanations
+- Overview of the Home Assistant dashboard
+- List of sensors and automations
+- Links to code and resources
+- Glassmorphism design, colored tags, animated buttons, responsive
 =====================================================================================================
 -->
 <!DOCTYPE html>
@@ -35,23 +35,27 @@ Features:
 </head>
 <!-- Matomo -->
 <script>
-  var _paq = window._paq = window._paq || [];
+  var _paq = globalThis._paq = globalThis._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setCookieDomain", "*.portfolio.ega.ovh"]);
-  _paq.push(["setDomains", ["*.portfolio.ega.ovh"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
+  _paq.push(
+    ["setCookieDomain", "*.portfolio.ega.ovh"],
+    ["setDomains", ["*.portfolio.ega.ovh"]],
+    ['trackPageView'],
+    ['enableLinkTracking']
+  );
   (function() {
     var u="https://matomo.ega.ovh/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
+    _paq.push(
+      ['setTrackerUrl', u+'matomo.php'],
+      ['setSiteId', '1']
+    );
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
 <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
-</head>
+
 
 <body class="min-h-screen flex flex-col">
   <!-- Minimalist loader -->
@@ -65,7 +69,7 @@ Features:
       <a href="index.html#top" class="logo" aria-label="Accueil">
         <div class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">EG</div>
       </a>
-      <nav class="nav-primary">
+      <nav class="nav-primary", aria-label="Navigation principale">
         <a href="index.html#top" class="nav-link">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -80,7 +84,7 @@ Features:
       </div>
     </div>
     <div class="mobile-menu" id="mobile-menu">
-      <nav class="mobile-nav">
+      <nav class="mobile-nav", aria-label="Navigation mobile">
         <a href="index.html#top" class="nav-link">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -597,7 +601,7 @@ Features:
   <script src="assets/js/burger.js"></script>
   <!-- Fallback pour usage local (file:// protocol) -->
   <script>
-    if (window.location.protocol === 'file:') {
+    if (globalThis.location && globalThis.location.protocol === 'file:') {
       const script = document.createElement('script');
       script.src = 'assets/js/standalone.js';
       document.head.appendChild(script);

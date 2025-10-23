@@ -25,7 +25,7 @@ function closeMobileMenu() {
   }
 }
 // Initial state
-window.addEventListener('DOMContentLoaded', function() {
+globalThis.addEventListener('DOMContentLoaded', function() {
   const menu = document.getElementById('mobile-menu');
   if (menu) {
     menu.style.display = 'none';

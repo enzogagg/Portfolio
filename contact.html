@@ -4,26 +4,26 @@ PORTFOLIO - PAGE CONTACT
 =====================================================================================================
 
 Author: Enzo Gaggiotti
-Project: Portfolio Personnel
+Project: Personal Portfolio
 File: contact.html
 Version: 2.1.0
 Last Updated: July 2025
 
 Description:
-Page de contact avec formulaire interactif, liens sociaux
-et informations de communication avec validation en temps réel.
+Page to contact me with interactive form, social links,
+and communication information with real-time validation.
 
 Features:
-- Formulaire de contact avec validation
-- Liens sociaux avec gradients de marque
-- Cartes d'information de contact
-- Indicateurs de temps de réponse
-- États de validation visuels
-- Navigation Apple minimaliste cohérente
-- Design responsive mobile-first
+- Contact form with validation
+- Social links with brand gradients
+- Contact information cards
+- Response time indicators
+- Visual validation states
+- Consistent minimalist Apple-style navigation
+- Mobile-first responsive design
 
 Dependencies: main.css, font-awesome, inter-font
-Browser Support: Modern browsers avec backdrop-filter
+Browser Support: Modern browsers with backdrop-filter
 
 =====================================================================================================
 -->
@@ -47,23 +47,25 @@ Browser Support: Modern browsers avec backdrop-filter
 </head>
 <!-- Matomo -->
 <script>
-  var _paq = window._paq = window._paq || [];
+  var _paq = globalThis._paq = globalThis._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setCookieDomain", "*.portfolio.ega.ovh"]);
-  _paq.push(["setDomains", ["*.portfolio.ega.ovh"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
+  var u = "https://matomo.ega.ovh/";
+  _paq.push(
+    ["setCookieDomain", "*.portfolio.ega.ovh"],
+    ["setDomains", ["*.portfolio.ega.ovh"]],
+    ['trackPageView'],
+    ['enableLinkTracking'],
+    ['setTrackerUrl', u + 'matomo.php'],
+    ['setSiteId', '1']
+  );
   (function() {
-    var u="https://matomo.ega.ovh/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
 <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
-</head>
+
 <body class="min-h-screen flex flex-col">
   <!-- Minimalist loader -->
   <div id="minimal-loader">
@@ -81,7 +83,7 @@ Browser Support: Modern browsers avec backdrop-filter
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="nav-primary">
+      <nav class="nav-primary", aria-label="Navigation principale">
         <a href="index.html#top" class="nav-link">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -101,7 +103,7 @@ Browser Support: Modern browsers avec backdrop-filter
 
     <!-- Mobile Navigation Menu -->
     <div class="mobile-menu" id="mobile-menu">
-      <nav class="mobile-nav">
+      <nav class="mobile-nav", aria-label="Navigation mobile">
         <a href="index.html#top" class="nav-link">Accueil</a>
         <a href="projects.html" class="nav-link">Projets</a>
         <a href="about.html" class="nav-link">À propos</a>
@@ -360,7 +362,7 @@ Browser Support: Modern browsers avec backdrop-filter
   <script src="assets/js/burger.js"></script>
   <!-- Fallback pour usage local (file:// protocol) -->
   <script>
-    if (window.location.protocol === 'file:') {
+    if (globalThis.location.protocol === 'file:') {
       const script = document.createElement('script');
       script.src = 'assets/js/standalone.js';
       document.head.appendChild(script);
