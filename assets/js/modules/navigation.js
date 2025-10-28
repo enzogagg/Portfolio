@@ -34,14 +34,10 @@
  * Handles mobile menu state, animations, and interactions
  */
 export class MobileNavigation {
-  constructor() {
-    this.mobileMenu = null;
-    this.burgerMenu = null;
-    this.isOpen = false;
-    this.isInitialized = false;
-
-    // Don't initialize DOM elements in constructor
-  }
+  mobileMenu = null;
+  burgerMenu = null;
+  isOpen = false;
+  isInitialized = false;
 
   /**
    * Initialize mobile navigation elements and event listeners
