@@ -4,24 +4,24 @@
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: navigation.js
  * Version: 2.1.0
  * Last Updated: July 2025
  *
  * Description:
- * Module de gestion de la navigation mobile avec menu hamburger
- * Apple-style et interactions clavier accessibles.
+ * Mobile navigation management module with an Apple-style hamburger menu
+ * and accessible keyboard interactions.
  *
  * Features:
- * - Menu hamburger avec animations fluides
- * - Navigation clavier accessible (ARIA)
- * - Fermeture automatique sur clic à l'extérieur
- * - Gestion d'état du menu mobile
- * - Auto-masquage du header au scroll
- * - Support complet de l'accessibilité
+ * - Hamburger menu with smooth animations
+ * - Accessible keyboard navigation (ARIA)
+ * - Automatic closing on outside click
+ * - Mobile menu state management
+ * - Header auto-hiding on scroll
+ * - Full accessibility support
  *
- * Dependencies: Aucune - module autonome
+ * Dependencies: None - standalone module
  * Browser Support: ES6+ modules, modern browsers
  *
  * =====================================================================================================

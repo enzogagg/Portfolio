@@ -21,7 +21,7 @@
  * - Animations fluides et optimisées GPU
  * - Debouncing pour les performances
  *
- * Dependencies: Intersection Observer API, utils.js
+ * Dependencies: Intersection Observer API
  * Browser Support: Modern browsers avec Intersection Observer
  *
  * =====================================================================================================
@@ -29,11 +29,10 @@
 
 'use strict';
 
-import { forceProjectCardVisibility } from './utils.js';
-
 /**
  * Scroll Animation Manager
  * Handles scroll-triggered animations using Intersection Observer
+ * NOTE: Project cards initialization is handled by the projects module
  */
 export class ScrollAnimations {
   lastScrollPosition = 0;
@@ -60,6 +59,7 @@ export class ScrollAnimations {
 
   /**
    * Initialize scroll-triggered animations using Intersection Observer
+   * NOTE: Project cards are initialized by the projects module to avoid duplication
    */
   setupScrollAnimations() {
     const animatedElements = document.querySelectorAll('.fade-in, .animate-on-scroll');
@@ -85,10 +85,8 @@ export class ScrollAnimations {
       filterContainer.classList.add('animate-in');
     }
 
-    // Force immediate visibility for project cards (no delay on load) using shared utility
-    const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
-    const cardsProcessed = forceProjectCardVisibility(projectCards);
-    console.log(`🎬 ${cardsProcessed} project cards forced visible immediately`);
+    // NOTE: Project cards visibility is handled by the projects module (Single Responsibility)
+    // This prevents duplication and race conditions
 
     // Intersection Observer options
     const observerOptions = {
@@ -122,7 +120,6 @@ export class ScrollAnimations {
     // Start observing all animated elements EXCEPT project cards
     let observedCount = 0;
     for (const element of animatedElements) {
-      // Skip project cards - they're already visible
       if (element.classList.contains('project-card-enhanced') || element.classList.contains('project-card')) {
         continue;
       }

@@ -117,10 +117,22 @@ class PortfolioApp {
 
   /**
    * Initialize core application features
+   *
+   * INITIALIZATION ORDER (Important):
+   * 1. projects   - Initializes project cards visibility (Single Responsibility)
+   * 2. navigation - Sets up mobile menu and navigation
+   * 3. animations - Observes scroll animations (EXCLUDES project cards to avoid duplication)
+   * 4. accessibility - Handles ARIA and keyboard navigation
+   * 5. performance - Monitors and optimizes performance
+   *
+   * NOTE: Projects MUST initialize before animations to prevent race conditions.
+   * The animations module explicitly excludes project cards from its observer.
    */
   async initializeCore() {
+    // STEP 1: Initialize project cards (handled by projects module)
     this.modules.projects.init();
-    
+
+    // STEP 2-5: Initialize other modules
     this.modules.navigation.init();
     this.modules.animations.init();
     this.modules.accessibility.init();
@@ -133,6 +145,7 @@ class PortfolioApp {
 
   /**
    * Header Auto-Hide Functionality
+```
    */
   initializeHeaderAutoHide() {
     const header = document.getElementById('main-header') || document.querySelector('header');
