@@ -21,16 +21,25 @@
  * - Persistance de l'état de filtre
  * - Transitions optimisées CSS/JS
  *
- * Dependencies: Aucune - module autonome
+ * Dependencies: utils.js, config.js
  * Browser Support: ES6+ modules, modern browsers
+ *
+ * Responsibilities:
+ * - Initialization and visibility of project cards (Single Responsibility)
+ * - Filtering and animation of project cards
+ * - Filter button state management
  *
  * =====================================================================================================
  */
 
 'use strict';
 
+import { forceProjectCardVisibility } from './utils.js';
+import { initState } from './config.js';
+
 /**
  * Projects Filter Manager
+ * RESPONSIBLE FOR: All project cards initialization and filtering
  * Handles project filtering functionality and smooth animations
  */
 export class ProjectsFilter {
@@ -82,17 +91,22 @@ export class ProjectsFilter {
       // Ensure filter buttons are always visible (critical for Vercel)
       this.ensureFilterVisibility();
 
+      // CRITICAL: Reset project cards visibility (Single Responsibility)
       this.resetProjectCards();
+      
       this.setupFilterButtons();
       this.isInitialized = true;
 
+      // Notify initialization state
+      initState.markInitialized('projectCards');
+
       console.log('✅ Projects page functionality initialized');
 
-      // Test filtering immediately
-      setTimeout(() => {
-        console.log('🧪 Testing filter functionality...');
-        this.testFiltering();
-      }, 500);
+      // DISABLED: Test filtering causes cards to flicker
+      // setTimeout(() => {
+      //   console.log('🧪 Testing filter functionality...');
+      //   this.testFiltering();
+      // }, 500);
     };
 
     // Wait for DOM to be ready
@@ -137,9 +151,8 @@ export class ProjectsFilter {
    * Reset any existing inline styles that might interfere with CSS
    */
   resetProjectCards() {
-    // Ne rien faire au chargement, laisser l'animation au scroll gérer l'apparition
-    // Les styles sont gérés uniquement lors d'un filtre
-    console.log('🔄 Project cards left to default state (no forced hide on load)');
+    const processedCount = forceProjectCardVisibility(this.projectCards);
+    console.log(`🔄 ${processedCount} project cards made immediately visible on load`);
   }
 
   /**
