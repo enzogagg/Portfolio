@@ -42,8 +42,9 @@ import { performanceManager } from './modules/performance.js';
  * Main application controller that orchestrates all modules
  */
 class PortfolioApp {
+  isInitialized = false;
+
   constructor() {
-    this.isInitialized = false;
     this.modules = {
       navigation: mobileNavigation,
       animations: scrollAnimations,
@@ -101,13 +102,13 @@ class PortfolioApp {
     const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
 
     // Force filter buttons visibility
-    filterButtons.forEach(btn => {
+    for (const btn of filterButtons) {
       btn.style.opacity = '1';
       btn.style.transform = 'translateY(0)';
       btn.style.visibility = 'visible';
       btn.style.display = 'inline-flex';
       btn.classList.add('animate-in');
-    });
+    }
 
     // Force filter container visibility
     if (filterContainer) {
@@ -118,7 +119,7 @@ class PortfolioApp {
     }
 
     // CRITICAL: Force project cards to be visible IMMEDIATELY
-    projectCards.forEach(card => {
+    for (const card of projectCards) {
       // Remove animation-delay to prevent flickering
       card.style.removeProperty('animation-delay');
       card.style.setProperty('opacity', '1', 'important');
@@ -126,7 +127,7 @@ class PortfolioApp {
       card.style.setProperty('visibility', 'visible', 'important');
       card.classList.add('animate-in');
       card.classList.remove('project-hidden');
-    });
+    }
 
     console.log(`🔧 Forced visibility: ${filterButtons.length} filters, ${projectCards.length} cards`);
   }
@@ -161,7 +162,6 @@ class PortfolioApp {
     }
 
     let lastScrollY = window.scrollY;
-    let isScrolling = false;
 
     // Throttle scroll events for better performance
     const throttle = (func, delay) => {
@@ -235,11 +235,11 @@ class PortfolioApp {
    */
   setupGlobalEvents() {
     // Expose mobile menu functions globally
-    window.toggleMobileMenu = () => {
+    globalThis.toggleMobileMenu = () => {
       this.modules.navigation.toggleMobileMenu();
     };
 
-    window.closeMobileMenu = () => {
+    globalThis.closeMobileMenu = () => {
       this.modules.navigation.closeMobileMenu();
     };
 
@@ -279,7 +279,7 @@ class PortfolioApp {
    * @returns {boolean} True if on projects page
    */
   isProjectsPage() {
-    return window.location.pathname.includes('projects') ||
+    return globalThis.location.pathname.includes('projects') ||
            document.querySelector('.projects-grid') !== null;
   }
 
@@ -288,7 +288,7 @@ class PortfolioApp {
    * @returns {boolean} True if on home page
    */
   isHomePage() {
-    const path = window.location.pathname;
+    const path = globalThis.location.pathname;
     return path === '/' || path.endsWith('index.html') || path === '';
   }
 
@@ -312,8 +312,8 @@ class PortfolioApp {
   getCurrentPageType() {
     if (this.isHomePage()) return 'home';
     if (this.isProjectsPage()) return 'projects';
-    if (window.location.pathname.includes('about')) return 'about';
-    if (window.location.pathname.includes('contact')) return 'contact';
+    if (globalThis.location.pathname.includes('about')) return 'about';
+    if (globalThis.location.pathname.includes('contact')) return 'contact';
     return 'unknown';
   }
 
@@ -384,8 +384,8 @@ globalThis.toggleMobileMenu = toggleMobileMenu;
 globalThis.closeMobileMenu = closeMobileMenu;
 
 // Expose app instance for debugging
-if (typeof window !== 'undefined') {
-  window.portfolioApp = app;
+if (typeof globalThis !== 'undefined') {
+  globalThis.portfolioApp = app;
 }
 
 // Export for module use
