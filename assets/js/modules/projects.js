@@ -21,16 +21,25 @@
  * - Persistance de l'état de filtre
  * - Transitions optimisées CSS/JS
  *
- * Dependencies: Aucune - module autonome
+ * Dependencies: utils.js, config.js
  * Browser Support: ES6+ modules, modern browsers
+ *
+ * Responsibilities:
+ * - Initialization and visibility of project cards (Single Responsibility)
+ * - Filtering and animation of project cards
+ * - Filter button state management
  *
  * =====================================================================================================
  */
 
 'use strict';
 
+import { forceProjectCardVisibility } from './utils.js';
+import { initState } from './config.js';
+
 /**
  * Projects Filter Manager
+ * RESPONSIBLE FOR: All project cards initialization and filtering
  * Handles project filtering functionality and smooth animations
  */
 export class ProjectsFilter {
@@ -82,9 +91,14 @@ export class ProjectsFilter {
       // Ensure filter buttons are always visible (critical for Vercel)
       this.ensureFilterVisibility();
 
+      // CRITICAL: Reset project cards visibility (Single Responsibility)
       this.resetProjectCards();
+      
       this.setupFilterButtons();
       this.isInitialized = true;
+
+      // Notify initialization state
+      initState.markInitialized('projectCards');
 
       console.log('✅ Projects page functionality initialized');
 
@@ -137,19 +151,8 @@ export class ProjectsFilter {
    * Reset any existing inline styles that might interfere with CSS
    */
   resetProjectCards() {
-    for (const card of this.projectCards) {
-      // Remove animation-delay to prevent flickering
-      card.style.removeProperty('animation-delay');
-      if (card.classList.contains('animate-on-scroll')) {
-        card.classList.add('animate-in');
-      }
-      // Force visibility with !important
-      card.style.setProperty('opacity', '1', 'important');
-      card.style.setProperty('transform', 'translateY(0)', 'important');
-      card.style.setProperty('visibility', 'visible', 'important');
-      card.classList.remove('project-hidden');
-    }
-    console.log('🔄 Project cards made immediately visible on load');
+    const processedCount = forceProjectCardVisibility(this.projectCards);
+    console.log(`🔄 ${processedCount} project cards made immediately visible on load`);
   }
 
   /**

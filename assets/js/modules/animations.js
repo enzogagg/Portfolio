@@ -32,6 +32,7 @@
 /**
  * Scroll Animation Manager
  * Handles scroll-triggered animations using Intersection Observer
+ * NOTE: Project cards initialization is handled by the projects module
  */
 export class ScrollAnimations {
   lastScrollPosition = 0;
@@ -58,6 +59,7 @@ export class ScrollAnimations {
 
   /**
    * Initialize scroll-triggered animations using Intersection Observer
+   * NOTE: Project cards are initialized by the projects module to avoid duplication
    */
   setupScrollAnimations() {
     const animatedElements = document.querySelectorAll('.fade-in, .animate-on-scroll');
@@ -83,15 +85,8 @@ export class ScrollAnimations {
       filterContainer.classList.add('animate-in');
     }
 
-    // Force immediate visibility for project cards (no delay on load)
-    const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
-    for (const card of projectCards) {
-      card.style.removeProperty('animation-delay');
-      card.style.setProperty('opacity', '1', 'important');
-      card.style.setProperty('transform', 'translateY(0)', 'important');
-      card.style.setProperty('visibility', 'visible', 'important');
-      card.classList.add('animate-in');
-    }
+    // NOTE: Project cards visibility is handled by the projects module (Single Responsibility)
+    // This prevents duplication and race conditions
 
     // Intersection Observer options
     const observerOptions = {
@@ -123,15 +118,17 @@ export class ScrollAnimations {
     }, observerOptions);
 
     // Start observing all animated elements EXCEPT project cards
+    let observedCount = 0;
     for (const element of animatedElements) {
-      // Skip project cards - they're already visible
       if (element.classList.contains('project-card-enhanced') || element.classList.contains('project-card')) {
         continue;
       }
       this.animationObserver.observe(element);
+      observedCount++;
     }
 
-    console.log(`Started observing ${animatedElements.length} animated elements (excluding project cards)`);
+    const projectCardsCount = animatedElements.length - observedCount;
+    console.log(`🎬 Animation Observer: ${observedCount} elements observed (${projectCardsCount} project cards excluded)`);
   }
 
   /**

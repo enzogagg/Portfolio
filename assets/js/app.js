@@ -22,7 +22,7 @@
  * - Optimisations de performance
  * - Gestion d'événements centralisée
  *
- * Dependencies: modules/navigation.js, modules/animations.js, modules/projects.js
+ * Dependencies: modules/navigation.js, modules/animations.js, modules/projects.js, modules/utils.js
  * Browser Support: ES6+ modules, modern browsers
  *
  * =====================================================================================================
@@ -36,6 +36,7 @@ import { scrollAnimations } from './modules/animations.js';
 import { projectsFilter } from './modules/projects.js';
 import { accessibilityManager } from './modules/accessibility.js';
 import { performanceManager } from './modules/performance.js';
+import { forceProjectCardVisibility } from './modules/utils.js';
 
 /**
  * Portfolio Application Class
@@ -65,23 +66,17 @@ class PortfolioApp {
 
     console.log('🚀 Initializing Portfolio Application...');
 
-    // CRITICAL: Force filter visibility immediately for Vercel
     this.forceFilterVisibility();
 
-    // Add js-enabled class for progressive enhancement
     document.body.classList.add('js-enabled');
 
     try {
-      // Initialize core functionality first
       await this.initializeCore();
 
-      // Initialize page-specific features
       await this.initializePageFeatures();
 
-      // Setup global event listeners
       this.setupGlobalEvents();
 
-      // Mark as initialized
       this.isInitialized = true;
 
       console.log('✅ Portfolio Application initialized successfully');
@@ -110,7 +105,6 @@ class PortfolioApp {
       btn.classList.add('animate-in');
     }
 
-    // Force filter container visibility
     if (filterContainer) {
       filterContainer.style.opacity = '1';
       filterContainer.style.transform = 'translateY(0)';
@@ -134,18 +128,27 @@ class PortfolioApp {
 
   /**
    * Initialize core application features
+   *
+   * INITIALIZATION ORDER (Important):
+   * 1. projects   - Initializes project cards visibility (Single Responsibility)
+   * 2. navigation - Sets up mobile menu and navigation
+   * 3. animations - Observes scroll animations (EXCLUDES project cards to avoid duplication)
+   * 4. accessibility - Handles ARIA and keyboard navigation
+   * 5. performance - Monitors and optimizes performance
+   *
+   * NOTE: Projects MUST initialize before animations to prevent race conditions.
+   * The animations module explicitly excludes project cards from its observer.
    */
   async initializeCore() {
-    // Initialize projects FIRST to ensure cards are visible immediately
+    // STEP 1: Initialize project cards (handled by projects module)
     this.modules.projects.init();
-    
-    // Then initialize other modules
+
+    // STEP 2-5: Initialize other modules
     this.modules.navigation.init();
     this.modules.animations.init();
     this.modules.accessibility.init();
     this.modules.performance.init();
 
-    // Set initial navigation state
     this.modules.accessibility.setInitialNavigationState();
 
     console.log('✅ Core features initialized');
@@ -153,6 +156,7 @@ class PortfolioApp {
 
   /**
    * Header Auto-Hide Functionality
+```
    */
   initializeHeaderAutoHide() {
     const header = document.getElementById('main-header') || document.querySelector('header');
