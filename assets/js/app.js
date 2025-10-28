@@ -384,9 +384,7 @@ globalThis.toggleMobileMenu = toggleMobileMenu;
 globalThis.closeMobileMenu = closeMobileMenu;
 
 // Expose app instance for debugging
-if (typeof globalThis !== 'undefined') {
-  globalThis.portfolioApp = app;
-}
+globalThis.portfolioApp = app;
 
 // Export for module use
 export default app;
