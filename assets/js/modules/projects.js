@@ -21,13 +21,15 @@
  * - Persistance de l'état de filtre
  * - Transitions optimisées CSS/JS
  *
- * Dependencies: Aucune - module autonome
+ * Dependencies: utils.js (forceProjectCardVisibility)
  * Browser Support: ES6+ modules, modern browsers
  *
  * =====================================================================================================
  */
 
 'use strict';
+
+import { forceProjectCardVisibility } from './utils.js';
 
 /**
  * Projects Filter Manager
@@ -137,19 +139,8 @@ export class ProjectsFilter {
    * Reset any existing inline styles that might interfere with CSS
    */
   resetProjectCards() {
-    for (const card of this.projectCards) {
-      // Remove animation-delay to prevent flickering
-      card.style.removeProperty('animation-delay');
-      if (card.classList.contains('animate-on-scroll')) {
-        card.classList.add('animate-in');
-      }
-      // Force visibility with !important
-      card.style.setProperty('opacity', '1', 'important');
-      card.style.setProperty('transform', 'translateY(0)', 'important');
-      card.style.setProperty('visibility', 'visible', 'important');
-      card.classList.remove('project-hidden');
-    }
-    console.log('🔄 Project cards made immediately visible on load');
+    const processedCount = forceProjectCardVisibility(this.projectCards);
+    console.log(`🔄 ${processedCount} project cards made immediately visible on load`);
   }
 
   /**

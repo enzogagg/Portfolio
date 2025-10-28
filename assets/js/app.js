@@ -22,7 +22,7 @@
  * - Optimisations de performance
  * - Gestion d'événements centralisée
  *
- * Dependencies: modules/navigation.js, modules/animations.js, modules/projects.js
+ * Dependencies: modules/navigation.js, modules/animations.js, modules/projects.js, modules/utils.js
  * Browser Support: ES6+ modules, modern browsers
  *
  * =====================================================================================================
@@ -36,6 +36,7 @@ import { scrollAnimations } from './modules/animations.js';
 import { projectsFilter } from './modules/projects.js';
 import { accessibilityManager } from './modules/accessibility.js';
 import { performanceManager } from './modules/performance.js';
+import { forceProjectCardVisibility } from './modules/utils.js';
 
 /**
  * Portfolio Application Class
@@ -64,23 +65,17 @@ class PortfolioApp {
 
     console.log('🚀 Initializing Portfolio Application...');
 
-    // CRITICAL: Force filter visibility immediately for Vercel
     this.forceFilterVisibility();
 
-    // Add js-enabled class for progressive enhancement
     document.body.classList.add('js-enabled');
 
     try {
-      // Initialize core functionality first
       await this.initializeCore();
 
-      // Initialize page-specific features
       await this.initializePageFeatures();
 
-      // Setup global event listeners
       this.setupGlobalEvents();
 
-      // Mark as initialized
       this.isInitialized = true;
 
       console.log('✅ Portfolio Application initialized successfully');
@@ -101,15 +96,14 @@ class PortfolioApp {
     const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
 
     // Force filter buttons visibility
-    filterButtons.forEach(btn => {
+    for (const btn of filterButtons) {
       btn.style.opacity = '1';
       btn.style.transform = 'translateY(0)';
       btn.style.visibility = 'visible';
       btn.style.display = 'inline-flex';
       btn.classList.add('animate-in');
-    });
+    }
 
-    // Force filter container visibility
     if (filterContainer) {
       filterContainer.style.opacity = '1';
       filterContainer.style.transform = 'translateY(0)';
@@ -117,34 +111,21 @@ class PortfolioApp {
       filterContainer.classList.add('animate-in');
     }
 
-    // CRITICAL: Force project cards to be visible IMMEDIATELY
-    projectCards.forEach(card => {
-      // Remove animation-delay to prevent flickering
-      card.style.removeProperty('animation-delay');
-      card.style.setProperty('opacity', '1', 'important');
-      card.style.setProperty('transform', 'translateY(0)', 'important');
-      card.style.setProperty('visibility', 'visible', 'important');
-      card.classList.add('animate-in');
-      card.classList.remove('project-hidden');
-    });
-
-    console.log(`🔧 Forced visibility: ${filterButtons.length} filters, ${projectCards.length} cards`);
+    const processedCount = forceProjectCardVisibility(projectCards);
+    console.log(`🔧 Forced visibility: ${filterButtons.length} filters, ${processedCount} cards`);
   }
 
   /**
    * Initialize core application features
    */
   async initializeCore() {
-    // Initialize projects FIRST to ensure cards are visible immediately
     this.modules.projects.init();
     
-    // Then initialize other modules
     this.modules.navigation.init();
     this.modules.animations.init();
     this.modules.accessibility.init();
     this.modules.performance.init();
 
-    // Set initial navigation state
     this.modules.accessibility.setInitialNavigationState();
 
     console.log('✅ Core features initialized');

@@ -21,13 +21,15 @@
  * - Animations fluides et optimisées GPU
  * - Debouncing pour les performances
  *
- * Dependencies: Intersection Observer API
+ * Dependencies: Intersection Observer API, utils.js
  * Browser Support: Modern browsers avec Intersection Observer
  *
  * =====================================================================================================
  */
 
 'use strict';
+
+import { forceProjectCardVisibility } from './utils.js';
 
 /**
  * Scroll Animation Manager
@@ -83,15 +85,10 @@ export class ScrollAnimations {
       filterContainer.classList.add('animate-in');
     }
 
-    // Force immediate visibility for project cards (no delay on load)
+    // Force immediate visibility for project cards (no delay on load) using shared utility
     const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
-    for (const card of projectCards) {
-      card.style.removeProperty('animation-delay');
-      card.style.setProperty('opacity', '1', 'important');
-      card.style.setProperty('transform', 'translateY(0)', 'important');
-      card.style.setProperty('visibility', 'visible', 'important');
-      card.classList.add('animate-in');
-    }
+    const cardsProcessed = forceProjectCardVisibility(projectCards);
+    console.log(`🎬 ${cardsProcessed} project cards forced visible immediately`);
 
     // Intersection Observer options
     const observerOptions = {
