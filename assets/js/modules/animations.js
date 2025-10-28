@@ -120,15 +120,18 @@ export class ScrollAnimations {
     }, observerOptions);
 
     // Start observing all animated elements EXCEPT project cards
+    let observedCount = 0;
     for (const element of animatedElements) {
       // Skip project cards - they're already visible
       if (element.classList.contains('project-card-enhanced') || element.classList.contains('project-card')) {
         continue;
       }
       this.animationObserver.observe(element);
+      observedCount++;
     }
 
-    console.log(`Started observing ${animatedElements.length} animated elements (excluding project cards)`);
+    const projectCardsCount = animatedElements.length - observedCount;
+    console.log(`🎬 Animation Observer: ${observedCount} elements observed (${projectCardsCount} project cards excluded)`);
   }
 
   /**
