@@ -86,7 +86,6 @@ export class ScrollAnimations {
     // Force immediate visibility for project cards (no delay on load)
     const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
     for (const card of projectCards) {
-      // Remove any animation-delay that might cause flickering
       card.style.removeProperty('animation-delay');
       card.style.setProperty('opacity', '1', 'important');
       card.style.setProperty('transform', 'translateY(0)', 'important');
