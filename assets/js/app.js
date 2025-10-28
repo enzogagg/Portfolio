@@ -98,7 +98,9 @@ class PortfolioApp {
   forceFilterVisibility() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
+    const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
 
+    // Force filter buttons visibility
     filterButtons.forEach(btn => {
       btn.style.opacity = '1';
       btn.style.transform = 'translateY(0)';
@@ -107,6 +109,7 @@ class PortfolioApp {
       btn.classList.add('animate-in');
     });
 
+    // Force filter container visibility
     if (filterContainer) {
       filterContainer.style.opacity = '1';
       filterContainer.style.transform = 'translateY(0)';
@@ -114,17 +117,30 @@ class PortfolioApp {
       filterContainer.classList.add('animate-in');
     }
 
-    console.log('🔧 Filter visibility forced for production');
+    // CRITICAL: Force project cards to be visible IMMEDIATELY
+    projectCards.forEach(card => {
+      // Remove animation-delay to prevent flickering
+      card.style.removeProperty('animation-delay');
+      card.style.setProperty('opacity', '1', 'important');
+      card.style.setProperty('transform', 'translateY(0)', 'important');
+      card.style.setProperty('visibility', 'visible', 'important');
+      card.classList.add('animate-in');
+      card.classList.remove('project-hidden');
+    });
+
+    console.log(`🔧 Forced visibility: ${filterButtons.length} filters, ${projectCards.length} cards`);
   }
 
   /**
    * Initialize core application features
    */
   async initializeCore() {
-    // Initialize all modules explicitly (theme module removed)
+    // Initialize projects FIRST to ensure cards are visible immediately
+    this.modules.projects.init();
+    
+    // Then initialize other modules
     this.modules.navigation.init();
     this.modules.animations.init();
-    this.modules.projects.init();
     this.modules.accessibility.init();
     this.modules.performance.init();
 

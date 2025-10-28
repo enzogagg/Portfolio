@@ -88,11 +88,11 @@ export class ProjectsFilter {
 
       console.log('✅ Projects page functionality initialized');
 
-      // Test filtering immediately
-      setTimeout(() => {
-        console.log('🧪 Testing filter functionality...');
-        this.testFiltering();
-      }, 500);
+      // DISABLED: Test filtering causes cards to flicker
+      // setTimeout(() => {
+      //   console.log('🧪 Testing filter functionality...');
+      //   this.testFiltering();
+      // }, 500);
     };
 
     // Wait for DOM to be ready
@@ -137,9 +137,19 @@ export class ProjectsFilter {
    * Reset any existing inline styles that might interfere with CSS
    */
   resetProjectCards() {
-    // Ne rien faire au chargement, laisser l'animation au scroll gérer l'apparition
-    // Les styles sont gérés uniquement lors d'un filtre
-    console.log('🔄 Project cards left to default state (no forced hide on load)');
+    for (const card of this.projectCards) {
+      // Remove animation-delay to prevent flickering
+      card.style.removeProperty('animation-delay');
+      if (card.classList.contains('animate-on-scroll')) {
+        card.classList.add('animate-in');
+      }
+      // Force visibility with !important
+      card.style.setProperty('opacity', '1', 'important');
+      card.style.setProperty('transform', 'translateY(0)', 'important');
+      card.style.setProperty('visibility', 'visible', 'important');
+      card.classList.remove('project-hidden');
+    }
+    console.log('🔄 Project cards made immediately visible on load');
   }
 
   /**

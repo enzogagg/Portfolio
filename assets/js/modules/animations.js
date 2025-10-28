@@ -83,6 +83,17 @@ export class ScrollAnimations {
       filterContainer.classList.add('animate-in');
     }
 
+    // Force immediate visibility for project cards (no delay on load)
+    const projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
+    for (const card of projectCards) {
+      // Remove any animation-delay that might cause flickering
+      card.style.removeProperty('animation-delay');
+      card.style.setProperty('opacity', '1', 'important');
+      card.style.setProperty('transform', 'translateY(0)', 'important');
+      card.style.setProperty('visibility', 'visible', 'important');
+      card.classList.add('animate-in');
+    }
+
     // Intersection Observer options
     const observerOptions = {
       threshold: 0.1,
@@ -112,12 +123,16 @@ export class ScrollAnimations {
       }
     }, observerOptions);
 
-    // Start observing all animated elements
+    // Start observing all animated elements EXCEPT project cards
     for (const element of animatedElements) {
+      // Skip project cards - they're already visible
+      if (element.classList.contains('project-card-enhanced') || element.classList.contains('project-card')) {
+        continue;
+      }
       this.animationObserver.observe(element);
     }
 
-    console.log(`Started observing ${animatedElements.length} animated elements`);
+    console.log(`Started observing ${animatedElements.length} animated elements (excluding project cards)`);
   }
 
   /**
