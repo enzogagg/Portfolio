@@ -1,8 +1,31 @@
 /**
- * =========================================
- * REUSABLE COMPONENTS
- * Common UI components and patterns
- * =========================================
+ * =====================================================================================================
+ * PORTFOLIO - REUSABLE COMPONENTS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: components.css
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Common UI components and reusable patterns for consistent design.
+ * Includes stats cards, badges, indicators and shared component styles.
+ *
+ * Features:
+ * - Reusable stat cards
+ * - Status badges and indicators
+ * - Common UI patterns
+ * - Consistent styling across components
+ * - Interactive hover states
+ * - Glassmorphism effects
+ * - Full accessibility support (WCAG)
+ *
+ * Dependencies: variables.css, animations.css
+ * Browser Support: Modern browsers with backdrop-filter
+ *
+ * =====================================================================================================
  */
 
 /**
