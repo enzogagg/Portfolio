@@ -1,26 +1,36 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PROJECT : INFRASTRUCTURE RÉSEAU DOMESTIQUE
+PORTFOLIO - PROJECT DETAIL: HOME NETWORK INFRASTRUCTURE
 =====================================================================================================
+
 Author: Enzo Gaggiotti
 Project: Personal Portfolio
 File: network-project.html
 Version: 1.0.0
-Last Updated: October 2025
+Last Updated: November 2025
 
 Description:
-Page de présentation du projet d'infrastructure réseau domestique sécurisée et segmentée.
+Detailed page for the home network infrastructure project showcasing
+secure and segmented network architecture with professional-grade equipment.
 
 Features:
-- Architecture réseau complète avec VLANs
-- Stack technique (pfSense, Unifi, Proxmox)
-- Schémas réseau et segmentation
-- Métriques et configuration réelle
-- Design harmonisé avec le portfolio
+- Complete network architecture with VLANs segmentation
+- Technical stack (pfSense, Unifi, Proxmox cluster)
+- Network diagrams and topology visualization
+- Real-world metrics and configuration details
+- Security features and firewall rules
+- Self-hosted services infrastructure
+- Monitoring and performance statistics
+- Minimalist Apple-style navigation
+- Mobile-first responsive design
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers with backdrop-filter
+
 =====================================================================================================
 -->
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
+<html lang="fr" class="text-white scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,6 +66,24 @@ Features:
 <!-- End Matomo Code -->
 
 <body class="min-h-screen flex flex-col">
+
+  <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+  <div class="mesh-gradient-bg">
+    <!-- Gradient Orbs -->
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+
+    <!-- Light Rays -->
+    <div class="light-rays">
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+    </div>
+  </div>
+
   <!-- Minimalist loader -->
   <div id="minimal-loader">
     <div class="minimal-spinner"></div>
@@ -162,13 +190,8 @@ Features:
 
         <!-- Title -->
         <div class="space-y-4">
-          <h1 class="text-5xl lg:text-7xl font-black tracking-tight leading-tight">
-            <span class="block bg-gradient-to-r from-white via-green-200 to-white bg-clip-text text-transparent">
-              Infrastructure Réseau
-            </span>
-            <span class="block bg-gradient-to-r from-green-400 via-blue-400 to-green-400 bg-clip-text text-transparent animate-gradient-x">
-              HomeLab Sécurisé
-            </span>
+          <h1 class="text-5xl lg:text-7xl font-black tracking-tight leading-tight gradient-text-animated">
+            Infrastructure Réseau HomeLab
           </h1>
           <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-full mx-auto lg:mx-0"></div>
         </div>
@@ -201,7 +224,7 @@ Features:
     </div>
   </section>
 
-  <!-- ========== ARCHITECTURE MATÉRIELLE ========== -->
+  <!-- ========== HARDWARE ARCHITECTURE ========== -->
   <section id="architecture" class="relative py-20 fade-in">
     <div class="absolute inset-0 opacity-5">
       <div class="absolute top-20 right-20 w-64 h-64 border border-green-500/20 rounded-full"></div>
@@ -374,8 +397,8 @@ Features:
     </div>
   </section>
 
-  <!-- ========== CONCEPTION RÉSEAU & VLANs ========== -->
-  <section id="vlans" class="relative py-20 fade-in bg-neutral-900/30">
+  <!-- ========== NETWORK DESIGN &amp; VLANs ========== -->
+  <section id="vlans" class="relative py-20 fade-in">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm mb-6">
@@ -667,7 +690,7 @@ Features:
     </div>
   </section>
 
-  <!-- ========== SÉCURITÉ & SUPERVISION ========== -->
+  <!-- ========== SECURITY &amp; MONITORING ========== -->
   <section class="relative py-20 fade-in">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -789,8 +812,8 @@ Features:
     </div>
   </section>
 
-  <!-- ========== COMPÉTENCES ========== -->
-  <section class="relative py-20 fade-in bg-neutral-900/30">
+  <!-- ========== SKILLS ========== -->
+  <section class="relative py-20 fade-in">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-full backdrop-blur-sm mb-6">
@@ -804,7 +827,7 @@ Features:
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Réseau -->
+        <!-- Network -->
         <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
@@ -860,7 +883,7 @@ Features:
           </ul>
         </div>
 
-        <!-- Sécurité -->
+        <!-- Security -->
         <div class="bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center">
@@ -919,7 +942,7 @@ Features:
     </div>
   </section>
 
-  <!-- ========== MÉTRIQUES ========== -->
+  <!-- ========== METRICS ========== -->
   <section class="relative py-20 fade-in">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -1018,7 +1041,7 @@ Features:
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
+  <footer class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl">
     <div class="flex justify-center items-center gap-6 mb-4">
       <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
         <i class="fas fa-envelope text-2xl"></i>
@@ -1034,18 +1057,7 @@ Features:
   </footer>
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/burger.js"></script>
-  <!-- Fallback pour usage local (file:// protocol) -->
-  <script>
-    if (globalThis.location && globalThis.location.protocol === 'file:') {
-      const script = document.createElement('script');
-      script.src = 'assets/js/standalone.js';
-      document.head.appendChild(script);
-    } else {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'assets/js/app.js';
-      document.head.appendChild(script);
-    }
-  </script>
+  <script src="assets/js/module-loader.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
 </body>
 </html>

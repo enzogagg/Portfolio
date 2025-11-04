@@ -1,33 +1,35 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PAGE PROJET PORTFOLIO
+PORTFOLIO - PROJECT DETAIL: INTERACTIVE PORTFOLIO WEBSITE
 =====================================================================================================
 
 Author: Enzo Gaggiotti
-Project: Portfolio Personnel
+Project: Personal Portfolio
 File: portfolio-project.html
 Version: 1.0.0
-Last Updated: July 2025
+Last Updated: November 2025
 
 Description:
-Page dédiée au projet Portfolio présentant l'architecture, les technologies
-utilisées et le processus de développement avec design glassmorphism.
+Detailed page for the Portfolio project presenting the architecture,
+technologies used, and development process with glassmorphism design.
 
 Features:
-- Présentation détaillée du projet Portfolio
-- Architecture technique et design system
-- Démonstration des fonctionnalités
-- Process de développement et choix techniques
-- Navigation Apple minimaliste cohérente
-- Design responsive mobile-first
+- Detailed portfolio project presentation
+- Technical architecture and design system overview
+- Features demonstration with screenshots
+- Development process and technical choices explanation
+- Code structure and modular organization
+- Performance optimizations showcase
+- Minimalist Apple-style navigation
+- Mobile-first responsive design
 
 Dependencies: main.css, font-awesome, inter-font
-Browser Support: Modern browsers avec backdrop-filter
+Browser Support: Modern browsers with backdrop-filter
 
 =====================================================================================================
 -->
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
+<html lang="fr" class="text-white scroll-smooth">
 <head>
   <!-- ========== META INFORMATION ========== -->
   <meta charset="UTF-8" />
@@ -41,8 +43,30 @@ Browser Support: Modern browsers avec backdrop-filter
 
   <!-- ========== CSS FRAMEWORKS & STYLES ========== -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/loader.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Force glassmorphism si cache CSS -->
+  <style>
+    .tech-card, .glass-card {
+      background: rgba(255, 255, 255, 0.03) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 1.5rem !important;
+      padding: 1.5rem !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+                  0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    .tech-card:hover, .glass-card:hover {
+      background: rgba(255, 255, 255, 0.06) !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 12px 48px rgba(96, 165, 250, 0.15),
+                  0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+    }
+  </style>
 </head>
 <!-- Matomo -->
 <script>
@@ -66,6 +90,23 @@ Browser Support: Modern browsers avec backdrop-filter
 <!-- End Matomo Code -->
 
 <body class="min-h-screen flex flex-col">
+
+  <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+  <div class="mesh-gradient-bg">
+    <!-- Gradient Orbs -->
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+
+    <!-- Light Rays -->
+    <div class="light-rays">
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+    </div>
+  </div>
 
   <!-- ========== HEADER NAVIGATION ========== -->
   <header id="main-header">
@@ -208,13 +249,8 @@ Browser Support: Modern browsers avec backdrop-filter
 
         <!-- Title -->
         <div class="space-y-4">
-          <h1 class="text-5xl lg:text-7xl font-black tracking-tight leading-tight">
-            <span class="block bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent">
-              Portfolio
-            </span>
-            <span class="block bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
-              Interactif
-            </span>
+          <h1 class="text-5xl lg:text-7xl font-black tracking-tight leading-tight gradient-text-animated">
+            Portfolio Interactif
           </h1>
 
           <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto lg:mx-0"></div>
@@ -246,7 +282,7 @@ Browser Support: Modern browsers avec backdrop-filter
           </div>
         </div>
 
-        <!-- Actions simplifiées -->
+        <!-- Simplified Actions -->
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6">
           <a href="https://github.com/enzogagg/portfolio" class="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white flex items-center gap-3 hover:scale-105 transition-transform">
             <i class="fab fa-github text-xl"></i>
@@ -278,9 +314,9 @@ Browser Support: Modern browsers avec backdrop-filter
 
         <div class="grid md:grid-cols-3 gap-8">
           <!-- HTML -->
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+          <div class="tech-card">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center icon-hover">
                 <i class="fab fa-html5 text-2xl text-white"></i>
               </div>
               <div>
@@ -296,9 +332,9 @@ Browser Support: Modern browsers avec backdrop-filter
           </div>
 
           <!-- CSS -->
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+          <div class="tech-card">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center icon-hover">
                 <i class="fab fa-css3-alt text-2xl text-white"></i>
               </div>
               <div>
@@ -315,9 +351,9 @@ Browser Support: Modern browsers avec backdrop-filter
           </div>
 
           <!-- JavaScript -->
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+          <div class="tech-card">
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-lg flex items-center justify-center">
+              <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-lg flex items-center justify-center icon-hover">
                 <i class="fab fa-js text-2xl text-white"></i>
               </div>
               <div>
@@ -389,8 +425,8 @@ Browser Support: Modern browsers avec backdrop-filter
       </div>
     </section>
 
-    <!-- ========== DÉVELOPPEMENT ========== -->
-    <section class="py-20 fade-in bg-neutral-900/50 rounded-3xl">
+    <!-- ========== DEVELOPMENT ========== -->
+    <section class="py-20 fade-in relative">
       <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-12">
           <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-full backdrop-blur-sm mb-6">
@@ -401,7 +437,7 @@ Browser Support: Modern browsers avec backdrop-filter
         </div>
 
         <div class="space-y-8">
-          <!-- Étape 1 -->
+          <!-- Step 1 -->
           <div class="flex gap-6">
             <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center font-bold text-xl">
               1
@@ -419,7 +455,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </div>
           </div>
 
-          <!-- Étape 2 -->
+          <!-- Step 2 -->
           <div class="flex gap-6">
             <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center font-bold text-xl">
               2
@@ -437,7 +473,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </div>
           </div>
 
-          <!-- Étape 3 -->
+          <!-- Step 3 -->
           <div class="flex gap-6">
             <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center font-bold text-xl">
               3
@@ -455,7 +491,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </div>
           </div>
 
-          <!-- Étape 4 -->
+          <!-- Step 4 -->
           <div class="flex gap-6">
             <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center font-bold text-xl">
               4
@@ -476,7 +512,7 @@ Browser Support: Modern browsers avec backdrop-filter
       </div>
     </section>
 
-    <!-- ========== DÉFIS TECHNIQUES ========== -->
+    <!-- ========== TECHNICAL CHALLENGES ========== -->
     <section class="py-20 fade-in">
       <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-12">
@@ -489,7 +525,7 @@ Browser Support: Modern browsers avec backdrop-filter
         </div>
 
         <div class="space-y-6">
-          <!-- Défi 1 -->
+          <!-- Challenge 1 -->
           <div class="bg-red-500/5 border border-red-500/20 rounded-2xl p-6 hover:bg-red-500/10 transition-all">
             <div class="flex items-start gap-4">
               <div class="flex-shrink-0 w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
@@ -513,7 +549,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </div>
           </div>
 
-          <!-- Défi 2 -->
+          <!-- Challenge 2 -->
           <div class="bg-orange-500/5 border border-orange-500/20 rounded-2xl p-6 hover:bg-orange-500/10 transition-all">
             <div class="flex items-start gap-4">
               <div class="flex-shrink-0 w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
@@ -539,7 +575,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </div>
           </div>
 
-          <!-- Défi 3 -->
+          <!-- Challenge 3 -->
           <div class="bg-yellow-500/5 border border-yellow-500/20 rounded-2xl p-6 hover:bg-yellow-500/10 transition-all">
             <div class="flex items-start gap-4">
               <div class="flex-shrink-0 w-10 h-10 bg-yellow-500/20 rounded-lg flex items-center justify-center">
@@ -563,7 +599,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </div>
           </div>
 
-          <!-- Défi 4 -->
+          <!-- Challenge 4 -->
           <div class="bg-purple-500/5 border border-purple-500/20 rounded-2xl p-6 hover:bg-purple-500/10 transition-all">
             <div class="flex items-start gap-4">
               <div class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
@@ -591,8 +627,8 @@ Browser Support: Modern browsers avec backdrop-filter
       </div>
     </section>
 
-    <!-- ========== CE QUE J'AI APPRIS ========== -->
-    <section class="py-20 fade-in bg-neutral-900/50 rounded-3xl">
+    <!-- ========== WHAT I LEARNED ========== -->
+    <section class="py-20 fade-in relative">
       <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-12">
           <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm mb-6">
@@ -604,7 +640,7 @@ Browser Support: Modern browsers avec backdrop-filter
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+          <div class="glass-card">
             <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
               <i class="fas fa-code text-blue-400"></i>
               <span>Développement web</span>
@@ -618,7 +654,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </ul>
           </div>
 
-          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+          <div class="glass-card">
             <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
               <i class="fas fa-tachometer-alt text-green-400"></i>
               <span>Performance web</span>
@@ -632,7 +668,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </ul>
           </div>
 
-          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+          <div class="glass-card">
             <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
               <i class="fas fa-universal-access text-purple-400"></i>
               <span>Accessibilité</span>
@@ -646,7 +682,7 @@ Browser Support: Modern browsers avec backdrop-filter
             </ul>
           </div>
 
-          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all">
+          <div class="glass-card">
             <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
               <i class="fas fa-tools text-orange-400"></i>
               <span>Workflow & outils</span>
@@ -663,7 +699,7 @@ Browser Support: Modern browsers avec backdrop-filter
       </div>
     </section>
 
-    <!-- ========== MÉTRIQUES & PERFORMANCE ========== -->
+    <!-- ========== METRICS &amp; PERFORMANCE ========== -->
     <section class="py-20 fade-in">
       <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-12">
@@ -698,7 +734,7 @@ Browser Support: Modern browsers avec backdrop-filter
           </div>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+        <div class="glass-card">
           <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
             <i class="fas fa-info-circle text-blue-400"></i>
             <span>Détails techniques</span>
@@ -729,7 +765,7 @@ Browser Support: Modern browsers avec backdrop-filter
           </div>
         </div>
 
-        <!-- Améliorations futures -->
+        <!-- Future Improvements -->
         <div class="mt-12 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 border border-yellow-500/20 rounded-2xl p-8">
           <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
             <i class="fas fa-lightbulb text-yellow-400"></i>
@@ -762,31 +798,25 @@ Browser Support: Modern browsers avec backdrop-filter
   </main>
 
   <!-- ========== FOOTER ========== -->
+  <footer class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl">
+    <!-- Social links -->
+    <div class="flex justify-center gap-6 mb-6">
       <a href="https://github.com/enzogagg" class="hover:text-white transition" title="GitHub" aria-label="GitHub">
         <i class="fab fa-github text-2xl"></i>
       </a>
       <a href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/" class="hover:text-white transition" title="LinkedIn" aria-label="LinkedIn">
         <i class="fab fa-linkedin text-2xl"></i>
       </a>
+    </div>
 
-    <!-- Copyright Notice -->
+    <!-- Copyright notice -->
     <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+  </footer>
 
   <!-- ========== JAVASCRIPT INITIALIZATION ========== -->
-  <script src="assets/js/loader.js"></script>
+    <script src="assets/js/loader.js"></script>
   <script src="assets/js/burger.js"></script>
-  <!-- Fallback pour usage local (file:// protocol) -->
-  <script>
-    if (globalThis.location.protocol === 'file:') {
-      const script = document.createElement('script');
-      script.src = 'assets/js/standalone.js';
-      document.head.appendChild(script);
-    } else {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'assets/js/app.js';
-      document.head.appendChild(script);
-    }
-  </script>
+  <script src="assets/js/module-loader.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
 </body>
 </html>

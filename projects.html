@@ -1,24 +1,25 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PAGE PROJETCS
+PORTFOLIO - PROJECTS PAGE
 =====================================================================================================
 
 Author: Enzo Gaggiotti
 Project: Personal Portfolio
 File: projects.html
 Version: 2.1.0
-Last Updated: July 2025
+Last Updated: November 2025
 
 Description:
-Page dedicated to projects and achievements with interactive gallery, technology filters, and detailed cards with actions.
+Projects page showcasing portfolio with interactive filtering system,
+detailed cards, and technology tags.
 
 Features:
-- Project gallery with filtering system
-- Project cards with glassmorphism
-- Action buttons (demo, GitHub)
-- Technology tags with specific colors
-- Consistent minimalist Apple-style navigation
-- Smooth animations and transitions
+- Interactive project filtering by technology
+- Glassmorphism project cards with hover effects
+- Action buttons (demo, GitHub, details)
+- Technology tags with brand-specific colors
+- Project status indicators (active, completed, in progress)
+- Minimalist Apple-style navigation
 - Mobile-first responsive design
 
 Dependencies: main.css, font-awesome, inter-font
@@ -27,7 +28,7 @@ Browser Support: Modern browsers with backdrop-filter
 =====================================================================================================
 -->
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
+<html lang="fr" class="text-white scroll-smooth">
 <head>
   <!-- ========== META INFORMATION ========== -->
   <meta charset="UTF-8" />
@@ -65,6 +66,24 @@ Browser Support: Modern browsers with backdrop-filter
 <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
 <body class="min-h-screen flex flex-col">
+
+  <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+  <div class="mesh-gradient-bg">
+    <!-- Gradient Orbs -->
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+
+    <!-- Light Rays -->
+    <div class="light-rays">
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+    </div>
+  </div>
+
   <!-- Minimalist loader -->
   <div id="minimal-loader">
     <div class="minimal-spinner"></div>
@@ -118,7 +137,7 @@ Browser Support: Modern browsers with backdrop-filter
     <div class="text-center space-y-8 max-w-4xl relative z-10">
       <!-- Main title -->
       <div class="inline-block">
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] gradient-text-animated">
           Mes Projets
         </h1>
       </div>
@@ -163,7 +182,7 @@ Browser Support: Modern browsers with backdrop-filter
     <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 projects-grid">
 
       <!-- ========== INFRASTRUCTURE PROJECTS ========== -->
-      <!-- Project: Infrastructure Réseau -->
+      <!-- Project: Network Infrastructure -->
       <div class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll" data-category="infrastructure" style="animation-delay: 0.0s;">
         <div class="project-card-header">
           <div class="project-icon-container">
@@ -289,8 +308,8 @@ Browser Support: Modern browsers with backdrop-filter
     </div>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
-    <!-- Social Links -->
+  <footer class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl">
+    <!-- Social links -->
     <div class="flex justify-center items-center gap-6 mb-4">
       <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
         <i class="fas fa-envelope text-2xl"></i>
@@ -303,24 +322,16 @@ Browser Support: Modern browsers with backdrop-filter
       </a>
     </div>
 
-    <!-- Copyright Notice -->
+    <!-- Copyright notice -->
     <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
   </footer>
 
-  <!-- ========== JAVASCRIPT INITIALIZATION ========== -->
+    <!-- ========== JAVASCRIPT INITIALIZATION ========== -->
 
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/burger.js"></script>
-  <!-- Fallback pour usage local (file:// protocol) -->
-  <script>
-    if (globalThis.location?.protocol === 'file:') {
-      const script = document.createElement('script');
-      script.src = 'assets/js/standalone.js';
-      document.head.appendChild(script);
-    } else {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'assets/js/app.js';
-      document.head.appendChild(script);
-    }
-  </script>
+  <script src="assets/js/module-loader.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
+
+</body>
+</html>

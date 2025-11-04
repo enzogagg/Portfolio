@@ -1,27 +1,35 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PROJECT : BOX DOMOTIQUE AQUARIUM
+PORTFOLIO - PROJECT DETAIL: AQUASENSE - SMART AQUARIUM BOX
 =====================================================================================================
+
 Author: Enzo Gaggiotti
 Project: Personal Portfolio
 File: aquarium-project.html
 Version: 1.1.0
-Last Updated: July 2025
+Last Updated: November 2025
 
 Description:
-Page to present the Aquarium Smart Home Box project with a design harmonized with the portfolio projects page.
+Detailed page for the AquaSense project - Smart aquarium monitoring system
+with ESP32, multiple sensors, and Home Assistant integration.
 
 Features:
-- Presentation of the project and objectives
-- Electronic diagrams and technical explanations
-- Overview of the Home Assistant dashboard
-- List of sensors and automations
-- Links to code and resources
-- Glassmorphism design, colored tags, animated buttons, responsive
+- Project overview and objectives presentation
+- Electronic schematics and technical explanations
+- Home Assistant dashboard screenshots
+- Sensors and automations list with status indicators
+- Links to code repository and resources
+- Glassmorphism design with colored tech tags
+- Animated buttons and interactive elements
+- Mobile-first responsive design
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers with backdrop-filter
+
 =====================================================================================================
 -->
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
+<html lang="fr" class="text-white scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,6 +66,24 @@ Features:
 
 
 <body class="min-h-screen flex flex-col">
+
+  <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+  <div class="mesh-gradient-bg">
+    <!-- Gradient Orbs -->
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+
+    <!-- Light Rays -->
+    <div class="light-rays">
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+    </div>
+  </div>
+
   <!-- Minimalist loader -->
   <div id="minimal-loader">
     <div class="minimal-spinner"></div>
@@ -174,7 +200,7 @@ Features:
           </p>
         </div>
 
-        <!-- Actions simplifiées -->
+        <!-- Simplified Actions -->
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6">
           <a href="https://github.com/enzogagg/AquaSense" target="_blank" rel="noopener" class="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white flex items-center gap-3">
             <i class="fab fa-github text-xl"></i>
@@ -290,7 +316,7 @@ Features:
     </div>
   </section>
 
-  <!-- ========== PROCESSUS DE DÉVELOPPEMENT ========== -->
+  <!-- ========== DEVELOPMENT PROCESS ========== -->
   <section class="relative py-20 fade-in bg-neutral-900/30">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -305,7 +331,7 @@ Features:
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Étape 1 -->
+        <!-- Step 1 -->
         <div class="bg-gradient-to-br from-neutral-800/80 to-neutral-900/80 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -322,7 +348,7 @@ Features:
           </div>
         </div>
 
-        <!-- Étape 2 -->
+        <!-- Step 2 -->
         <div class="bg-gradient-to-br from-neutral-800/80 to-neutral-900/80 border border-purple-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -339,7 +365,7 @@ Features:
           </div>
         </div>
 
-        <!-- Étape 3 -->
+        <!-- Step 3 -->
         <div class="bg-gradient-to-br from-neutral-800/80 to-neutral-900/80 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -356,7 +382,7 @@ Features:
           </div>
         </div>
 
-        <!-- Étape 4 -->
+        <!-- Step 4 -->
         <div class="bg-gradient-to-br from-neutral-800/80 to-neutral-900/80 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -376,7 +402,7 @@ Features:
     </div>
   </section>
 
-  <!-- ========== DÉFIS TECHNIQUES ========== -->
+  <!-- ========== TECHNICAL CHALLENGES ========== -->
   <section class="relative py-20 fade-in">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -391,7 +417,7 @@ Features:
       </div>
 
       <div class="space-y-6">
-        <!-- Défi 1 -->
+        <!-- Challenge 1 -->
         <div class="bg-gradient-to-r from-red-500/5 via-neutral-900/50 to-neutral-900/50 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex flex-col lg:flex-row gap-8">
             <div class="lg:w-1/3">
@@ -421,7 +447,7 @@ Features:
           </div>
         </div>
 
-        <!-- Défi 2 -->
+        <!-- Challenge 2 -->
         <div class="bg-gradient-to-r from-orange-500/5 via-neutral-900/50 to-neutral-900/50 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex flex-col lg:flex-row gap-8">
             <div class="lg:w-1/3">
@@ -449,7 +475,7 @@ Features:
           </div>
         </div>
 
-        <!-- Défi 3 -->
+        <!-- Challenge 3 -->
         <div class="bg-gradient-to-r from-yellow-500/5 via-neutral-900/50 to-neutral-900/50 border border-yellow-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex flex-col lg:flex-row gap-8">
             <div class="lg:w-1/3">
@@ -482,7 +508,7 @@ mqtt:<br/>
     </div>
   </section>
 
-  <!-- ========== CE QUE J'AI APPRIS ========== -->
+  <!-- ========== WHAT I LEARNED ========== -->
   <section class="relative py-20 fade-in bg-neutral-900/30">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -525,7 +551,7 @@ mqtt:<br/>
           </ul>
         </div>
 
-        <!-- Domotique & Intégration -->
+        <!-- Home Automation &amp; Integration -->
         <div class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center">
@@ -581,7 +607,7 @@ mqtt:<br/>
           </ul>
         </div>
 
-        <!-- Méthodologie Projet -->
+        <!-- Project Methodology -->
         <div class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center">
@@ -612,7 +638,7 @@ mqtt:<br/>
     </div>
   </section>
 
-  <!-- ========== MÉTRIQUES ========== -->
+  <!-- ========== METRICS ========== -->
   <section class="relative py-20 fade-in">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -627,7 +653,7 @@ mqtt:<br/>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Métrique 1 -->
+        <!-- Metric 1 -->
         <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-microchip text-white text-2xl"></i>
@@ -637,7 +663,7 @@ mqtt:<br/>
           <div class="text-xs text-neutral-500 mt-2">Niveau, Temp, Turbidité</div>
         </div>
 
-        <!-- Métrique 2 -->
+        <!-- Metric 2 -->
         <div class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-clock text-white text-2xl"></i>
@@ -647,7 +673,7 @@ mqtt:<br/>
           <div class="text-xs text-neutral-500 mt-2">Mise à jour toutes les 5s</div>
         </div>
 
-        <!-- Métrique 3 -->
+        <!-- Metric 3 -->
         <div class="bg-gradient-to-br from-green-500/10 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-wifi text-white text-2xl"></i>
@@ -657,7 +683,7 @@ mqtt:<br/>
           <div class="text-xs text-neutral-500 mt-2">Après optimisations</div>
         </div>
 
-        <!-- Métrique 4 -->
+        <!-- Metric 4 -->
         <div class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-battery-three-quarters text-white text-2xl"></i>
@@ -667,7 +693,7 @@ mqtt:<br/>
           <div class="text-xs text-neutral-500 mt-2">USB-C stable</div>
         </div>
 
-        <!-- Métrique 5 -->
+        <!-- Metric 5 -->
         <div class="bg-gradient-to-br from-pink-500/10 to-pink-600/5 border border-pink-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-code text-white text-2xl"></i>
@@ -677,7 +703,7 @@ mqtt:<br/>
           <div class="text-xs text-neutral-500 mt-2">ESPHome + HA</div>
         </div>
 
-        <!-- Métrique 6 -->
+        <!-- Metric 6 -->
         <div class="bg-gradient-to-br from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-bell text-white text-2xl"></i>
@@ -687,7 +713,7 @@ mqtt:<br/>
           <div class="text-xs text-neutral-500 mt-2">Niveau bas + Temp anormale</div>
         </div>
 
-        <!-- Métrique 7 -->
+        <!-- Metric 7 -->
         <div class="bg-gradient-to-br from-indigo-500/10 to-indigo-600/5 border border-indigo-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-database text-white text-2xl"></i>
@@ -697,7 +723,7 @@ mqtt:<br/>
           <div class="text-xs text-neutral-500 mt-2">Historique InfluxDB</div>
         </div>
 
-        <!-- Métrique 8 -->
+        <!-- Metric 8 -->
         <div class="bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-2xl p-8 text-center backdrop-blur-sm">
           <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-4">
             <i class="fas fa-project-diagram text-white text-2xl"></i>
@@ -708,7 +734,7 @@ mqtt:<br/>
         </div>
       </div>
 
-      <!-- Note sur l'état -->
+      <!-- Status Note -->
       <div class="mt-12 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm">
         <div class="flex items-start gap-4">
           <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -740,7 +766,7 @@ mqtt:<br/>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
+  <footer class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl">
     <div class="flex justify-center items-center gap-6 mb-4">
       <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
         <i class="fas fa-envelope text-2xl"></i>
@@ -756,18 +782,7 @@ mqtt:<br/>
   </footer>
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/burger.js"></script>
-  <!-- Fallback pour usage local (file:// protocol) -->
-  <script>
-    if (globalThis.location && globalThis.location.protocol === 'file:') {
-      const script = document.createElement('script');
-      script.src = 'assets/js/standalone.js';
-      document.head.appendChild(script);
-    } else {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'assets/js/app.js';
-      document.head.appendChild(script);
-    }
-  </script>
+  <script src="assets/js/module-loader.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
 </body>
 </html>
