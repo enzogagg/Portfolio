@@ -48,8 +48,8 @@
   }
 
   /**
-   * Effet parallax sur les orbs au scroll
-   * Optimisé avec requestAnimationFrame
+   * Parallax effect on .mesh-gradient-orb elements on scroll
+   * Optimized with requestAnimationFrame
    */
   function initParallaxEffect() {
     const orbs = document.querySelectorAll('.mesh-gradient-orb');
@@ -75,7 +75,7 @@
   }
 
   /**
-   * Initialisation au chargement du DOM
+   * Initialization on DOMContentLoaded
    */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
