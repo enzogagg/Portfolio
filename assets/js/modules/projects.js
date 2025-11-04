@@ -1,25 +1,25 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - MODULE PROJETS
+ * PORTFOLIO - PROJECTS MODULE
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: projects.js
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Module de filterage des projets avec animations fluides
- * et gestion d'état des boutons de filtre.
+ * Project filtering module with smooth animations
+ * and filter button state management.
  *
  * Features:
- * - Filtrage de projets par technologie
- * - Animations d'apparition/disparition fluides
- * - Gestion d'état des boutons filtres
- * - Compteur de projets visibles
- * - Persistance de l'état de filtre
- * - Transitions optimisées CSS/JS
+ * - Project filtering by technology
+ * - Smooth show/hide animations
+ * - Filter button state management
+ * - Visible projects counter
+ * - Filter state persistence
+ * - Optimized CSS/JS transitions
  *
  * Dependencies: utils.js, config.js
  * Browser Support: ES6+ modules, modern browsers
@@ -54,7 +54,6 @@ export class ProjectsFilter {
    * Initialize projects filtering if elements are present
    */
   init() {
-    // Only initialize once
     if (this.isInitialized) {
       console.log('⚠️ Projects filter already initialized');
       return;
@@ -62,15 +61,14 @@ export class ProjectsFilter {
 
     console.log('🔍 Starting projects filter initialization...');
 
-    // Force wait for DOM to be fully loaded
+    let retryCount = 0;
+    const maxRetries = 5;
     const initializeWhenReady = () => {
       this.filterButtons = document.querySelectorAll('.filter-btn');
       this.projectCards = document.querySelectorAll('.project-card-enhanced, .project-card');
 
       console.log(`🔍 Found ${this.filterButtons.length} filter buttons`);
       console.log(`🔍 Found ${this.projectCards.length} project cards`);
-
-      // Debug: Log each found element
       for (const [index, btn] of Array.from(this.filterButtons).entries()) {
         console.log(`  Filter button ${index}: "${btn.textContent.trim()}" (data-filter: "${btn.dataset.filter}")`);
       }
@@ -78,43 +76,35 @@ export class ProjectsFilter {
       for (const [index, card] of Array.from(this.projectCards).entries()) {
         console.log(`  Project card ${index}: ${card.className} (data-category: "${card.dataset.category}")`);
       }
-
-      // Only initialize if we're on the projects page
       if (this.filterButtons.length === 0 || this.projectCards.length === 0) {
-        console.log('⚠️ Projects page elements not found, retrying in 100ms...');
-        setTimeout(initializeWhenReady, 100);
+        retryCount++;
+        if (retryCount < maxRetries) {
+          console.log(`⚠️ Projects page elements not found, retrying ${retryCount}/${maxRetries} in 100ms...`);
+          setTimeout(initializeWhenReady, 100);
+        } else {
+          console.log('ℹ️ Not on projects page, skipping filter initialization');
+        }
         return;
       }
 
       console.log('🎯 Initializing projects page functionality');
 
-      // Ensure filter buttons are always visible (critical for Vercel)
       this.ensureFilterVisibility();
 
-      // CRITICAL: Reset project cards visibility (Single Responsibility)
       this.resetProjectCards();
       
       this.setupFilterButtons();
       this.isInitialized = true;
 
-      // Notify initialization state
       initState.markInitialized('projectCards');
 
       console.log('✅ Projects page functionality initialized');
-
-      // DISABLED: Test filtering causes cards to flicker
-      // setTimeout(() => {
-      //   console.log('🧪 Testing filter functionality...');
-      //   this.testFiltering();
-      // }, 500);
     };
 
-    // Wait for DOM to be ready
     if (document.readyState === 'loading') {
       console.log('📋 DOM still loading, waiting...');
       document.addEventListener('DOMContentLoaded', initializeWhenReady);
     } else {
-      // DOM is already ready, but wait a bit more to be sure
       setTimeout(initializeWhenReady, 50);
     }
   }
@@ -124,18 +114,14 @@ export class ProjectsFilter {
    */
   ensureFilterVisibility() {
     for (const button of this.filterButtons) {
-      // Force visibility
       button.style.opacity = '1';
       button.style.transform = 'translateY(0)';
       button.style.visibility = 'visible';
 
-      // Add animate-in class if it has animate-on-scroll
       if (button.classList.contains('animate-on-scroll')) {
         button.classList.add('animate-in');
       }
     }
-
-    // Also ensure the container is visible
     const filterContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
     if (filterContainer) {
       filterContainer.style.opacity = '1';
@@ -165,7 +151,6 @@ export class ProjectsFilter {
     for (const [index, button] of Array.from(this.filterButtons).entries()) {
       console.log(`📌 Setting up button ${index}: "${button.textContent.trim()}" (data-filter: "${button.dataset.filter}")`);
 
-      // Remove any existing event listeners
       button.replaceWith(button.cloneNode(true));
       const newButton = document.querySelectorAll('.filter-btn')[index];
 
@@ -183,7 +168,6 @@ export class ProjectsFilter {
       console.log(`✅ Event listener added to button ${index}`);
     }
 
-    // Update our reference to the new buttons
     this.filterButtons = document.querySelectorAll('.filter-btn');
     console.log('🔄 Filter buttons setup complete');
   }
@@ -221,7 +205,6 @@ export class ProjectsFilter {
   showCard(card) {
     console.log('🟢 Showing card:', card.className);
 
-    // Remove hidden class immediately
     card.classList.remove('project-hidden');
     card.style.display = 'block';
     card.style.opacity = '1';
@@ -236,7 +219,6 @@ export class ProjectsFilter {
   hideCard(card) {
     console.log('🔴 Hiding card:', card.className);
 
-    // Add hidden class immediately
     card.classList.add('project-hidden');
     card.style.display = 'none';
     card.style.opacity = '0';

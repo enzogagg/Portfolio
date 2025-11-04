@@ -1,28 +1,28 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - MODULE PERFORMANCE
+ * PORTFOLIO - PERFORMANCE MODULE
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: performance.js
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Module d'optimisation des performances avec monitoring,
- * debouncing et optimisations GPU pour animations fluides.
+ * Performance optimization module with monitoring,
+ * debouncing and GPU optimizations for smooth animations.
  *
  * Features:
- * - Debouncing des événements scroll/resize
- * - Optimisations GPU (will-change, transform3d)
- * - Monitoring des performances
- * - Lazy loading intelligent
- * - Gestion de la mémoire
- * - Métriques de performance (FCP, LCP)
+ * - Scroll/resize event debouncing
+ * - GPU optimizations (will-change, transform3d)
+ * - Performance monitoring
+ * - Intelligent lazy loading
+ * - Memory management
+ * - Performance metrics (FCP, LCP)
  *
- * Dependencies: Performance Observer API (optionnel)
- * Browser Support: Modern browsers avec Performance API
+ * Dependencies: Performance Observer API (optional)
+ * Browser Support: Modern browsers with Performance API
  *
  * =====================================================================================================
  */
