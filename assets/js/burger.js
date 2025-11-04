@@ -1,4 +1,32 @@
-// Burger menu mobile
+/**
+ * =====================================================================================================
+ * PORTFOLIO - BURGER MENU HANDLER
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: burger.js
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Handles the mobile hamburger menu toggle functionality with smooth animations
+ * and accessibility features for the Apple-style navigation.
+ *
+ * Features:
+ * - Mobile burger menu toggle
+ * - Smooth slide animations
+ * - Click outside to close
+ * - Escape key support
+ * - ARIA attributes management
+ * - Prevent body scroll when menu is open
+ *
+ * Dependencies: None - standalone module
+ * Browser Support: Modern browsers with ES6
+ *
+ * =====================================================================================================
+ */
+
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
   const burger = document.querySelector('.burger-menu');
@@ -32,7 +60,7 @@ globalThis.addEventListener('DOMContentLoaded', function() {
     menu.style.opacity = '0';
   }
 
-  // Ajout du listener sur le burger
+  // Add event listener to burger menu
   const burger = document.querySelector('.burger-menu');
   if (burger) {
     burger.addEventListener('click', toggleMobileMenu);
