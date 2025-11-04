@@ -1,25 +1,25 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PAGE À PROPOS
+PORTFOLIO - ABOUT PAGE
 =====================================================================================================
 
 Author: Enzo Gaggiotti
 Project: Personal Portfolio
 File: about.html
 Version: 2.1.0
-Last Updated: July 2025
+Last Updated: November 2025
 
 Description:
-Page to present personal background, skills,
-interests and educational timeline with special components.
+About page presenting personal background, skills, interests,
+and educational timeline with interactive special components.
 
 Features:
-- Profile section with interactive image and bio
+- Profile section with animated avatar and biography
 - Educational and professional timeline
-- Grid of technical and soft skills
-- Interest icons with specific colors
+- Technical and soft skills grid
+- Interest icons with brand colors
 - Special components with floating animations
-- Consistent minimalist Apple-style navigation
+- Minimalist Apple-style navigation with glassmorphism
 - Mobile-first responsive design
 
 Dependencies: main.css, font-awesome, inter-font
@@ -28,7 +28,7 @@ Browser Support: Modern browsers with backdrop-filter
 =====================================================================================================
 -->
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
+<html lang="fr" class="text-white scroll-smooth">
 <head>
   <!-- Meta Information -->
   <meta charset="UTF-8" />
@@ -66,6 +66,24 @@ Browser Support: Modern browsers with backdrop-filter
 <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Matomo Code -->
 <body class="min-h-screen flex flex-col">
+
+  <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+  <div class="mesh-gradient-bg">
+    <!-- Gradient Orbs -->
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+
+    <!-- Light Rays -->
+    <div class="light-rays">
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+    </div>
+  </div>
+
   <!-- Minimalist loader -->
   <div id="minimal-loader">
     <div class="minimal-spinner"></div>
@@ -116,12 +134,12 @@ Browser Support: Modern browsers with backdrop-filter
 
     <!-- ========== HERO SECTION ========== -->
     <section class="flex flex-col items-center justify-center gap-20 px-6 pt-32 pb-20 fade-in relative overflow-visible">
-      <!-- Effet de fond subtil -->
+      <!-- Subtle background effect -->
       <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
 
       <div class="text-center space-y-8 max-w-4xl mx-auto relative z-10">
         <div class="inline-block">
-          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] gradient-text-animated">
             À propos de moi
           </h1>
         </div>
@@ -130,7 +148,7 @@ Browser Support: Modern browsers with backdrop-filter
           Découvrez mon parcours, mes passions et ma vision de la technologie
         </p>
 
-        <!-- Navigation rapide vers les sections -->
+        <!-- Quick navigation to sections -->
         <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
           <a href="#competences" class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]">
             <span class="flex items-center gap-3">
@@ -146,7 +164,7 @@ Browser Support: Modern browsers with backdrop-filter
           </a>
         </div>
 
-        <!-- Bouton Télécharger CV -->
+        <!-- Download CV Button -->
         <div class="mt-8">
           <a href="assets/documents/CV_Enzo_Gaggiotti.pdf" download aria-label="Télécharger mon CV au format PDF" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105 transform">
             <i class="fas fa-download text-lg" aria-hidden="true"></i>
@@ -154,7 +172,7 @@ Browser Support: Modern browsers with backdrop-filter
           </a>
         </div>
 
-        <!-- Decorative Animated Dots -->
+        <!-- Decorative animated dots -->
         <div class="flex justify-center gap-4 mt-8 opacity-60">
           <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
           <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
@@ -201,7 +219,7 @@ Browser Support: Modern browsers with backdrop-filter
           </div>
           </div>
 
-          <!-- Decorative Elements -->
+          <!-- Decorative elements -->
           <div class="absolute -top-4 -left-4 w-12 h-12 bg-blue-500/60 rounded-full animate-pulse"></div>
           <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-purple-500/60 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
           <div class="absolute top-1/2 -right-8 w-8 h-8 bg-indigo-500/60 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
@@ -251,21 +269,20 @@ Browser Support: Modern browsers with backdrop-filter
     </section>
 
     <!-- ========== SKILLS & EXPERTISE SECTION ========== -->
-    <section id="competences" class="py-20 bg-neutral-900">
+    <section id="competences" class="py-20 relative">
       <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold mb-6 text-white">Compétences & Expertise</h2>
+        <h2 class="text-4xl font-bold mb-6 gradient-text">Compétences & Expertise</h2>
         <p class="text-xl text-neutral-400">Domaines de spécialisation et technologies maîtrisées</p>
       </div>
 
       <!-- Skills Categories -->
-      <!-- Skills Categories -->
       <div class="grid md:grid-cols-3 gap-8">
 
         <!-- System & Infrastructure -->
-        <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:scale-105 hover:bg-white/15 transition-all duration-300 shadow-lg">
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-server text-2xl text-white dark:text-white"></i>
+        <div class="glass-card p-8 glow-blue">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6 glow-blue">
+            <i class="fas fa-server text-2xl text-white icon-hover"></i>
           </div>
           <h3 class="text-xl font-bold mb-4 text-white">Systèmes & Infrastructure</h3>
           <ul class="space-y-3 text-neutral-300">
@@ -277,9 +294,9 @@ Browser Support: Modern browsers with backdrop-filter
         </div>
 
         <!-- Network & Security -->
-        <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:scale-105 hover:bg-white/15 transition-all duration-300 shadow-lg">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-wifi text-2xl text-white dark:text-white"></i>
+        <div class="glass-card p-8 glow-blue">
+          <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-6 glow-blue">
+            <i class="fas fa-wifi text-2xl text-white icon-hover"></i>
           </div>
           <h3 class="text-xl font-bold mb-4 text-white">Réseau & Sécurité</h3>
           <ul class="space-y-3 text-neutral-300">
@@ -290,10 +307,10 @@ Browser Support: Modern browsers with backdrop-filter
           </ul>
         </div>
 
-        <!-- Développement & Domotique -->
-        <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:scale-105 hover:bg-white/15 transition-all duration-300 shadow-lg">
-          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
-            <i class="fas fa-microchip text-2xl text-white dark:text-white"></i>
+        <!-- Development &amp; Home Automation -->
+        <div class="glass-card p-8 glow-purple">
+          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-6 glow-purple">
+            <i class="fas fa-microchip text-2xl text-white icon-hover"></i>
           </div>
           <h3 class="text-xl font-bold mb-4 text-white">Développement & Domotique</h3>
           <ul class="space-y-3 text-neutral-300">
@@ -308,10 +325,10 @@ Browser Support: Modern browsers with backdrop-filter
     </section>
 
     <!-- ========== INTERESTS & HOBBIES SECTION ========== -->
-    <section class="py-20 px-6">
+    <section class="py-20 px-6 relative">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16 fade-in">
-          <h2 class="text-4xl font-bold mb-6">Centres d'intérêt</h2>
+          <h2 class="text-4xl font-bold mb-6 gradient-text">Centres d'intérêt</h2>
           <p class="text-xl text-neutral-400">Au-delà du code, mes autres passions</p>
         </div>
 
@@ -327,7 +344,7 @@ Browser Support: Modern browsers with backdrop-filter
             <p class="text-neutral-400 text-sm">ESP32, capteurs, automatisation de l’environnement</p>
           </div>
 
-          <!-- Auto-hébergement -->
+          <!-- Self-Hosting -->
           <div class="text-center group cursor-pointer fade-in">
             <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
               <i class="fas fa-server text-3xl text-white dark:text-white"></i>
@@ -336,7 +353,7 @@ Browser Support: Modern browsers with backdrop-filter
             <p class="text-neutral-400 text-sm">Services personnels (Plex, Sonarr, Radarr), sécurité, monitoring</p>
           </div>
 
-          <!-- Électronique & DIY -->
+          <!-- Electronics &amp; DIY -->
           <div class="text-center group cursor-pointer fade-in">
             <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
               <i class="fas fa-microchip text-3xl text-white dark:text-white"></i>
@@ -345,7 +362,7 @@ Browser Support: Modern browsers with backdrop-filter
             <p class="text-neutral-400 text-sm">Montages simples, capteurs, prototypage avec ESP32</p>
           </div>
 
-          <!-- VTT de descente -->
+          <!-- Downhill Mountain Biking -->
           <div class="text-center group cursor-pointer fade-in">
             <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
               <i class="fas fa-mountain text-3xl text-white dark:text-white"></i>
@@ -358,11 +375,11 @@ Browser Support: Modern browsers with backdrop-filter
     </section>
 
     <!-- ========== EDUCATION & TIMELINE SECTION ========== -->
-    <section id="timeline" class="py-20 bg-neutral-900 dark:bg-neutral-900">
+    <section id="timeline" class="py-20 relative">
       <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 fade-in">
-      <h2 class="text-4xl font-bold mb-6 text-white dark:text-white">Formation & Parcours</h2>
-      <p class="text-xl text-neutral-400 dark:text-neutral-400">Mon évolution scolaire et professionnelle</p>
+      <h2 class="text-4xl font-bold mb-6 gradient-text">Formation & Parcours</h2>
+      <p class="text-xl text-neutral-400">Mon évolution scolaire et professionnelle</p>
       </div>
 
       <!-- Timeline -->
@@ -439,7 +456,7 @@ Browser Support: Modern browsers with backdrop-filter
         <div class="w-1/2 pl-8"></div>
       </div>
 
-      <!-- Job Assistant Pédagogique -->
+      <!-- Job Teaching Assistant -->
       <div class="relative flex items-center fade-in">
         <div class="w-1/2 pr-8"></div>
         <div class="absolute left-1/2 top-6 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full border-4 timeline-node-border shadow-lg shadow-amber-500/50 z-10"></div>
@@ -514,8 +531,8 @@ Browser Support: Modern browsers with backdrop-filter
   </main>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
-    <!-- Social Links -->
+  <footer class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl">
+    <!-- Social links -->
     <div class="flex justify-center items-center gap-6 mb-4">
       <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
         <i class="fas fa-envelope text-2xl"></i>
@@ -528,25 +545,14 @@ Browser Support: Modern browsers with backdrop-filter
       </a>
     </div>
 
-    <!-- Copyright Notice -->
+    <!-- Copyright notice -->
     <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
   </footer>
 
   <!-- ========== JAVASCRIPT ========== -->
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/burger.js"></script>
-  <!-- Fallback pour usage local (file:// protocol) -->
-  <script>
-    if (globalThis.location.protocol === 'file:') {
-      const script = document.createElement('script');
-      script.src = 'assets/js/standalone.js';
-      document.head.appendChild(script);
-    } else {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'assets/js/app.js';
-      document.head.appendChild(script);
-    }
-  </script>
+  <script src="assets/js/module-loader.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
 </body>
 </html>
