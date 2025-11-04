@@ -1,29 +1,29 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - COMPOSANTS SPÉCIAUX & ÉLÉMENTS UNIQUES
+ * PORTFOLIO - SPECIAL COMPONENTS & UNIQUE ELEMENTS
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: special-components.css
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Composants uniques et spécialisés incluant timeline, éléments de profil,
- * icônes de compétences et indicateurs d'intérêt avec styling personnalisé.
+ * Unique and specialized components including timeline, profile elements,
+ * skill icons and interest indicators with custom styling.
  *
  * Features:
- * - Composants timeline interactifs avec nœuds personnalisés
- * - Éléments de section à propos (images, animations flottantes)
- * - Icônes de compétences et intérêts avec couleurs de marque
- * - Interactions spéciales et micro-animations
- * - Effets visuels (animations flottantes, transformations scale)
- * - Système d'icônes cohérent
- * - Support complet de l'accessibilité (WCAG)
+ * - Interactive timeline components with custom nodes
+ * - About section elements (images, floating animations)
+ * - Skill and interest icons with brand colors
+ * - Special interactions and micro-animations
+ * - Visual effects (floating animations, scale transformations)
+ * - Consistent icon system
+ * - Full accessibility support (WCAG)
  *
  * Dependencies: variables.css, animations.css
- * Browser Support: Modern browsers avec backdrop-filter
+ * Browser Support: Modern browsers with backdrop-filter
  *
  * =====================================================================================================
  */
@@ -449,7 +449,7 @@
    ===================================================================================================== */
 
 /**
- * Simple Skill Tags
+ * Simple Skill Tags - N8N Enhanced Glassmorphism
  * Enhanced glassmorphism skill tags matching tech-card design
  */
 .skill-tag-simple {
@@ -461,17 +461,19 @@
   position: relative;
   overflow: hidden;
   
-  /* Glassmorphism Effect - Matching tech-cards */
+  /* Enhanced Glassmorphism Effect */
   background: linear-gradient(135deg,
-    rgba(var(--bg-secondary), 0.9) 0%,
-    rgba(var(--bg-secondary), 0.7) 100%);
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   
-  /* Border and Shadow - Matching tech-cards */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Enhanced Border and Shadow */
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   
   /* Typography */
   color: rgb(var(--text-primary));
@@ -480,7 +482,7 @@
   text-decoration: none;
   white-space: nowrap;
   
-  /* Transitions - Matching tech-cards */
+  /* Transitions */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, box-shadow, border-color;
   cursor: default;
@@ -488,13 +490,18 @@
 
 .skill-tag-simple:hover {
   transform: translateY(-4px) scale(1.05);
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.06) 100%);
   box-shadow:
-    0 12px 25px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(79, 172, 254, 0.2);
-  border-color: rgba(79, 172, 254, 0.3);
+    0 12px 25px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.3),
+    0 0 20px rgba(139, 92, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(139, 92, 246, 0.4);
 }
 
-/* Shimmer effect matching tech-cards */
+/* Shimmer effect with purple accent */
 .skill-tag-simple::before {
   content: '';
   position: absolute;
@@ -504,7 +511,7 @@
   height: 100%;
   background: linear-gradient(90deg,
     transparent,
-    rgba(79, 172, 254, 0.1),
+    rgba(139, 92, 246, 0.15),
     transparent);
   transition: left 0.6s ease;
 }
@@ -898,6 +905,226 @@
     border: 2px solid black !important;
     box-shadow: none !important;
   }
+}
+
+/* =====================================================================================================
+   GLOW EFFECTS
+   ===================================================================================================== */
+
+/**
+ * Dynamic glow effects for interactive elements
+ */
+
+.glow-blue {
+  position: relative;
+}
+
+.glow-blue::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.glow-blue:hover::before {
+  opacity: 1;
+}
+
+.glow-purple {
+  position: relative;
+}
+
+.glow-purple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.glow-purple:hover::before {
+  opacity: 1;
+}
+
+.glow-gradient {
+  position: relative;
+}
+
+.glow-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg,
+    rgba(59, 130, 246, 0.5) 0%,
+    rgba(139, 92, 246, 0.5) 50%,
+    rgba(236, 72, 153, 0.5) 100%);
+  border-radius: inherit;
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.glow-gradient:hover::before {
+  opacity: 0.8;
+}
+
+/* =====================================================================================================
+   GRADIENT TEXT
+   ===================================================================================================== */
+
+/**
+ * Animated gradient text effect
+ */
+
+.gradient-text,
+.gradient-text-animated {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 25%, #f472b6 50%, #fb923c 75%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  animation: gradientFlow 8s ease infinite;
+  position: relative;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  33% {
+    background-position: 100% 50%;
+  }
+  66% {
+    background-position: 50% 100%;
+  }
+}
+
+/* =====================================================================================================
+   FLOATING PARTICLES
+   ===================================================================================================== */
+
+/**
+ * Floating particle effects for immersive backgrounds
+ */
+
+.particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: particleFloat 15s linear infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.particle:nth-child(2n) {
+  width: 6px;
+  height: 6px;
+  background: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
+
+.particle:nth-child(3n) {
+  width: 3px;
+  height: 3px;
+  background: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+.particle:nth-child(4n) {
+  width: 5px;
+  height: 5px;
+  background: rgba(236, 72, 153, 0.6);
+  box-shadow: 0 0 18px rgba(236, 72, 153, 0.6);
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(90vh) translateX(20px) scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* =====================================================================================================
+   SECTION HEADERS
+   ===================================================================================================== */
+
+/**
+ * Modern section headers with gradient effects
+ */
+
+.section-header {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 3rem;
+}
+
+.section-header-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-header-subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.75rem;
+  font-weight: 400;
+}
+
+.section-header-line {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+  border-radius: 2px;
 }
 
 /* =====================================================================================================
