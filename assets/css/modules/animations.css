@@ -4,26 +4,26 @@
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: animations.css
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Système d'animations et de motion design pour micro-interactions et feedback visuel.
- * Inclut keyframes, transitions, animations au scroll et effets spécialisés.
+ * Animation and motion design system for micro-interactions and visual feedback.
+ * Includes keyframes, transitions, scroll animations and specialized effects.
  *
  * Features:
- * - Keyframes fondamentales et animations core
- * - Animations au scroll (progressive disclosure)
- * - Animations interactives (hover, focus, click)
- * - Effets de chargement et shimmer
- * - Effets spécialisés (avatar, timeline, glassmorphism)
- * - Optimisation performance avec GPU acceleration
- * - Support accessibilité (prefers-reduced-motion)
+ * - Core keyframes and fundamental animations
+ * - Scroll-triggered animations (progressive disclosure)
+ * - Interactive animations (hover, focus, click)
+ * - Loading effects and shimmer
+ * - Specialized effects (avatar, timeline, glassmorphism)
+ * - GPU-accelerated performance optimization
+ * - Accessibility support (prefers-reduced-motion)
  *
  * Dependencies: variables.css
- * Browser Support: Modern browsers avec animation support
+ * Browser Support: Modern browsers with animation support
  *
  * =====================================================================================================
  */
@@ -53,6 +53,18 @@
   }
   to {
     opacity: 0;
+  }
+}
+
+/* Smooth reveal animation for IntersectionObserver */
+@keyframes revealElement {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -175,6 +187,7 @@
   }
 }
 
+/* Gentle pulse animation */
 @keyframes gentlePulse {
   0%, 100% {
     opacity: 0.8;
@@ -707,6 +720,105 @@
 
 .animation-infinite {
   animation-iteration-count: infinite;
+}
+
+/* =====================================================================================================
+   ADVANCED EFFECT ANIMATIONS
+   ===================================================================================================== */
+
+/**
+ * Shimmer, pulse, and other advanced visual effects
+ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes rotate-gradient {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.rotate-gradient {
+  animation: rotate-gradient 10s linear infinite;
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.icon-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-hover:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
 }
 
 /* =====================================================================================================
