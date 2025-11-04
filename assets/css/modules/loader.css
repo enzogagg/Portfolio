@@ -1,5 +1,33 @@
+/**
+ * =====================================================================================================
+ * PORTFOLIO - MINIMAL PAGE LOADER
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: loader.css
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Minimal page loader with smooth fade-out animation.
+ * Displays during initial page load for better user experience.
+ *
+ * Features:
+ * - Fullscreen overlay with semi-transparent background
+ * - Spinning loader animation
+ * - Smooth fade-out transition
+ * - Minimal and elegant design
+ * - GPU-accelerated animations
+ *
+ * Dependencies: None - standalone component
+ * Browser Support: Modern browsers with CSS animations
+ *
+ * =====================================================================================================
+ */
+
 /* =====================================================================================================
-   LOADER MINIMALISTE - Portfolio
+   MINIMAL LOADER - Portfolio
    ===================================================================================================== */
 #minimal-loader {
   position: fixed;
