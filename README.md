@@ -40,7 +40,7 @@ Backend documentation will be available in `backend/`.
 
 - [Frontend](./frontend/README.md)
 - [Backend](./backend/README.md) *(coming soon)*
-- [Documentatio](./docs/README.md)
+- [Documentation](./docs/README.md)
 
 ---
 
