@@ -1,0 +1,1135 @@
+<!--
+=====================================================================================================
+PORTFOLIO - PROJECT DETAIL: AQUASENSE - SMART AQUARIUM BOX
+=====================================================================================================
+
+Author: Enzo Gaggiotti
+Project: Personal Portfolio
+File: aquarium-project.html
+Version: 1.1.0
+Last Updated: November 2025
+
+Description:
+Detailed page for the AquaSense project - Smart aquarium monitoring system
+with ESP32, multiple sensors, and Home Assistant integration.
+
+Features:
+- Project overview and objectives presentation
+- Electronic schematics and technical explanations
+- Home Assistant dashboard screenshots
+- Sensors and automations list with status indicators
+- Links to code repository and resources
+- Glassmorphism design with colored tech tags
+- Animated buttons and interactive elements
+- Mobile-first responsive design
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers with backdrop-filter
+
+=====================================================================================================
+-->
+<!doctype html>
+<html lang="fr" class="text-white scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AquaSense - Projet IoT & Domotique | Enzo Gaggiotti</title>
+    <meta
+      name="description"
+      content="AquaSense : Système de monitoring d'aquarium avec ESP32, capteurs (niveau d'eau, température, turbidité) et intégration Home Assistant. Projet en cours de développement."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/loader.css" />
+  </head>
+  <!-- Matomo -->
+  <script>
+    var _paq = (globalThis._paq = globalThis._paq || []);
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(
+      ["setCookieDomain", "*.portfolio.ega.ovh"],
+      ["setDomains", ["*.portfolio.ega.ovh"]],
+      ["trackPageView"],
+      ["enableLinkTracking"],
+    );
+    (function () {
+      var u = "https://matomo.ega.ovh/";
+      _paq.push(["setTrackerUrl", u + "matomo.php"], ["setSiteId", "1"]);
+      var d = document,
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0];
+      g.async = true;
+      g.src = u + "matomo.js";
+      s.parentNode.insertBefore(g, s);
+    })();
+  </script>
+  <noscript
+    ><p>
+      <img
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+        style="border: 0"
+        alt=""
+      /></p
+  ></noscript>
+  <!-- End Matomo Code -->
+
+  <body class="min-h-screen flex flex-col">
+    <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+    <div class="mesh-gradient-bg">
+      <!-- Gradient Orbs -->
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+
+      <!-- Light Rays -->
+      <div class="light-rays">
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+      </div>
+    </div>
+
+    <!-- Minimalist loader -->
+    <div class="minimal-loader">
+      <div class="minimal-spinner"></div>
+    </div>
+
+    <!-- HEADER NAVIGATION -->
+    <header id="main-header">
+      <div class="header-container">
+        <a href="index.html#top" class="logo" aria-label="Accueil">
+          <div
+            class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            EG
+          </div>
+        </a>
+        <nav class="nav-primary" , aria-label="Navigation principale">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <div class="burger-menu">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobile-menu">
+        <nav class="mobile-nav" , aria-label="Navigation mobile">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section
+      class="relative min-h-[90vh] flex items-center justify-center px-6 pt-20 pb-16 overflow-hidden"
+    >
+      <!-- Animated Background -->
+      <div class="absolute inset-0 opacity-30">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-blue-500/10"
+        ></div>
+        <div
+          class="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-pulse"
+        ></div>
+        <div
+          class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"
+          style="animation-delay: 2s"
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center"
+      >
+        <!-- Project Visual -->
+        <div class="flex justify-center lg:justify-end order-2 lg:order-1">
+          <div class="relative group">
+            <!-- Main project showcase -->
+            <div
+              class="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden relative"
+            >
+              <!-- Aquarium Illustration -->
+              <div class="w-full h-full flex items-center justify-center">
+                <div
+                  class="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900 shadow-2xl transform group-hover:scale-105 transition-all duration-500"
+                >
+                  <!-- Browser mockup header -->
+                  <div
+                    class="bg-neutral-800 px-4 py-3 flex items-center gap-2 border-b border-white/10"
+                  >
+                    <div class="flex gap-2">
+                      <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                      <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                      <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                    </div>
+                    <div class="flex-1 mx-4">
+                      <div
+                        class="bg-neutral-700 rounded px-3 py-1 text-xs text-neutral-400 font-mono"
+                      >
+                        Box Domotique Aquarium
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Website content mockup -->
+                  <div
+                    class="relative h-full bg-gradient-to-br from-neutral-900 via-blue-950/20 to-purple-950/20 p-4 flex flex-col justify-center items-center"
+                  >
+                    <i class="fas fa-fish text-blue-400 text-6xl mb-4"></i>
+                    <div class="flex gap-2 mb-2">
+                      <span
+                        class="tech-tag esp32 px-3 py-1 rounded-full text-blue-300 bg-blue-950/40 border border-blue-400/20"
+                        >ESP32</span
+                      >
+                      <span
+                        class="tech-tag esphome px-3 py-1 rounded-full text-purple-300 bg-purple-950/40 border border-purple-400/20"
+                        >ESPHome</span
+                      >
+                      <span
+                        class="tech-tag homeassistant px-3 py-1 rounded-full text-blue-200 bg-blue-950/40 border border-blue-300/20"
+                        >Home Assistant</span
+                      >
+                    </div>
+                    <div
+                      class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="text-center lg:text-left space-y-8 order-1 lg:order-2">
+          <!-- Badge -->
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-full backdrop-blur-sm"
+          >
+            <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium text-orange-400"
+              >Projet en cours • 2025</span
+            >
+          </div>
+
+          <!-- Title -->
+          <div class="space-y-4">
+            <h1
+              class="text-5xl lg:text-7xl font-black tracking-tight leading-tight"
+            >
+              <span
+                class="block bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent"
+              >
+                AquaSense
+              </span>
+              <span
+                class="block bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x"
+              >
+                Monitoring IoT d'Aquarium
+              </span>
+            </h1>
+            <div
+              class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto lg:mx-0"
+            ></div>
+          </div>
+
+          <!-- Description -->
+          <div class="space-y-4 text-lg leading-relaxed max-w-2xl">
+            <p class="text-neutral-300">
+              Système de monitoring temps réel pour aquarium utilisant un
+              <span class="text-blue-400 font-semibold">ESP32</span> et
+              plusieurs capteurs connectés à
+              <span class="text-purple-400 font-semibold">Home Assistant</span>.
+            </p>
+            <p class="text-neutral-300">
+              Le projet intègre actuellement 3 capteurs :
+              <strong>niveau d'eau</strong>, <strong>température</strong> et
+              <strong>turbidité</strong>. Les données remontent en temps réel
+              vers Home Assistant pour visualisation et alertes.
+            </p>
+            <p class="text-orange-400 font-medium">
+              ⚠️ Projet en cours de développement - Fonctionnalités en phase de
+              test
+            </p>
+          </div>
+
+          <!-- Simplified Actions -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6"
+          >
+            <a
+              href="https://github.com/enzogagg/AquaSense"
+              target="_blank"
+              rel="noopener"
+              class="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white flex items-center gap-3"
+            >
+              <i class="fab fa-github text-xl"></i>
+              <span>Code Source</span>
+            </a>
+            <a
+              href="#"
+              class="group px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3"
+            >
+              <i class="fas fa-external-link-alt text-lg"></i>
+              <span>Dashboard</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STACK TECHNIQUE ========== -->
+    <section class="relative py-20 fade-in">
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-20 right-20 w-64 h-64 border border-blue-500/20 rounded-full"
+        ></div>
+        <div
+          class="absolute bottom-20 left-20 w-48 h-48 border border-purple-500/20 rounded-full"
+        ></div>
+      </div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-microchip text-blue-400"></i>
+            <span class="text-sm font-medium text-blue-400"
+              >Technologies & Architecture</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent"
+              >Stack
+            </span>
+            <span
+              class="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent"
+              >Technique</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Hardware -->
+          <div
+            class="bg-gradient-to-br from-blue-500/5 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 group"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-microchip text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Hardware</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span
+                  ><strong>ESP32</strong> - Microcontrôleur WiFi/Bluetooth</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span
+                  ><strong>Capteur niveau d'eau</strong> - Détection
+                  analogique</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span
+                  ><strong>Capteur température</strong> - DS18B20
+                  (OneWire)</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span><strong>Capteur turbidité</strong> - Mesure optique</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Software -->
+          <div
+            class="bg-gradient-to-br from-purple-500/5 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-300 group"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-code text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Software</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span><strong>ESPHome</strong> - Configuration YAML</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span
+                  ><strong>Home Assistant</strong> - Dashboard &
+                  Automatisations</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span><strong>MQTT</strong> - Communication temps réel</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span><strong>WiFi</strong> - Connexion réseau local</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Monitoring -->
+          <div
+            class="bg-gradient-to-br from-green-500/5 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300 group"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-chart-line text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Monitoring</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span
+                  ><strong>Graphiques temps réel</strong> - Home Assistant</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span
+                  ><strong>Alertes</strong> - Notifications push mobiles</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span
+                  ><strong>Historique</strong> - Base de données InfluxDB</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span><strong>API REST</strong> - Intégration externe</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DEVELOPMENT PROCESS ========== -->
+    <section class="relative py-20 fade-in bg-neutral-900/30">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-tasks text-green-400"></i>
+            <span class="text-sm font-medium text-green-400"
+              >Méthodologie & Étapes</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-green-200 to-white bg-clip-text text-transparent"
+              >Process de
+            </span>
+            <span
+              class="bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent"
+              >Développement</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Step 1 -->
+          <div class="glass-card bg-blue-500/10 border-blue-500/30 p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-black text-xl">1</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">Prototypage ESP32</h3>
+            </div>
+            <p class="text-neutral-300 mb-4">
+              Configuration initiale de l'ESP32 avec ESPHome, test des capteurs
+              un par un sur breadboard. Calibration des seuils de détection pour
+              chaque capteur.
+            </p>
+            <div class="flex items-center gap-2 text-sm">
+              <i class="fas fa-clock text-blue-400"></i>
+              <span class="text-neutral-400">Durée : 1 semaine</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="glass-card bg-purple-500/10 border-purple-500/30 p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-black text-xl">2</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">
+                Intégration Home Assistant
+              </h3>
+            </div>
+            <p class="text-neutral-300 mb-4">
+              Connexion MQTT entre ESP32 et Home Assistant. Création du
+              dashboard avec cartes de visualisation pour chaque capteur.
+              Configuration des graphiques historiques.
+            </p>
+            <div class="flex items-center gap-2 text-sm">
+              <i class="fas fa-clock text-purple-400"></i>
+              <span class="text-neutral-400">Durée : 2 semaines</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="glass-card bg-green-500/10 border-green-500/30 p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-black text-xl">3</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">
+                Alertes & Automatisations
+              </h3>
+            </div>
+            <p class="text-neutral-300 mb-4">
+              Mise en place de notifications push pour les seuils critiques
+              (niveau d'eau bas, température anormale). Création
+              d'automatisations pour réagir aux événements.
+            </p>
+            <div class="flex items-center gap-2 text-sm">
+              <i class="fas fa-clock text-green-400"></i>
+              <span class="text-neutral-400">Durée : En cours</span>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="glass-card bg-orange-500/10 border-orange-500/30 p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-black text-xl">4</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">
+                Boîtier & Assemblage
+              </h3>
+            </div>
+            <p class="text-neutral-300 mb-4">
+              Conception d'un boîtier étanche pour l'électronique. Câblage
+              final, isolation des composants exposés à l'humidité. Tests de
+              fiabilité sur plusieurs jours.
+            </p>
+            <div class="flex items-center gap-2 text-sm">
+              <i class="fas fa-clock text-orange-400"></i>
+              <span class="text-neutral-400">Durée : À venir</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TECHNICAL CHALLENGES ========== -->
+    <section class="relative py-20 fade-in">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-exclamation-triangle text-orange-400"></i>
+            <span class="text-sm font-medium text-orange-400"
+              >Problèmes & Solutions</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-orange-200 to-white bg-clip-text text-transparent"
+              >Défis
+            </span>
+            <span
+              class="bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 bg-clip-text text-transparent"
+              >Techniques</span
+            >
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Challenge 1 -->
+          <div class="glass-card bg-red-500/5 border-red-500/30 p-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+              <div class="lg:w-1/3">
+                <div class="flex items-center gap-3 mb-4">
+                  <i class="fas fa-bug text-red-400 text-2xl"></i>
+                  <h3 class="text-xl font-bold text-white">
+                    Calibration des capteurs
+                  </h3>
+                </div>
+                <p class="text-neutral-400 text-sm">
+                  Les capteurs analogiques donnaient des valeurs instables et
+                  bruitées
+                </p>
+              </div>
+              <div
+                class="lg:w-2/3 bg-neutral-950/50 rounded-xl p-6 border border-neutral-700"
+              >
+                <h4
+                  class="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2"
+                >
+                  <i class="fas fa-check-circle"></i>
+                  Solution
+                </h4>
+                <p class="text-neutral-300 mb-4">
+                  Ajout de moyennes glissantes sur 10 échantillons dans ESPHome
+                  avec filtres de lissage. Calibration manuelle en comparant
+                  avec des valeurs de référence.
+                </p>
+                <div
+                  class="bg-neutral-900 rounded-lg p-4 font-mono text-sm text-green-400 border border-neutral-800"
+                >
+                  <code
+                    >sensor:<br />
+                    - platform: adc<br />
+                    filters:<br />
+                    - sliding_window_moving_average:<br />
+                    window_size: 10<br />
+                    send_every: 5</code
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Challenge 2 -->
+          <div class="glass-card bg-orange-500/5 border-orange-500/30 p-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+              <div class="lg:w-1/3">
+                <div class="flex items-center gap-3 mb-4">
+                  <i class="fas fa-bug text-orange-400 text-2xl"></i>
+                  <h3 class="text-xl font-bold text-white">
+                    Connexion WiFi instable
+                  </h3>
+                </div>
+                <p class="text-neutral-400 text-sm">
+                  L'ESP32 perdait la connexion WiFi toutes les 2-3 heures
+                </p>
+              </div>
+              <div
+                class="lg:w-2/3 bg-neutral-950/50 rounded-xl p-6 border border-neutral-700"
+              >
+                <h4
+                  class="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2"
+                >
+                  <i class="fas fa-check-circle"></i>
+                  Solution
+                </h4>
+                <p class="text-neutral-300 mb-4">
+                  Activation du watchdog WiFi dans ESPHome pour reconnecter
+                  automatiquement. Augmentation du délai de reconnexion et
+                  réduction de la puissance d'émission pour stabiliser.
+                </p>
+                <div
+                  class="bg-neutral-900 rounded-lg p-4 font-mono text-sm text-green-400 border border-neutral-800"
+                >
+                  <code
+                    >wifi:<br />
+                    reboot_timeout: 15min<br />
+                    power_save_mode: none<br />
+                    fast_connect: true</code
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Challenge 3 -->
+          <div class="glass-card bg-yellow-500/5 border-yellow-500/30 p-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+              <div class="lg:w-1/3">
+                <div class="flex items-center gap-3 mb-4">
+                  <i class="fas fa-bug text-yellow-400 text-2xl"></i>
+                  <h3 class="text-xl font-bold text-white">
+                    Latence des données
+                  </h3>
+                </div>
+                <p class="text-neutral-400 text-sm">
+                  Délai de 30-60 secondes entre mesure et affichage Home
+                  Assistant
+                </p>
+              </div>
+              <div
+                class="lg:w-2/3 bg-neutral-950/50 rounded-xl p-6 border border-neutral-700"
+              >
+                <h4
+                  class="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2"
+                >
+                  <i class="fas fa-check-circle"></i>
+                  Solution
+                </h4>
+                <p class="text-neutral-300 mb-4">
+                  Optimisation de la fréquence de publication MQTT à 5 secondes
+                  au lieu de 60. Ajustement du QoS MQTT à 0 (at most once) pour
+                  réduire la latence.
+                </p>
+                <div
+                  class="bg-neutral-900 rounded-lg p-4 font-mono text-sm text-green-400 border border-neutral-800"
+                >
+                  <code
+                    >sensor:<br />
+                    - platform: dallas<br />
+                    update_interval: 5s<br />
+                    mqtt:<br />
+                    discovery: true<br />
+                    qos: 0</code
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WHAT I LEARNED ========== -->
+    <section class="relative py-20 fade-in bg-neutral-900/30">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-graduation-cap text-purple-400"></i>
+            <span class="text-sm font-medium text-purple-400"
+              >Compétences Acquises</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent"
+              >Ce que
+            </span>
+            <span
+              class="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent"
+              >j'ai Appris</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- IoT & Hardware -->
+          <div
+            class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-microchip text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white">IoT & Hardware</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span
+                  >Programmation <strong>ESP32</strong> avec ESPHome
+                  (YAML)</span
+                >
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span
+                  >Calibration et lecture de
+                  <strong>capteurs analogiques</strong></span
+                >
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span>Protocole <strong>OneWire</strong> (DS18B20)</span>
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span
+                  >Gestion de l'alimentation et
+                  <strong>stabilité électrique</strong></span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Home Automation &amp; Integration -->
+          <div
+            class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 backdrop-blur-sm"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-home text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white">
+                Domotique & Intégration
+              </h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span
+                  >Configuration avancée <strong>Home Assistant</strong></span
+                >
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span>Protocole <strong>MQTT</strong> et QoS</span>
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span
+                  >Création de <strong>dashboards</strong> personnalisés</span
+                >
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-purple-400 mt-1"></i>
+                <span
+                  >Automatisations avec
+                  <strong>conditions et déclencheurs</strong></span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Debugging & Optimisation -->
+          <div
+            class="bg-gradient-to-br from-green-500/10 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-wrench text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white">
+                Debugging & Optimisation
+              </h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span>Logs série et <strong>debugging ESP32</strong></span>
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span
+                  ><strong>Filtrage de signal</strong> et moyennes
+                  glissantes</span
+                >
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span>Gestion de la <strong>reconnexion WiFi</strong></span>
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span>Optimisation de la <strong>latence réseau</strong></span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Project Methodology -->
+          <div
+            class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-project-diagram text-white text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white">Méthodologie Projet</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span
+                  >Développement <strong>itératif</strong> (test par test)</span
+                >
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span>Documentation technique au fur et à mesure</span>
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span
+                  >Gestion des <strong>contraintes réelles</strong> (humidité,
+                  câblage)</span
+                >
+              </li>
+              <li class="flex items-start gap-3 text-neutral-300">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span>Partage open-source sur <strong>GitHub</strong></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== METRICS ========== -->
+    <section class="relative py-20 fade-in">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-green-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-chart-bar text-blue-400"></i>
+            <span class="text-sm font-medium text-blue-400">Chiffres Clés</span>
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent"
+              >Métriques
+            </span>
+            <span
+              class="bg-gradient-to-r from-blue-400 via-green-400 to-blue-400 bg-clip-text text-transparent"
+              >du Projet</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Metric 1 -->
+          <div
+            class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-microchip text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-blue-400 mb-2">3</div>
+            <div class="text-neutral-400">Capteurs actifs</div>
+            <div class="text-xs text-neutral-500 mt-2">
+              Niveau, Temp, Turbidité
+            </div>
+          </div>
+
+          <!-- Metric 2 -->
+          <div
+            class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-clock text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-purple-400 mb-2">5s</div>
+            <div class="text-neutral-400">Fréquence de mesure</div>
+            <div class="text-xs text-neutral-500 mt-2">
+              Mise à jour toutes les 5s
+            </div>
+          </div>
+
+          <!-- Metric 3 -->
+          <div
+            class="bg-gradient-to-br from-green-500/10 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-wifi text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-green-400 mb-2">99%</div>
+            <div class="text-neutral-400">Uptime WiFi</div>
+            <div class="text-xs text-neutral-500 mt-2">Après optimisations</div>
+          </div>
+
+          <!-- Metric 4 -->
+          <div
+            class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-battery-three-quarters text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-orange-400 mb-2">5V</div>
+            <div class="text-neutral-400">Alimentation</div>
+            <div class="text-xs text-neutral-500 mt-2">USB-C stable</div>
+          </div>
+
+          <!-- Metric 5 -->
+          <div
+            class="bg-gradient-to-br from-pink-500/10 to-pink-600/5 border border-pink-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-code text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-pink-400 mb-2">~200</div>
+            <div class="text-neutral-400">Lignes YAML</div>
+            <div class="text-xs text-neutral-500 mt-2">ESPHome + HA</div>
+          </div>
+
+          <!-- Metric 6 -->
+          <div
+            class="bg-gradient-to-br from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-bell text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-cyan-400 mb-2">2</div>
+            <div class="text-neutral-400">Alertes configurées</div>
+            <div class="text-xs text-neutral-500 mt-2">
+              Niveau bas + Temp anormale
+            </div>
+          </div>
+
+          <!-- Metric 7 -->
+          <div
+            class="bg-gradient-to-br from-indigo-500/10 to-indigo-600/5 border border-indigo-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-database text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-indigo-400 mb-2">7j</div>
+            <div class="text-neutral-400">Rétention data</div>
+            <div class="text-xs text-neutral-500 mt-2">Historique InfluxDB</div>
+          </div>
+
+          <!-- Metric 8 -->
+          <div
+            class="bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-project-diagram text-white text-2xl"></i>
+            </div>
+            <div class="text-4xl font-black text-red-400 mb-2">75%</div>
+            <div class="text-neutral-400">Avancement</div>
+            <div class="text-xs text-neutral-500 mt-2">Boîtier à finaliser</div>
+          </div>
+        </div>
+
+        <!-- Status Note -->
+        <div
+          class="mt-12 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm"
+        >
+          <div class="flex items-start gap-4">
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fas fa-info-circle text-white text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-2">
+                État actuel du projet
+              </h3>
+              <p class="text-neutral-300 mb-4">
+                Le système est <strong>fonctionnel</strong> et collecte des
+                données en temps réel. Les prochaines étapes incluent la
+                finalisation du boîtier étanche, l'ajout de capteurs
+                supplémentaires (pH, luminosité) et l'amélioration des
+                automatisations.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full text-sm text-green-400"
+                >
+                  <i class="fas fa-check mr-1"></i> Capteurs opérationnels
+                </span>
+                <span
+                  class="px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full text-sm text-green-400"
+                >
+                  <i class="fas fa-check mr-1"></i> Home Assistant intégré
+                </span>
+                <span
+                  class="px-3 py-1 bg-orange-500/20 border border-orange-500/30 rounded-full text-sm text-orange-400"
+                >
+                  <i class="fas fa-hourglass-half mr-1"></i> Boîtier en
+                  conception
+                </span>
+                <span
+                  class="px-3 py-1 bg-orange-500/20 border border-orange-500/30 rounded-full text-sm text-orange-400"
+                >
+                  <i class="fas fa-hourglass-half mr-1"></i> Automatisations à
+                  enrichir
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl"
+    >
+      <div class="flex justify-center items-center gap-6 mb-4">
+        <a
+          href="mailto:enzo.gaggiotti@epitech.eu"
+          class="hover:text-white transition"
+          title="Email"
+          aria-label="Email"
+        >
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
+        <a
+          href="https://github.com/enzogagg"
+          class="hover:text-white transition"
+          title="GitHub"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
+          class="hover:text-white transition"
+          title="LinkedIn"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+      </div>
+      <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+    </footer>
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/burger.js"></script>
+    <script src="assets/js/module-loader.js"></script>
+    <script src="assets/js/visual-effects.js"></script>
+  </body>
+</html>

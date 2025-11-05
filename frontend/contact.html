@@ -1,0 +1,490 @@
+<!--
+=====================================================================================================
+PORTFOLIO - CONTACT PAGE
+=====================================================================================================
+
+Author: Enzo Gaggiotti
+Project: Personal Portfolio
+File: contact.html
+Version: 2.1.0
+Last Updated: November 2025
+
+Description:
+Contact page with interactive form, social links, and communication
+information with real-time validation and glassmorphism design.
+
+Features:
+- Contact form with client-side validation
+- Social media links with brand-specific colors
+- Contact information cards with icons
+- Response time indicators
+- Visual validation states and feedback
+- Minimalist Apple-style navigation with glassmorphism
+- Mobile-first responsive design
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers with backdrop-filter
+
+=====================================================================================================
+-->
+<!doctype html>
+<html lang="fr" class="text-white scroll-smooth">
+  <head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Contact - Enzo Gaggiotti | Développeur Infrastructure & Systèmes
+    </title>
+    <meta
+      name="description"
+      content="Contactez Enzo Gaggiotti pour discuter de vos projets d'infrastructure, systèmes et développement. Étudiant à Epitech Lyon."
+    />
+
+    <!-- External Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS Frameworks & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/loader.css" />
+  </head>
+  <!-- Matomo -->
+  <script>
+    var _paq = (globalThis._paq = globalThis._paq || []);
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    var u = "https://matomo.ega.ovh/";
+    _paq.push(
+      ["setCookieDomain", "*.portfolio.ega.ovh"],
+      ["setDomains", ["*.portfolio.ega.ovh"]],
+      ["trackPageView"],
+      ["enableLinkTracking"],
+      ["setTrackerUrl", u + "matomo.php"],
+      ["setSiteId", "1"],
+    );
+    (function () {
+      var d = document,
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0];
+      g.async = true;
+      g.src = u + "matomo.js";
+      s.parentNode.insertBefore(g, s);
+    })();
+  </script>
+  <noscript
+    ><p>
+      <img
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+        style="border: 0"
+        alt=""
+      /></p
+  ></noscript>
+  <!-- End Matomo Code -->
+
+  <body class="min-h-screen flex flex-col">
+    <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+    <div class="mesh-gradient-bg">
+      <!-- Gradient Orbs -->
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+
+      <!-- Light Rays -->
+      <div class="light-rays">
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+      </div>
+    </div>
+
+    <!-- Minimalist loader -->
+    <div class="minimal-loader">
+      <div class="minimal-spinner"></div>
+    </div>
+
+    <!-- ========== HEADER NAVIGATION ========== -->
+    <header id="main-header">
+      <div class="header-container">
+        <!-- Logo / Home Link -->
+        <a href="index.html#top" class="logo" aria-label="Accueil">
+          <div
+            class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            EG
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="nav-primary" , aria-label="Navigation principale">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+        </nav>
+
+        <!-- Header Controls (Mobile Menu) -->
+        <div class="flex items-center gap-4">
+          <!-- Mobile Hamburger Menu -->
+          <div class="burger-menu">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div class="mobile-menu" id="mobile-menu">
+        <nav class="mobile-nav" , aria-label="Navigation mobile">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="flex-grow">
+      <!-- ========== HERO SECTION ========== -->
+      <section
+        class="flex flex-col items-center justify-center gap-20 px-6 pt-32 pb-20 fade-in relative overflow-visible"
+      >
+        <!-- Subtle background effect -->
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"
+        ></div>
+
+        <div class="text-center space-y-8 max-w-4xl mx-auto relative z-10">
+          <div class="inline-block">
+            <h1
+              class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] gradient-text-animated"
+            >
+              Contactez-moi
+            </h1>
+          </div>
+
+          <p class="text-lg sm:text-xl text-neutral-400 mb-10 leading-relaxed">
+            Discutons de vos projets et de la façon dont je peux vous aider
+          </p>
+
+          <!-- Download CV Button -->
+          <div class="mt-8">
+            <a
+              href="assets/documents/CV_Enzo_Gaggiotti.pdf"
+              download
+              aria-label="Télécharger mon CV au format PDF"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105 transform"
+            >
+              <i class="fas fa-download text-lg" aria-hidden="true"></i>
+              <span>Télécharger mon CV</span>
+            </a>
+          </div>
+
+          <!-- Decorative animated dots -->
+          <div class="flex justify-center gap-4 mt-8 opacity-60">
+            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+            <div
+              class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+              style="animation-delay: 0.5s"
+            ></div>
+            <div
+              class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+              style="animation-delay: 1s"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Enhanced Floating Decorative Elements -->
+        <div
+          class="absolute -top-6 -left-4 group-hover:scale-125 transition-transform duration-500 hidden md:block"
+        >
+          <div
+            class="w-3 h-3 bg-blue-400/60 rounded-full animate-pulse shadow-lg shadow-blue-400/30"
+          ></div>
+        </div>
+        <div
+          class="absolute top-8 -right-6 group-hover:scale-125 transition-transform duration-500 hidden md:block"
+          style="animation-delay: 1.5s"
+        >
+          <div
+            class="w-2 h-2 bg-purple-400/60 rounded-full animate-pulse shadow-lg shadow-purple-400/30"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ========== CONTACT FORM SECTION ========== -->
+      <section class="py-20 px-6 relative">
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-16 items-start">
+            <!-- Contact Information -->
+            <div class="space-y-8 fade-in">
+              <div>
+                <h2 class="text-3xl font-black mb-6 gradient-text">
+                  Parlons de votre projet
+                </h2>
+                <p
+                  class="text-neutral-300 text-lg leading-relaxed mb-8 font-semibold"
+                >
+                  Que vous ayez un projet d'infrastructure, une question
+                  technique ou simplement envie d'échanger, n'hésitez pas à me
+                  contacter. Je suis toujours intéressé par de nouveaux défis !
+                </p>
+              </div>
+
+              <!-- Contact Methods -->
+              <div class="space-y-4">
+                <!-- Email Contact Card -->
+                <a
+                  href="mailto:enzo.gaggiotti@epitech.eu"
+                  class="contact-method-card group block"
+                >
+                  <div class="contact-card-content">
+                    <div class="contact-icon-wrapper">
+                      <div class="contact-icon-email contact-icon-enhanced">
+                        <i class="fas fa-envelope"></i>
+                        <div class="icon-pulse-ring"></div>
+                      </div>
+                    </div>
+                    <div class="contact-info">
+                      <h3 class="contact-method-title">Email Professionnel</h3>
+                      <span class="contact-method-link email-link">
+                        enzo.gaggiotti@epitech.eu
+                      </span>
+                      <div class="contact-method-description">
+                        <i class="fas fa-clock contact-meta-icon"></i>
+                        Réponse sous 24h garantie
+                      </div>
+                    </div>
+                    <div class="contact-card-arrow">
+                      <i class="fas fa-arrow-right"></i>
+                    </div>
+                  </div>
+                  <div class="contact-card-glow email-glow"></div>
+                  <div class="contact-card-shimmer"></div>
+                </a>
+
+                <!-- LinkedIn Contact Card -->
+                <a
+                  href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
+                  target="_blank"
+                  class="contact-method-card group block"
+                >
+                  <div class="contact-card-content">
+                    <div class="contact-icon-wrapper">
+                      <div class="contact-icon-linkedin contact-icon-enhanced">
+                        <i class="fab fa-linkedin"></i>
+                        <div class="icon-pulse-ring"></div>
+                      </div>
+                    </div>
+                    <div class="contact-info">
+                      <h3 class="contact-method-title">Réseau Professionnel</h3>
+                      <span class="contact-method-link linkedin-link">
+                        Enzo Gaggiotti
+                      </span>
+                      <div class="contact-method-description">
+                        <i class="fas fa-users contact-meta-icon"></i>
+                        Connectons-nous sur LinkedIn
+                      </div>
+                    </div>
+                    <div class="contact-card-arrow">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="contact-card-glow linkedin-glow"></div>
+                  <div class="contact-card-shimmer"></div>
+                </a>
+
+                <!-- GitHub Contact Card -->
+                <a
+                  href="https://github.com/enzogagg"
+                  target="_blank"
+                  class="contact-method-card group block"
+                >
+                  <div class="contact-card-content">
+                    <div class="contact-icon-wrapper">
+                      <div class="contact-icon-github contact-icon-enhanced">
+                        <i class="fab fa-github"></i>
+                        <div class="icon-pulse-ring"></div>
+                      </div>
+                    </div>
+                    <div class="contact-info">
+                      <h3 class="contact-method-title">Code & Projets</h3>
+                      <span class="contact-method-link github-link">
+                        @enzogagg
+                      </span>
+                      <div class="contact-method-description">
+                        <i class="fas fa-code contact-meta-icon"></i>
+                        Découvrez mes contributions
+                      </div>
+                    </div>
+                    <div class="contact-card-arrow">
+                      <i class="fas fa-external-link-alt"></i>
+                    </div>
+                  </div>
+                  <div class="contact-card-glow github-glow"></div>
+                  <div class="contact-card-shimmer"></div>
+                </a>
+              </div>
+
+              <!-- Response Time -->
+              <div class="response-time-block p-4 rounded-xl shadow-md">
+                <div class="flex items-center gap-3">
+                  <i class="fas fa-clock response-time-icon text-lg"></i>
+                  <span class="response-time-text text-sm font-bold">
+                    <strong>Temps de réponse :</strong> Généralement sous 24h
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div
+              class="contact-form-enhanced p-8 rounded-2xl shadow-xl fade-in"
+            >
+              <form class="space-y-6" action="#" method="POST">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-base font-black contact-form-label-enhanced mb-2"
+                  >
+                    Nom complet
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors font-semibold"
+                    placeholder="Votre nom"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="email"
+                    class="block text-base font-black contact-form-label-enhanced mb-2"
+                  >
+                    Adresse email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors font-semibold"
+                    placeholder="votre.email@exemple.com"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="subject"
+                    class="block text-base font-black contact-form-label-enhanced mb-2"
+                  >
+                    Sujet
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    required
+                    class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors font-semibold"
+                  >
+                    <option value="">Sélectionnez un sujet</option>
+                    <option value="collaboration">
+                      Collaboration de projet
+                    </option>
+                    <option value="stage">Opportunité de stage</option>
+                    <option value="question">Question technique</option>
+                    <option value="other">Autre</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="message"
+                    class="block text-base font-black contact-form-label-enhanced mb-2"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    required
+                    class="w-full contact-form-field-enhanced rounded-xl px-4 py-3 focus:outline-none transition-colors resize-none font-semibold"
+                    placeholder="Décrivez votre projet ou votre question..."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full glass-button text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 group"
+                >
+                  <span class="flex items-center justify-center gap-3">
+                    <i
+                      class="fas fa-paper-plane text-sm group-hover:rotate-12 transition-transform duration-300"
+                    ></i>
+                    <span>Envoyer le message</span>
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer
+      class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl"
+    >
+      <!-- Social links -->
+      <div class="flex justify-center items-center gap-6 mb-4">
+        <a
+          href="mailto:enzo.gaggiotti@epitech.eu"
+          class="hover:text-white transition"
+          title="Email"
+          aria-label="Email"
+        >
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
+        <a
+          href="https://github.com/enzogagg"
+          class="hover:text-white transition"
+          title="GitHub"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
+          class="hover:text-white transition"
+          title="LinkedIn"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+      </div>
+
+      <!-- Copyright notice -->
+      <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/burger.js"></script>
+    <script src="assets/js/module-loader.js"></script>
+    <script src="assets/js/visual-effects.js"></script>
+  </body>
+</html>

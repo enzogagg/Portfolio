@@ -1,0 +1,30 @@
+.minimal-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(245, 245, 247, 0.95);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s;
+}
+
+.minimal-spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid #e5e5e7;
+  border-top: 3px solid #222;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,440 @@
+<!--
+=====================================================================================================
+PORTFOLIO - PROJECTS PAGE
+=====================================================================================================
+
+Author: Enzo Gaggiotti
+Project: Personal Portfolio
+File: projects.html
+Version: 2.1.0
+Last Updated: November 2025
+
+Description:
+Projects page showcasing portfolio with interactive filtering system,
+detailed cards, and technology tags.
+
+Features:
+- Interactive project filtering by technology
+- Glassmorphism project cards with hover effects
+- Action buttons (demo, GitHub, details)
+- Technology tags with brand-specific colors
+- Project status indicators (active, completed, in progress)
+- Minimalist Apple-style navigation
+- Mobile-first responsive design
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers with backdrop-filter
+
+=====================================================================================================
+-->
+<!doctype html>
+<html lang="fr" class="text-white scroll-smooth">
+  <head>
+    <!-- ========== META INFORMATION ========== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projets - Enzo Gaggiotti | Portfolio & Réalisations</title>
+    <meta
+      name="description"
+      content="Découvrez les projets et réalisations d'Enzo Gaggiotti en infrastructure, développement et technologies modernes."
+    />
+
+    <!-- ========== EXTERNAL RESOURCES ========== -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- ========== CSS FRAMEWORKS & STYLES ========== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/loader.css" />
+
+    <!-- Matomo -->
+    <script>
+      var _paq = (globalThis._paq = globalThis._paq || []);
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      var u = "https://matomo.ega.ovh/";
+      _paq.push(
+        ["setCookieDomain", "*.portfolio.ega.ovh"],
+        ["setDomains", ["*.portfolio.ega.ovh"]],
+        ["trackPageView"],
+        ["enableLinkTracking"],
+        ["setTrackerUrl", u + "matomo.php"],
+        ["setSiteId", "1"],
+      );
+      (function () {
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = u + "matomo.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <noscript
+      ><p>
+        <img
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+          style="border: 0"
+          alt=""
+        /></p
+    ></noscript>
+    <!-- End Matomo Code -->
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+    <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+    <div class="mesh-gradient-bg">
+      <!-- Gradient Orbs -->
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+
+      <!-- Light Rays -->
+      <div class="light-rays">
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+      </div>
+    </div>
+
+    <!-- Minimalist loader -->
+    <div class="minimal-loader">
+      <div class="minimal-spinner"></div>
+    </div>
+
+    <!-- ========== HEADER NAVIGATION ========== -->
+    <header id="main-header">
+      <div class="header-container">
+        <!-- Logo / Home Link -->
+        <a href="index.html#top" class="logo" aria-label="Accueil">
+          <div
+            class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            EG
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="nav-primary" aria-label="Navigation principale">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link active">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Header Controls (Mobile Menu) -->
+        <div class="flex items-center gap-4">
+          <!-- Mobile Hamburger Menu -->
+          <div class="burger-menu">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div class="mobile-menu" id="mobile-menu">
+        <nav class="mobile-nav" aria-label="Menu mobile">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section
+      class="flex flex-col items-center justify-center px-6 pt-32 pb-20 fade-in relative overflow-visible"
+    >
+      <!-- Background gradient effect -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"
+      ></div>
+
+      <div class="text-center space-y-8 max-w-4xl relative z-10">
+        <!-- Main title -->
+        <div class="inline-block">
+          <h1
+            class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] gradient-text-animated"
+          >
+            Mes Projets
+          </h1>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="text-lg sm:text-xl text-neutral-400 leading-relaxed">
+          Découvrez mes réalisations en infrastructure, développement et
+          innovation technologique.
+        </p>
+
+        <!-- Decorative animated dots -->
+        <div class="flex justify-center gap-4 mt-8 opacity-60">
+          <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+          <div
+            class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+            style="animation-delay: 0.5s"
+          ></div>
+          <div
+            class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+            style="animation-delay: 1s"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS SHOWCASE ========== -->
+    <main class="flex-grow container mx-auto px-6 pb-20 pt-12">
+      <!-- ========== PROJECT FILTERS ========== -->
+      <div
+        class="flex flex-wrap justify-center gap-4 mb-20 animate-on-scroll mt-12"
+      >
+        <button
+          class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn active"
+          data-filter="all"
+        >
+          <i class="fas fa-th-large mr-2"></i>Tous
+        </button>
+        <button
+          class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn"
+          data-filter="infrastructure"
+        >
+          <i class="fas fa-server mr-2"></i>Infrastructure
+        </button>
+        <button
+          class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn"
+          data-filter="web"
+        >
+          <i class="fas fa-code mr-2"></i>Développement Web
+        </button>
+        <button
+          class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn"
+          data-filter="system"
+        >
+          <i class="fas fa-cog mr-2"></i>Systèmes
+        </button>
+        <button
+          class="glass-button px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 filter-btn"
+          data-filter="iot"
+        >
+          <i class="fas fa-fish mr-2"></i>IoT / Domotique
+        </button>
+      </div>
+
+      <!-- ========== PROJECTS GRID ========== -->
+      <div
+        class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 projects-grid"
+      >
+        <!-- ========== INFRASTRUCTURE PROJECTS ========== -->
+        <!-- Project: Network Infrastructure -->
+        <div
+          class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll"
+          data-category="infrastructure"
+          style="animation-delay: 0s"
+        >
+          <div class="project-card-header">
+            <div class="project-icon-container">
+              <div class="project-icon-bg infrastructure">
+                <i class="fas fa-network-wired project-icon"></i>
+              </div>
+            </div>
+            <div class="project-status-badge">
+              <div class="status-dot active"></div>
+              <span>Infrastructure</span>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h3 class="project-title">Infrastructure Réseau HomeLab</h3>
+            <p class="project-description">
+              Infrastructure réseau complète avec 8 VLANs, cluster Proxmox 3
+              nœuds (12 VMs), pfSense (52 règles FW), NAS Synology.<br />
+              Production 1+ an - 2 VPN WireGuard - Monitoring Grafana/Uptime
+              Kuma - Backups 2×/jour
+            </p>
+
+            <div class="project-technologies">
+              <span class="tech-tag pfsense">pfSense</span>
+              <span class="tech-tag unifi">Unifi</span>
+              <span class="tech-tag proxmox">Proxmox</span>
+              <span class="tech-tag linux">Linux</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="network-project.html" class="project-btn btn-primary">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Détails</span>
+              </a>
+              <a
+                href="network-project.html#vlans"
+                class="project-btn btn-secondary"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>VLANs</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Box Domotique Aquarium (Featured) -->
+        <div
+          class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll"
+          data-category="iot"
+          style="animation-delay: 0.05s"
+        >
+          <div class="project-card-header">
+            <div class="project-icon-container">
+              <div class="project-icon-bg iot">
+                <i class="fas fa-fish project-icon text-blue-400"></i>
+              </div>
+            </div>
+            <div class="project-status-badge">
+              <div class="status-dot active"></div>
+              <span>IoT / Domotique</span>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h3 class="project-title">Box Domotique Aquarium</h3>
+            <p class="project-description">
+              Projet personnel mêlant électronique, code et automatisation.<br />
+              Capteurs complexes (pH, TDS, température), ESP32, ESPHome et
+              intégration Home Assistant.<br />
+              Dashboard domotique, automatisations, calibration et design d'une
+              boîte imprimée en 3D via Fusion pour une gestion intelligente.
+            </p>
+
+            <div class="project-technologies">
+              <span class="tech-tag esp32">ESP32</span>
+              <span class="tech-tag esphome">ESPHome</span>
+              <span class="tech-tag homeassistant">Home Assistant</span>
+            </div>
+
+            <div class="project-actions">
+              <a
+                href="https://github.com/enzogagg/AquaSense"
+                target="_blank"
+                rel="noopener"
+                class="project-btn btn-primary"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a href="aquarium-project.html" class="project-btn btn-secondary">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Détails</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== WEB DEVELOPMENT PROJECTS ========== -->
+
+        <!-- Project: Interactive Portfolio -->
+        <div
+          class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll"
+          data-category="web"
+          style="animation-delay: 0.2s"
+        >
+          <div class="project-card-header">
+            <div class="project-icon-container">
+              <div class="project-icon-bg web">
+                <i class="fas fa-globe project-icon"></i>
+              </div>
+            </div>
+            <div class="project-status-badge">
+              <div class="status-dot active"></div>
+              <span>Web</span>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h3 class="project-title">Portfolio Interactif</h3>
+            <p class="project-description">
+              Site portfolio moderne avec animations fluides, design responsive
+              et architecture modulaire utilisant les dernières technologies
+              web.
+            </p>
+
+            <div class="project-technologies">
+              <span class="tech-tag html">HTML5</span>
+              <span class="tech-tag css">CSS3</span>
+              <span class="tech-tag javascript">JavaScript</span>
+              <span class="tech-tag tailwind">Tailwind</span>
+            </div>
+
+            <div class="project-actions">
+              <a
+                href="https://github.com/enzogagg/portfolio"
+                class="project-btn btn-primary"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a
+                href="portfolio-project.html"
+                class="project-btn btn-secondary"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Détails</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer
+      class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl"
+    >
+      <!-- Social links -->
+      <div class="flex justify-center items-center gap-6 mb-4">
+        <a
+          href="mailto:enzo.gaggiotti@epitech.eu"
+          class="hover:text-white transition"
+          title="Email"
+          aria-label="Email"
+        >
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
+        <a
+          href="https://github.com/enzogagg"
+          class="hover:text-white transition"
+          title="GitHub"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
+          class="hover:text-white transition"
+          title="LinkedIn"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+      </div>
+
+      <!-- Copyright notice -->
+      <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+    </footer>
+
+    <!-- ========== JAVASCRIPT INITIALIZATION ========== -->
+
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/burger.js"></script>
+    <script src="assets/js/module-loader.js"></script>
+    <script src="assets/js/visual-effects.js"></script>
+  </body>
+</html>
