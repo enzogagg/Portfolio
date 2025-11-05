@@ -50,7 +50,7 @@
   }
 
   /**
-   * Parallax effect on .mesh-gradient-orb elements on scroll
+   * Parallax effect on .gradient-orb elements on scroll
    * Optimized with requestAnimationFrame
    */
   function initParallaxEffect() {
