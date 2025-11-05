@@ -4,26 +4,26 @@
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: contact.css
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Composants de contact et communication incluant formulaires, liens sociaux
- * et éléments UI de communication avec design glassmorphism.
+ * Contact and communication components including forms, social links
+ * and communication UI elements with glassmorphism design.
  *
  * Features:
- * - Formulaires de contact avec états de validation
- * - Icônes sociales avec gradients de marque
- * - Cartes de contact avec styling cohérent
- * - Indicateurs de temps de réponse
- * - Éléments interactifs avec hover/focus
- * - Support complet de l'accessibilité (WCAG)
- * - Design responsive mobile-first
+ * - Contact forms with validation states
+ * - Social icons with brand gradients
+ * - Contact cards with consistent styling
+ * - Response time indicators
+ * - Interactive elements with hover/focus
+ * - Full accessibility support (WCAG)
+ * - Mobile-first responsive design
  *
  * Dependencies: variables.css, animations.css
- * Browser Support: Modern browsers avec backdrop-filter
+ * Browser Support: Modern browsers with backdrop-filter
  *
  * =====================================================================================================
  */
@@ -72,13 +72,29 @@
  * Alternative styling with stronger glass effects
  */
 .contact-form-enhanced {
-  background: rgba(var(--bg-surface), var(--glass-opacity-light));
-  backdrop-filter: blur(var(--blur-xl));
-  -webkit-backdrop-filter: blur(var(--blur-xl));
-  border: var(--glass-border);
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--card-radius);
   padding: var(--spacing-2xl);
-  box-shadow: var(--shadow-lg);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-form-enhanced:hover {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 100%);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow:
+    0 20px 60px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
 }
 
 /**
@@ -377,18 +393,18 @@ textarea.contact-form-field-enhanced {
   border-radius: 20px;
   padding: 24px;
   
-  /* Advanced Glassmorphism */
+  /* Advanced Glassmorphism - Lighter and more transparent */
   background: linear-gradient(135deg,
-    rgba(var(--bg-secondary), 0.95) 0%,
-    rgba(var(--bg-secondary), 0.85) 50%,
-    rgba(var(--bg-secondary), 0.9) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.04) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   
   /* Premium Border & Shadow */
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.3),
     0 4px 16px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   
@@ -401,15 +417,25 @@ textarea.contact-form-field-enhanced {
   text-decoration: none;
   color: inherit;
   display: block;
+
+  /* Text rendering improvement */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .contact-method-card:hover {
   transform: translateY(-8px) scale(1.02);
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.06) 100%);
   box-shadow: 
-    0 24px 48px rgba(0, 0, 0, 0.25),
+    0 20px 60px rgba(139, 92, 246, 0.4),
     0 12px 24px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(139, 92, 246, 0.3),
+    0 0 40px rgba(139, 92, 246, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(139, 92, 246, 0.4);
   text-decoration: none;
 }
 
@@ -843,11 +869,15 @@ textarea.contact-form-field-enhanced {
  * Visual indicator for expected response times
  */
 .response-time-block {
-  background: rgba(var(--success), 0.1);
-  border: 1px solid rgba(var(--success), 0.3);
+  background: linear-gradient(135deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(34, 197, 94, 0.05) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.3);
   border-radius: var(--card-radius);
   padding: var(--spacing-base);
   margin: var(--spacing-lg) 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   display: flex;
   align-items: center;
@@ -857,8 +887,12 @@ textarea.contact-form-field-enhanced {
 }
 
 .response-time-block:hover {
-  background: rgba(var(--success), 0.15);
-  border-color: rgba(var(--success), 0.5);
+  background: linear-gradient(135deg,
+    rgba(34, 197, 94, 0.15) 0%,
+    rgba(34, 197, 94, 0.08) 100%);
+  border-color: rgba(34, 197, 94, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.2);
 }
 
 /**

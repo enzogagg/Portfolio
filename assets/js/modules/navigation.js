@@ -1,13 +1,13 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - MODULE NAVIGATION
+ * PORTFOLIO - NAVIGATION MODULE
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
  * Project: Personal Portfolio
  * File: navigation.js
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
  * Mobile navigation management module with an Apple-style hamburger menu

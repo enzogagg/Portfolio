@@ -1,28 +1,28 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - MODULE ANIMATIONS
+ * PORTFOLIO - ANIMATIONS MODULE
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: animations.js
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Module de gestion des animations au scroll et comportements
- * d'apparition avec Intersection Observer optimisé.
+ * Scroll animations and reveal behaviors management module
+ * with optimized Intersection Observer.
  *
  * Features:
- * - Animations d'apparition au scroll
- * - Intersection Observer performant
- * - Auto-masquage du header intelligent
- * - Gestion de la direction de scroll
- * - Animations fluides et optimisées GPU
- * - Debouncing pour les performances
+ * - Scroll reveal animations
+ * - Performant Intersection Observer
+ * - Intelligent header auto-hide
+ * - Scroll direction management
+ * - Smooth GPU-optimized animations
+ * - Performance debouncing
  *
  * Dependencies: Intersection Observer API
- * Browser Support: Modern browsers avec Intersection Observer
+ * Browser Support: Modern browsers with Intersection Observer
  *
  * =====================================================================================================
  */
@@ -100,19 +100,8 @@ export class ScrollAnimations {
         if (!entry.isIntersecting) continue;
 
         const target = entry.target;
-
-        // Add staggered animation delay for visual appeal
-        const delay = Math.random() * 0.3;
-        target.style.animationDelay = `${delay}s`;
-
-        // Apply animation classes based on element type
-        if (target.classList.contains('animate-on-scroll')) {
-          target.classList.add('animate-in');
-        } else if (target.classList.contains('fade-in')) {
-          target.classList.add('animate-fade-in');
-        }
-
-        // Stop observing once animated
+        target.style.opacity = '1';
+        target.style.transform = 'none';
         this.animationObserver.unobserve(target);
       }
     }, observerOptions);

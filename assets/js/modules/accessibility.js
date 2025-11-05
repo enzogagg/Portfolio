@@ -1,28 +1,28 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - MODULE ACCESSIBILITÉ
+ * PORTFOLIO - ACCESSIBILITY MODULE
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: accessibility.js
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Module de gestion de l'accessibilité avec navigation clavier,
- * gestion du focus et conformité WCAG 2.1 AA.
+ * Accessibility management module with keyboard navigation,
+ * focus management and WCAG 2.1 AA compliance.
  *
  * Features:
- * - Navigation clavier complète (Tab, Enter, Escape)
- * - Gestion du focus et skip links
- * - ARIA labels et live regions
- * - Indicateurs visuels de focus
- * - Support lecteurs d'écran
- * - Conformité WCAG 2.1 niveau AA
+ * - Complete keyboard navigation (Tab, Enter, Escape)
+ * - Focus management and skip links
+ * - ARIA labels and live regions
+ * - Visual focus indicators
+ * - Screen reader support
+ * - WCAG 2.1 level AA compliance
  *
- * Dependencies: Aucune - module autonome
- * Browser Support: Modern browsers avec support ARIA
+ * Dependencies: None - standalone module
+ * Browser Support: Modern browsers with ARIA support
  *
  * =====================================================================================================
  */

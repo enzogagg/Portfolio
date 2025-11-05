@@ -1,25 +1,25 @@
 <!--
 =====================================================================================================
-PORTFOLIO - PAGE CONTACT
+PORTFOLIO - CONTACT PAGE
 =====================================================================================================
 
 Author: Enzo Gaggiotti
 Project: Personal Portfolio
 File: contact.html
 Version: 2.1.0
-Last Updated: July 2025
+Last Updated: November 2025
 
 Description:
-Page to contact me with interactive form, social links,
-and communication information with real-time validation.
+Contact page with interactive form, social links, and communication
+information with real-time validation and glassmorphism design.
 
 Features:
-- Contact form with validation
-- Social links with brand gradients
-- Contact information cards
+- Contact form with client-side validation
+- Social media links with brand-specific colors
+- Contact information cards with icons
 - Response time indicators
-- Visual validation states
-- Consistent minimalist Apple-style navigation
+- Visual validation states and feedback
+- Minimalist Apple-style navigation with glassmorphism
 - Mobile-first responsive design
 
 Dependencies: main.css, font-awesome, inter-font
@@ -28,7 +28,7 @@ Browser Support: Modern browsers with backdrop-filter
 =====================================================================================================
 -->
 <!DOCTYPE html>
-<html lang="fr" class="bg-neutral-950 text-white scroll-smooth">
+<html lang="fr" class="text-white scroll-smooth">
 <head>
   <!-- Meta Information -->
   <meta charset="UTF-8" />
@@ -67,6 +67,24 @@ Browser Support: Modern browsers with backdrop-filter
 <!-- End Matomo Code -->
 
 <body class="min-h-screen flex flex-col">
+
+  <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+  <div class="mesh-gradient-bg">
+    <!-- Gradient Orbs -->
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+
+    <!-- Light Rays -->
+    <div class="light-rays">
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+      <div class="light-ray"></div>
+    </div>
+  </div>
+
   <!-- Minimalist loader -->
   <div id="minimal-loader">
     <div class="minimal-spinner"></div>
@@ -117,12 +135,12 @@ Browser Support: Modern browsers with backdrop-filter
 
     <!-- ========== HERO SECTION ========== -->
     <section class="flex flex-col items-center justify-center gap-20 px-6 pt-32 pb-20 fade-in relative overflow-visible">
-      <!-- Effet de fond subtil -->
+      <!-- Subtle background effect -->
       <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"></div>
 
       <div class="text-center space-y-8 max-w-4xl mx-auto relative z-10">
         <div class="inline-block">
-          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] gradient-text-animated">
             Contactez-moi
           </h1>
         </div>
@@ -131,7 +149,7 @@ Browser Support: Modern browsers with backdrop-filter
           Discutons de vos projets et de la façon dont je peux vous aider
         </p>
 
-        <!-- Bouton Télécharger CV -->
+        <!-- Download CV Button -->
         <div class="mt-8">
           <a href="assets/documents/CV_Enzo_Gaggiotti.pdf" download aria-label="Télécharger mon CV au format PDF" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105 transform">
             <i class="fas fa-download text-lg" aria-hidden="true"></i>
@@ -139,7 +157,7 @@ Browser Support: Modern browsers with backdrop-filter
           </a>
         </div>
 
-        <!-- Decorative Animated Dots -->
+        <!-- Decorative animated dots -->
         <div class="flex justify-center gap-4 mt-8 opacity-60">
           <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
           <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
@@ -157,14 +175,14 @@ Browser Support: Modern browsers with backdrop-filter
     </section>
 
     <!-- ========== CONTACT FORM SECTION ========== -->
-    <section class="py-20 px-6">
+    <section class="py-20 px-6 relative">
       <div class="max-w-4xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-start">
 
           <!-- Contact Information -->
           <div class="space-y-8 fade-in">
             <div>
-              <h2 class="text-3xl font-black mb-6 text-white drop-shadow-sm">Parlons de votre projet</h2>
+              <h2 class="text-3xl font-black mb-6 gradient-text">Parlons de votre projet</h2>
               <p class="text-neutral-300 text-lg leading-relaxed mb-8 font-semibold">
                 Que vous ayez un projet d'infrastructure, une question technique ou simplement envie d'échanger,
                 n'hésitez pas à me contacter. Je suis toujours intéressé par de nouveaux défis !
@@ -347,8 +365,8 @@ Browser Support: Modern browsers with backdrop-filter
   </main>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="bg-neutral-900 py-12 mt-12 text-center text-sm text-neutral-400">
-    <!-- Social Links -->
+  <footer class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl">
+    <!-- Social links -->
     <div class="flex justify-center items-center gap-6 mb-4">
       <a href="mailto:enzo.gaggiotti@epitech.eu" class="hover:text-white transition" title="Email" aria-label="Email">
         <i class="fas fa-envelope text-2xl"></i>
@@ -361,25 +379,14 @@ Browser Support: Modern browsers with backdrop-filter
       </a>
     </div>
 
-    <!-- Copyright Notice -->
+    <!-- Copyright notice -->
     <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
   </footer>
 
   <!-- ========== JAVASCRIPT ========== -->
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/burger.js"></script>
-  <!-- Fallback pour usage local (file:// protocol) -->
-  <script>
-    if (globalThis.location.protocol === 'file:') {
-      const script = document.createElement('script');
-      script.src = 'assets/js/standalone.js';
-      document.head.appendChild(script);
-    } else {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'assets/js/app.js';
-      document.head.appendChild(script);
-    }
-  </script>
+  <script src="assets/js/module-loader.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
 </body>
 </html>

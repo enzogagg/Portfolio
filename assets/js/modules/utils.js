@@ -1,6 +1,27 @@
 /**
- * Utility Functions Module
- * Shared helper functions used across multiple modules
+ * =====================================================================================================
+ * PORTFOLIO - UTILITY FUNCTIONS MODULE
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: utils.js
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Shared helper functions used across multiple modules.
+ *
+ * Features:
+ * - Element visibility forcing
+ * - Animation delay removal
+ * - Class manipulation utilities
+ * - Reusable helper functions
+ *
+ * Dependencies: None - standalone utilities
+ * Browser Support: ES6+ modules, modern browsers
+ *
+ * =====================================================================================================
  */
 
 /**

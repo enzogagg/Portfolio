@@ -4,25 +4,26 @@
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: variables.css
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Variables CSS centralisées définissant le système de design du portfolio.
- * Inclut couleurs, espacements, typographie, animations et effets glassmorphism.
+ * Centralized CSS variables defining the portfolio design system.
+ * Includes colors, spacing, typography, animations and glassmorphism effects.
  *
  * Features:
- * - Palette de couleurs dark mode complète
- * - Système d'espacement cohérent
- * - Variables typographiques (familles, tailles, poids)
- * - Durées et fonctions d'easing pour animations
- * - Propriétés glassmorphism (blur, opacité, bordures)
- * - Breakpoints responsive design
+ * - Complete dark mode color palette
+ * - Consistent spacing system
+ * - Typography variables (families, sizes, weights)
+ * - Animation durations and easing functions
+ * - Glassmorphism properties (blur, opacity, borders)
+ * - Responsive design breakpoints
  *
  * Usage: rgba(var(--bg-primary), 0.8) | rgb(var(--text-primary))
- * Dependencies: Aucune
+ * Dependencies: None - foundation module
+ * Browser Support: Modern browsers with CSS custom properties
  *
  * =====================================================================================================
  */

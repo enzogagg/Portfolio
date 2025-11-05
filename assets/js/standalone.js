@@ -1,30 +1,30 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - APPLICATION STANDALONE
+ * PORTFOLIO - STANDALONE APPLICATION
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: standalone.js
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Version standalone du portfolio fonctionnant sans serveur local
- * (compatible file://) avec toutes les fonctionnalités en un seul fichier.
+ * Standalone version of the portfolio working without a local server
+ * (compatible with file://) with all features in a single file.
  *
  * Features:
- * - Fichier unique pour utilisation standalone
- * - Mode sombre exclusif sans commutation de thème
- * - Navigation mobile avec menu hamburger Apple-style
- * - Auto-masquage du header au scroll
- * - Animations et transitions fluides
- * - Filtrage de projets avec état persistant
- * - Gestionnaire d'accessibilité intégré
- * - Compatible protocole file://
+ * - Single file for standalone usage
+ * - Exclusive dark mode without theme switching
+ * - Mobile navigation with Apple-style hamburger menu
+ * - Auto-hide header on scroll
+ * - Smooth animations and transitions
+ * - Project filtering with persistent state
+ * - Integrated accessibility manager
+ * - Compatible with file:// protocol
  *
- * Dependencies: Aucune - fichier autonome
- * Browser Support: ES6+ sans modules, modern browsers
+ * Dependencies: None - self-contained file
+ * Browser Support: ES6+ without modules, modern browsers
  *
  * =====================================================================================================
  */

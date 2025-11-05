@@ -1,28 +1,28 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - APPLICATION PRINCIPALE
+ * PORTFOLIO - MAIN APPLICATION
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: app.js
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Application JavaScript principale orchestrant tous les modules
- * du portfolio avec architecture modulaire et gestion d'état.
+ * Main JavaScript application orchestrating all portfolio modules
+ * with modular architecture and state management.
  *
  * Features:
- * - Architecture modulaire avec import/export ES6
- * - Gestion de la navigation mobile Apple-style
- * - Système d'animations et transitions fluides
- * - Filtrage de projets avec état persistant
- * - Gestionnaire d'accessibilité WCAG
- * - Optimisations de performance
- * - Gestion d'événements centralisée
+ * - Modular architecture with ES6 import/export
+ * - Apple-style mobile navigation management
+ * - Smooth animations and transitions system
+ * - Project filtering with persistent state
+ * - WCAG accessibility manager
+ * - Performance optimizations
+ * - Centralized event management
  *
- * Dependencies: modules/navigation.js, modules/animations.js, modules/projects.js, modules/utils.js
+ * Dependencies: modules/navigation.js, modules/animations.js, modules/projects.js
  * Browser Support: ES6+ modules, modern browsers
  *
  * =====================================================================================================
@@ -36,7 +36,6 @@ import { scrollAnimations } from './modules/animations.js';
 import { projectsFilter } from './modules/projects.js';
 import { accessibilityManager } from './modules/accessibility.js';
 import { performanceManager } from './modules/performance.js';
-import { forceProjectCardVisibility } from './modules/utils.js';
 
 /**
  * Portfolio Application Class

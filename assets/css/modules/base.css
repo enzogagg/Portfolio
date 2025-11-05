@@ -4,22 +4,22 @@
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: base.css
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Styles de base et fondations globales du portfolio.
- * Inclut reset CSS, typographie globale et règles d'accessibilité.
+ * Base styles and global foundations for the portfolio.
+ * Includes CSS reset, global typography and accessibility rules.
  *
  * Features:
- * - Reset CSS moderne basé sur normalize.css
- * - Configuration typographique globale
- * - Règles de layout et comportement des conteneurs
- * - Support complet de l'accessibilité (WCAG)
- * - Optimisation du rendu de texte
- * - Variables CSS et custom properties
+ * - Modern CSS reset based on normalize.css
+ * - Global typography configuration
+ * - Layout rules and container behaviors
+ * - Full accessibility support (WCAG)
+ * - Text rendering optimization
+ * - CSS custom properties integration
  *
  * Dependencies: variables.css
  * Browser Support: Modern browsers, graceful fallbacks
@@ -59,7 +59,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Body foundation */
+/* Body foundation - Transparent for mesh gradient background */
 body {
   /* Reset line height to normal */
   line-height: var(--leading-normal);
@@ -71,8 +71,8 @@ body {
   font-family: var(--font-primary);
   font-size: var(--text-base);
   font-weight: var(--font-normal);
-  /* Apply dark theme colors */
-  background-color: rgb(var(--bg-primary));
+  /* Transparent background to show mesh gradient */
+  background-color: transparent;
   color: rgb(var(--text-primary));
   /* Account for fixed header */
   padding-top: var(--header-height);
@@ -588,6 +588,172 @@ main {
 
   .no-print {
     display: none !important;
+  }
+}
+
+/* =====================================================================================================
+   ANIMATED MESH GRADIENT BACKGROUND
+   ===================================================================================================== */
+
+/**
+ * Mesh Gradient Background System
+ * Modern animated background with gradient orbs and light effects
+ */
+
+.mesh-gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a0d1a 50%, #1a100d 100%);
+}
+
+.mesh-gradient-bg::before,
+.mesh-gradient-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+  animation: float 20s ease-in-out infinite;
+}
+
+.mesh-gradient-bg::before {
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(236, 72, 153, 0.3) 50%, transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation-delay: -5s;
+}
+
+.mesh-gradient-bg::after {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(34, 211, 238, 0.3) 50%, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+  animation-delay: -10s;
+}
+
+/* Gradient orbs with float animation */
+.mesh-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0) translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.mesh-gradient-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(167, 139, 250, 0.2) 50%, transparent 70%);
+  top: 30%;
+  right: 10%;
+  animation-delay: -7s;
+}
+
+.mesh-gradient-orb-2 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, rgba(59, 130, 246, 0.2) 50%, transparent 70%);
+  bottom: 20%;
+  left: 15%;
+  animation-delay: -15s;
+}
+
+.mesh-gradient-orb-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.3) 0%, rgba(251, 191, 36, 0.2) 50%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  animation-delay: -3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  25% {
+    transform: translate3d(50px, -30px, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-30px, 50px, 0) scale(0.95);
+  }
+  75% {
+    transform: translate3d(40px, 20px, 0) scale(1.02);
+  }
+}
+
+/* Light rays effect */
+.light-rays {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.light-ray {
+  position: absolute;
+  width: 2px;
+  height: 200px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  animation: rayMove 10s linear infinite;
+  transform-origin: top;
+}
+
+.light-ray:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+  filter: hue-rotate(0deg);
+}
+
+.light-ray:nth-child(2) {
+  left: 30%;
+  animation-delay: -3s;
+  filter: hue-rotate(120deg);
+}
+
+.light-ray:nth-child(3) {
+  left: 50%;
+  animation-delay: -6s;
+  filter: hue-rotate(240deg);
+}
+
+.light-ray:nth-child(4) {
+  left: 70%;
+  animation-delay: -9s;
+  filter: hue-rotate(60deg);
+}
+
+.light-ray:nth-child(5) {
+  left: 90%;
+  animation-delay: -12s;
+  filter: hue-rotate(180deg);
+}
+
+@keyframes rayMove {
+  0% {
+    transform: translateY(-200px) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(45deg);
+    opacity: 0;
   }
 }
 

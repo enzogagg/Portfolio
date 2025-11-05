@@ -1,29 +1,29 @@
 /**
  * =====================================================================================================
- * PORTFOLIO - PROJECT ACTIONS & ÉLÉMENTS INTERACTIFS
+ * PORTFOLIO - PROJECT ACTIONS & INTERACTIVE ELEMENTS
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: project-actions.css
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Boutons d'action et éléments interactifs pour les projets incluant
- * liens de démonstration, GitHub, et contrôles de navigation.
+ * Action buttons and interactive elements for projects including
+ * demo links, GitHub, and navigation controls.
  *
  * Features:
- * - Boutons d'action primaires et secondaires
- * - États interactifs (hover, focus, active, disabled)
- * - Intégration d'icônes avec animations
- * - Effets visuels glassmorphism avancés
- * - Animations shimmer et glow
- * - Support complet de l'accessibilité (WCAG)
- * - Cibles tactiles optimisées mobile
+ * - Primary and secondary action buttons
+ * - Interactive states (hover, focus, active, disabled)
+ * - Icon integration with animations
+ * - Advanced glassmorphism visual effects
+ * - Shimmer and glow animations
+ * - Full accessibility support (WCAG)
+ * - Mobile-optimized touch targets
  *
  * Dependencies: variables.css, animations.css
- * Browser Support: Modern browsers avec backdrop-filter
+ * Browser Support: Modern browsers with backdrop-filter
  *
  * =====================================================================================================
  */

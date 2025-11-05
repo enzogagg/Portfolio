@@ -6,8 +6,8 @@
  * Author: Enzo Gaggiotti
  * Project: Personal Portfolio
  * File: config.js
- * Version: 1.0.0
- * Last Updated: October 2025
+ * Version: 2.1.0
+ * Last Updated: November 2025
  *
  * Description:
  * Centralized configuration to manage module responsibilities

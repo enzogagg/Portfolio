@@ -4,25 +4,25 @@
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Project: Portfolio Personnel
+ * Project: Personal Portfolio
  * File: header.css
  * Version: 2.1.0
- * Last Updated: July 2025
+ * Last Updated: November 2025
  *
  * Description:
- * Système de navigation principal avec design minimaliste inspiré d'Apple.
- * Inclut header fixe avec glassmorphism, navigation responsive, menu mobile,
- * et éléments interactifs conformes à l'accessibilité.
+ * Main navigation system with Apple-inspired minimalist design.
+ * Includes fixed header with glassmorphism, responsive navigation, mobile menu,
+ * and interactive elements with full accessibility compliance.
  *
  * Features:
- * - Header fixe avec effet glassmorphism
- * - Navigation desktop centrée avec effets hover
- * - Menu mobile avec overlay coulissant
- * - Design Apple minimaliste adapté au thème sombre
- * - Transitions fluides et animations GPU-accelerated
- * - Support complet de l'accessibilité (WCAG)
+ * - Fixed header with glassmorphism effect
+ * - Centered desktop navigation with hover effects
+ * - Sliding mobile menu with overlay
+ * - Apple minimalist design adapted to dark theme
+ * - Smooth GPU-accelerated transitions and animations
+ * - Full accessibility support (WCAG)
  *
- * Browser Support: Modern browsers avec backdrop-filter
+ * Browser Support: Modern browsers with backdrop-filter
  * Dependencies: variables.css, animations.css
  *
  * =====================================================================================================
@@ -31,8 +31,8 @@
    ===================================================================================================== */
 
 /**
- * Main Header Container
- * Apple-inspired minimalist design adapted for dark theme
+ * Main Header Container - N8N Enhanced Glassmorphism
+ * Modern minimalist design with enhanced transparency
  */
 header {
   /* Positioning */
@@ -43,16 +43,20 @@ header {
   height: var(--header-height);
   z-index: var(--z-fixed);
 
-  /* Dark Apple-inspired Glassmorphism */
-  background: rgba(0, 0, 0, 0.7);
+  /* Enhanced Glassmorphism with subtle gradient */
+  background: linear-gradient(135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.5) 100%);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 
-  /* Subtle Border */
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+  /* Enhanced Border with purple accent */
+  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
 
-  /* Clean Shadow */
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
+  /* Enhanced Shadow */
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
   /* Smooth Transitions */
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -74,14 +78,19 @@ header.header-visible {
 }
 
 /**
- * Enhanced state on scroll
+ * Enhanced state on scroll with purple accent
  */
 header.scrolled {
-  background: rgba(0, 0, 0, 0.85);
+  background: linear-gradient(135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.7) 100%);
   backdrop-filter: blur(30px) saturate(200%);
   -webkit-backdrop-filter: blur(30px) saturate(200%);
-  border-bottom-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  border-bottom-color: rgba(139, 92, 246, 0.2);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(139, 92, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /**

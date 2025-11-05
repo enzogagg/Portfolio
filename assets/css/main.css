@@ -4,9 +4,15 @@
  * =====================================================================================================
  *
  * Author: Enzo Gaggiotti
- * Description: Main CSS file that orchestrates all modular stylesheets for the portfolio website.
- *              Implements a modern component-based architecture with glassmorphism effects
- *              and comprehensive dark mode design system.
+ * Project: Personal Portfolio
+ * File: main.css
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Main CSS file that orchestrates all modular stylesheets for the portfolio website.
+ * Implements a modern component-based architecture with glassmorphism effects
+ * and comprehensive dark mode design system.
  *
  * Architecture:
  * - Foundation Layer: Variables, base styles, animations
@@ -16,7 +22,9 @@
  *
  * Design System: Dark Mode Only
  * Performance: Optimized for modern browsers with fallbacks
- * Last Updated: July 2025
+ * Dependencies: All CSS modules
+ * Browser Support: Modern browsers with backdrop-filter
+ *
  * =====================================================================================================
  */
 
@@ -44,7 +52,7 @@
    ===================================================================================================== */
 @import url('./modules/contact.css');        /* Contact forms and social interactions */
 @import url('./modules/special-components.css'); /* About section, timeline, hero elements */
-@import url('./modules/loader.css');         /* Loader minimaliste */
+@import url('./modules/loader.css');         /* Minimal page loader */
 
 /* =====================================================================================================
    PRODUCTION OPTIMIZATIONS
