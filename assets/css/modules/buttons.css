@@ -59,7 +59,7 @@
     0 0 0 1px rgba(139, 92, 246, 0.1);
 
   /* Typography */
-  color: #f0f0f0; /* Adjusted to a slightly darker shade for better contrast */
+  color: rgb(var(--text-primary));
   font-weight: 600;
 
   /* Transitions */
@@ -170,7 +170,7 @@
     rgba(79, 172, 254, 0.8) 0%,
     rgba(59, 130, 246, 0.8) 100%);
   border-color: rgba(79, 172, 254, 0.6);
-  color: #e0e0e0; /* Adjusted to improve contrast */
+  color: rgb(var(--text-primary));
   box-shadow:
     0 8px 20px rgba(79, 172, 254, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -280,7 +280,7 @@
 .btn-modern-primary {
   background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
   background-size: 200% 200%;
-  color: #000000;
+  color: #ffffff;
   box-shadow:
     0 4px 16px rgba(59, 130, 246, 0.4),
     0 2px 8px rgba(139, 92, 246, 0.3);
@@ -333,7 +333,7 @@
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #000000;
+  color: #ffffff;
 }
 
 .btn-modern-secondary:hover {
