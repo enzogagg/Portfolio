@@ -1,0 +1,5 @@
+# Prettier ignore file
+# Files that should not be formatted by Prettier
+
+# Accessibility module - manual indentation for ESLint compliance
+assets/js/modules/accessibility.js

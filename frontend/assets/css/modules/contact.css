@@ -154,7 +154,7 @@
 
 .contact-form-label.required::after,
 .contact-form-label-enhanced.required::after {
-  content: " *";
+  content: ' *';
   color: rgb(var(--error));
   font-weight: var(--font-bold);
 }
@@ -229,7 +229,7 @@
  * Textarea Specific Styling
  * Enhanced styling for message fields
  */
-.contact-form-field[type="textarea"],
+.contact-form-field[type='textarea'],
 textarea.contact-form-field,
 textarea.contact-form-field-enhanced {
   min-height: 120px;
@@ -735,7 +735,7 @@ textarea.contact-form-field-enhanced {
 }
 
 .form-loading::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;

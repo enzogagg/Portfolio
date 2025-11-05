@@ -87,10 +87,10 @@
    * Modern font stack with fallbacks
    */
   --font-primary:
-    "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
-  --font-secondary: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
+    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+  --font-secondary: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
   --font-heading:
-    "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
 
   /**
    * Font Sizes

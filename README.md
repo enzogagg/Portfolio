@@ -1,58 +1,48 @@
+
+
 # Portfolio
 
-## 🚀 Usage
+Welcome to the personal portfolio repository of Enzo Gaggiotti.
 
-This portfolio supports both local file usage and server deployment:
+This project demonstrates a modern, modular, and enterprise-grade architecture, with a clear separation between frontend, backend, and technical documentation.
 
-### Local Usage (Double-click to open)
-- Simply double-click any HTML file to open it in your browser
-- The application automatically detects `file://` protocol and loads the standalone version
-- All features work including theme switching, navigation, and project filters
+## 🏗️ Repository Structure
 
-### Server Usage (Development/Production)
-- Serve files through HTTP/HTTPS for the full modular experience
-- Example: `python -m http.server 8000` then visit `http://localhost:8000`
-- Uses modern ES6 modules for better code organization and performance
-
-## 📁 Project Structure
-
-```
-├── index.html              # Homepage
-├── projects.html           # Projects showcase with filters
-├── about.html              # About page
-├── contact.html            # Contact page
-├── assets/
-│   ├── css/
-│   │   └── style.css       # Main stylesheet with glassmorphisme design
-│   ├── images/             # Profile pictures and assets
-│   └── js/
-│       ├── app.js          # Main application (ES6 modules)
-│       ├── standalone.js   # Standalone version (file:// compatible)
-│       └── modules/        # Modular JavaScript architecture
-│           ├── navigation.js   # Mobile menu and navigation
-│           ├── projects.js     # Project filtering system
-│           ├── animations.js   # Scroll animations
-│           ├── accessibility.js # Keyboard navigation & WCAG
-│           └── performance.js  # Performance optimizations
-└── README.md               # This file
+```plaintext
+Portfolio/
+├── frontend/   # Web application (HTML, CSS, JS)
+├── backend/    # API, server logic (coming soon)
+├── docs/        # Technical documentation (linting, architecture, tests, etc.)
+├── README.md   # General overview
 ```
 
-## ✨ Features
+## 🎯 Philosophy
 
-- **Dual-mode compatibility**: Works with or without HTTP server
-- **Modern glassmorphisme design** with smooth transitions
-- **Light/Dark theme** with persistent storage
-- **Responsive design** optimized for all devices
-- **Project filtering system** with smooth animations
-- **Accessibility features** (WCAG compliant)
-- **Performance optimized** with lazy loading and debouncing
-- **Modular architecture** for maintainable code
+- **Modularity**: Each part of the project is independent and well documented.
+- **Quality**: Strict linting, tests, CI/CD, comprehensive documentation.
+- **Accessibility**: WCAG standards, responsive design.
+- **Performance**: Optimized for modern web.
 
-## 🛠️ Development
+## 📚 Documentation
 
-The project uses a dual-architecture approach:
+Full technical documentation is available in the `doc/` folder, including:
+- Linting and code quality rules
+- Architecture guides
+- Testing strategies
+- Deployment instructions
 
-- **Modular (ES6)**: For development and HTTP deployment
-- **Standalone**: For direct file access without server
+## 🚀 Getting Started
 
-Both versions maintain feature parity and share the same CSS and HTML files.
+See the README in the `frontend/` folder to launch the web application.
+Backend documentation will be available in `backend/`.
+
+## 🔗 Useful Links
+
+- [Frontend](./frontend/README.md)
+- [Backend](./backend/README.md) *(coming soon)*
+- [Documentation](./docs/README.md)
+
+---
+
+**Author**: Enzo Gaggiotti  
+**Last updated**: November 5, 2025

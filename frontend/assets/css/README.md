@@ -35,22 +35,26 @@ assets/css/
 ## 🎯 Architecture Principles
 
 ### Modular Design
+
 - ✅ Each module is independent and reusable
 - ✅ Clear separation of concerns
 - ✅ No duplicate code (refactored from 2445 → 1370 lines in components.css)
 
 ### Naming Conventions
+
 - ✅ **Classes**: kebab-case (`.my-class`)
 - ✅ **Animations**: camelCase (`@keyframes fadeIn`)
 - ✅ **Variables**: kebab-case (`--primary-color`)
 - ✅ **No ID selectors** (use classes for styling)
 
 ### Color System
+
 - ✅ RGB values only (`rgb(255, 255, 255)`)
 - ✅ No named colors (`red`, `blue`, etc.)
 - ✅ CSS custom properties for theming
 
 ### Best Practices
+
 - ✅ Mobile-first responsive design
 - ✅ Maximum nesting depth: 4 levels
 - ✅ Justified `!important` only (with comments)
@@ -74,18 +78,26 @@ All CSS follows strict Stylelint rules (15 rules):
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ❌ BAD */
-#my-id {  /* No ID selectors */
-  background: white;  /* Use rgb() */
-  color: red !important;  /* Avoid !important */
+#my-id {
+  /* No ID selectors */
+  background: white; /* Use rgb() */
+  color: red !important; /* Avoid !important */
 }
 
-@keyframes fade-in {  /* Use camelCase */
-  from { opacity: 0; }
+@keyframes fade-in {
+  /* Use camelCase */
+  from {
+    opacity: 0;
+  }
 }
 ```
 

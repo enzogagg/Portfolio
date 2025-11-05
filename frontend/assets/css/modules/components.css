@@ -120,7 +120,7 @@
 }
 
 .feature-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -166,7 +166,7 @@
 }
 
 .feature-icon::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: inherit;
@@ -213,7 +213,7 @@
 }
 
 .stat-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -306,7 +306,7 @@
 }
 
 .glass-container-advanced::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -977,7 +977,7 @@
 }
 
 .process-step:not(:last-child)::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 1.5rem;
   top: 4rem;

@@ -662,7 +662,7 @@ main {
 
 .mesh-gradient-bg::before,
 .mesh-gradient-bg::after {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
