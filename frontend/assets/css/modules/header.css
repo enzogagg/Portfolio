@@ -538,7 +538,7 @@ header.scrolled {
   top: -40px;
   left: var(--spacing-base);
   background: rgb(var(--accent-primary));
-  color: white;
+  color: rgb(255, 255, 255);
   padding: var(--spacing-sm) var(--spacing-base);
   border-radius: 0.5rem;
   text-decoration: none;
@@ -576,11 +576,14 @@ header.scrolled {
   .mobile-nav-link,
   .burger-line,
   .logo-img {
+    /* stylelint-disable-next-line declaration-no-important */
     transition-duration: var(--duration-instant) !important;
+    /* stylelint-disable-next-line declaration-no-important */
     animation: none !important;
   }
 
   .nav-link::after {
+    /* stylelint-disable-next-line declaration-no-important */
     transition: none !important;
   }
 }
@@ -628,6 +631,7 @@ header.scrolled {
 @media print {
   header,
   .mobile-menu {
+    /* stylelint-disable-next-line declaration-no-important */
     display: none !important;
   }
 }

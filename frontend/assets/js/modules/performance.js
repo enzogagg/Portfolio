@@ -27,7 +27,7 @@
  * =====================================================================================================
  */
 
-"use strict";
+'use strict';
 
 /**
  * Performance Manager
@@ -52,7 +52,7 @@ export class PerformanceManager {
     this.monitorPerformance();
     this.isInitialized = true;
 
-    console.log("✅ Performance optimizations initialized");
+    console.info('✅ Performance optimizations initialized');
   }
 
   /**
@@ -61,33 +61,33 @@ export class PerformanceManager {
    */
   initializeInteractiveOptimizations() {
     // Optimize project cards hover performance
-    const projectCards = document.querySelectorAll(".project-card, .tech-card");
+    const projectCards = document.querySelectorAll('.project-card, .tech-card');
 
     projectCards.forEach((card) => {
       // Prepare for smooth hover animations
-      card.addEventListener("mouseenter", function () {
-        this.style.willChange = "transform, box-shadow";
+      card.addEventListener('mouseenter', function () {
+        this.style.willChange = 'transform, box-shadow';
       });
 
       // Clean up after hover to save memory
-      card.addEventListener("mouseleave", function () {
-        this.style.willChange = "auto";
+      card.addEventListener('mouseleave', function () {
+        this.style.willChange = 'auto';
       });
     });
 
     // Optimize glass buttons
-    const glassButtons = document.querySelectorAll(".glass-button");
+    const glassButtons = document.querySelectorAll('.glass-button');
     glassButtons.forEach((button) => {
-      button.addEventListener("mouseenter", function () {
-        this.style.willChange = "transform, background, border-color";
+      button.addEventListener('mouseenter', function () {
+        this.style.willChange = 'transform, background, border-color';
       });
 
-      button.addEventListener("mouseleave", function () {
-        this.style.willChange = "auto";
+      button.addEventListener('mouseleave', function () {
+        this.style.willChange = 'auto';
       });
     });
 
-    console.log(
+    console.info(
       `Optimized ${projectCards.length + glassButtons.length} interactive elements`,
     );
   }
@@ -97,12 +97,12 @@ export class PerformanceManager {
    */
   setupPreloadOptimizations() {
     // Preload critical fonts
-    this.preloadFont("Inter", "wght@400;600;800");
+    this.preloadFont('Inter', 'wght@400;600;800');
 
     // Preload critical images
     const criticalImages = [
-      "/assets/images/avatar.png",
-      "/assets/images/avatar-stylisé.png",
+      '/assets/images/avatar.png',
+      '/assets/images/avatar-stylisé.png',
     ];
 
     criticalImages.forEach((src) => {
@@ -116,11 +116,11 @@ export class PerformanceManager {
    * @param {string} fontWeight - The font weight specification
    */
   preloadFont(fontFamily, fontWeight) {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "font";
-    link.type = "font/woff2";
-    link.crossOrigin = "anonymous";
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'font';
+    link.type = 'font/woff2';
+    link.crossOrigin = 'anonymous';
     link.href = `https://fonts.googleapis.com/css2?family=${fontFamily}:${fontWeight}&display=swap`;
     document.head.appendChild(link);
   }
@@ -130,9 +130,9 @@ export class PerformanceManager {
    * @param {string} src - The image source URL
    */
   preloadImage(src) {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
     link.href = src;
     document.head.appendChild(link);
   }
@@ -143,8 +143,8 @@ export class PerformanceManager {
   monitorPerformance() {
     // Log performance metrics in development
     if (
-      window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1"
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1'
     ) {
       this.logPerformanceMetrics();
     }
@@ -157,28 +157,28 @@ export class PerformanceManager {
    * Log performance metrics to console
    */
   logPerformanceMetrics() {
-    window.addEventListener("load", () => {
+    window.addEventListener('load', () => {
       setTimeout(() => {
-        const perfData = performance.getEntriesByType("navigation")[0];
+        const perfData = performance.getEntriesByType('navigation')[0];
 
-        console.group("🚀 Performance Metrics");
-        console.log(
+        console.group('🚀 Performance Metrics');
+        console.info(
           `DOM Content Loaded: ${perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart}ms`,
         );
-        console.log(
+        console.info(
           `Load Complete: ${perfData.loadEventEnd - perfData.loadEventStart}ms`,
         );
-        console.log(
+        console.info(
           `Total Load Time: ${perfData.loadEventEnd - perfData.fetchStart}ms`,
         );
 
         // Log LCP if available
-        if ("PerformanceObserver" in window) {
+        if ('PerformanceObserver' in window) {
           new PerformanceObserver((list) => {
             const entries = list.getEntries();
             const lcp = entries[entries.length - 1];
-            console.log(`Largest Contentful Paint: ${lcp.startTime}ms`);
-          }).observe({ entryTypes: ["largest-contentful-paint"] });
+            console.info(`Largest Contentful Paint: ${lcp.startTime}ms`);
+          }).observe({ entryTypes: ['largest-contentful-paint'] });
         }
 
         console.groupEnd();
@@ -190,7 +190,7 @@ export class PerformanceManager {
    * Monitor long tasks that might affect performance
    */
   monitorLongTasks() {
-    if ("PerformanceObserver" in window) {
+    if ('PerformanceObserver' in window) {
       const observer = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
           if (entry.duration > 50) {
@@ -199,7 +199,7 @@ export class PerformanceManager {
         });
       });
 
-      observer.observe({ entryTypes: ["longtask"] });
+      observer.observe({ entryTypes: ['longtask'] });
     }
   }
 
@@ -208,13 +208,13 @@ export class PerformanceManager {
    */
   initializeLazyLoading() {
     // Use native lazy loading where supported
-    const images = document.querySelectorAll("img[data-src]");
+    const images = document.querySelectorAll('img[data-src]');
 
-    if ("loading" in HTMLImageElement.prototype) {
+    if ('loading' in HTMLImageElement.prototype) {
       // Native lazy loading
       images.forEach((img) => {
         img.src = img.dataset.src;
-        img.loading = "lazy";
+        img.loading = 'lazy';
       });
     } else {
       // Fallback with Intersection Observer
@@ -223,7 +223,7 @@ export class PerformanceManager {
           if (entry.isIntersecting) {
             const img = entry.target;
             img.src = img.dataset.src;
-            img.classList.remove("lazy");
+            img.classList.remove('lazy');
             imageObserver.unobserve(img);
           }
         });

@@ -332,9 +332,13 @@
   *,
   *::before,
   *::after {
+    /* stylelint-disable-next-line declaration-no-important */
     animation-duration: 0.01s !important;
+    /* stylelint-disable-next-line declaration-no-important */
     animation-iteration-count: 1 !important;
+    /* stylelint-disable-next-line declaration-no-important */
     transition-duration: 0.01s !important;
+    /* stylelint-disable-next-line declaration-no-important */
     scroll-behavior: auto !important;
   }
 }

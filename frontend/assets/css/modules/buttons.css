@@ -360,7 +360,7 @@
 .btn-modern-outline {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .btn-modern-outline:hover {

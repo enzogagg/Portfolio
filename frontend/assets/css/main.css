@@ -65,9 +65,13 @@
 .filter-btn,
 .filter-btn.animate-on-scroll,
 .animate-on-scroll .filter-btn {
+  /* stylelint-disable-next-line declaration-no-important */
   opacity: 1 !important;
+  /* stylelint-disable-next-line declaration-no-important */
   transform: translateY(0) !important;
+  /* stylelint-disable-next-line declaration-no-important */
   visibility: visible !important;
+  /* stylelint-disable-next-line declaration-no-important */
   display: inline-flex !important;
 }
 

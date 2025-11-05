@@ -310,7 +310,7 @@ main {
   top: -40px;
   left: 6px;
   background: rgb(var(--accent-primary));
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 8px;
   border-radius: 4px;
   text-decoration: none;
@@ -325,6 +325,7 @@ main {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   * {
+    /* stylelint-disable-next-line declaration-no-important */
     border-color: rgb(var(--text-primary)) !important;
   }
 
@@ -343,9 +344,13 @@ main {
   *,
   *::before,
   *::after {
+    /* stylelint-disable-next-line declaration-no-important */
     animation-duration: 0.01ms !important;
+    /* stylelint-disable-next-line declaration-no-important */
     animation-iteration-count: 1 !important;
+    /* stylelint-disable-next-line declaration-no-important */
     transition-duration: 0.01ms !important;
+    /* stylelint-disable-next-line declaration-no-important */
     scroll-behavior: auto !important;
   }
 }
@@ -387,44 +392,54 @@ main {
 
 /* Override Tailwind background colors */
 .bg-neutral-950 {
+  /* stylelint-disable-next-line declaration-no-important */
   background-color: rgb(var(--bg-primary)) !important;
 }
 
 .bg-neutral-900 {
+  /* stylelint-disable-next-line declaration-no-important */
   background-color: rgb(var(--bg-secondary)) !important;
 }
 
 .bg-neutral-800 {
+  /* stylelint-disable-next-line declaration-no-important */
   background-color: rgb(var(--bg-tertiary)) !important;
 }
 
 /* Override Tailwind text colors */
 .text-white {
+  /* stylelint-disable-next-line declaration-no-important */
   color: rgb(var(--text-primary)) !important;
 }
 
 .text-neutral-400 {
+  /* stylelint-disable-next-line declaration-no-important */
   color: rgb(var(--text-secondary)) !important;
 }
 
 .text-neutral-300 {
+  /* stylelint-disable-next-line declaration-no-important */
   color: rgb(var(--text-primary)) !important;
 }
 
 .text-white\/70 {
+  /* stylelint-disable-next-line declaration-no-important */
   color: rgba(var(--text-primary), 0.7) !important;
 }
 
 .text-neutral-500 {
+  /* stylelint-disable-next-line declaration-no-important */
   color: rgb(var(--text-muted)) !important;
 }
 
 /* Override Tailwind border colors */
 .border-neutral-800 {
+  /* stylelint-disable-next-line declaration-no-important */
   border-color: rgb(var(--border-primary)) !important;
 }
 
 .border-neutral-700 {
+  /* stylelint-disable-next-line declaration-no-important */
   border-color: rgb(var(--border-secondary)) !important;
 }
 
@@ -439,11 +454,13 @@ main {
 
 /* Tech cards global fix */
 .tech-card * {
+  /* stylelint-disable-next-line declaration-no-important */
   color: inherit !important;
 }
 
 /* Skill tags global fix */
 .skill-tag-simple span {
+  /* stylelint-disable-next-line declaration-no-important */
   color: rgb(var(--text-primary)) !important;
 }
 
@@ -451,11 +468,13 @@ main {
 .project-card *,
 .project-card-home *,
 .project-card-enhanced * {
+  /* stylelint-disable-next-line declaration-no-important */
   color: inherit !important;
 }
 
 /* Filter buttons global fix */
 .filter-btn * {
+  /* stylelint-disable-next-line declaration-no-important */
   color: inherit !important;
 }
 
@@ -582,9 +601,13 @@ main {
   *,
   *::before,
   *::after {
+    /* stylelint-disable-next-line declaration-no-important */
     background: transparent !important;
-    color: black !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
     box-shadow: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
     text-shadow: none !important;
   }
 
@@ -607,10 +630,12 @@ main {
 
   a {
     text-decoration: underline;
-    color: black !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: rgb(0, 0, 0) !important;
   }
 
   .no-print {
+    /* stylelint-disable-next-line declaration-no-important */
     display: none !important;
   }
 }

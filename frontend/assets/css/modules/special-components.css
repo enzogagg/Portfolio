@@ -134,12 +134,11 @@
  * Timeline Icons
  * Icons within timeline nodes
  */
-/**
- * Icons within timeline nodes
- */
+
 .timeline-icon,
 .timeline-node i {
-  color: white !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  color: rgb(255, 255, 255) !important;
   font-size: var(--text-lg);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform var(--duration-fast) var(--ease-out);
@@ -189,13 +188,12 @@
  * Floating Profile Image
  * Subtle floating animation for profile pictures
  */
-.floating-profile,
-.floating {
-  animation: gentle-float 6s ease-in-out infinite;
+.floating-profile {
+  animation: gentleFloat 6s ease-in-out infinite;
   will-change: transform;
 }
 
-@keyframes gentle-float {
+@keyframes gentleFloat {
   0%,
   100% {
     transform: translateY(0);
@@ -254,7 +252,7 @@
   border-radius: 50%;
   opacity: 0;
   z-index: -1;
-  animation: slow-rotate 12s linear infinite;
+  animation: slowRotate 12s linear infinite;
   transition: opacity var(--duration-slow) var(--ease-out);
 }
 
@@ -262,7 +260,7 @@
   opacity: 1;
 }
 
-@keyframes slow-rotate {
+@keyframes slowRotate {
   from {
     transform: rotate(0deg);
   }
@@ -459,7 +457,8 @@
 .to-yellow-600 i,
 .to-red-600 i,
 .bg-gradient-to-br i {
-  color: white !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  color: rgb(255, 255, 255) !important;
   font-size: var(--text-lg);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform var(--duration-fast) var(--ease-out);
@@ -559,6 +558,7 @@
 }
 
 .skill-tag-simple span {
+  /* stylelint-disable-next-line declaration-no-important */
   color: rgb(var(--text-primary)) !important;
   font-weight: 500;
   font-size: 13px;
@@ -680,10 +680,10 @@
   border: 2px solid rgba(var(--accent-primary), 0.6);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: pulse-ring-animation 2s infinite;
+  animation: pulseRingAnimation 2s infinite;
 }
 
-@keyframes pulse-ring-animation {
+@keyframes pulseRingAnimation {
   0% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
@@ -709,10 +709,10 @@
   background-size: 200% 100%;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer-animation 3s ease-in-out infinite;
+  animation: shimmerAnimation 3s ease-in-out infinite;
 }
 
-@keyframes shimmer-animation {
+@keyframes shimmerAnimation {
   0%,
   100% {
     background-position: 200% 0;
@@ -868,6 +868,7 @@
   .floating,
   .shimmer-text,
   .pulse-ring::before {
+    /* stylelint-disable-next-line declaration-no-important */
     animation: none !important;
   }
 
@@ -880,6 +881,7 @@
   .timeline-node,
   .profile-image,
   .about-card {
+    /* stylelint-disable-next-line declaration-no-important */
     transition: none !important;
   }
 
@@ -887,6 +889,7 @@
   .timeline-node:hover,
   .profile-image:hover,
   .about-card:hover {
+    /* stylelint-disable-next-line declaration-no-important */
     transform: none !important;
   }
 }
@@ -905,26 +908,37 @@
   .shimmer-text,
   .pulse-ring,
   .glow-border {
+    /* stylelint-disable-next-line declaration-no-important */
     animation: none !important;
-    background: white !important;
-    color: black !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    background: rgb(255, 255, 255) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: rgb(0, 0, 0) !important;
   }
 
   .skill-icon-container,
   .timeline-node {
-    background: black !important;
-    color: white !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    background: rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: rgb(255, 255, 255) !important;
+    /* stylelint-disable-next-line declaration-no-important */
     box-shadow: none !important;
   }
 
   .about-card {
-    background: white !important;
-    border: 1px solid black !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    background: rgb(255, 255, 255) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border: 1px solid rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
     box-shadow: none !important;
   }
 
   .profile-image {
-    border: 2px solid black !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border: 2px solid rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
     box-shadow: none !important;
   }
 }

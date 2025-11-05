@@ -27,7 +27,7 @@
  * =====================================================================================================
  */
 
-"use strict";
+'use strict';
 
 /**
  * Scroll Animation Manager
@@ -49,12 +49,12 @@ export class ScrollAnimations {
       return;
     }
 
-    this.header = document.getElementById("main-header");
+    this.header = document.getElementById('main-header');
     this.setupScrollAnimations();
     this.setupHeaderScroll();
     this.isInitialized = true;
 
-    console.log("✅ Scroll animations initialized");
+    console.info('✅ Scroll animations initialized');
   }
 
   /**
@@ -63,30 +63,30 @@ export class ScrollAnimations {
    */
   setupScrollAnimations() {
     const animatedElements = document.querySelectorAll(
-      ".fade-in, .animate-on-scroll",
+      '.fade-in, .animate-on-scroll',
     );
 
     if (animatedElements.length === 0) {
-      console.log("No animated elements found");
+      console.info('No animated elements found');
       return;
     }
 
     // Force immediate visibility for filter buttons (critical UI elements)
-    const filterButtons = document.querySelectorAll(".filter-btn");
+    const filterButtons = document.querySelectorAll('.filter-btn');
     for (const btn of filterButtons) {
-      btn.style.opacity = "1";
-      btn.style.transform = "translateY(0)";
-      btn.classList.add("animate-in");
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+      btn.classList.add('animate-in');
     }
 
     // Also ensure the filter container is visible
     const filterContainer = document.querySelector(
-      ".flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll",
+      '.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll',
     );
     if (filterContainer) {
-      filterContainer.style.opacity = "1";
-      filterContainer.style.transform = "translateY(0)";
-      filterContainer.classList.add("animate-in");
+      filterContainer.style.opacity = '1';
+      filterContainer.style.transform = 'translateY(0)';
+      filterContainer.classList.add('animate-in');
     }
 
     // NOTE: Project cards visibility is handled by the projects module (Single Responsibility)
@@ -95,7 +95,7 @@ export class ScrollAnimations {
     // Intersection Observer options
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+      rootMargin: '0px 0px -50px 0px',
     };
 
     // Create observer instance
@@ -106,8 +106,8 @@ export class ScrollAnimations {
         }
 
         const target = entry.target;
-        target.style.opacity = "1";
-        target.style.transform = "none";
+        target.style.opacity = '1';
+        target.style.transform = 'none';
         this.animationObserver.unobserve(target);
       }
     }, observerOptions);
@@ -116,8 +116,8 @@ export class ScrollAnimations {
     let observedCount = 0;
     for (const element of animatedElements) {
       if (
-        element.classList.contains("project-card-enhanced") ||
-        element.classList.contains("project-card")
+        element.classList.contains('project-card-enhanced') ||
+        element.classList.contains('project-card')
       ) {
         continue;
       }
@@ -126,7 +126,7 @@ export class ScrollAnimations {
     }
 
     const projectCardsCount = animatedElements.length - observedCount;
-    console.log(
+    console.info(
       `🎬 Animation Observer: ${observedCount} elements observed (${projectCardsCount} project cards excluded)`,
     );
   }
@@ -136,14 +136,14 @@ export class ScrollAnimations {
    */
   setupHeaderScroll() {
     if (!this.header) {
-      console.warn("Header element not found");
+      console.warn('Header element not found');
       return;
     }
 
     let scrollTimeout;
 
     window.addEventListener(
-      "scroll",
+      'scroll',
       () => {
         // Debounce scroll events for better performance
         if (!scrollTimeout) {
@@ -172,10 +172,10 @@ export class ScrollAnimations {
       currentScroll > this.lastScrollPosition &&
       currentScroll > this.scrollThreshold
     ) {
-      this.header.style.transform = "translateY(-100%)";
+      this.header.style.transform = 'translateY(-100%)';
     } else {
       // Show header when scrolling up or at top
-      this.header.style.transform = "translateY(0)";
+      this.header.style.transform = 'translateY(0)';
     }
 
     this.lastScrollPosition = currentScroll;
@@ -185,23 +185,23 @@ export class ScrollAnimations {
    * Enhanced scroll animations for projects page
    */
   initializeProjectsScrollAnimations() {
-    const projectElements = document.querySelectorAll(".animate-on-scroll");
+    const projectElements = document.querySelectorAll('.animate-on-scroll');
 
     if (projectElements.length === 0) {
       return;
     }
 
-    console.log("🎯 Initializing projects scroll animations");
+    console.info('🎯 Initializing projects scroll animations');
 
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+      rootMargin: '0px 0px -50px 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          entry.target.classList.add("animate-in");
+          entry.target.classList.add('animate-in');
         }
       }
     }, observerOptions);
@@ -210,7 +210,7 @@ export class ScrollAnimations {
       observer.observe(el);
     }
 
-    console.log("✅ Projects scroll animations initialized");
+    console.info('✅ Projects scroll animations initialized');
   }
 
   /**

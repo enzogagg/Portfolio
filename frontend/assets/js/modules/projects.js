@@ -32,10 +32,10 @@
  * =====================================================================================================
  */
 
-"use strict";
+'use strict';
 
-import { forceProjectCardVisibility } from "./utils.js";
-import { initState } from "./config.js";
+import { forceProjectCardVisibility } from './utils.js';
+import { initState } from './config.js';
 
 /**
  * Projects Filter Manager
@@ -54,49 +54,49 @@ export class ProjectsFilter {
    */
   init() {
     if (this.isInitialized) {
-      console.log("⚠️ Projects filter already initialized");
+      console.info('⚠️ Projects filter already initialized');
       return;
     }
 
-    console.log("🔍 Starting projects filter initialization...");
+    console.info('🔍 Starting projects filter initialization...');
 
     let retryCount = 0;
     const maxRetries = 5;
     const initializeWhenReady = () => {
-      this.filterButtons = document.querySelectorAll(".filter-btn");
+      this.filterButtons = document.querySelectorAll('.filter-btn');
       this.projectCards = document.querySelectorAll(
-        ".project-card-enhanced, .project-card",
+        '.project-card-enhanced, .project-card',
       );
 
-      console.log(`🔍 Found ${this.filterButtons.length} filter buttons`);
-      console.log(`🔍 Found ${this.projectCards.length} project cards`);
+      console.info(`🔍 Found ${this.filterButtons.length} filter buttons`);
+      console.info(`🔍 Found ${this.projectCards.length} project cards`);
       for (const [index, btn] of Array.from(this.filterButtons).entries()) {
-        console.log(
+        console.info(
           `  Filter button ${index}: "${btn.textContent.trim()}" (data-filter: "${btn.dataset.filter}")`,
         );
       }
 
       for (const [index, card] of Array.from(this.projectCards).entries()) {
-        console.log(
+        console.info(
           `  Project card ${index}: ${card.className} (data-category: "${card.dataset.category}")`,
         );
       }
       if (this.filterButtons.length === 0 || this.projectCards.length === 0) {
         retryCount++;
         if (retryCount < maxRetries) {
-          console.log(
+          console.info(
             `⚠️ Projects page elements not found, retrying ${retryCount}/${maxRetries} in 100ms...`,
           );
           setTimeout(initializeWhenReady, 100);
         } else {
-          console.log(
-            "ℹ️ Not on projects page, skipping filter initialization",
+          console.info(
+            'ℹ️ Not on projects page, skipping filter initialization',
           );
         }
         return;
       }
 
-      console.log("🎯 Initializing projects page functionality");
+      console.info('🎯 Initializing projects page functionality');
 
       this.ensureFilterVisibility();
 
@@ -105,14 +105,14 @@ export class ProjectsFilter {
       this.setupFilterButtons();
       this.isInitialized = true;
 
-      initState.markInitialized("projectCards");
+      initState.markInitialized('projectCards');
 
-      console.log("✅ Projects page functionality initialized");
+      console.info('✅ Projects page functionality initialized');
     };
 
-    if (document.readyState === "loading") {
-      console.log("📋 DOM still loading, waiting...");
-      document.addEventListener("DOMContentLoaded", initializeWhenReady);
+    if (document.readyState === 'loading') {
+      console.info('📋 DOM still loading, waiting...');
+      document.addEventListener('DOMContentLoaded', initializeWhenReady);
     } else {
       setTimeout(initializeWhenReady, 50);
     }
@@ -123,25 +123,25 @@ export class ProjectsFilter {
    */
   ensureFilterVisibility() {
     for (const button of this.filterButtons) {
-      button.style.opacity = "1";
-      button.style.transform = "translateY(0)";
-      button.style.visibility = "visible";
+      button.style.opacity = '1';
+      button.style.transform = 'translateY(0)';
+      button.style.visibility = 'visible';
 
-      if (button.classList.contains("animate-on-scroll")) {
-        button.classList.add("animate-in");
+      if (button.classList.contains('animate-on-scroll')) {
+        button.classList.add('animate-in');
       }
     }
     const filterContainer = document.querySelector(
-      ".flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll",
+      '.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll',
     );
     if (filterContainer) {
-      filterContainer.style.opacity = "1";
-      filterContainer.style.transform = "translateY(0)";
-      filterContainer.style.visibility = "visible";
-      filterContainer.classList.add("animate-in");
+      filterContainer.style.opacity = '1';
+      filterContainer.style.transform = 'translateY(0)';
+      filterContainer.style.visibility = 'visible';
+      filterContainer.classList.add('animate-in');
     }
 
-    console.log("🔧 Filter visibility ensured for production");
+    console.info('🔧 Filter visibility ensured for production');
   }
 
   /**
@@ -149,7 +149,7 @@ export class ProjectsFilter {
    */
   resetProjectCards() {
     const processedCount = forceProjectCardVisibility(this.projectCards);
-    console.log(
+    console.info(
       `🔄 ${processedCount} project cards made immediately visible on load`,
     );
   }
@@ -158,33 +158,33 @@ export class ProjectsFilter {
    * Setup event listeners for filter buttons
    */
   setupFilterButtons() {
-    console.log(`🎯 Setting up ${this.filterButtons.length} filter buttons`);
-    console.log(`🎯 Found ${this.projectCards.length} project cards`);
+    console.info(`🎯 Setting up ${this.filterButtons.length} filter buttons`);
+    console.info(`🎯 Found ${this.projectCards.length} project cards`);
 
     for (const [index, button] of Array.from(this.filterButtons).entries()) {
-      console.log(
+      console.info(
         `📌 Setting up button ${index}: "${button.textContent.trim()}" (data-filter: "${button.dataset.filter}")`,
       );
 
       button.replaceWith(button.cloneNode(true));
-      const newButton = document.querySelectorAll(".filter-btn")[index];
+      const newButton = document.querySelectorAll('.filter-btn')[index];
 
-      newButton.addEventListener("click", (e) => {
+      newButton.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
         const filter = newButton.dataset.filter;
-        console.log(`🖱️ Filter button clicked: "${filter}"`);
+        console.info(`🖱️ Filter button clicked: "${filter}"`);
 
         this.filterProjects(filter);
         this.updateActiveButton(newButton);
       });
 
-      console.log(`✅ Event listener added to button ${index}`);
+      console.info(`✅ Event listener added to button ${index}`);
     }
 
-    this.filterButtons = document.querySelectorAll(".filter-btn");
-    console.log("🔄 Filter buttons setup complete");
+    this.filterButtons = document.querySelectorAll('.filter-btn');
+    console.info('🔄 Filter buttons setup complete');
   }
 
   /**
@@ -192,16 +192,16 @@ export class ProjectsFilter {
    * @param {string} filter - The filter category ('all' or specific category)
    */
   filterProjects(filter) {
-    console.log(`Filtering projects by: ${filter}`);
+    console.info(`Filtering projects by: ${filter}`);
 
     let showCount = 0;
     let hideCount = 0;
 
     for (const [index, card] of Array.from(this.projectCards).entries()) {
       const category = card.dataset.category;
-      console.log(`Card ${index}: category="${category}", filter="${filter}"`);
+      console.info(`Card ${index}: category="${category}", filter="${filter}"`);
 
-      if (filter === "all" || category === filter) {
+      if (filter === 'all' || category === filter) {
         this.showCard(card);
         showCount++;
       } else {
@@ -210,7 +210,7 @@ export class ProjectsFilter {
       }
     }
 
-    console.log(`Filter result: ${showCount} shown, ${hideCount} hidden`);
+    console.info(`Filter result: ${showCount} shown, ${hideCount} hidden`);
   }
 
   /**
@@ -218,13 +218,13 @@ export class ProjectsFilter {
    * @param {Element} card - The project card element
    */
   showCard(card) {
-    console.log("🟢 Showing card:", card.className);
+    console.info('🟢 Showing card:', card.className);
 
-    card.classList.remove("project-hidden");
-    card.style.display = "block";
-    card.style.opacity = "1";
-    card.style.transform = "scale(1)";
-    card.style.visibility = "visible";
+    card.classList.remove('project-hidden');
+    card.style.display = 'block';
+    card.style.opacity = '1';
+    card.style.transform = 'scale(1)';
+    card.style.visibility = 'visible';
   }
 
   /**
@@ -232,13 +232,13 @@ export class ProjectsFilter {
    * @param {Element} card - The project card element
    */
   hideCard(card) {
-    console.log("🔴 Hiding card:", card.className);
+    console.info('🔴 Hiding card:', card.className);
 
-    card.classList.add("project-hidden");
-    card.style.display = "none";
-    card.style.opacity = "0";
-    card.style.transform = "scale(0.9)";
-    card.style.visibility = "hidden";
+    card.classList.add('project-hidden');
+    card.style.display = 'none';
+    card.style.opacity = '0';
+    card.style.transform = 'scale(0.9)';
+    card.style.visibility = 'hidden';
   }
 
   /**
@@ -247,9 +247,9 @@ export class ProjectsFilter {
    */
   updateActiveButton(activeButton) {
     for (const btn of this.filterButtons) {
-      btn.classList.remove("active");
+      btn.classList.remove('active');
     }
-    activeButton.classList.add("active");
+    activeButton.classList.add('active');
   }
 
   /**
@@ -257,8 +257,8 @@ export class ProjectsFilter {
    * @returns {string} The active filter category
    */
   getActiveFilter() {
-    const activeButton = document.querySelector(".filter-btn.active");
-    return activeButton ? activeButton.dataset.filter : "all";
+    const activeButton = document.querySelector('.filter-btn.active');
+    return activeButton ? activeButton.dataset.filter : 'all';
   }
 
   /**
@@ -277,19 +277,19 @@ export class ProjectsFilter {
    * Reset filters to show all projects
    */
   resetFilters() {
-    this.setActiveFilter("all");
+    this.setActiveFilter('all');
   }
 
   /**
    * Test filtering functionality
    */
   testFiltering() {
-    console.log("🧪 Testing filter: infrastructure");
-    this.filterProjects("infrastructure");
+    console.info('🧪 Testing filter: infrastructure');
+    this.filterProjects('infrastructure');
 
     setTimeout(() => {
-      console.log("🧪 Testing filter: all");
-      this.filterProjects("all");
+      console.info('🧪 Testing filter: all');
+      this.filterProjects('all');
     }, 2000);
   }
 

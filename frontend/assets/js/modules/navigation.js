@@ -27,7 +27,7 @@
  * =====================================================================================================
  */
 
-"use strict";
+'use strict';
 
 /**
  * Mobile Navigation Manager
@@ -47,17 +47,17 @@ export class MobileNavigation {
       return;
     }
 
-    this.mobileMenu = document.getElementById("mobile-menu");
-    this.burgerMenu = document.querySelector(".burger-menu");
+    this.mobileMenu = document.getElementById('mobile-menu');
+    this.burgerMenu = document.querySelector('.burger-menu');
 
     if (!this.mobileMenu || !this.burgerMenu) {
-      console.warn("Mobile navigation elements not found");
+      console.warn('Mobile navigation elements not found');
       return;
     }
 
     this.setupEventListeners();
     this.isInitialized = true;
-    console.log("✅ Mobile navigation initialized");
+    console.info('✅ Mobile navigation initialized');
   }
 
   /**
@@ -65,14 +65,14 @@ export class MobileNavigation {
    */
   setupEventListeners() {
     // Handle window resize
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {
         this.close();
       }
     });
 
     // Handle click outside menu
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       if (
         !this.burgerMenu.contains(e.target) &&
         !this.mobileMenu.contains(e.target)
@@ -82,8 +82,8 @@ export class MobileNavigation {
     });
 
     // Handle escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && this.isOpen) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isOpen) {
         this.close();
       }
     });
@@ -114,12 +114,12 @@ export class MobileNavigation {
       return;
     }
 
-    this.mobileMenu.classList.add("active");
-    this.burgerMenu.classList.add("active");
-    document.body.classList.add("menu-open");
+    this.mobileMenu.classList.add('active');
+    this.burgerMenu.classList.add('active');
+    document.body.classList.add('menu-open');
     this.isOpen = true;
 
-    console.log("Mobile menu opened");
+    console.info('Mobile menu opened');
   }
 
   /**
@@ -130,12 +130,12 @@ export class MobileNavigation {
       return;
     }
 
-    this.mobileMenu.classList.remove("active");
-    this.burgerMenu.classList.remove("active");
-    document.body.classList.remove("menu-open");
+    this.mobileMenu.classList.remove('active');
+    this.burgerMenu.classList.remove('active');
+    document.body.classList.remove('menu-open');
     this.isOpen = false;
 
-    console.log("Mobile menu closed");
+    console.info('Mobile menu closed');
   }
 
   /**

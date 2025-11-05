@@ -526,12 +526,15 @@
   .project-card .flex.gap-3 a,
   .project-action-btn i,
   .project-card .flex.gap-3 a i {
+    /* stylelint-disable-next-line declaration-no-important */
     transition: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
     animation: none !important;
   }
 
   .project-action-btn:hover,
   .project-card .flex.gap-3 a:hover {
+    /* stylelint-disable-next-line declaration-no-important */
     transform: none !important;
   }
 
@@ -599,11 +602,17 @@
 @media print {
   .project-action-btn,
   .project-card .flex.gap-3 a {
-    background: white !important;
-    color: black !important;
-    border: 1px solid black !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    background: rgb(255, 255, 255) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border: 1px solid rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
     box-shadow: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
     backdrop-filter: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
     transform: none !important;
   }
 

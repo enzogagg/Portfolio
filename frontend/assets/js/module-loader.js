@@ -26,18 +26,18 @@
  */
 
 (function () {
-  "use strict";
+  'use strict';
 
-  if (globalThis.location && globalThis.location.protocol === "file:") {
+  if (globalThis.location && globalThis.location.protocol === 'file:') {
     // File protocol mode - Load standalone script
-    const script = document.createElement("script");
-    script.src = "assets/js/standalone.js";
+    const script = document.createElement('script');
+    script.src = 'assets/js/standalone.js';
     document.head.appendChild(script);
   } else {
     // HTTP protocol mode - Load ES6 module
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = "assets/js/app.js";
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'assets/js/app.js';
     document.head.appendChild(script);
   }
 })();

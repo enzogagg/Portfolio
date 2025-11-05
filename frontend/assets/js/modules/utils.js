@@ -56,22 +56,22 @@ export function forceElementVisibility(elements, options = {}) {
 
     // Remove animation-delay to prevent flickering
     if (removeAnimationDelay) {
-      element.style.removeProperty("animation-delay");
+      element.style.removeProperty('animation-delay');
     }
 
     // Force visibility with !important to override any CSS
-    element.style.setProperty("opacity", "1", "important");
-    element.style.setProperty("transform", "translateY(0)", "important");
-    element.style.setProperty("visibility", "visible", "important");
+    element.style.setProperty('opacity', '1', 'important');
+    element.style.setProperty('transform', 'translateY(0)', 'important');
+    element.style.setProperty('visibility', 'visible', 'important');
 
     // Add animate-in class
     if (addAnimateInClass) {
-      element.classList.add("animate-in");
+      element.classList.add('animate-in');
     }
 
     // Remove hidden class
     if (removeHiddenClass) {
-      element.classList.remove("project-hidden");
+      element.classList.remove('project-hidden');
     }
 
     processedCount++;
