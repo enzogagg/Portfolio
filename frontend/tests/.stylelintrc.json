@@ -1,0 +1,85 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$|^(delay|text|bg|border|grid|mesh-gradient-orb)-[0-9a-z\\/]+$",
+      {
+        "message": "Classes must be in kebab-case or follow Tailwind conventions"
+      }
+    ],
+    "custom-property-pattern": [
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$|^(text|spacing|space)-[0-9]+xl$",
+      {
+        "message": "CSS variables must be in kebab-case (--my-var)"
+      }
+    ],
+    "keyframes-name-pattern": [
+      "^[a-z]+([A-Z][a-z]+)*$",
+      {
+        "message": "Animations must be in camelCase (fadeIn, slideUp)"
+      }
+    ],
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
+    "import-notation": "string",
+    "no-descending-specificity": null,
+    "no-duplicate-selectors": true,
+    "max-nesting-depth": [
+      4,
+      {
+        "message": "Maximum nesting depth of 4 levels to avoid complexity"
+      }
+    ],
+    "selector-max-id": [
+      0,
+      {
+        "message": "No ID selectors (#id), use classes instead"
+      }
+    ],
+    "selector-max-universal": [
+      1,
+      {
+        "message": "Limit usage of universal selector (*)"
+      }
+    ],
+    "declaration-no-important": [
+      true,
+      {
+        "message": "!important is discouraged, restructure your CSS",
+        "severity": "warning"
+      }
+    ],
+    "color-named": [
+      "never",
+      {
+        "message": "Use hex/rgb instead of color names (red → #ff0000)"
+      }
+    ],
+    "unit-no-unknown": [
+      true,
+      {
+        "ignoreUnits": ["xl"]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "comment-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["stylelint-commands"]
+      }
+    ],
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ]
+  }
+}
