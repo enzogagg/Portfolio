@@ -68,7 +68,7 @@ module.exports = {
       "warn",
       {
         // `console.*` as warning
-        allow: ["warn", "error", "info"], // Except warn/error/info
+        allow: ["warn", "error", "info", "group", "groupEnd", "table"],
       },
     ],
     "no-debugger": "error", // `debugger` forbidden in production
