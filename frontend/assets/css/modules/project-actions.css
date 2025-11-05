@@ -1,0 +1,627 @@
+/**
+ * =====================================================================================================
+ * PORTFOLIO - PROJECT ACTIONS & INTERACTIVE ELEMENTS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: project-actions.css
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Action buttons and interactive elements for projects including
+ * demo links, GitHub, and navigation controls.
+ *
+ * Features:
+ * - Primary and secondary action buttons
+ * - Interactive states (hover, focus, active, disabled)
+ * - Icon integration with animations
+ * - Advanced glassmorphism visual effects
+ * - Shimmer and glow animations
+ * - Full accessibility support (WCAG)
+ * - Mobile-optimized touch targets
+ *
+ * Dependencies: variables.css, animations.css
+ * Browser Support: Modern browsers with backdrop-filter
+ *
+ * =====================================================================================================
+ */
+
+/* =====================================================================================================
+   PROJECT ACTION BUTTON FOUNDATION
+   ===================================================================================================== */
+
+/**
+ * Action Button Container
+ * Wrapper for project action buttons with consistent spacing
+ */
+.project-actions,
+.project-card .flex.gap-3 {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(var(--border-primary), 0.3);
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+/**
+ * Base Action Button Styling
+ * Common properties for all project action buttons
+ */
+.project-action-btn,
+.project-card .flex.gap-3 a {
+  /* Layout */
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+
+  /* Sizing */
+  padding: var(--spacing-md) var(--spacing-lg);
+  min-height: 44px; /* Touch target accessibility */
+
+  /* Typography */
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  font-family: var(--font-primary);
+  text-decoration: none;
+  white-space: nowrap;
+
+  /* Appearance */
+  border-radius: var(--btn-radius);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* Glassmorphism Base */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--bg-surface), 0.4) 0%,
+    rgba(var(--bg-surface), 0.2) 100%
+  );
+  backdrop-filter: blur(var(--blur-md));
+  color: rgb(var(--text-primary));
+
+  /* Shadow System */
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(var(--text-primary), 0.1);
+
+  /* Smooth Transitions */
+  transition: all var(--duration-normal) var(--ease-out);
+  will-change: transform, background-color, box-shadow;
+
+  /* Remove default button styling */
+  border: var(--glass-border);
+  outline: none;
+}
+
+/**
+ * Shimmer Effect
+ * Animated light sweep across buttons
+ */
+.project-action-btn::before,
+.project-card .flex.gap-3 a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--text-primary), 0.15) 50%,
+    transparent 100%
+  );
+  transition: left var(--duration-slow) var(--ease-out);
+  z-index: -1;
+}
+
+/* =====================================================================================================
+   INTERACTIVE STATES
+   ===================================================================================================== */
+
+/**
+ * Hover State
+ * Enhanced visual feedback on mouse hover
+ */
+.project-action-btn:hover,
+.project-card .flex.gap-3 a:hover {
+  /* Transform and Animation */
+  transform: translateY(-3px) scale(1.02);
+
+  /* Enhanced Glassmorphism */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-primary), 0.3) 0%,
+    rgba(var(--accent-primary), 0.15) 100%
+  );
+  border-color: rgba(var(--accent-primary), 0.4);
+  color: rgb(var(--accent-light));
+
+  /* Enhanced Shadow */
+  box-shadow:
+    0 12px 25px rgba(var(--accent-primary), 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(var(--text-primary), 0.2);
+
+  /* Trigger Shimmer */
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.project-action-btn:hover::before,
+.project-card .flex.gap-3 a:hover::before {
+  left: 100%;
+}
+
+/**
+ * Active State
+ * Pressed button feedback
+ */
+.project-action-btn:active,
+.project-card .flex.gap-3 a:active {
+  transform: translateY(-1px) scale(1.01);
+  transition: all var(--duration-instant) var(--ease-out);
+  box-shadow:
+    0 6px 12px rgba(var(--accent-primary), 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(var(--text-primary), 0.15);
+}
+
+/**
+ * Focus State
+ * Accessibility-compliant keyboard focus
+ */
+.project-action-btn:focus-visible,
+.project-card .flex.gap-3 a:focus-visible {
+  outline: none;
+
+  /* Focus Ring */
+  box-shadow:
+    0 0 0 3px rgba(var(--accent-primary), 0.4),
+    0 12px 25px rgba(var(--accent-primary), 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(var(--text-primary), 0.2);
+
+  /* Enhanced Colors */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-primary), 0.25) 0%,
+    rgba(var(--accent-primary), 0.1) 100%
+  );
+  border-color: rgba(var(--accent-primary), 0.5);
+  color: rgb(var(--accent-light));
+}
+
+/**
+ * Disabled State
+ * Non-interactive disabled buttons
+ */
+.project-action-btn:disabled,
+.project-action-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: rgba(var(--bg-surface), 0.2);
+  color: rgb(var(--text-muted));
+  border-color: rgba(var(--border-primary), 0.2);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(var(--text-primary), 0.05);
+}
+
+.project-action-btn:disabled::before,
+.project-action-btn.disabled::before {
+  display: none;
+}
+
+/* =====================================================================================================
+   BUTTON VARIANTS
+   ===================================================================================================== */
+
+/**
+ * Primary Action Button
+ * Main call-to-action styling (Live Demo, etc.)
+ */
+.project-action-btn.primary {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-primary), 0.5) 0%,
+    rgba(var(--accent-primary), 0.3) 100%
+  );
+  border-color: rgba(var(--accent-primary), 0.6);
+  color: rgb(var(--text-primary));
+  font-weight: var(--font-bold);
+  box-shadow:
+    0 6px 12px rgba(var(--accent-primary), 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(var(--text-primary), 0.15);
+}
+
+.project-action-btn.primary:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-primary), 0.7) 0%,
+    rgba(var(--accent-primary), 0.5) 100%
+  );
+  border-color: rgba(var(--accent-primary), 0.8);
+  box-shadow:
+    0 16px 32px rgba(var(--accent-primary), 0.3),
+    0 12px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(var(--text-primary), 0.25);
+}
+
+/**
+ * Secondary Action Button
+ * Supporting actions (GitHub, Documentation, etc.)
+ */
+.project-action-btn.secondary {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--bg-surface), 0.3) 0%,
+    rgba(var(--bg-surface), 0.1) 100%
+  );
+  border-color: rgba(var(--border-primary), 0.4);
+  color: rgb(var(--text-secondary));
+}
+
+.project-action-btn.secondary:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--bg-surface), 0.5) 0%,
+    rgba(var(--bg-surface), 0.3) 100%
+  );
+  border-color: rgba(var(--border-primary), 0.6);
+  color: rgb(var(--text-primary));
+}
+
+/**
+ * GitHub Button Variant
+ * Special styling for GitHub links
+ */
+.project-action-btn.github {
+  background: linear-gradient(
+    135deg,
+    rgba(51, 51, 51, 0.4) 0%,
+    rgba(51, 51, 51, 0.2) 100%
+  );
+  border-color: rgba(51, 51, 51, 0.5);
+}
+
+.project-action-btn.github:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(68, 68, 68, 0.6) 0%,
+    rgba(68, 68, 68, 0.4) 100%
+  );
+  border-color: rgba(68, 68, 68, 0.7);
+  box-shadow:
+    0 12px 25px rgba(51, 51, 51, 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(var(--text-primary), 0.2);
+}
+
+/* =====================================================================================================
+   ICON INTEGRATION
+   ===================================================================================================== */
+
+/**
+ * Button Icons
+ * Consistent icon styling within action buttons
+ */
+.project-action-btn i,
+.project-card .flex.gap-3 a i {
+  font-size: var(--text-base);
+  transition: all var(--duration-normal) var(--ease-out);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  will-change: transform, filter;
+}
+
+/**
+ * Icon Hover Effects
+ * Enhanced icon animations on button hover
+ */
+.project-action-btn:hover i,
+.project-card .flex.gap-3 a:hover i {
+  transform: scale(1.1) rotate(2deg);
+  filter: drop-shadow(0 4px 8px rgba(var(--accent-primary), 0.3));
+}
+
+/**
+ * Specific Icon Types
+ * Custom styling for different icon types
+ */
+.project-action-btn .fa-external-link-alt,
+.project-action-btn .fa-globe {
+  color: rgb(var(--accent-light));
+}
+
+.project-action-btn .fa-github {
+  color: rgb(var(--text-primary));
+}
+
+.project-action-btn .fa-code {
+  color: rgb(var(--accent-primary));
+}
+
+/* =====================================================================================================
+   LOADING STATES
+   ===================================================================================================== */
+
+/**
+ * Loading Button State
+ * Visual feedback during asynchronous actions
+ */
+.project-action-btn.loading {
+  position: relative;
+  pointer-events: none;
+  color: transparent;
+}
+
+.project-action-btn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid rgb(var(--accent-primary));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/**
+ * Loading Animation Keyframes
+ */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================================================================================
+   BUTTON GROUPS & LAYOUTS
+   ===================================================================================================== */
+
+/**
+ * Button Group Container
+ * Multiple buttons arranged together
+ */
+.project-action-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/**
+ * Stacked Button Layout
+ * Vertical button arrangement for mobile
+ */
+.project-actions.stacked {
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.project-actions.stacked .project-action-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* =====================================================================================================
+   RESPONSIVE DESIGN
+   ===================================================================================================== */
+
+/**
+ * Mobile-First Responsive Design
+ * Optimized button layouts for different screen sizes
+ */
+
+/* Mobile Styles (Default) */
+@media (width <= 640px) {
+  .project-actions,
+  .project-card .flex.gap-3 {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .project-action-btn,
+  .project-card .flex.gap-3 a {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--text-sm);
+  }
+
+  /* Reduce animation complexity on mobile */
+  .project-action-btn:hover,
+  .project-card .flex.gap-3 a:hover {
+    transform: translateY(-1px) scale(1.01);
+  }
+}
+
+/* Tablet Styles */
+@media (width >= 641px) and (width <= 1024px) {
+  .project-actions,
+  .project-card .flex.gap-3 {
+    gap: var(--spacing-md);
+  }
+
+  .project-action-btn,
+  .project-card .flex.gap-3 a {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--text-sm);
+  }
+}
+
+/* Desktop Styles */
+@media (width >= 1025px) {
+  .project-actions,
+  .project-card .flex.gap-3 {
+    gap: var(--spacing-lg);
+  }
+
+  .project-action-btn,
+  .project-card .flex.gap-3 a {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--text-base);
+  }
+
+  /* Enhanced animations on larger screens */
+  .project-action-btn:hover,
+  .project-card .flex.gap-3 a:hover {
+    transform: translateY(-4px) scale(1.03);
+  }
+}
+
+/* =====================================================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ===================================================================================================== */
+
+/**
+ * High Contrast Mode Support
+ * Enhanced visibility for accessibility
+ */
+@media (prefers-contrast: high) {
+  .project-action-btn,
+  .project-card .flex.gap-3 a {
+    border: 2px solid rgb(var(--text-primary));
+    background: rgb(var(--bg-primary));
+    color: rgb(var(--text-primary));
+  }
+
+  .project-action-btn:hover,
+  .project-card .flex.gap-3 a:hover {
+    background: rgb(var(--bg-secondary));
+    border-color: rgb(var(--accent-primary));
+  }
+
+  .project-action-btn:focus-visible,
+  .project-card .flex.gap-3 a:focus-visible {
+    outline: 3px solid rgb(var(--accent-primary));
+    outline-offset: 2px;
+  }
+}
+
+/**
+ * Reduced Motion Support
+ * Respect user's motion preferences
+ */
+@media (prefers-reduced-motion: reduce) {
+  .project-action-btn,
+  .project-card .flex.gap-3 a,
+  .project-action-btn i,
+  .project-card .flex.gap-3 a i {
+    /* stylelint-disable-next-line declaration-no-important */
+    transition: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    animation: none !important;
+  }
+
+  .project-action-btn:hover,
+  .project-card .flex.gap-3 a:hover {
+    /* stylelint-disable-next-line declaration-no-important */
+    transform: none !important;
+  }
+
+  .project-action-btn::before,
+  .project-card .flex.gap-3 a::before {
+    display: none;
+  }
+
+  .project-action-btn.loading::after {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* =====================================================================================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ===================================================================================================== */
+
+/**
+ * Touch-Friendly Interactions
+ * Optimized for mobile and tablet touch interactions
+ */
+@media (hover: none) and (pointer: coarse) {
+  .project-action-btn,
+  .project-card .flex.gap-3 a {
+    /* Larger touch targets */
+    min-height: 48px;
+    padding: var(--spacing-lg);
+
+    /* Immediate feedback */
+    transition: background-color var(--duration-fast) var(--ease-out);
+  }
+
+  /* Remove hover effects on touch devices */
+  .project-action-btn:hover,
+  .project-card .flex.gap-3 a:hover {
+    transform: none;
+    background: linear-gradient(
+      135deg,
+      rgba(var(--accent-primary), 0.3) 0%,
+      rgba(var(--accent-primary), 0.15) 100%
+    );
+  }
+
+  /* Enhanced active states for touch feedback */
+  .project-action-btn:active,
+  .project-card .flex.gap-3 a:active {
+    background: linear-gradient(
+      135deg,
+      rgba(var(--accent-primary), 0.4) 0%,
+      rgba(var(--accent-primary), 0.2) 100%
+    );
+    transform: scale(0.98);
+  }
+}
+
+/* =====================================================================================================
+   PRINT STYLES
+   ===================================================================================================== */
+
+/**
+ * Print Optimization
+ * Simplified styling for print media
+ */
+@media print {
+  .project-action-btn,
+  .project-card .flex.gap-3 a {
+    /* stylelint-disable-next-line declaration-no-important */
+    background: rgb(255, 255, 255) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border: 1px solid rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    box-shadow: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    backdrop-filter: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    transform: none !important;
+  }
+
+  .project-action-btn::before,
+  .project-card .flex.gap-3 a::before {
+    display: none;
+  }
+}
+
+/* =====================================================================================================
+   END OF PROJECT ACTIONS MODULE
+   ===================================================================================================== */

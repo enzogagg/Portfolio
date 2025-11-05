@@ -1,0 +1,97 @@
+/**
+ * =====================================================================================================
+ * PORTFOLIO - MAIN CSS ORCHESTRATOR
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: main.css
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Main CSS file that orchestrates all modular stylesheets for the portfolio website.
+ * Implements a modern component-based architecture with glassmorphism effects
+ * and comprehensive dark mode design system.
+ *
+ * Architecture:
+ * - Foundation Layer: Variables, base styles, animations
+ * - Layout Layer: Header, navigation, structural components
+ * - Component Layer: Buttons, cards, interactive elements
+ * - Specialized Layer: Contact forms, unique sections
+ *
+ * Design System: Dark Mode Only
+ * Performance: Optimized for modern browsers with fallbacks
+ * Dependencies: All CSS modules
+ * Browser Support: Modern browsers with backdrop-filter
+ *
+ * =====================================================================================================
+ */
+
+/* =====================================================================================================
+   FOUNDATION LAYER - Core Styles & Variables
+   ===================================================================================================== */
+@import "./modules/variables.css"; /* CSS custom properties and design tokens */
+@import "./modules/base.css"; /* Global styles, resets, typography */
+@import "./modules/animations.css"; /* Keyframes, transitions, scroll animations */
+
+/* =====================================================================================================
+   LAYOUT LAYER - Structural Components
+   ===================================================================================================== */
+@import "./modules/header.css"; /* Fixed header, navigation, mobile menu */
+
+/* =====================================================================================================
+   COMPONENT LAYER - Interactive Elements
+   ===================================================================================================== */
+@import "./modules/buttons.css"; /* Glassmorphism buttons, filter controls */
+@import "./modules/cards.css"; /* Project cards, technology showcases */
+@import "./modules/project-actions.css"; /* Project-specific action buttons */
+
+/* =====================================================================================================
+   SPECIALIZED LAYER - Unique Components
+   ===================================================================================================== */
+@import "./modules/contact.css"; /* Contact forms and social interactions */
+@import "./modules/special-components.css"; /* About section, timeline, hero elements */
+@import "./modules/loader.css"; /* Minimal page loader */
+
+/* =====================================================================================================
+   PRODUCTION OPTIMIZATIONS
+   ===================================================================================================== */
+
+/**
+ * Critical filter button visibility fix for production environments
+ * Ensures filter buttons are always visible regardless of animation state
+ */
+.filter-btn,
+.filter-btn.animate-on-scroll,
+.animate-on-scroll .filter-btn {
+  /* stylelint-disable-next-line declaration-no-important */
+  opacity: 1 !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  transform: translateY(0) !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  visibility: visible !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  display: inline-flex !important;
+}
+
+/**
+ * Progressive enhancement for JavaScript-enabled environments
+ */
+.js-enabled .filter-btn.animate-on-scroll:not(.animate-in) {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+/**
+ * Fallback for no-JavaScript environments
+ */
+.no-js .animate-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================================================================
+   END OF MAIN STYLESHEET
+   ===================================================================================================== */

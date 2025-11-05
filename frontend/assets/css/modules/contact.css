@@ -1,0 +1,938 @@
+/**
+ * =====================================================================================================
+ * PORTFOLIO - CONTACT & COMMUNICATION COMPONENTS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: contact.css
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Contact and communication components including forms, social links
+ * and communication UI elements with glassmorphism design.
+ *
+ * Features:
+ * - Contact forms with validation states
+ * - Social icons with brand gradients
+ * - Contact cards with consistent styling
+ * - Response time indicators
+ * - Interactive elements with hover/focus
+ * - Full accessibility support (WCAG)
+ * - Mobile-first responsive design
+ *
+ * Dependencies: variables.css, animations.css
+ * Browser Support: Modern browsers with backdrop-filter
+ *
+ * =====================================================================================================
+ */
+
+/* =====================================================================================================
+   CONTACT FORM SYSTEM
+   ===================================================================================================== */
+
+/**
+ * Contact Form Container
+ * Main wrapper with glassmorphism effects
+ */
+.contact-form-container {
+  /* Glassmorphism Base */
+  background: rgba(var(--bg-tertiary), var(--glass-opacity-medium));
+  backdrop-filter: blur(var(--blur-lg));
+
+  /* Border and Shadow */
+  border: var(--glass-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-lg);
+
+  /* Layout */
+  padding: var(--spacing-2xl);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  /* Performance */
+  will-change: transform, background-color;
+
+  /* Interactions */
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.contact-form-container:hover {
+  background: rgba(var(--bg-tertiary), var(--glass-opacity-strong));
+  border: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/**
+ * Enhanced Contact Form
+ * Alternative styling with stronger glass effects
+ */
+.contact-form-enhanced {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--card-radius);
+  padding: var(--spacing-2xl);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-form-enhanced:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow:
+    0 20px 60px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
+}
+
+/**
+ * Form Header Section
+ * Title and description styling
+ */
+.contact-title-main {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: rgb(var(--text-primary));
+  margin-bottom: var(--spacing-base);
+  text-align: center;
+}
+
+.contact-description {
+  font-size: var(--text-lg);
+  color: rgb(var(--text-secondary));
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  line-height: var(--leading-relaxed);
+}
+
+/**
+ * Form Field Groups
+ * Organized field sections with consistent spacing
+ */
+.form-group {
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: var(--spacing-base);
+  width: 100%;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/**
+ * Form Labels
+ * Accessible and visually consistent labels
+ */
+.contact-form-label,
+.contact-form-label-enhanced {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: rgb(var(--text-primary));
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 0.025em;
+}
+
+.contact-form-label.required::after,
+.contact-form-label-enhanced.required::after {
+  content: " *";
+  color: rgb(var(--error));
+  font-weight: var(--font-bold);
+}
+
+/**
+ * Form Input Fields
+ * Glassmorphism input styling with states
+ */
+.contact-form-field,
+.contact-form-field-enhanced {
+  width: 100%;
+  padding: var(--input-padding);
+  border: var(--input-border);
+  border-radius: var(--input-radius);
+
+  /* Background */
+  background: rgba(var(--bg-surface), 0.3);
+  backdrop-filter: blur(var(--blur-sm));
+
+  /* Typography */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: rgb(var(--text-primary));
+
+  /* Transitions */
+  transition: all var(--duration-normal) var(--ease-out);
+
+  /* Remove default styling */
+  outline: none;
+  resize: vertical;
+}
+
+/**
+ * Input Field States
+ * Focus, hover, and validation states
+ */
+.contact-form-field:hover,
+.contact-form-field-enhanced:hover {
+  background: rgba(var(--bg-surface), 0.4);
+  border-color: rgba(var(--border-primary), 0.6);
+}
+
+.contact-form-field:focus,
+.contact-form-field-enhanced:focus {
+  background: rgba(var(--bg-surface), 0.5);
+  border: var(--input-focus-border);
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary), 0.2);
+}
+
+.contact-form-field:invalid:not(:placeholder-shown) {
+  border-color: rgb(var(--error));
+  box-shadow: 0 0 0 3px rgba(var(--error), 0.2);
+}
+
+.contact-form-field:valid:not(:placeholder-shown) {
+  border-color: rgb(var(--success));
+  box-shadow: 0 0 0 3px rgba(var(--success), 0.2);
+}
+
+/**
+ * Placeholder Styling
+ * Consistent placeholder appearance
+ */
+.contact-form-field::placeholder,
+.contact-form-field-enhanced::placeholder {
+  color: rgb(var(--text-placeholder));
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/**
+ * Textarea Specific Styling
+ * Enhanced styling for message fields
+ */
+.contact-form-field[type="textarea"],
+textarea.contact-form-field,
+textarea.contact-form-field-enhanced {
+  min-height: 120px;
+  resize: vertical;
+  font-family: var(--font-primary);
+  line-height: var(--leading-relaxed);
+}
+
+/* =====================================================================================================
+   SOCIAL CONTACT ICONS
+   ===================================================================================================== */
+
+/**
+ * Social Icon Base Styling
+ * Common properties for all social icons
+ */
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+
+  /* Transitions */
+  transition: all var(--duration-normal) var(--ease-out);
+  will-change: transform, box-shadow;
+
+  /* Typography */
+  font-size: var(--text-xl);
+}
+
+.contact-icon:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-icon:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.contact-icon:focus-visible {
+  outline: 2px solid rgb(var(--accent-primary));
+  outline-offset: 3px;
+}
+
+/**
+ * Brand-Specific Icon Styling
+ * Individual social platform colors and effects
+ */
+
+/* Email Icon */
+.contact-icon-email {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--accent-primary)) 0%,
+    rgb(var(--accent-secondary)) 100%
+  );
+}
+
+.contact-icon-email:hover {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--accent-secondary)) 0%,
+    rgb(var(--accent-hover)) 100%
+  );
+  box-shadow: var(--glow-accent);
+}
+
+/* LinkedIn Icon */
+.contact-icon-linkedin {
+  background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
+}
+
+.contact-icon-linkedin:hover {
+  background: linear-gradient(135deg, #08c 0%, #069 100%);
+  box-shadow: 0 0 20px rgba(0, 119, 181, 0.4);
+}
+
+/* GitHub Icon */
+.contact-icon-github {
+  background: linear-gradient(135deg, #333 0%, #24292e 100%);
+}
+
+.contact-icon-github:hover {
+  background: linear-gradient(135deg, #444 0%, #2f363d 100%);
+  box-shadow: 0 0 20px rgba(51, 51, 51, 0.4);
+}
+
+/* Twitter/X Icon */
+.contact-icon-twitter {
+  background: linear-gradient(135deg, #1da1f2 0%, #1a91da 100%);
+}
+
+.contact-icon-twitter:hover {
+  background: linear-gradient(135deg, #2db0ff 0%, #1da1f2 100%);
+  box-shadow: 0 0 20px rgba(29, 161, 242, 0.4);
+}
+
+/* Instagram Icon */
+.contact-icon-instagram {
+  background: linear-gradient(135deg, #e4405f 0%, #833ab4 50%, #fcb045 100%);
+}
+
+.contact-icon-instagram:hover {
+  background: linear-gradient(135deg, #f5516c 0%, #9b59b6 50%, #fdc468 100%);
+  box-shadow: 0 0 20px rgba(228, 64, 95, 0.4);
+}
+
+/**
+ * Icon Text Content
+ * Ensure icons remain white
+ */
+.contact-icon i,
+.contact-icon svg,
+.contact-icon-email i,
+.contact-icon-linkedin i,
+.contact-icon-github i,
+.contact-icon-twitter i,
+.contact-icon-instagram i {
+  /* stylelint-disable-next-line declaration-no-important */
+  color: rgb(255, 255, 255) !important;
+}
+
+/* =====================================================================================================
+   CONTACT CARDS & INFO DISPLAY
+   ===================================================================================================== */
+
+/**
+ * Contact Card Component
+ * Information display cards for contact details
+ */
+.contact-card {
+  background: rgba(var(--bg-tertiary), var(--glass-opacity-medium));
+  backdrop-filter: blur(var(--blur-md));
+  border: var(--glass-border);
+  border-radius: var(--card-radius);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--duration-normal) var(--ease-out);
+  will-change: transform, background-color, box-shadow;
+}
+
+.contact-card:hover {
+  background: rgba(var(--bg-tertiary), var(--glass-opacity-strong));
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(var(--border-primary), 0.4);
+}
+
+/* =====================================================================================================
+   PREMIUM CONTACT METHOD CARDS
+   ===================================================================================================== */
+
+/**
+ * Ultra-Modern Contact Method Cards
+ * Premium glassmorphism design with advanced effects
+ */
+.contact-method-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 24px;
+
+  /* Advanced Glassmorphism - Lighter and more transparent */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+
+  /* Premium Border & Shadow */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* Smooth Transitions */
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, box-shadow, border-color;
+  cursor: pointer;
+
+  /* Link Reset */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  /* Text rendering improvement */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.contact-method-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  box-shadow:
+    0 20px 60px rgba(139, 92, 246, 0.4),
+    0 12px 24px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(139, 92, 246, 0.3),
+    0 0 40px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(139, 92, 246, 0.4);
+  text-decoration: none;
+}
+
+/**
+ * Premium Card Content Layout
+ */
+.contact-card-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 3;
+  color: rgb(var(--text-secondary));
+  line-height: var(--leading-relaxed);
+}
+
+/**
+ * Advanced Icon Wrapper with Pulse Effect
+ */
+.contact-icon-wrapper {
+  position: relative;
+}
+
+.contact-icon-enhanced {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+  overflow: hidden;
+}
+
+.contact-method-card:hover .contact-icon-enhanced {
+  transform: scale(1.15) rotate(3deg);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4));
+}
+
+.contact-icon-enhanced i {
+  font-size: 28px;
+  /* stylelint-disable-next-line declaration-no-important */
+  color: rgb(255, 255, 255) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  position: relative;
+}
+
+/**
+ * Pulse Ring Animation
+ */
+.icon-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: inherit;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  animation: pulseRing 2s infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.contact-method-card:hover .icon-pulse-ring {
+  animation-duration: 1.2s;
+}
+
+/**
+ * Enhanced Contact Info Section
+ */
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-method-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: rgb(var(--text-primary));
+  margin-bottom: 6px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.contact-method-link {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.contact-method-description {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgb(var(--text-secondary));
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.contact-meta-icon {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/**
+ * Card Arrow Indicator
+ */
+.contact-card-arrow {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+}
+
+.contact-method-card:hover .contact-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/**
+ * Advanced Shimmer Effect
+ */
+.contact-card-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.contact-method-card:hover .contact-card-shimmer {
+  left: 100%;
+}
+
+/**
+ * Contact Card Elements
+ * Individual card components
+ */
+.contact-card-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: rgb(var(--text-primary));
+  margin-bottom: var(--spacing-base);
+}
+
+/**
+ * Contact Links
+ * Styled links within contact sections
+ */
+.contact-link {
+  color: rgb(var(--accent-primary));
+  text-decoration: none;
+  font-weight: var(--font-medium);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.contact-link:hover {
+  color: rgb(var(--accent-light));
+  text-decoration: underline;
+}
+
+/* Specific contact link types */
+.contact-email-link {
+  color: rgb(var(--accent-primary));
+}
+
+.contact-email-link:hover {
+  color: rgb(var(--accent-light));
+}
+
+.contact-linkedin-link {
+  color: #60a5fa;
+}
+
+.contact-linkedin-link:hover {
+  color: #93c5fd;
+}
+
+.contact-github-link {
+  color: rgb(var(--text-secondary));
+}
+
+.contact-github-link:hover {
+  color: rgb(var(--text-primary));
+}
+
+/* =====================================================================================================
+   RESPONSE TIME INDICATORS
+   ===================================================================================================== */
+
+/**
+ * Response Time Block
+ * Visual indicator for expected response times
+ */
+.response-time-block {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(34, 197, 94, 0.05) 100%
+  );
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--card-radius);
+  padding: var(--spacing-base);
+  margin: var(--spacing-lg) 0;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.response-time-block:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.15) 0%,
+    rgba(34, 197, 94, 0.08) 100%
+  );
+  border-color: rgba(34, 197, 94, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.2);
+}
+
+/**
+ * Response Time Icon
+ * Clock or time-related icon styling
+ */
+.response-time-icon {
+  color: rgb(var(--success));
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+}
+
+/**
+ * Response Time Text
+ * Descriptive text for response expectations
+ */
+.response-time-text {
+  color: rgb(var(--success));
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+}
+
+/* =====================================================================================================
+   FORM SUBMISSION STATES
+   ===================================================================================================== */
+
+/**
+ * Form Loading State
+ * Visual feedback during form submission
+ */
+.form-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.form-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid rgb(var(--accent-primary));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/**
+ * Form Success State
+ * Success feedback styling
+ */
+.form-success {
+  background: rgba(var(--success), 0.1);
+  border: 1px solid rgba(var(--success), 0.3);
+  color: rgb(var(--success));
+  padding: var(--spacing-base);
+  border-radius: var(--btn-radius);
+  margin: var(--spacing-base) 0;
+  text-align: center;
+  font-weight: var(--font-medium);
+}
+
+/**
+ * Form Error State
+ * Error feedback styling
+ */
+.form-error {
+  background: rgba(var(--error), 0.1);
+  border: 1px solid rgba(var(--error), 0.3);
+  color: rgb(var(--error));
+  padding: var(--spacing-base);
+  border-radius: var(--btn-radius);
+  margin: var(--spacing-base) 0;
+  text-align: center;
+  font-weight: var(--font-medium);
+}
+
+/**
+ * Field Error Messages
+ * Individual field validation errors
+ */
+.field-error {
+  color: rgb(var(--error));
+  font-size: var(--text-sm);
+  margin-top: var(--spacing-xs);
+  display: block;
+}
+
+/* =====================================================================================================
+   RESPONSIVE DESIGN
+   ===================================================================================================== */
+
+/**
+ * Mobile-First Responsive Design
+ * Optimized for different screen sizes
+ */
+
+/* Mobile Styles (Default) */
+@media (width <= 640px) {
+  .contact-form-container,
+  .contact-form-enhanced {
+    padding: var(--spacing-lg);
+    margin: 0 var(--spacing-base);
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contact-title-main {
+    font-size: var(--text-2xl);
+  }
+
+  .contact-description {
+    font-size: var(--text-base);
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    font-size: var(--text-lg);
+  }
+}
+
+/* Tablet Styles */
+@media (width >= 641px) and (width <= 1024px) {
+  .contact-form-container,
+  .contact-form-enhanced {
+    padding: var(--spacing-xl);
+    max-width: 500px;
+  }
+}
+
+/* Desktop Styles */
+@media (width >= 1025px) {
+  .contact-form-container,
+  .contact-form-enhanced {
+    padding: var(--spacing-2xl);
+    max-width: 600px;
+  }
+
+  .form-row {
+    gap: var(--spacing-lg);
+  }
+}
+
+/* =====================================================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ===================================================================================================== */
+
+/**
+ * High Contrast Mode Support
+ * Enhanced visibility for accessibility
+ */
+@media (prefers-contrast: high) {
+  .contact-form-field,
+  .contact-form-field-enhanced {
+    border: 2px solid rgb(var(--text-primary));
+    background: rgb(var(--bg-primary));
+  }
+
+  .contact-form-field:focus,
+  .contact-form-field-enhanced:focus {
+    outline: 3px solid rgb(var(--accent-primary));
+    outline-offset: 2px;
+  }
+
+  .contact-icon {
+    outline: 1px solid rgb(var(--text-primary));
+  }
+}
+
+/**
+ * Reduced Motion Support
+ * Respect user's motion preferences
+ */
+@media (prefers-reduced-motion: reduce) {
+  .contact-form-container,
+  .contact-form-enhanced,
+  .contact-card,
+  .contact-icon,
+  .contact-form-field,
+  .contact-form-field-enhanced {
+    /* stylelint-disable-next-line declaration-no-important */
+    transition: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    animation: none !important;
+  }
+
+  .contact-icon:hover {
+    /* stylelint-disable-next-line declaration-no-important */
+    transform: none !important;
+  }
+}
+
+/* =====================================================================================================
+   PRINT STYLES
+   ===================================================================================================== */
+
+/**
+ * Print Optimization
+ * Optimized styling for print media
+ */
+@media print {
+  .contact-form-container,
+  .contact-form-enhanced {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .contact-form-field,
+  .contact-form-field-enhanced {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+  }
+
+  .contact-icon {
+    /* stylelint-disable-next-line declaration-no-important */
+    background: rgb(0, 0, 0) !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: rgb(255, 255, 255) !important;
+  }
+
+  .response-time-block {
+    background: rgb(240, 240, 240);
+    border: 1px solid rgb(204, 204, 204);
+  }
+}
+
+/* =====================================================================================================
+   END OF CONTACT MODULE
+   ===================================================================================================== */

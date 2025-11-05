@@ -1,0 +1,843 @@
+<!--
+=====================================================================================================
+PORTFOLIO - ABOUT PAGE
+=====================================================================================================
+
+Author: Enzo Gaggiotti
+Project: Personal Portfolio
+File: about.html
+Version: 2.1.0
+Last Updated: November 2025
+
+Description:
+About page presenting personal background, skills, interests,
+and educational timeline with interactive special components.
+
+Features:
+- Profile section with animated avatar and biography
+- Educational and professional timeline
+- Technical and soft skills grid
+- Interest icons with brand colors
+- Special components with floating animations
+- Minimalist Apple-style navigation with glassmorphism
+- Mobile-first responsive design
+
+Dependencies: main.css, font-awesome, inter-font
+Browser Support: Modern browsers with backdrop-filter
+
+=====================================================================================================
+-->
+<!doctype html>
+<html lang="fr" class="text-white scroll-smooth">
+  <head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      À propos - Enzo Gaggiotti | Développeur Infrastructure & Systèmes
+    </title>
+    <meta
+      name="description"
+      content="Découvrez le parcours d'Enzo Gaggiotti, étudiant à Epitech Lyon passionné par l'infrastructure, les systèmes et l'innovation technologique."
+    />
+
+    <!-- External Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS Frameworks & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/loader.css" />
+  </head>
+  <!-- Matomo -->
+  <script>
+    var _paq = (globalThis._paq = globalThis._paq || []);
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    (function () {
+      var u = "https://matomo.ega.ovh/";
+      _paq.push(
+        ["setCookieDomain", "*.portfolio.ega.ovh"],
+        ["setDomains", ["*.portfolio.ega.ovh"]],
+        ["setTrackerUrl", u + "matomo.php"],
+        ["setSiteId", "1"],
+        ["trackPageView"],
+        ["enableLinkTracking"],
+      );
+      var d = document,
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0];
+      g.async = true;
+      g.src = u + "matomo.js";
+      s.parentNode.insertBefore(g, s);
+    })();
+  </script>
+  <noscript
+    ><p>
+      <img
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+        style="border: 0"
+        alt=""
+      /></p
+  ></noscript>
+  <!-- End Matomo Code -->
+  <body class="min-h-screen flex flex-col">
+    <!-- ========== ANIMATED MESH GRADIENT BACKGROUND ========== -->
+    <div class="mesh-gradient-bg">
+      <!-- Gradient Orbs -->
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+
+      <!-- Light Rays -->
+      <div class="light-rays">
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+      </div>
+    </div>
+
+    <!-- Minimalist loader -->
+    <div class="minimal-loader">
+      <div class="minimal-spinner"></div>
+    </div>
+
+    <!-- ========== HEADER NAVIGATION ========== -->
+    <header id="main-header">
+      <div class="header-container">
+        <!-- Logo / Home Link -->
+        <a href="index.html#top" class="logo" aria-label="Accueil">
+          <div
+            class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            EG
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="nav-primary" , aria-label="Navigation principale">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link active">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Header Controls (Mobile Menu) -->
+        <div class="flex items-center gap-4">
+          <!-- Mobile Hamburger Menu -->
+          <div class="burger-menu">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div class="mobile-menu" id="mobile-menu">
+        <nav class="mobile-nav" , aria-label="Navigation mobile">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link active">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="flex-grow">
+      <!-- ========== HERO SECTION ========== -->
+      <section
+        class="flex flex-col items-center justify-center gap-20 px-6 pt-32 pb-20 fade-in relative overflow-visible"
+      >
+        <!-- Subtle background effect -->
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"
+        ></div>
+
+        <div class="text-center space-y-8 max-w-4xl mx-auto relative z-10">
+          <div class="inline-block">
+            <h1
+              class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] gradient-text-animated"
+            >
+              À propos de moi
+            </h1>
+          </div>
+
+          <p class="text-lg sm:text-xl text-neutral-400 mb-10 leading-relaxed">
+            Découvrez mon parcours, mes passions et ma vision de la technologie
+          </p>
+
+          <!-- Quick navigation to sections -->
+          <div
+            class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
+            <a
+              href="#competences"
+              class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]"
+            >
+              <span class="flex items-center gap-3">
+                <i
+                  class="fas fa-user text-sm group-hover:rotate-12 transition-transform duration-300"
+                ></i>
+                <span>Compétences</span>
+              </span>
+            </a>
+            <a
+              href="#timeline"
+              class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]"
+            >
+              <span class="flex items-center gap-3">
+                <i
+                  class="fas fa-graduation-cap text-sm group-hover:rotate-12 transition-transform duration-300"
+                ></i>
+                <span>Mon parcours</span>
+              </span>
+            </a>
+          </div>
+
+          <!-- Download CV Button -->
+          <div class="mt-8">
+            <a
+              href="assets/documents/CV_Enzo_Gaggiotti.pdf"
+              download
+              aria-label="Télécharger mon CV au format PDF"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105 transform"
+            >
+              <i class="fas fa-download text-lg" aria-hidden="true"></i>
+              <span>Télécharger mon CV</span>
+            </a>
+          </div>
+
+          <!-- Decorative animated dots -->
+          <div class="flex justify-center gap-4 mt-8 opacity-60">
+            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+            <div
+              class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+              style="animation-delay: 0.5s"
+            ></div>
+            <div
+              class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+              style="animation-delay: 1s"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Enhanced Floating Decorative Elements -->
+        <div
+          class="absolute -top-6 -left-4 group-hover:scale-125 transition-transform duration-500 hidden md:block"
+        >
+          <div
+            class="w-3 h-3 bg-blue-400/60 rounded-full animate-pulse shadow-lg shadow-blue-400/30"
+          ></div>
+        </div>
+        <div
+          class="absolute top-8 -right-6 group-hover:scale-125 transition-transform duration-500 hidden md:block"
+          style="animation-delay: 1.5s"
+        >
+          <div
+            class="w-2 h-2 bg-purple-400/60 rounded-full animate-pulse shadow-lg shadow-purple-400/30"
+          ></div>
+        </div>
+        <div
+          class="absolute -bottom-4 left-1/4 group-hover:scale-125 transition-transform duration-500 hidden md:block"
+          style="animation-delay: 3s"
+        >
+          <div
+            class="w-4 h-4 bg-indigo-400/40 rounded-full animate-pulse shadow-lg shadow-indigo-400/20"
+          ></div>
+        </div>
+        <div
+          class="absolute bottom-12 right-1/4 group-hover:scale-125 transition-transform duration-500 hidden md:block"
+          style="animation-delay: 2s"
+        >
+          <div
+            class="w-3 h-3 bg-cyan-400/50 rounded-full animate-pulse shadow-lg shadow-cyan-400/25"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ========== PERSONAL STORY SECTION ========== -->
+      <section id="parcours" class="py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-16 items-center">
+            <!-- Personal Photo & Visual Elements -->
+            <div class="relative order-2 md:order-1">
+              <div class="relative w-80 h-80 mx-auto floating">
+                <!-- Background Glow -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
+                ></div>
+
+                <!-- Main Container -->
+                <div
+                  class="relative w-full h-full rounded-full bg-gradient-to-br from-white/10 to-white/5 p-[2px] shadow-2xl"
+                >
+                  <div
+                    class="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-gray-900 to-black"
+                  >
+                    <img
+                      src="assets/images/avatar-stylisé.png"
+                      alt="Enzo Gaggiotti - Portrait professionnel"
+                      class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                    />
+                    <!-- Subtle overlay -->
+                    <div
+                      class="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent rounded-full"
+                    ></div>
+                  </div>
+                </div>
+
+                <!-- Decorative elements -->
+                <div
+                  class="absolute -top-4 -left-4 w-12 h-12 bg-blue-500/60 rounded-full animate-pulse"
+                ></div>
+                <div
+                  class="absolute -bottom-6 -right-6 w-16 h-16 bg-purple-500/60 rounded-full animate-pulse"
+                  style="animation-delay: 1s"
+                ></div>
+                <div
+                  class="absolute top-1/2 -right-8 w-8 h-8 bg-indigo-500/60 rounded-full animate-pulse"
+                  style="animation-delay: 2s"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Personal Story Content -->
+            <div class="order-1 md:order-2 fade-in">
+              <div class="space-y-8">
+                <h2 class="text-3xl font-bold mb-6 text-white">Mon parcours</h2>
+                <div class="space-y-6 text-neutral-300 leading-relaxed text-lg">
+                  <p>
+                    Je m'appelle Enzo, j'ai 20 ans et je suis actuellement
+                    étudiant en
+                    <strong class="text-blue-400"
+                      >troisième année à Epitech Lyon</strong
+                    >. Passionné par les systèmes, les réseaux et
+                    l'automatisation, je développe une approche orientée
+                    infrastructure, fiabilité et efficacité.
+                  </p>
+                  <p>
+                    Mon parcours à Epitech m'a permis de renforcer mes
+                    compétences techniques tout en m'ouvrant à des projets
+                    concrets mêlant développement bas niveau, conception
+                    logicielle et travail en équipe. J'ai notamment contribué à
+                    des projets en C, C++, Python et JavaScript, avec une
+                    attention particulière portée à la qualité du code, à
+                    l'architecture logicielle et à l'intégration continue.
+                  </p>
+                  <p>
+                    En dehors du cadre scolaire, je consacre une grande partie
+                    de mon temps libre à des initiatives personnelles. J'ai
+                    conçu une box domotique sur ESP32 pour la gestion de mon
+                    aquarium, intégrée à Home Assistant avec capteurs physiques
+                    et automatisations sur mesure. Je maintiens également mon
+                    propre cluster Proxmox, un pare-feu pfSense, des services
+                    auto-hébergés (Plex, Sonarr, Radarr...), et j'expérimente
+                    des environnements réseau avec du matériel UniFi.
+                  </p>
+                  <p>
+                    Je suis à la croisée entre développement logiciel et
+                    ingénierie système. Ce qui m'anime :
+                    <strong class="text-purple-400"
+                      >comprendre en profondeur, faire simple et robuste, et
+                      automatiser pour mieux innover</strong
+                    >.
+                  </p>
+                </div>
+
+                <!-- Key Stats -->
+                <div class="grid grid-cols-2 gap-6 pt-8">
+                  <div class="glass-button p-6 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-blue-400 mb-2">3+</div>
+                    <div class="text-sm text-neutral-400">Années d'études</div>
+                  </div>
+                  <div class="glass-button p-6 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-purple-400 mb-2">
+                      10+
+                    </div>
+                    <div class="text-sm text-neutral-400">Projets réalisés</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SKILLS & EXPERTISE SECTION ========== -->
+      <section id="competences" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-6 gradient-text">
+              Compétences & Expertise
+            </h2>
+            <p class="text-xl text-neutral-400">
+              Domaines de spécialisation et technologies maîtrisées
+            </p>
+          </div>
+
+          <!-- Skills Categories -->
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- System & Infrastructure -->
+            <div class="glass-card p-8 glow-blue">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6 glow-blue"
+              >
+                <i class="fas fa-server text-2xl text-white icon-hover"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4 text-white">
+                Systèmes & Infrastructure
+              </h3>
+              <ul class="space-y-3 text-neutral-300">
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Administration Linux (Debian/Ubuntu)
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Virtualisation avec Proxmox VE
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Automatisation avec Bash & cron
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Déploiement de services auto-hébergés
+                </li>
+              </ul>
+            </div>
+
+            <!-- Network & Security -->
+            <div class="glass-card p-8 glow-blue">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-6 glow-blue"
+              >
+                <i class="fas fa-wifi text-2xl text-white icon-hover"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4 text-white">
+                Réseau & Sécurité
+              </h3>
+              <ul class="space-y-3 text-neutral-300">
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i>pfSense
+                  (firewall, VLAN, DHCP, etc.)
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Écosystème UniFi (contrôleur, Wi-Fi, LAN)
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Routage, DNS local et sous-réseaux
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Surveillance & diagnostic réseau
+                </li>
+              </ul>
+            </div>
+
+            <!-- Development &amp; Home Automation -->
+            <div class="glass-card p-8 glow-purple">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-6 glow-purple"
+              >
+                <i class="fas fa-microchip text-2xl text-white icon-hover"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4 text-white">
+                Développement & Domotique
+              </h3>
+              <ul class="space-y-3 text-neutral-300">
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i>C / C++
+                  (bas niveau, projets Epitech)
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i
+                  >Automatisation système (scripts, outils CLI)
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i>ESP32 &
+                  capteurs (T°, pH, TDS...)
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-green-400 mr-2"></i>Home
+                  Assistant & intégrations personnalisées
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== INTERESTS & HOBBIES SECTION ========== -->
+      <section class="py-20 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16 fade-in">
+            <h2 class="text-4xl font-bold mb-6 gradient-text">
+              Centres d'intérêt
+            </h2>
+            <p class="text-xl text-neutral-400">
+              Au-delà du code, mes autres passions
+            </p>
+          </div>
+
+          <!-- Interests Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Domotique -->
+            <div class="text-center group cursor-pointer fade-in">
+              <div
+                class="w-20 h-20 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-home text-3xl text-white dark:text-white"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Domotique</h3>
+              <p class="text-neutral-400 text-sm">
+                ESP32, capteurs, automatisation de l’environnement
+              </p>
+            </div>
+
+            <!-- Self-Hosting -->
+            <div class="text-center group cursor-pointer fade-in">
+              <div
+                class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i
+                  class="fas fa-server text-3xl text-white dark:text-white"
+                ></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Auto-hébergement</h3>
+              <p class="text-neutral-400 text-sm">
+                Services personnels (Plex, Sonarr, Radarr), sécurité, monitoring
+              </p>
+            </div>
+
+            <!-- Electronics &amp; DIY -->
+            <div class="text-center group cursor-pointer fade-in">
+              <div
+                class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i
+                  class="fas fa-microchip text-3xl text-white dark:text-white"
+                ></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Électronique & DIY</h3>
+              <p class="text-neutral-400 text-sm">
+                Montages simples, capteurs, prototypage avec ESP32
+              </p>
+            </div>
+
+            <!-- Downhill Mountain Biking -->
+            <div class="text-center group cursor-pointer fade-in">
+              <div
+                class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i
+                  class="fas fa-mountain text-3xl text-white dark:text-white"
+                ></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">VTT de descente</h3>
+              <p class="text-neutral-400 text-sm">
+                Adrénaline, pilotage technique et descentes engagées
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== EDUCATION & TIMELINE SECTION ========== -->
+      <section id="timeline" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-16 fade-in">
+            <h2 class="text-4xl font-bold mb-6 gradient-text">
+              Formation & Parcours
+            </h2>
+            <p class="text-xl text-neutral-400">
+              Mon évolution scolaire et professionnelle
+            </p>
+          </div>
+
+          <!-- Timeline -->
+          <div class="max-w-3xl mx-auto">
+            <div class="relative">
+              <!-- Timeline Line -->
+              <div
+                class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-emerald-400 via-blue-500 via-purple-500 to-amber-500 rounded-full shadow-lg"
+                style="top: 24px; bottom: 24px"
+              ></div>
+
+              <!-- Bac -->
+              <div class="relative flex items-center mb-12 fade-in">
+                <div class="w-1/2 pr-8 text-right">
+                  <div
+                    class="bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 backdrop-blur-sm border border-emerald-400/30 p-6 rounded-xl hover:bg-emerald-500/15 hover:border-emerald-400/50 transition-all duration-300 shadow-xl hover:shadow-emerald-500/20"
+                  >
+                    <div class="flex items-center justify-end gap-3 mb-3">
+                      <h3 class="text-lg font-bold text-emerald-300">
+                        2021 - 2023
+                      </h3>
+                      <div
+                        class="timeline-icon inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-full shadow-lg"
+                      >
+                        <i class="fas fa-school text-white text-sm"></i>
+                      </div>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">Lycée</h4>
+                    <p class="text-neutral-300 text-sm leading-relaxed"></p>
+                    Baccalauréat général spécialité Maths, Physique, SVT, option
+                    Maths experte.
+                    <div class="mt-3 pt-3 border-t border-emerald-400/20">
+                      <span
+                        class="inline-block bg-emerald-400/20 text-emerald-200 px-3 py-1 rounded-full text-xs font-semibold border border-emerald-400/30"
+                        >Diplômé</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute left-1/2 top-6 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-full border-4 timeline-node-border shadow-lg shadow-emerald-500/50 z-10"
+                ></div>
+                <div class="w-1/2 pl-8"></div>
+              </div>
+
+              <!-- Epitech -->
+              <div class="relative flex items-center mb-12 fade-in">
+                <div class="w-1/2 pr-8"></div>
+                <div
+                  class="absolute left-1/2 top-6 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full border-4 timeline-node-border shadow-lg shadow-blue-500/50 z-10"
+                ></div>
+                <div class="w-1/2 pl-8">
+                  <div
+                    class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 backdrop-blur-sm border border-blue-400/30 p-6 rounded-xl hover:bg-blue-500/15 hover:border-blue-400/50 transition-all duration-300 shadow-xl hover:shadow-blue-500/20"
+                  >
+                    <div class="flex items-center gap-3 mb-3">
+                      <div
+                        class="timeline-icon inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full shadow-lg"
+                      >
+                        <i class="fas fa-graduation-cap text-white text-sm"></i>
+                      </div>
+                      <h3 class="text-lg font-bold text-blue-300">
+                        2023 - Présent
+                      </h3>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">
+                      Epitech Lyon
+                    </h4>
+                    <p class="text-neutral-300 text-sm leading-relaxed">
+                      Cursus Expert en Technologies de l'Information et en
+                      ingénierie logicielle.
+                    </p>
+                    <div class="mt-3 pt-3 border-t border-blue-400/20">
+                      <span
+                        class="inline-block bg-blue-400/20 text-blue-200 px-3 py-1 rounded-full text-xs font-semibold border border-blue-400/30"
+                        >En cours</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Abomicro -->
+              <div class="relative flex items-center mb-12 fade-in">
+                <div class="w-1/2 pr-8 text-right">
+                  <div
+                    class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 backdrop-blur-sm border border-purple-400/30 p-6 rounded-xl hover:bg-purple-500/15 hover:border-purple-400/50 transition-all duration-300 shadow-xl hover:shadow-purple-500/20"
+                  >
+                    <div class="flex items-center justify-end gap-3 mb-3">
+                      <h3 class="text-lg font-bold text-purple-300">
+                        2024 (6 mois)
+                      </h3>
+                      <div
+                        class="timeline-icon inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full shadow-lg"
+                      >
+                        <i class="fas fa-laptop-code text-white text-sm"></i>
+                      </div>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">
+                      Abomicro - Stage Technicien Support, Infrastructure et
+                      Réseau
+                    </h4>
+                    <p class="text-neutral-300 text-sm leading-relaxed">
+                      Support technique utilisateur, gestion des infrastructures
+                      et du réseau de nos clients.
+                    </p>
+                    <div class="mt-3 pt-3 border-t border-purple-400/20">
+                      <span
+                        class="inline-block bg-purple-400/20 text-purple-200 px-3 py-1 rounded-full text-xs font-semibold border border-purple-400/30"
+                        >Stage</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute left-1/2 top-6 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full border-4 timeline-node-border shadow-lg shadow-purple-500/50 z-10"
+                ></div>
+                <div class="w-1/2 pl-8"></div>
+              </div>
+
+              <!-- Job Teaching Assistant -->
+              <div class="relative flex items-center fade-in">
+                <div class="w-1/2 pr-8"></div>
+                <div
+                  class="absolute left-1/2 top-6 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full border-4 timeline-node-border shadow-lg shadow-amber-500/50 z-10"
+                ></div>
+                <div class="w-1/2 pl-8">
+                  <div
+                    class="bg-gradient-to-br from-amber-500/10 to-amber-600/5 backdrop-blur-sm border border-amber-400/30 p-6 rounded-xl hover:bg-amber-500/15 hover:border-amber-400/50 transition-all duration-300 shadow-xl hover:shadow-amber-500/20"
+                  >
+                    <div class="flex items-center gap-3 mb-3">
+                      <div
+                        class="timeline-icon inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full shadow-lg"
+                      >
+                        <i
+                          class="fas fa-chalkboard-teacher text-white text-sm"
+                        ></i>
+                      </div>
+                      <h3 class="text-lg font-bold text-amber-300">
+                        2025 - Présent
+                      </h3>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">
+                      Assistant pédagogique - Epitech Lyon
+                    </h4>
+                    <p class="text-neutral-300 text-sm leading-relaxed">
+                      Soutien aux étudiants, aide à l'organisation pédagogique
+                      et animation de séances de tutorat.
+                    </p>
+                    <div class="mt-3 pt-3 border-t border-amber-400/20">
+                      <span
+                        class="inline-block bg-amber-400/20 text-amber-200 px-3 py-1 rounded-full text-xs font-semibold border border-amber-400/30"
+                        >Job étudiant</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Statistics -->
+            <div
+              class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-3xl mx-auto"
+            >
+              <div
+                class="text-center bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 backdrop-blur-sm border border-emerald-400/20 p-4 rounded-xl hover:bg-emerald-500/15 transition-all duration-300"
+              >
+                <div class="text-2xl font-bold text-emerald-300 mb-1">2023</div>
+                <div class="text-xs text-neutral-400">Bac obtenu</div>
+              </div>
+              <div
+                class="text-center bg-gradient-to-br from-blue-500/10 to-blue-600/5 backdrop-blur-sm border border-blue-400/20 p-4 rounded-xl hover:bg-blue-500/15 transition-all duration-300"
+              >
+                <div class="text-2xl font-bold text-blue-300 mb-1">3</div>
+                <div class="text-xs text-neutral-400">Années Epitech</div>
+              </div>
+              <div
+                class="text-center bg-gradient-to-br from-purple-500/10 to-purple-600/5 backdrop-blur-sm border border-purple-400/20 p-4 rounded-xl hover:bg-purple-500/15 transition-all duration-300"
+              >
+                <div class="text-2xl font-bold text-purple-300 mb-1">6</div>
+                <div class="text-xs text-neutral-400">Mois de stage</div>
+              </div>
+              <div
+                class="text-center bg-gradient-to-br from-amber-500/10 to-amber-600/5 backdrop-blur-sm border border-amber-400/20 p-4 rounded-xl hover:bg-amber-500/15 transition-all duration-300"
+              >
+                <div class="text-2xl font-bold text-amber-300 mb-1">2025</div>
+                <div class="text-xs text-neutral-400">Assistant péda.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== CALL TO ACTION SECTION ========== -->
+      <section class="py-20 text-center">
+        <div class="max-w-4xl mx-auto px-6 fade-in">
+          <h2 class="text-4xl font-bold mb-6">Travaillons ensemble</h2>
+          <p class="text-xl text-neutral-400 mb-12 leading-relaxed">
+            Intéressé par mon profil ? Discutons de vos projets et de la façon
+            dont je peux contribuer à leur réussite.
+          </p>
+
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
+            <a
+              href="contact.html"
+              class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]"
+            >
+              <span class="flex items-center gap-3">
+                <i
+                  class="fas fa-envelope text-sm group-hover:rotate-12 transition-transform duration-300"
+                ></i>
+                <span>Me contacter</span>
+              </span>
+            </a>
+            <a
+              href="projects.html"
+              class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]"
+            >
+              <span class="flex items-center gap-3">
+                <i
+                  class="fas fa-folder-open text-sm group-hover:rotate-12 transition-transform duration-300"
+                ></i>
+                <span>Voir mes projets</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer
+      class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl"
+    >
+      <!-- Social links -->
+      <div class="flex justify-center items-center gap-6 mb-4">
+        <a
+          href="mailto:enzo.gaggiotti@epitech.eu"
+          class="hover:text-white transition"
+          title="Email"
+          aria-label="Email"
+        >
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
+        <a
+          href="https://github.com/enzogagg"
+          class="hover:text-white transition"
+          title="GitHub"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
+          class="hover:text-white transition"
+          title="LinkedIn"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+      </div>
+
+      <!-- Copyright notice -->
+      <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/burger.js"></script>
+    <script src="assets/js/module-loader.js"></script>
+    <script src="assets/js/visual-effects.js"></script>
+  </body>
+</html>

@@ -1,0 +1,373 @@
+/**
+ * =====================================================================================================
+ * PORTFOLIO - BUTTON COMPONENTS MODULE
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * Project: Personal Portfolio
+ * File: buttons.css
+ * Version: 2.1.0
+ * Last Updated: November 2025
+ *
+ * Description:
+ * Complete button system with glassmorphism effects, hover animations
+ * and interactive states for modern web interfaces.
+ *
+ * Features:
+ * - Glass buttons (primary UI elements)
+ * - Filter buttons (project filtering)
+ * - Navigation buttons
+ * - Interactive states and animations
+ * - Full accessibility support
+ * - Responsive and touch-friendly design
+ *
+ * Dependencies: variables.css, animations.css
+ * Browser Support: Modern browsers with backdrop-filter
+ *
+ * =====================================================================================================
+ */
+
+/* =====================================================================================================
+   GLASSMORPHISM BUTTONS
+   ===================================================================================================== */
+
+/**
+ * Primary glass button component - N8N Enhanced Glassmorphism
+ * Features modern glassmorphism effects with backdrop blur and gradient accents
+ */
+.glass-button {
+  /* Core Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+
+  /* Enhanced Glassmorphism Effect */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Enhanced Shadows & Lighting */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
+
+  /* Typography */
+  color: #f0f0f0; /* Adjusted to a slightly darker shade for better contrast */
+  font-weight: 600;
+
+  /* Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/**
+ * Shimmer animation effect for glass buttons
+ * Creates a purple light sweep across the button on hover
+ */
+.glass-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.glass-button:hover::before {
+  left: 100%;
+}
+
+/**
+ * Glass button hover effects - Enhanced with purple glow
+ * Enhanced visual feedback with scaling and purple glow
+ */
+.glass-button:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border-color: rgba(139, 92, 246, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(139, 92, 246, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.3),
+    0 0 30px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/**
+ * Active and focus states for glass buttons
+ */
+.glass-button:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+.glass-button:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(79, 172, 254, 0.3),
+    0 8px 32px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-button:focus-visible {
+  outline: 2px solid rgba(79, 172, 254, 0.8);
+  outline-offset: 2px;
+}
+
+/**
+ * Icon animations within glass buttons
+ */
+.glass-button i {
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover i {
+  transform: scale(1.1);
+}
+
+/* =====================================================================================================
+   FILTER BUTTONS
+   ===================================================================================================== */
+
+/**
+ * Project filter buttons with enhanced styling
+ */
+.filter-btn {
+  /* Inherit glass button properties */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Filter-specific styling */
+  border-radius: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/**
+ * Active filter button state
+ */
+.filter-btn.active {
+  background: linear-gradient(
+    135deg,
+    rgba(79, 172, 254, 0.8) 0%,
+    rgba(59, 130, 246, 0.8) 100%
+  );
+  border-color: rgba(79, 172, 254, 0.6);
+  color: #e0e0e0; /* Adjusted to improve contrast */
+  box-shadow:
+    0 8px 20px rgba(79, 172, 254, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/**
+ * Filter button hover effects
+ */
+.filter-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #9ca3af;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.filter-btn.active:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(79, 172, 254, 0.9) 0%,
+    rgba(59, 130, 246, 0.9) 100%
+  );
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 12px 24px rgba(79, 172, 254, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* =====================================================================================================
+   BUTTON ANIMATIONS
+   ===================================================================================================== */
+
+/**
+ * Subtle pulse animation for interactive buttons
+ */
+.glass-button,
+.filter-btn {
+  animation: buttonPulse 6s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 8px 32px rgba(31, 38, 135, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  50% {
+    box-shadow:
+      0 12px 36px rgba(31, 38, 135, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* =====================================================================================================
+   RESPONSIVE DESIGN
+   ===================================================================================================== */
+
+/**
+ * Mobile adjustments for buttons
+ */
+@media (width <= 768px) {
+  .glass-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .filter-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (width <= 480px) {
+  .glass-button {
+    padding: 0.65rem 1rem;
+    font-size: 0.825rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* =====================================================================================================
+   MODERN GRADIENT BUTTONS
+   ===================================================================================================== */
+
+/**
+ * Modern buttons with gradient effects and animations
+ */
+
+.btn-modern {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-modern-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  background-size: 200% 200%;
+  color: #000;
+  box-shadow:
+    0 4px 16px rgba(59, 130, 246, 0.4),
+    0 2px 8px rgba(139, 92, 246, 0.3);
+  animation: gradientShift 5s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-modern-primary::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btn-modern-primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.btn-modern-primary:hover {
+  box-shadow:
+    0 8px 32px rgba(59, 130, 246, 0.6),
+    0 4px 16px rgba(139, 92, 246, 0.5),
+    0 0 60px rgba(236, 72, 153, 0.3);
+  transform: translateY(-3px) scale(1.05);
+}
+
+.btn-modern-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.4);
+}
+
+.btn-modern-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #000;
+}
+
+.btn-modern-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-modern-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: rgb(255, 255, 255);
+}
+
+.btn-modern-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* =====================================================================================================
+   END OF BUTTON COMPONENTS MODULE
+   ===================================================================================================== */
