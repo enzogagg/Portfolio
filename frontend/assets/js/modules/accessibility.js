@@ -125,7 +125,11 @@ export class AccessibilityManager {
           });
           break;
 
+<<<<<<< Updated upstream:frontend/assets/js/modules/accessibility.js
         case "h":
+=======
+        case 'h':
+>>>>>>> Stashed changes:assets/js/modules/accessibility.js
           // Go to home/top
           e.preventDefault();
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -134,7 +138,11 @@ export class AccessibilityManager {
         case "?":
           // Show keyboard shortcuts help (could be implemented)
           e.preventDefault();
+<<<<<<< Updated upstream:frontend/assets/js/modules/accessibility.js
           console.log("Keyboard shortcuts: H = Home, ESC = Close menu");
+=======
+          console.log('Keyboard shortcuts: H = Home, ESC = Close menu');
+>>>>>>> Stashed changes:assets/js/modules/accessibility.js
           break;
       }
     });

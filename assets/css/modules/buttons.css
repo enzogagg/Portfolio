@@ -1,0 +1,119 @@
+/* ========== BUTTON STYLES ========== */
+
+/* ========== GLASSMORPHISM BUTTON EFFECTS ========== */
+/* Modern glass button with backdrop blur - Dark mode only */
+.glass-button {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);        /* Glassmorphism effect */
+  -webkit-backdrop-filter: blur(16px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Shimmer effect on hover */
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.glass-button:hover::before {
+  left: 100%;                         /* Slide shimmer across button */
+}
+
+/* Glass button hover effects - Dark mode only */
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.02); /* Lift and scale effect */
+  box-shadow: 
+    0 20px 40px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Active state (click) effect */
+.glass-button:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* Focus state for accessibility */
+.glass-button:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.3),
+    0 8px 32px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Focus outline for accessibility */
+.glass-button:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Icon animations within buttons */
+.glass-button i {
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover i {
+  transform: scale(1.1);
+}
+
+/* ========== BUTTON PULSE ANIMATIONS ========== */
+/* Subtle pulse animation for glass buttons - Dark mode only */
+.glass-button {
+  animation: buttonPulse 6s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* ========== FILTER BUTTONS SPECIAL HANDLING ========== */
+/* Fallback: Show filter buttons immediately if JavaScript is disabled or fails */
+.filter-btn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+}
+
+/* Progressive enhancement: Hide initially only if JS is enabled */
+.js-enabled .filter-btn.animate-on-scroll:not(.animate-in) {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Force visibility for production environments (Vercel) */
+.filter-btn.animate-on-scroll {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  transition: all 0.3s ease;
+}

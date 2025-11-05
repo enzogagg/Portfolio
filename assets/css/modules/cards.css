@@ -1,0 +1,221 @@
+/**
+ * =========================================
+ * CARD COMPONENTS - DARK MODE ONLY
+ * Project cards, technology cards, and interactive elements
+ * =========================================
+ */
+
+/* ========== PROJECT CARDS ========== */
+/* Project card styling with enhanced visual effects */
+.project-card {
+  background: linear-gradient(135deg, 
+    rgba(var(--bg-secondary), 0.95) 0%, 
+    rgba(var(--bg-secondary), 0.8) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Enhanced shimmer effect for project cards */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(59, 130, 246, 0.15), 
+    transparent);
+  transition: left 0.8s ease;
+  z-index: 1;
+}
+
+.project-card:hover::before {
+  left: 100%;
+}
+
+/* Enhanced project card hover effects */
+.project-card:hover:not(.project-hidden):not(.project-filtering) {
+  transform: translateY(-12px) scale(1.02) !important;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Improved focus states for accessibility */
+.project-card:focus-within:not(.project-hidden):not(.project-filtering) {
+  outline: 2px solid rgb(59, 130, 246);
+  outline-offset: 4px;
+  transform: translateY(-4px) !important;
+}
+
+/* Enhanced category badge styling */
+.category-badge {
+  background: linear-gradient(135deg, 
+    rgba(var(--text-primary), 0.12) 0%, 
+    rgba(var(--text-primary), 0.08) 100%);
+  color: rgb(var(--text-primary));
+  border: 1px solid rgba(var(--text-primary), 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+/* Project icon container styling */
+.project-card .w-12.h-12 {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover .w-12.h-12 {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Project title gradient enhancement */
+.project-card h3 {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover h3 {
+  transform: translateX(4px);
+}
+
+/* Technology tag improvements */
+.project-card .flex.flex-wrap.gap-2 span {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.project-card:hover .flex.flex-wrap.gap-2 span {
+  transform: translateY(-2px);
+}
+
+/* ========== TECHNOLOGY CARDS ========== */
+/* Technology showcase card styling */
+.tech-card {
+  background: linear-gradient(135deg, 
+    rgba(var(--bg-secondary), 0.9) 0%, 
+    rgba(var(--bg-secondary), 0.7) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(79, 172, 254, 0.2);
+  border-color: rgba(79, 172, 254, 0.3);
+}
+
+/* Technology icon styling */
+.tech-icon {
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.tech-card:hover .tech-icon {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* ========== TECHNOLOGY TAGS ========== */
+/* Enhanced tech tag styling */
+.tech-tag {
+  background: linear-gradient(135deg, 
+    rgba(var(--text-primary), 0.15) 0%, 
+    rgba(var(--text-primary), 0.08) 100%);
+  border: 1px solid rgba(var(--text-primary), 0.2);
+  color: rgb(var(--text-primary));
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.tech-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.tech-tag:hover::before {
+  left: 100%;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: rgba(var(--text-primary), 0.4);
+}
+
+/* ========== SKILL TAGS ========== */
+/* Simplified skill tag styling */
+.skill-tag-simple {
+  background: rgba(var(--text-primary), 0.1);
+  border: 1px solid rgba(var(--text-primary), 0.2);
+  color: rgb(var(--text-primary));
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.skill-tag-simple:hover {
+  background: rgba(var(--text-primary), 0.15);
+  border-color: rgba(var(--text-primary), 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== FILTERING ANIMATIONS ========== */
+/* Project filtering states */
+.project-hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.project-filtering {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shimmer effect for tech tag spans */
+.project-card .flex.flex-wrap.gap-2 span {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card .flex.flex-wrap.gap-2 span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-card .flex.flex-wrap.gap-2 span:hover::before {
+  left: 100%;
+}
+
+/* ========== END OF CARD COMPONENTS ========== */
