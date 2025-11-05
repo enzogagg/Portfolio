@@ -27,20 +27,20 @@
  */
 
 (function () {
-  'use strict';
+  "use strict";
 
   /**
    * Generates 30 floating particles in the mesh-gradient-bg container
    */
   function initFloatingParticles() {
-    const particlesContainer = document.querySelector('.mesh-gradient-bg');
+    const particlesContainer = document.querySelector(".mesh-gradient-bg");
     if (!particlesContainer) {
       return;
     }
 
     for (let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('floating-particle');
+      const particle = document.createElement("div");
+      particle.classList.add("floating-particle");
       particle.style.left = `${Math.random() * 100}%`;
       particle.style.top = `${Math.random() * 100}%`;
       particle.style.animationDelay = `${Math.random() * 8}s`;
@@ -54,7 +54,7 @@
    * Optimized with requestAnimationFrame
    */
   function initParallaxEffect() {
-    const orbs = document.querySelectorAll('.mesh-gradient-orb');
+    const orbs = document.querySelectorAll(".mesh-gradient-orb");
     if (orbs.length === 0) {
       return;
     }
@@ -63,7 +63,7 @@
     let lastScrollY = 0;
 
     globalThis.addEventListener(
-      'scroll',
+      "scroll",
       () => {
         lastScrollY = globalThis.scrollY;
 
@@ -85,8 +85,8 @@
   /**
    * Initialization on DOMContentLoaded
    */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
       initFloatingParticles();
       initParallaxEffect();
     });

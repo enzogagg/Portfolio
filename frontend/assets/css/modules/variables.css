@@ -87,10 +87,10 @@
    * Modern font stack with fallbacks
    */
   --font-primary:
-    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
-  --font-secondary: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+    "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+  --font-secondary: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
   --font-heading:
-    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+    "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
 
   /**
    * Font Sizes
@@ -183,8 +183,8 @@
    * Glass Borders
    * Subtle borders for glass components
    */
-  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-  --glass-border-hover: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-border: 1px solid rgb(255 255 255 / 10%);
+  --glass-border-hover: 1px solid rgb(255 255 255 / 20%);
   --glass-border-accent: 1px solid rgba(var(--accent-primary), 0.3);
 
   /* =====================================================================================================
@@ -227,14 +227,13 @@
    * Box Shadows
    * Layered shadow system for depth
    */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
   --shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
   --shadow-xl:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    0 20px 25px -5px rgb(0 0 0 / 10%), 0 10px 10px -5px rgb(0 0 0 / 4%);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
 
   /**
    * Glow Effects
@@ -357,7 +356,7 @@
     --bg-primary: 0, 0, 0;
     --bg-secondary: 0, 0, 0;
     --border-primary: 255, 255, 255;
-    --glass-border: 2px solid rgba(255, 255, 255, 0.8);
+    --glass-border: 2px solid rgb(255 255 255 / 80%);
   }
 }
 

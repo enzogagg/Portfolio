@@ -25,7 +25,7 @@
  * =====================================================================================================
  */
 
-'use strict';
+"use strict";
 
 /**
  * Global application configuration
@@ -33,35 +33,35 @@
 export const APP_CONFIG = {
   // Shared CSS selectors
   selectors: {
-    projectCards: '.project-card-enhanced, .project-card',
-    filterButtons: '.filter-btn',
+    projectCards: ".project-card-enhanced, .project-card",
+    filterButtons: ".filter-btn",
     filterContainer:
-      '.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll',
-    animatedElements: '.animate-on-scroll, .fade-in',
-    header: '#main-header, header',
+      ".flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll",
+    animatedElements: ".animate-on-scroll, .fade-in",
+    header: "#main-header, header",
   },
 
   // Animation configuration
   animations: {
     observerOptions: {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
+      rootMargin: "0px 0px -50px 0px",
     },
     maxStaggerDelay: 0.3,
-    excludeFromObserver: ['.project-card-enhanced', '.project-card'],
+    excludeFromObserver: [".project-card-enhanced", ".project-card"],
   },
 
   // Project filtering configuration
   projects: {
-    defaultCategory: 'all',
+    defaultCategory: "all",
     animationDuration: 300,
   },
 
   // Module responsibilities (Single Responsibility)
   responsibilities: {
-    projectCards: 'projects',
-    scrollAnimations: 'animations',
-    coordination: 'app',
+    projectCards: "projects",
+    scrollAnimations: "animations",
+    coordination: "app",
   },
 };
 
@@ -168,4 +168,4 @@ export function getResponsibleModule(responsibility) {
   return APP_CONFIG.responsibilities[responsibility] || null;
 }
 
-console.info('📋 Centralized configuration loaded');
+console.info("📋 Centralized configuration loaded");
