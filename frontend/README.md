@@ -197,7 +197,7 @@ assets/js/modules/
 
 Modern, responsive portfolio web application built with HTML5, CSS3, and vanilla JavaScript (ES6+).
 
-## � Project Structure
+## 📁 Project Structure
 
 ```plaintext
 frontend/
