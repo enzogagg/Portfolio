@@ -12,6 +12,7 @@ ES6+ Standards: Fully compliant ✅
 ```
 
 ### Quality Achievements
+
 - ✅ 407 style issues auto-fixed (quotes, indentation)
 - ✅ 74 `console.log()` → `console.info()`
 - ✅ 2 Git merge conflicts resolved
@@ -90,7 +91,7 @@ import {
   mobileNavigation,
   toggleMobileMenu,
   closeMobileMenu,
-} from "./modules/navigation.js";
+} from './modules/navigation.js';
 ```
 
 - Hamburger menu management
@@ -108,7 +109,7 @@ import {
 ### ✨ **animations.js** - Animations and Scroll
 
 ```javascript
-import { scrollAnimations } from "./modules/animations.js";
+import { scrollAnimations } from './modules/animations.js';
 ```
 
 - Scroll-triggered animations (Intersection Observer)
@@ -126,7 +127,7 @@ import { scrollAnimations } from "./modules/animations.js";
 ### 🎯 **projects.js** - Project Filtering
 
 ```javascript
-import { projectsFilter } from "./modules/projects.js";
+import { projectsFilter } from './modules/projects.js';
 ```
 
 - Intelligent project card filtering
@@ -144,7 +145,7 @@ import { projectsFilter } from "./modules/projects.js";
 ### ♿ **accessibility.js** - Accessibility
 
 ```javascript
-import { accessibilityManager } from "./modules/accessibility.js";
+import { accessibilityManager } from './modules/accessibility.js';
 ```
 
 - Enhanced keyboard navigation
@@ -162,7 +163,7 @@ import { accessibilityManager } from "./modules/accessibility.js";
 ### ⚡ **performance.js** - Optimizations
 
 ```javascript
-import { performanceManager } from "./modules/performance.js";
+import { performanceManager } from './modules/performance.js';
 ```
 
 - Will-change optimizations for animations
@@ -182,7 +183,7 @@ import { performanceManager } from "./modules/performance.js";
 The main controller that orchestrates all modules:
 
 ```javascript
-import app from "./app.js";
+import app from './app.js';
 
 // Programmatic access
 console.log(app.getStatus());
@@ -235,16 +236,16 @@ class PortfolioApp {
 ```html
 <!-- Automatic protocol detection -->
 <script>
-  if (window.location.protocol === "file:") {
+  if (window.location.protocol === 'file:') {
     // Standalone version for direct file access
-    const script = document.createElement("script");
-    script.src = "assets/js/standalone.js";
+    const script = document.createElement('script');
+    script.src = 'assets/js/standalone.js';
     document.head.appendChild(script);
   } else {
     // Modular version for HTTP served files
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = "assets/js/app.js";
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'assets/js/app.js';
     document.head.appendChild(script);
   }
 </script>
@@ -287,17 +288,17 @@ Exemple :
 <!-- Matomo -->
 <script>
   var _paq = (window._paq = window._paq || []);
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
   (function () {
-    var u = "//192.168.100.46/";
-    _paq.push(["setTrackerUrl", u + "matomo.php"]);
-    _paq.push(["setSiteId", "1"]);
+    var u = '//192.168.100.46/';
+    _paq.push(['setTrackerUrl', u + 'matomo.php']);
+    _paq.push(['setSiteId', '1']);
     var d = document,
-      g = d.createElement("script"),
-      s = d.getElementsByTagName("script")[0];
+      g = d.createElement('script'),
+      s = d.getElementsByTagName('script')[0];
     g.async = true;
-    g.src = u + "matomo.js";
+    g.src = u + 'matomo.js';
     s.parentNode.insertBefore(g, s);
   })();
 </script>

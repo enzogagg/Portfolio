@@ -130,7 +130,7 @@
  * Creates a subtle purple light sweep across the card on hover
  */
 .project-card-home::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -216,7 +216,7 @@
  * Simple shimmer effect
  */
 .project-card-enhanced::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -825,7 +825,7 @@
  * Technology card shimmer effect
  */
 .tech-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -1111,7 +1111,7 @@
 }
 
 .card-gradient-border::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(

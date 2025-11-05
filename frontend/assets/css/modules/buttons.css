@@ -72,7 +72,7 @@
  * Creates a purple light sweep across the button on hover
  */
 .glass-button::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -301,7 +301,7 @@
 }
 
 .btn-modern-primary::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;

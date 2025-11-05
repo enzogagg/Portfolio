@@ -108,7 +108,7 @@
  */
 .project-action-btn::before,
 .project-card .flex.gap-3 a::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
@@ -367,7 +367,7 @@
 }
 
 .project-action-btn.loading::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;

@@ -86,20 +86,20 @@ Browser Support: Modern browsers with backdrop-filter
     var _paq = (globalThis._paq = globalThis._paq || []);
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     (function () {
-      var u = "https://matomo.ega.ovh/";
+      var u = 'https://matomo.ega.ovh/';
       _paq.push(
-        ["setCookieDomain", "*.portfolio.ega.ovh"],
-        ["setDomains", ["*.portfolio.ega.ovh"]],
-        ["setTrackerUrl", u + "matomo.php"],
-        ["setSiteId", "1"],
-        ["trackPageView"],
-        ["enableLinkTracking"],
+        ['setCookieDomain', '*.portfolio.ega.ovh'],
+        ['setDomains', ['*.portfolio.ega.ovh']],
+        ['setTrackerUrl', u + 'matomo.php'],
+        ['setSiteId', '1'],
+        ['trackPageView'],
+        ['enableLinkTracking'],
       );
       var d = document,
-        g = d.createElement("script"),
-        s = d.getElementsByTagName("script")[0];
+        g = d.createElement('script'),
+        s = d.getElementsByTagName('script')[0];
       g.async = true;
-      g.src = u + "matomo.js";
+      g.src = u + 'matomo.js';
       s.parentNode.insertBefore(g, s);
     })();
   </script>

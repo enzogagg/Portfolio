@@ -124,7 +124,6 @@ export class AccessibilityManager {
           closeMobileMenu();
         });
         break;
-
       case 'h':
         // Go to home/top
         e.preventDefault();
@@ -139,7 +138,6 @@ export class AccessibilityManager {
       }
     });
   }
-
   /**
    * Update active navigation link state
    * @param {Element} activeLink - The clicked navigation link
