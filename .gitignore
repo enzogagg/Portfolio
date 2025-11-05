@@ -31,7 +31,6 @@ pids/
 # Test files
 test-*.html
 debug-*.html
-*.test.js
 
 # Dependencies
 node_modules/
