@@ -12,7 +12,7 @@ This project demonstrates a modern, modular, and enterprise-grade architecture, 
 Portfolio/
 ├── frontend/   # Web application (HTML, CSS, JS)
 ├── backend/    # API, server logic (coming soon)
-├── doc/        # Technical documentation (linting, architecture, tests, etc.)
+├── docs/        # Technical documentation (linting, architecture, tests, etc.)
 ├── README.md   # General overview
 ```
 
