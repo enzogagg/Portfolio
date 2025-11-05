@@ -48,11 +48,11 @@
   }
 
   /**
-   * Parallax effect on .mesh-gradient-orb elements on scroll
+   * Parallax effect on .gradient-orb elements on scroll
    * Optimized with requestAnimationFrame
    */
   function initParallaxEffect() {
-    const orbs = document.querySelectorAll('.mesh-gradient-orb');
+    const orbs = document.querySelectorAll('.gradient-orb');
     if (orbs.length === 0) return;
 
     let ticking = false;
