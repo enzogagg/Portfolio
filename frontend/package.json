@@ -1,0 +1,47 @@
+{
+  "name": "portfolio-frontend",
+  "version": "2.1.0",
+  "description": "Frontend for Enzo Gaggiotti's personal portfolio",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "lint": "npm run lint:css && npm run lint:js",
+    "lint:css": "npx stylelint 'assets/css/**/*.css' --config tests/.stylelintrc.json",
+    "lint:css:fix": "npx stylelint 'assets/css/**/*.css' --fix --config tests/.stylelintrc.json",
+    "lint:js": "npx eslint 'assets/js/**/*.js' --config tests/.eslintrc.js",
+    "lint:js:fix": "npx eslint 'assets/js/**/*.js' --fix --config tests/.eslintrc.js",
+    "lint:fix": "npm run lint:css:fix && npm run lint:js:fix",
+    "lint:report": "npm run lint 2>&1 | tee lint-report.txt",
+    "format": "npx prettier --write '**/*.{html,css,js,json,md}'",
+    "format:check": "npx prettier --check '**/*.{html,css,js,json,md}'",
+    "build": "echo '📦 Static project - no build required'",
+    "preview": "npm run start",
+    "validate": "npm run format:check && npm run lint"
+  },
+  "keywords": [
+    "portfolio",
+    "frontend",
+    "glassmorphism",
+    "javascript",
+    "css",
+    "html",
+    "nginx"
+  ],
+  "author": {
+    "name": "Enzo Gaggiotti",
+    "email": "enzo.gaggiotti@epitech.eu",
+    "url": "https://portfolio.ega.ovh"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.0",
+    "stylelint": "^16.6.0",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}
