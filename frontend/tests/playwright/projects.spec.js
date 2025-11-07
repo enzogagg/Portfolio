@@ -144,7 +144,6 @@ test.describe("Projects Page - Filtering Functionality", () => {
       const projectCards = page.locator(
         ".project-card, .project-card-enhanced",
       );
-      const initialCount = await projectCards.count();
 
       // Click on a filter
       await filterButtons.nth(1).click();
@@ -243,7 +242,6 @@ test.describe("Projects Page - Card Details", () => {
 
     if ((await projectCards.count()) > 0) {
       const firstCard = projectCards.first();
-      const techTags = firstCard.locator('.tech, .tag, [class*="technolog"]');
 
       // At least one card should have technology tags
       const totalTags = await page
