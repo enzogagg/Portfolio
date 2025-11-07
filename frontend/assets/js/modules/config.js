@@ -117,7 +117,11 @@ export class InitializationState {
    */
   notifyListeners(moduleName) {
     this.listeners = this.listeners.filter((listener) => {
-      if (listener.moduleName === moduleName) {
+      // Support both function callbacks and object-based listeners
+      if (typeof listener === 'function') {
+        listener(moduleName);
+        return true; // Keep simple function listeners
+      } else if (listener.moduleName === moduleName) {
         listener.callback();
         return false; // Remove the listener
       }

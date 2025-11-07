@@ -116,6 +116,7 @@ export class MobileNavigation {
 
     this.mobileMenu.classList.add("active");
     this.burgerMenu.classList.add("active");
+    this.burgerMenu.setAttribute("aria-expanded", "true");
     document.body.classList.add("menu-open");
     this.isOpen = true;
 
@@ -132,6 +133,7 @@ export class MobileNavigation {
 
     this.mobileMenu.classList.remove("active");
     this.burgerMenu.classList.remove("active");
+    this.burgerMenu.setAttribute("aria-expanded", "false");
     document.body.classList.remove("menu-open");
     this.isOpen = false;
 
