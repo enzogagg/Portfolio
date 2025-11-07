@@ -7,9 +7,9 @@
  * Tests keyboard navigation, focus management, and ARIA compliance
  */
 
-import { AccessibilityManager } from '../../assets/js/modules/accessibility.js';
+import { AccessibilityManager } from "../../assets/js/modules/accessibility.js";
 
-describe('AccessibilityManager', () => {
+describe("AccessibilityManager", () => {
   let accessibilityManager;
 
   beforeEach(() => {
@@ -34,12 +34,12 @@ describe('AccessibilityManager', () => {
   });
 
   afterEach(() => {
-    document.body.innerHTML = '';
+    document.body.innerHTML = "";
   });
 
-  describe('Initialization', () => {
-    test('should initialize only once', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+  describe("Initialization", () => {
+    test("should initialize only once", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       accessibilityManager.init();
       expect(accessibilityManager.isInitialized).toBe(true);
@@ -50,61 +50,73 @@ describe('AccessibilityManager', () => {
       consoleSpy.mockRestore();
     });
 
-    test('should set isInitialized to true after initialization', () => {
+    test("should set isInitialized to true after initialization", () => {
       expect(accessibilityManager.isInitialized).toBe(false);
       accessibilityManager.init();
       expect(accessibilityManager.isInitialized).toBe(true);
     });
   });
 
-  describe('Keyboard Navigation', () => {
-    test('should add keyboard-navigation class on Tab key', () => {
+  describe("Keyboard Navigation", () => {
+    test("should add keyboard-navigation class on Tab key", () => {
       accessibilityManager.init();
 
-      const tabEvent = new KeyboardEvent('keydown', { key: 'Tab' });
+      const tabEvent = new KeyboardEvent("keydown", { key: "Tab" });
       document.dispatchEvent(tabEvent);
 
-      expect(document.body.classList.contains('keyboard-navigation')).toBe(true);
+      expect(document.body.classList.contains("keyboard-navigation")).toBe(
+        true,
+      );
     });
 
-    test('should remove keyboard-navigation class on mouse click', () => {
+    test("should remove keyboard-navigation class on mouse click", () => {
       accessibilityManager.init();
 
       // First add the class with Tab
-      const tabEvent = new KeyboardEvent('keydown', { key: 'Tab' });
+      const tabEvent = new KeyboardEvent("keydown", { key: "Tab" });
       document.dispatchEvent(tabEvent);
-      expect(document.body.classList.contains('keyboard-navigation')).toBe(true);
+      expect(document.body.classList.contains("keyboard-navigation")).toBe(
+        true,
+      );
 
       // Then remove with mousedown
-      const mouseEvent = new MouseEvent('mousedown');
+      const mouseEvent = new MouseEvent("mousedown");
       document.dispatchEvent(mouseEvent);
 
-      expect(document.body.classList.contains('keyboard-navigation')).toBe(false);
+      expect(document.body.classList.contains("keyboard-navigation")).toBe(
+        false,
+      );
     });
   });
 
-  describe('Smooth Scroll', () => {
-    test('should prevent default behavior on anchor click', () => {
+  describe("Smooth Scroll", () => {
+    test("should prevent default behavior on anchor click", () => {
       accessibilityManager.init();
 
       const anchor = document.querySelector('a[href="#section1"]');
-      const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
-      
-      const preventDefaultSpy = jest.spyOn(clickEvent, 'preventDefault');
+      const clickEvent = new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+      });
+
+      const preventDefaultSpy = jest.spyOn(clickEvent, "preventDefault");
       anchor.dispatchEvent(clickEvent);
 
       expect(preventDefaultSpy).toHaveBeenCalled();
     });
 
-    test('should handle missing target gracefully', () => {
+    test("should handle missing target gracefully", () => {
       document.body.innerHTML = `
         <a href="#nonexistent">Link</a>
       `;
 
       accessibilityManager.init();
 
-      const anchor = document.querySelector('a');
-      const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+      const anchor = document.querySelector("a");
+      const clickEvent = new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+      });
 
       expect(() => {
         anchor.dispatchEvent(clickEvent);
@@ -112,16 +124,16 @@ describe('AccessibilityManager', () => {
     });
   });
 
-  describe('Focus Management', () => {
-    test('should handle focus trap correctly', () => {
+  describe("Focus Management", () => {
+    test("should handle focus trap correctly", () => {
       accessibilityManager.init();
 
-      const navLink = document.querySelector('.nav-link');
+      const navLink = document.querySelector(".nav-link");
       expect(navLink).toBeTruthy();
     });
 
-    test('should trap focus within container', () => {
-      const container = document.createElement('div');
+    test("should trap focus within container", () => {
+      const container = document.createElement("div");
       container.innerHTML = `
         <button id="first">First</button>
         <button id="middle">Middle</button>
@@ -131,19 +143,22 @@ describe('AccessibilityManager', () => {
 
       accessibilityManager.trapFocus(container);
 
-      const firstButton = container.querySelector('#first');
-      const lastButton = container.querySelector('#last');
+      const firstButton = container.querySelector("#first");
+      const lastButton = container.querySelector("#last");
 
       expect(document.activeElement).toBe(firstButton);
 
       // Simulate Tab on last element
-      Object.defineProperty(document, 'activeElement', {
+      Object.defineProperty(document, "activeElement", {
         writable: true,
-        value: lastButton
+        value: lastButton,
       });
 
-      const tabEvent = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true });
-      const preventDefaultSpy = jest.spyOn(tabEvent, 'preventDefault');
+      const tabEvent = new KeyboardEvent("keydown", {
+        key: "Tab",
+        bubbles: true,
+      });
+      const preventDefaultSpy = jest.spyOn(tabEvent, "preventDefault");
       container.dispatchEvent(tabEvent);
 
       expect(preventDefaultSpy).toHaveBeenCalled();
@@ -151,57 +166,65 @@ describe('AccessibilityManager', () => {
       document.body.removeChild(container);
     });
 
-    test('should handle null container gracefully', () => {
+    test("should handle null container gracefully", () => {
       expect(() => {
         accessibilityManager.trapFocus(null);
       }).not.toThrow();
     });
   });
 
-  describe('Keyboard Shortcuts', () => {
-    test('should scroll to top on H key press', () => {
+  describe("Keyboard Shortcuts", () => {
+    test("should scroll to top on H key press", () => {
       accessibilityManager.init();
 
-      const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation();
-      const hEvent = new KeyboardEvent('keydown', { key: 'h', bubbles: true });
+      const scrollToSpy = jest.spyOn(window, "scrollTo").mockImplementation();
+      const hEvent = new KeyboardEvent("keydown", { key: "h", bubbles: true });
 
       document.dispatchEvent(hEvent);
 
-      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
 
       scrollToSpy.mockRestore();
     });
 
-    test('should show help on ? key press', () => {
+    test("should show help on ? key press", () => {
       accessibilityManager.init();
 
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
-      const helpEvent = new KeyboardEvent('keydown', { key: '?', bubbles: true });
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
+      const helpEvent = new KeyboardEvent("keydown", {
+        key: "?",
+        bubbles: true,
+      });
 
       document.dispatchEvent(helpEvent);
 
-      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Keyboard shortcuts'));
+      expect(consoleSpy).toHaveBeenCalledWith(
+        expect.stringContaining("Keyboard shortcuts"),
+      );
 
       consoleSpy.mockRestore();
     });
 
-    test('should not trigger shortcuts when typing in input', () => {
+    test("should not trigger shortcuts when typing in input", () => {
       document.body.innerHTML = `
         <input type="text" id="test-input" />
       `;
       accessibilityManager.init();
 
-      const input = document.querySelector('#test-input');
-      const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation();
+      const input = document.querySelector("#test-input");
+      const scrollToSpy = jest.spyOn(window, "scrollTo").mockImplementation();
 
-      const hEvent = new KeyboardEvent('keydown', { 
-        key: 'h', 
+      const hEvent = new KeyboardEvent("keydown", {
+        key: "h",
         bubbles: true,
-        target: input 
+        target: input,
       });
-      
-      Object.defineProperty(hEvent, 'target', { value: input, enumerable: true });
-      
+
+      Object.defineProperty(hEvent, "target", {
+        value: input,
+        enumerable: true,
+      });
+
       document.dispatchEvent(hEvent);
 
       expect(scrollToSpy).not.toHaveBeenCalled();
@@ -210,26 +233,26 @@ describe('AccessibilityManager', () => {
     });
   });
 
-  describe('Screen Reader Announcements', () => {
-    test('should announce message to screen reader', () => {
+  describe("Screen Reader Announcements", () => {
+    test("should announce message to screen reader", () => {
       jest.useFakeTimers();
-      
-      accessibilityManager.announceToScreenReader('Test message', 'polite');
+
+      accessibilityManager.announceToScreenReader("Test message", "polite");
 
       const announcement = document.querySelector('[aria-live="polite"]');
       expect(announcement).toBeTruthy();
-      expect(announcement.textContent).toBe('Test message');
-      expect(announcement.getAttribute('aria-atomic')).toBe('true');
+      expect(announcement.textContent).toBe("Test message");
+      expect(announcement.getAttribute("aria-atomic")).toBe("true");
 
       jest.advanceTimersByTime(1000);
 
       jest.useRealTimers();
     });
 
-    test('should use default polite priority', () => {
+    test("should use default polite priority", () => {
       jest.useFakeTimers();
-      
-      accessibilityManager.announceToScreenReader('Test');
+
+      accessibilityManager.announceToScreenReader("Test");
 
       const announcement = document.querySelector('[aria-live="polite"]');
       expect(announcement).toBeTruthy();
@@ -238,11 +261,11 @@ describe('AccessibilityManager', () => {
     });
   });
 
-  describe('Initial Navigation State', () => {
-    test('should set active class on home page', () => {
+  describe("Initial Navigation State", () => {
+    test("should set active class on home page", () => {
       // Mock window.location
       delete window.location;
-      window.location = { pathname: '/' };
+      window.location = { pathname: "/" };
 
       document.body.innerHTML = `
         <nav>
@@ -253,12 +276,12 @@ describe('AccessibilityManager', () => {
       accessibilityManager.setInitialNavigationState();
 
       const homeLink = document.querySelector('a[href="#top"]');
-      expect(homeLink.classList.contains('active')).toBe(true);
+      expect(homeLink.classList.contains("active")).toBe(true);
     });
 
-    test('should handle index.html path', () => {
+    test("should handle index.html path", () => {
       delete window.location;
-      window.location = { pathname: '/index.html' };
+      window.location = { pathname: "/index.html" };
 
       document.body.innerHTML = `
         <nav>
@@ -269,12 +292,12 @@ describe('AccessibilityManager', () => {
       accessibilityManager.setInitialNavigationState();
 
       const homeLink = document.querySelector('a[href="#top"]');
-      expect(homeLink.classList.contains('active')).toBe(true);
+      expect(homeLink.classList.contains("active")).toBe(true);
     });
 
-    test('should not set active on other pages', () => {
+    test("should not set active on other pages", () => {
       delete window.location;
-      window.location = { pathname: '/about.html' };
+      window.location = { pathname: "/about.html" };
 
       document.body.innerHTML = `
         <nav>
@@ -285,7 +308,7 @@ describe('AccessibilityManager', () => {
       accessibilityManager.setInitialNavigationState();
 
       const homeLink = document.querySelector('a[href="#top"]');
-      expect(homeLink.classList.contains('active')).toBe(false);
+      expect(homeLink.classList.contains("active")).toBe(false);
     });
   });
 });

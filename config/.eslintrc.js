@@ -38,5 +38,5 @@ module.exports = {
     eqeqeq: ['error', 'always'], // Force `===` instead of `==`
     'no-constant-condition': 'error', // No `if (true)`
     'no-empty': 'error', // No empty blocks
-  }
-}
+  },
+};

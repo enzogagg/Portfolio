@@ -6,13 +6,14 @@ const config = {
   rootDir: path.resolve(__dirname, '..'),
   roots: ['<rootDir>/frontend/tests/unit_test'],
   verbose: true,
-  testPathIgnorePatterns: ["<rootDir>/frontend/tests/playwright/"],
+  testPathIgnorePatterns: ['<rootDir>/frontend/tests/playwright/'],
   transform: {
-    '^.+\\.js$': ['babel-jest', { configFile: path.resolve(__dirname, 'babel.config.js') }],
+    '^.+\\.js$': [
+      'babel-jest',
+      { configFile: path.resolve(__dirname, 'babel.config.js') },
+    ],
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!(some-esm-package)/)',
-  ],
+  transformIgnorePatterns: ['node_modules/(?!(some-esm-package)/)'],
   moduleFileExtensions: ['js', 'json'],
   collectCoverageFrom: [
     '<rootDir>/frontend/assets/js/**/*.js',

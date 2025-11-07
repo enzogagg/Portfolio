@@ -7,9 +7,9 @@
  * Tests performance optimizations and monitoring
  */
 
-import { PerformanceManager } from '../../assets/js/modules/performance.js';
+import { PerformanceManager } from "../../assets/js/modules/performance.js";
 
-describe('PerformanceManager', () => {
+describe("PerformanceManager", () => {
   let performanceManager;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('PerformanceManager', () => {
       observe() {}
       disconnect() {}
     };
-    
+
     // Also add to window for the 'in' operator check
     window.PerformanceObserver = global.PerformanceObserver;
 
@@ -36,80 +36,86 @@ describe('PerformanceManager', () => {
   });
 
   afterEach(() => {
-    document.body.innerHTML = '';
+    document.body.innerHTML = "";
   });
 
-  describe('Initialization', () => {
-    test('should initialize only once', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+  describe("Initialization", () => {
+    test("should initialize only once", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       performanceManager.init();
       expect(performanceManager.isInitialized).toBe(true);
 
       performanceManager.init();
-      expect(consoleSpy).toHaveBeenCalledWith('✅ Performance optimizations initialized');
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "✅ Performance optimizations initialized",
+      );
 
       consoleSpy.mockRestore();
     });
 
-    test('should set isInitialized to true', () => {
+    test("should set isInitialized to true", () => {
       expect(performanceManager.isInitialized).toBe(false);
       performanceManager.init();
       expect(performanceManager.isInitialized).toBe(true);
     });
   });
 
-  describe('Interactive Optimizations', () => {
-    test('should optimize project cards on hover', () => {
+  describe("Interactive Optimizations", () => {
+    test("should optimize project cards on hover", () => {
       performanceManager.init();
 
-      const projectCard = document.querySelector('.project-card');
-      
+      const projectCard = document.querySelector(".project-card");
+
       // Trigger mouseenter
-      const mouseEnterEvent = new MouseEvent('mouseenter');
+      const mouseEnterEvent = new MouseEvent("mouseenter");
       projectCard.dispatchEvent(mouseEnterEvent);
 
-      expect(projectCard.style.willChange).toBe('transform, box-shadow');
+      expect(projectCard.style.willChange).toBe("transform, box-shadow");
 
       // Trigger mouseleave
-      const mouseLeaveEvent = new MouseEvent('mouseleave');
+      const mouseLeaveEvent = new MouseEvent("mouseleave");
       projectCard.dispatchEvent(mouseLeaveEvent);
 
-      expect(projectCard.style.willChange).toBe('auto');
+      expect(projectCard.style.willChange).toBe("auto");
     });
 
-    test('should optimize glass buttons on hover', () => {
+    test("should optimize glass buttons on hover", () => {
       performanceManager.init();
 
-      const glassButton = document.querySelector('.glass-button');
-      
+      const glassButton = document.querySelector(".glass-button");
+
       // Trigger mouseenter
-      const mouseEnterEvent = new MouseEvent('mouseenter');
+      const mouseEnterEvent = new MouseEvent("mouseenter");
       glassButton.dispatchEvent(mouseEnterEvent);
 
-      expect(glassButton.style.willChange).toBe('transform, background, border-color');
+      expect(glassButton.style.willChange).toBe(
+        "transform, background, border-color",
+      );
 
       // Trigger mouseleave
-      const mouseLeaveEvent = new MouseEvent('mouseleave');
+      const mouseLeaveEvent = new MouseEvent("mouseleave");
       glassButton.dispatchEvent(mouseLeaveEvent);
 
-      expect(glassButton.style.willChange).toBe('auto');
+      expect(glassButton.style.willChange).toBe("auto");
     });
 
-    test('should optimize all interactive elements', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+    test("should optimize all interactive elements", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       performanceManager.init();
 
       // Should optimize 3 project/tech cards + 1 glass button = 4 elements
-      expect(consoleSpy).toHaveBeenCalledWith('Optimized 4 interactive elements');
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "Optimized 4 interactive elements",
+      );
 
       consoleSpy.mockRestore();
     });
   });
 
-  describe('Preload Optimizations', () => {
-    test('should create preload link for fonts', () => {
+  describe("Preload Optimizations", () => {
+    test("should create preload link for fonts", () => {
       performanceManager.init();
 
       // Check if preload links were created (mocked in setupPreloadOptimizations)
@@ -118,9 +124,9 @@ describe('PerformanceManager', () => {
     });
   });
 
-  describe('Performance Monitoring', () => {
-    test('should monitor performance metrics', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+  describe("Performance Monitoring", () => {
+    test("should monitor performance metrics", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       performanceManager.init();
 
@@ -130,14 +136,14 @@ describe('PerformanceManager', () => {
       consoleSpy.mockRestore();
     });
 
-    test('should handle PerformanceObserver support gracefully', () => {
+    test("should handle PerformanceObserver support gracefully", () => {
       // Test with PerformanceObserver available
       expect(() => {
         performanceManager.init();
       }).not.toThrow();
     });
 
-    test('should work without PerformanceObserver', () => {
+    test("should work without PerformanceObserver", () => {
       // Temporarily remove PerformanceObserver from window
       const originalPO = window.PerformanceObserver;
       delete window.PerformanceObserver;
@@ -152,8 +158,8 @@ describe('PerformanceManager', () => {
     });
   });
 
-  describe('Debouncing', () => {
-    test('should provide debounce utility', () => {
+  describe("Debouncing", () => {
+    test("should provide debounce utility", () => {
       performanceManager.init();
 
       // PerformanceManager should handle debouncing internally
@@ -161,50 +167,52 @@ describe('PerformanceManager', () => {
     });
   });
 
-  describe('GPU Optimizations', () => {
-    test('should apply will-change property strategically', () => {
+  describe("GPU Optimizations", () => {
+    test("should apply will-change property strategically", () => {
       performanceManager.init();
 
-      const projectCard = document.querySelector('.project-card');
-      
+      const projectCard = document.querySelector(".project-card");
+
       // Initially should not have will-change
-      expect(projectCard.style.willChange).toBe('');
+      expect(projectCard.style.willChange).toBe("");
 
       // Should apply on hover
-      projectCard.dispatchEvent(new MouseEvent('mouseenter'));
+      projectCard.dispatchEvent(new MouseEvent("mouseenter"));
       expect(projectCard.style.willChange).toBeTruthy();
 
       // Should remove after hover
-      projectCard.dispatchEvent(new MouseEvent('mouseleave'));
-      expect(projectCard.style.willChange).toBe('auto');
+      projectCard.dispatchEvent(new MouseEvent("mouseleave"));
+      expect(projectCard.style.willChange).toBe("auto");
     });
   });
 
-  describe('Memory Management', () => {
-    test('should clean up will-change after interaction', () => {
+  describe("Memory Management", () => {
+    test("should clean up will-change after interaction", () => {
       performanceManager.init();
 
-      const elements = document.querySelectorAll('.project-card, .tech-card, .glass-button');
-      
+      const elements = document.querySelectorAll(
+        ".project-card, .tech-card, .glass-button",
+      );
+
       elements.forEach((element) => {
-        element.dispatchEvent(new MouseEvent('mouseenter'));
+        element.dispatchEvent(new MouseEvent("mouseenter"));
         expect(element.style.willChange).toBeTruthy();
 
-        element.dispatchEvent(new MouseEvent('mouseleave'));
-        expect(element.style.willChange).toBe('auto');
+        element.dispatchEvent(new MouseEvent("mouseleave"));
+        expect(element.style.willChange).toBe("auto");
       });
     });
   });
 
-  describe('Performance Metrics Monitoring', () => {
-    test('should setup performance monitoring', () => {
+  describe("Performance Metrics Monitoring", () => {
+    test("should setup performance monitoring", () => {
       // Mock performance API
       const mockPerfData = {
         domContentLoadedEventEnd: 1500,
         domContentLoadedEventStart: 1000,
         loadEventEnd: 2500,
         loadEventStart: 2000,
-        fetchStart: 0
+        fetchStart: 0,
       };
 
       global.performance.getEntriesByType = jest.fn(() => [mockPerfData]);
@@ -218,9 +226,9 @@ describe('PerformanceManager', () => {
     });
   });
 
-  describe('Long Tasks Monitoring', () => {
-    test('should observe long tasks', () => {
-      const observeSpy = jest.spyOn(PerformanceObserver.prototype, 'observe');
+  describe("Long Tasks Monitoring", () => {
+    test("should observe long tasks", () => {
+      const observeSpy = jest.spyOn(PerformanceObserver.prototype, "observe");
 
       performanceManager.monitorLongTasks();
 
@@ -229,8 +237,8 @@ describe('PerformanceManager', () => {
       observeSpy.mockRestore();
     });
 
-    test('should warn about long tasks', () => {
-      const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+    test("should warn about long tasks", () => {
+      const warnSpy = jest.spyOn(console, "warn").mockImplementation();
 
       // Create a mock callback
       let observerCallback;
@@ -238,7 +246,7 @@ describe('PerformanceManager', () => {
         observerCallback = callback;
         return {
           observe: jest.fn(),
-          disconnect: jest.fn()
+          disconnect: jest.fn(),
         };
       });
 
@@ -247,22 +255,26 @@ describe('PerformanceManager', () => {
       // Simulate long task detection
       if (observerCallback) {
         observerCallback({
-          getEntries: () => [{
-            duration: 100 // > 50ms threshold
-          }]
+          getEntries: () => [
+            {
+              duration: 100, // > 50ms threshold
+            },
+          ],
         });
 
-        expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('Long task detected'));
+        expect(warnSpy).toHaveBeenCalledWith(
+          expect.stringContaining("Long task detected"),
+        );
       }
 
       warnSpy.mockRestore();
     });
   });
 
-  describe('Debounce Utility', () => {
-    test('should debounce resize events', () => {
+  describe("Debounce Utility", () => {
+    test("should debounce resize events", () => {
       jest.useFakeTimers();
-      
+
       performanceManager.init();
 
       const resizeCallback = jest.fn();

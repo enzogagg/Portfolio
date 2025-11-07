@@ -27,13 +27,14 @@ This directory contains all configuration files for quality tools, testing frame
 
 ### Code Quality (Future)
 
-- `.eslintrc.js` - ESLint configuration *(to be moved here)*
-- `.stylelintrc.json` - Stylelint configuration *(to be moved here)*
-- `.prettierrc.json` - Prettier formatting *(to be moved here)*
+- `.eslintrc.js` - ESLint configuration _(to be moved here)_
+- `.stylelintrc.json` - Stylelint configuration _(to be moved here)_
+- `.prettierrc.json` - Prettier formatting _(to be moved here)_
 
 ## 🎯 Purpose
 
 Centralizing configuration files in this directory:
+
 - ✅ Keeps project root clean
 - ✅ Makes configurations easier to find
 - ✅ Groups related tooling together
@@ -48,4 +49,3 @@ Centralizing configuration files in this directory:
 ---
 
 **Last Updated**: November 2025
-

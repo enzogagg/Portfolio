@@ -1,4 +1,3 @@
-
 # 📚 Documentation Index
 
 This folder contains all technical documentation for the Portfolio project.
@@ -22,12 +21,12 @@ All documentation in this project follows these guidelines:
 
 ## 🎯 Planned Documentation
 
-- **ARCHITECTURE.md**: Project structure and design decisions *(planned)*
-- **DEPLOYMENT.md**: Deployment process and CI/CD configuration *(planned)*
-- **CONTRIBUTING.md**: Contribution guidelines *(planned)*
-- **API.md**: JavaScript module API reference *(planned)*
-- **ACCESSIBILITY.md**: Accessibility features and WCAG compliance *(planned)*
-- **PERFORMANCE.md**: Performance optimization strategies *(planned)*
+- **ARCHITECTURE.md**: Project structure and design decisions _(planned)_
+- **DEPLOYMENT.md**: Deployment process and CI/CD configuration _(planned)_
+- **CONTRIBUTING.md**: Contribution guidelines _(planned)_
+- **API.md**: JavaScript module API reference _(planned)_
+- **ACCESSIBILITY.md**: Accessibility features and WCAG compliance _(planned)_
+- **PERFORMANCE.md**: Performance optimization strategies _(planned)_
 
 ---
 

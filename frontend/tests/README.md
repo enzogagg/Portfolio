@@ -31,6 +31,7 @@ tests/
 ## 🎯 Test Coverage Summary
 
 ### Unit Tests (Jest)
+
 - **Total**: 129 tests
 - **Pass Rate**: 100%
 - **Code Coverage**: 83.51% lines, 82.66% statements, 73.95% branches
@@ -38,6 +39,7 @@ tests/
 - **Target**: JavaScript modules (ES6+)
 
 ### E2E Tests (Playwright)
+
 - **Total**: ~130 tests
 - **Pages**: 4 main pages + navigation + regression
 - **Browsers**: Chromium, WebKit, Mobile Chrome
@@ -91,16 +93,16 @@ npm test && npm run test:e2e
 
 ### Unit Test Coverage by Module
 
-| Module | Lines | Statements | Branches | Functions |
-|--------|-------|------------|----------|-----------|
-| accessibility.js | 91.78% | 91.55% | 81.25% | 92.85% |
-| animations.js | 87.67% | 87.50% | 72.72% | 87.50% |
-| performance.js | 63.33% | 63.15% | 45.83% | 60.00% |
-| config.js | 96.55% | 96.29% | 91.30% | 100% |
-| projects.js | 83.33% | 82.35% | 50.00% | 75.00% |
-| navigation.js | 93.87% | 94.11% | 71.42% | 100% |
-| utils.js | 100% | 100% | 100% | 100% |
-| burger.js | 63.63% | 63.63% | 50.00% | 66.66% |
+| Module           | Lines  | Statements | Branches | Functions |
+| ---------------- | ------ | ---------- | -------- | --------- |
+| accessibility.js | 91.78% | 91.55%     | 81.25%   | 92.85%    |
+| animations.js    | 87.67% | 87.50%     | 72.72%   | 87.50%    |
+| performance.js   | 63.33% | 63.15%     | 45.83%   | 60.00%    |
+| config.js        | 96.55% | 96.29%     | 91.30%   | 100%      |
+| projects.js      | 83.33% | 82.35%     | 50.00%   | 75.00%    |
+| navigation.js    | 93.87% | 94.11%     | 71.42%   | 100%      |
+| utils.js         | 100%   | 100%       | 100%     | 100%      |
+| burger.js        | 63.63% | 63.63%     | 50.00%   | 66.66%    |
 
 ### E2E Test Coverage by Page
 
@@ -114,9 +116,11 @@ npm test && npm run test:e2e
 ## 🎨 Testing Strategy
 
 ### 1. Unit Tests (Jest)
+
 **Purpose**: Test individual JavaScript modules in isolation
 
 **Coverage**:
+
 - Business logic and algorithms
 - DOM manipulation
 - Event handlers
@@ -124,15 +128,18 @@ npm test && npm run test:e2e
 - Module initialization
 
 **Best Practices**:
+
 - Mock external dependencies
 - Test edge cases and error handling
 - Maintain 80%+ coverage
 - Use descriptive test names
 
 ### 2. E2E Tests (Playwright)
+
 **Purpose**: Test complete user workflows and interactions
 
 **Coverage**:
+
 - Page loading and rendering
 - User interactions (clicks, forms, navigation)
 - Accessibility compliance (ARIA, keyboard)
@@ -141,6 +148,7 @@ npm test && npm run test:e2e
 - Cross-browser compatibility
 
 **Best Practices**:
+
 - Use semantic selectors
 - Test real user scenarios
 - Verify accessibility
@@ -148,15 +156,18 @@ npm test && npm run test:e2e
 - Screenshot comparison for visual regression
 
 ### 3. Linting & Code Quality
+
 **Tools**: ESLint, Stylelint
 
 **Coverage**:
+
 - 35 ESLint rules (100% compliance)
 - 15 Stylelint rules (100% compliance)
 - Code formatting with Prettier
 - No console errors or warnings
 
 **Commands**:
+
 ```bash
 npm run lint           # Lint all files
 npm run lint:js        # Lint JavaScript
@@ -168,11 +179,13 @@ npm run lint:css:fix   # Auto-fix CSS issues
 ## 📝 Test File Naming
 
 ### Unit Tests
+
 - **Pattern**: `<module-name>.test.js`
 - **Location**: `tests/unit_test/`
 - **Example**: `accessibility.test.js`, `animations.test.js`
 
 ### E2E Tests
+
 - **Pattern**: `<page-or-feature>.spec.js`
 - **Location**: `tests/playwright/`
 - **Example**: `home.spec.js`, `projects.spec.js`
@@ -180,6 +193,7 @@ npm run lint:css:fix   # Auto-fix CSS issues
 ## 🔍 Debugging Tests
 
 ### Unit Tests
+
 ```bash
 # Run with verbose output
 npm test -- --verbose
@@ -189,6 +203,7 @@ node --inspect-brk node_modules/.bin/jest accessibility.test.js
 ```
 
 ### E2E Tests
+
 ```bash
 # UI mode (interactive)
 npx playwright test --ui
@@ -206,6 +221,7 @@ npx playwright show-report
 ## 📈 Quality Metrics
 
 ### Current Status
+
 - ✅ **129/129** unit tests passing (100%)
 - ✅ **83.51%** line coverage (target: 80%)
 - ✅ **0** lint errors
@@ -214,6 +230,7 @@ npx playwright show-report
 - ✅ **100%** code quality compliance
 
 ### Coverage Thresholds (Enforced)
+
 ```javascript
 {
   branches: 70,
@@ -233,12 +250,14 @@ npx playwright show-report
 ## 🎯 CI/CD Integration
 
 Tests are run automatically in CI/CD pipeline:
+
 - ✅ On every push
 - ✅ On every pull request
 - ✅ Before deployment
 - ✅ Coverage reports generated
 
 ### CI/CD Commands
+
 ```bash
 # Pre-commit hook
 npm run lint && npm test
@@ -252,28 +271,35 @@ npm run lint && npm run test:coverage && npm run test:e2e
 ### Unit Tests
 
 **Issue**: `Cannot find module 'X'`
+
 - **Solution**: Check import paths, ensure module exports correctly
 
 **Issue**: `ReferenceError: window is not defined`
+
 - **Solution**: jsdom setup in `setup/jsdom-setup.js` should handle this
 
 **Issue**: Coverage below threshold
+
 - **Solution**: Add tests for uncovered branches/lines
 
 ### E2E Tests
 
 **Issue**: Timeout errors
+
 - **Solution**: Increase timeout in `playwright.config.js` or use `test.setTimeout()`
 
 **Issue**: Element not found
+
 - **Solution**: Wait for page load with `waitForLoadState()`, use better selectors
 
 **Issue**: Screenshot mismatch
+
 - **Solution**: Update snapshots with `--update-snapshots` if changes are intentional
 
 ## 🔄 Continuous Improvement
 
 ### Upcoming Improvements
+
 - [ ] Increase coverage to 90%+
 - [ ] Add visual regression baseline screenshots
 - [ ] Integrate accessibility testing tools (axe-core)
@@ -285,4 +311,3 @@ npm run lint && npm run test:coverage && npm run test:e2e
 **Author**: Enzo Gaggiotti  
 **Last Updated**: November 2025  
 **Test Framework Versions**: Jest 29.x, Playwright 1.x
-

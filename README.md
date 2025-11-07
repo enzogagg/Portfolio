@@ -1,5 +1,3 @@
-
-
 # Portfolio
 
 Welcome to the personal portfolio repository of Enzo Gaggiotti.
@@ -72,20 +70,24 @@ The project follows a logical documentation hierarchy:
 ## � Quick Links
 
 ### Getting Started
+
 - [Frontend Setup](./frontend/README.md) - How to run the application
 - [Configuration](./config/README.md) - All config files explained
 
 ### Development
+
 - [CSS Architecture](./frontend/assets/css/README.md) - Modular CSS structure
 - [JS Architecture](./frontend/assets/js/README.md) - JavaScript modules
 
 ### Quality & Testing
+
 - [Linting Standards](./docs/LINTING.md) - Code quality rules (ESLint, Stylelint)
 - [Testing Strategy](./docs/TESTING.md) - Unit tests, E2E tests, coverage
 - [Unit Tests](./frontend/tests/README.md) - Jest testing guide
 - [E2E Tests](./frontend/tests/playwright/README.md) - Playwright testing guide
 
 ### Project Documentation
+
 - [Documentation Index](./docs/README.md) - All technical documentation
 
 ---

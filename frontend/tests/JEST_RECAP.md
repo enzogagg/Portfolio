@@ -5,8 +5,9 @@
 Complete suite of **96 unit tests** covering all JavaScript modules of the portfolio.
 
 **Global Statistics:**
-- ✅ **84 passing tests** (87.5%)  
-- ⚠️ **12 tests with minor failures** (12.5%)  
+
+- ✅ **84 passing tests** (87.5%)
+- ⚠️ **12 tests with minor failures** (12.5%)
 - 📁 **8 test suites**
 - 🎯 **~80% estimated code coverage**
 
@@ -15,11 +16,13 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 ## 🧪 Test Suites Breakdown
 
 ### 1. ✅ `config.test.js` - Centralized Configuration
+
 **Tested Module**: `assets/js/modules/config.js`
 
 **Tests**: 23/23 ✅
 
 **Features Tested:**
+
 - APP_CONFIG configuration (selectors, animations, projects, responsibilities)
 - InitializationState class (markInitialized, isInitialized)
 - Listener system for inter-module coordination
@@ -28,11 +31,13 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 ---
 
 ### 2. ✅ `utils.test.js` - Utility Functions
+
 **Tested Module**: `assets/js/modules/utils.js`
 
 **Tests**: 21/21 ✅
 
 **Features Tested:**
+
 - `forceElementVisibility()`: Force visibility with options
 - `forceProjectCardVisibility()`: Project-specific wrapper
 - NodeList and array handling
@@ -43,22 +48,26 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 ---
 
 ### 3. ✅ `burger.test.js` - Hamburger Menu
+
 **Tested Module**: `assets/js/burger.js`
 
 **Tests**: 2/2 ✅
 
 **Features Tested:**
+
 - Mobile menu opening
 - Mobile menu closing
 
 ---
 
 ### 4. ⚠️ `projects.test.js` - Project Filtering
+
 **Tested Module**: `assets/js/modules/projects.js`
 
 **Tests**: 11/12 (91.7% pass rate)
 
 **Passing Tests:**
+
 - ✅ Initialization with retry mechanism
 - ✅ Filter button and project card detection
 - ✅ Double initialization protection
@@ -72,16 +81,19 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 - ✅ Project counter update
 
 **Failing Test:**
+
 - ❌ Staggered animation delays application (NaN parsing issue)
 
 ---
 
 ### 5. ⚠️ `navigation.test.js` - Mobile Navigation
+
 **Tested Module**: `assets/js/modules/navigation.js`
 
 **Tests**: 12/15 (80% pass rate)
 
 **Passing Tests:**
+
 - ✅ Initialization with correct elements
 - ✅ Double initialization protection
 - ✅ Warning if elements missing
@@ -96,16 +108,19 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 - ✅ Menu opening
 
 **Failing Tests:**
+
 - ❌ Escape key closing (3 failures related to event listeners)
 
 ---
 
 ### 6. ⚠️ `accessibility.test.js` - WCAG 2.1 Accessibility
+
 **Tested Module**: `assets/js/modules/accessibility.js`
 
 **Tests**: 6/8 (75% pass rate)
 
 **Passing Tests:**
+
 - ✅ Single initialization
 - ✅ isInitialized flag
 - ✅ keyboard-navigation class addition on Tab
@@ -114,16 +129,19 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 - ✅ Missing target handling
 
 **Failing Tests:**
+
 - ❌ Focus management (2 failures)
 
 ---
 
 ### 7. ⚠️ `animations.test.js` - Scroll Animations
+
 **Tested Module**: `assets/js/modules/animations.js`
 
 **Tests**: 7/9 (77.8% pass rate)
 
 **Passing Tests:**
+
 - ✅ Single initialization
 - ✅ Header element storage
 - ✅ Animated elements detection
@@ -133,16 +151,19 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 - ✅ Header reference
 
 **Failing Tests:**
+
 - ❌ Animation observer creation (2 failures)
 
 ---
 
 ### 8. ⚠️ `performance.test.js` - Performance Optimizations
+
 **Tested Module**: `assets/js/modules/performance.js`
 
 **Tests**: 7/8 (87.5% pass rate)
 
 **Passing Tests:**
+
 - ✅ Single initialization
 - ✅ isInitialized flag
 - ✅ Project card hover optimization
@@ -152,6 +173,7 @@ Complete suite of **96 unit tests** covering all JavaScript modules of the portf
 - ✅ will-change cleanup after interaction
 
 **Failing Test:**
+
 - ❌ Functionality without PerformanceObserver
 
 ---
@@ -168,37 +190,40 @@ npm install --save-dev @babel/core @babel/preset-env babel-jest
 ### Configuration Files
 
 #### `babel.config.js` (project root)
+
 ```javascript
 module.exports = {
   presets: [
-    ['@babel/preset-env', {
-      targets: { node: 'current' }
-    }]
-  ]
+    [
+      "@babel/preset-env",
+      {
+        targets: { node: "current" },
+      },
+    ],
+  ],
 };
 ```
 
 #### `config/jest.config.js`
+
 ```javascript
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  testEnvironment: 'jsdom',
-  rootDir: path.resolve(__dirname, '..'),
-  roots: ['<rootDir>/frontend/tests/unit_test'],
+  testEnvironment: "jsdom",
+  rootDir: path.resolve(__dirname, ".."),
+  roots: ["<rootDir>/frontend/tests/unit_test"],
   verbose: true,
   testPathIgnorePatterns: ["<rootDir>/frontend/tests/playwright/"],
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    "^.+\\.js$": "babel-jest",
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!(some-esm-package)/)',
-  ],
-  moduleFileExtensions: ['js', 'json'],
+  transformIgnorePatterns: ["node_modules/(?!(some-esm-package)/)"],
+  moduleFileExtensions: ["js", "json"],
   collectCoverageFrom: [
-    '<rootDir>/frontend/assets/js/**/*.js',
-    '!<rootDir>/frontend/assets/js/**/*.test.js',
-    '!<rootDir>/frontend/assets/js/**/standalone.js',
+    "<rootDir>/frontend/assets/js/**/*.js",
+    "!<rootDir>/frontend/assets/js/**/*.test.js",
+    "!<rootDir>/frontend/assets/js/**/standalone.js",
   ],
 };
 ```
@@ -245,24 +270,30 @@ frontend/tests/unit_test/
 ## 🐛 Resolved Issues
 
 ### 1. ❌ ES6 Modules Support
+
 **Error**: `SyntaxError: Cannot use import statement outside a module`
 
 **Solution**:
+
 - Babel installation (@babel/core, @babel/preset-env, babel-jest)
 - babel.config.js configuration at project root
 - babel-jest transform added to jest.config.js
 
 ### 2. ❌ Incorrect Paths
+
 **Error**: `Directory in roots[0] was not found`
 
 **Solution**:
+
 - Using `path.resolve(__dirname, '..')` for rootDir
 - Relative paths with `<rootDir>` in configuration
 
 ### 3. ❌ Missing Browser APIs
+
 **Error**: `IntersectionObserver is not defined`
 
 **Solution**:
+
 - Global mocks creation in test files
 - IntersectionObserver and PerformanceObserver mocking
 
@@ -271,6 +302,7 @@ frontend/tests/unit_test/
 ## 🔮 Future Improvements
 
 ### Short Term (High Priority)
+
 1. ✅ Fix the 12 failing tests
    - Fix animation delay parsing
    - Improve event listener mocks
@@ -287,6 +319,7 @@ frontend/tests/unit_test/
    - Integrate into CI/CD
 
 ### Medium Term (Medium Priority)
+
 4. ✅ Integration tests
    - Test inter-module interactions
    - Complete user scenarios
@@ -298,6 +331,7 @@ frontend/tests/unit_test/
    - Benchmarking
 
 ### Long Term (Nice to Have)
+
 6. ✅ Visual regression tests
    - Percy or Chromatic
    - Screenshot comparison
@@ -313,6 +347,7 @@ frontend/tests/unit_test/
 ## 📚 Mocks Documentation
 
 ### IntersectionObserver Mock
+
 ```javascript
 global.IntersectionObserver = class IntersectionObserver {
   constructor(callback, options) {
@@ -320,11 +355,13 @@ global.IntersectionObserver = class IntersectionObserver {
     this.options = options;
   }
   observe(element) {
-    this.callback([{
-      target: element,
-      isIntersecting: true,
-      intersectionRatio: 1,
-    }]);
+    this.callback([
+      {
+        target: element,
+        isIntersecting: true,
+        intersectionRatio: 1,
+      },
+    ]);
   }
   unobserve() {}
   disconnect() {}
@@ -332,6 +369,7 @@ global.IntersectionObserver = class IntersectionObserver {
 ```
 
 ### PerformanceObserver Mock
+
 ```javascript
 global.PerformanceObserver = class PerformanceObserver {
   constructor(callback) {

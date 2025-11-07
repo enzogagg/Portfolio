@@ -113,7 +113,10 @@ export class AccessibilityManager {
   setupKeyboardShortcuts() {
     document.addEventListener("keydown", (e) => {
       // Skip if user is typing in an input field
-      if (e.target instanceof Element && e.target.matches("input, textarea, [contenteditable]")) {
+      if (
+        e.target instanceof Element &&
+        e.target.matches("input, textarea, [contenteditable]")
+      ) {
         return;
       }
 

@@ -26,13 +26,13 @@ Comprehensive testing strategy for the Portfolio project, covering unit tests, E
 
 ### Test Statistics
 
-| Metric | Value | Status |
-|--------|-------|--------|
-| **Unit Tests** | 129 | ✅ 100% passing |
-| **E2E Tests** | ~130 | ✅ Created |
+| Metric            | Value  | Status          |
+| ----------------- | ------ | --------------- |
+| **Unit Tests**    | 129    | ✅ 100% passing |
+| **E2E Tests**     | ~130   | ✅ Created      |
 | **Code Coverage** | 83.51% | ✅ Above target |
-| **Lint Errors** | 0 | ✅ Clean |
-| **Lint Warnings** | 0 | ✅ Clean |
+| **Lint Errors**   | 0      | ✅ Clean        |
+| **Lint Warnings** | 0      | ✅ Clean        |
 
 ## 🔺 Test Pyramid
 
@@ -88,16 +88,16 @@ Comprehensive testing strategy for the Portfolio project, covering unit tests, E
 
 ### Test Files
 
-| File | Tests | Coverage | Focus |
-|------|-------|----------|-------|
-| `accessibility.test.js` | 16 | 91.78% | Keyboard nav, ARIA, focus |
-| `animations.test.js` | 18 | 87.67% | Scroll animations, header |
-| `performance.test.js` | 16 | 63.33% | Optimizations, monitoring |
-| `config.test.js` | 29 | 96.55% | Module configuration |
-| `projects.test.js` | 15 | 83.33% | Project filtering |
-| `navigation.test.js` | 14 | 93.87% | Mobile menu, navigation |
-| `utils.test.js` | 21 | 100% | Utility functions |
-| `burger.test.js` | 2 | 63.63% | Burger menu standalone |
+| File                    | Tests | Coverage | Focus                     |
+| ----------------------- | ----- | -------- | ------------------------- |
+| `accessibility.test.js` | 16    | 91.78%   | Keyboard nav, ARIA, focus |
+| `animations.test.js`    | 18    | 87.67%   | Scroll animations, header |
+| `performance.test.js`   | 16    | 63.33%   | Optimizations, monitoring |
+| `config.test.js`        | 29    | 96.55%   | Module configuration      |
+| `projects.test.js`      | 15    | 83.33%   | Project filtering         |
+| `navigation.test.js`    | 14    | 93.87%   | Mobile menu, navigation   |
+| `utils.test.js`         | 21    | 100%     | Utility functions         |
+| `burger.test.js`        | 2     | 63.63%   | Burger menu standalone    |
 
 ### Running Unit Tests
 
@@ -132,9 +132,9 @@ npm test -- --verbose
 ### Example Test Structure
 
 ```javascript
-import { moduleFunction } from '../modules/module.js';
+import { moduleFunction } from "../modules/module.js";
 
-describe('Module Name', () => {
+describe("Module Name", () => {
   beforeEach(() => {
     // Setup before each test
     document.body.innerHTML = '<div id="test"></div>';
@@ -142,18 +142,18 @@ describe('Module Name', () => {
 
   afterEach(() => {
     // Cleanup after each test
-    document.body.innerHTML = '';
+    document.body.innerHTML = "";
   });
 
-  test('should do something', () => {
+  test("should do something", () => {
     // Arrange
-    const element = document.getElementById('test');
-    
+    const element = document.getElementById("test");
+
     // Act
     moduleFunction(element);
-    
+
     // Assert
-    expect(element.classList.contains('active')).toBe(true);
+    expect(element.classList.contains("active")).toBe(true);
   });
 });
 ```
@@ -174,14 +174,14 @@ describe('Module Name', () => {
 
 ### Test Suites
 
-| Suite | Tests | Coverage |
-|-------|-------|----------|
-| `home.spec.js` | ~20 | Homepage, SEO, performance |
-| `projects.spec.js` | ~25 | Filtering, cards, responsive |
-| `navigation.spec.js` | ~20 | Menus, keyboard, mobile |
-| `contact.spec.js` | ~20 | Form, validation, accessibility |
-| `about.spec.js` | ~15 | Content, responsive |
-| `regression.spec.js` | ~30 | Visual regression, cross-browser |
+| Suite                | Tests | Coverage                         |
+| -------------------- | ----- | -------------------------------- |
+| `home.spec.js`       | ~20   | Homepage, SEO, performance       |
+| `projects.spec.js`   | ~25   | Filtering, cards, responsive     |
+| `navigation.spec.js` | ~20   | Menus, keyboard, mobile          |
+| `contact.spec.js`    | ~20   | Form, validation, accessibility  |
+| `about.spec.js`      | ~15   | Content, responsive              |
+| `regression.spec.js` | ~30   | Visual regression, cross-browser |
 
 ### Running E2E Tests
 
@@ -214,27 +214,32 @@ npx playwright show-report
 ### Test Types
 
 #### 1. Functional Tests
+
 - User interactions (clicks, forms)
 - Navigation flows
 - Feature functionality
 
 #### 2. Accessibility Tests
+
 - Keyboard navigation
 - ARIA attributes
 - Screen reader compatibility
 - Color contrast
 
 #### 3. Performance Tests
+
 - Page load time < 3s
 - No blocking resources
 - Memory leak detection
 
 #### 4. Visual Regression Tests
+
 - Screenshot comparison
 - Desktop + Mobile viewports
 - Cross-browser consistency
 
 #### 5. Cross-Browser Tests
+
 - Chromium (Chrome, Edge)
 - WebKit (Safari)
 - Mobile Chrome
@@ -242,28 +247,28 @@ npx playwright show-report
 ### Example E2E Test
 
 ```javascript
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test.describe('Homepage', () => {
+test.describe("Homepage", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/frontend/index.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto("/frontend/index.html");
+    await page.waitForLoadState("networkidle");
   });
 
-  test('should load successfully', async ({ page }) => {
+  test("should load successfully", async ({ page }) => {
     // Verify page title
     await expect(page).toHaveTitle(/Portfolio/);
-    
+
     // Verify header is visible
-    const header = page.locator('header');
+    const header = page.locator("header");
     await expect(header).toBeVisible();
-    
+
     // Verify no console errors
     const errors = [];
-    page.on('console', msg => {
-      if (msg.type() === 'error') errors.push(msg.text());
+    page.on("console", (msg) => {
+      if (msg.type() === "error") errors.push(msg.text());
     });
-    
+
     expect(errors).toHaveLength(0);
   });
 });
@@ -365,17 +370,17 @@ npm run test:e2e
 
 ### Current Coverage
 
-| Module | Lines | Statements | Branches | Functions |
-|--------|-------|------------|----------|-----------|
-| **Overall** | **83.51%** | **82.66%** | **73.95%** | **76.36%** |
-| accessibility.js | 91.78% | 91.55% | 81.25% | 92.85% |
-| animations.js | 87.67% | 87.50% | 72.72% | 87.50% |
-| performance.js | 63.33% | 63.15% | 45.83% | 60.00% |
-| config.js | 96.55% | 96.29% | 91.30% | 100% |
-| projects.js | 83.33% | 82.35% | 50.00% | 75.00% |
-| navigation.js | 93.87% | 94.11% | 71.42% | 100% |
-| utils.js | 100% | 100% | 100% | 100% |
-| burger.js | 63.63% | 63.63% | 50.00% | 66.66% |
+| Module           | Lines      | Statements | Branches   | Functions  |
+| ---------------- | ---------- | ---------- | ---------- | ---------- |
+| **Overall**      | **83.51%** | **82.66%** | **73.95%** | **76.36%** |
+| accessibility.js | 91.78%     | 91.55%     | 81.25%     | 92.85%     |
+| animations.js    | 87.67%     | 87.50%     | 72.72%     | 87.50%     |
+| performance.js   | 63.33%     | 63.15%     | 45.83%     | 60.00%     |
+| config.js        | 96.55%     | 96.29%     | 91.30%     | 100%       |
+| projects.js      | 83.33%     | 82.35%     | 50.00%     | 75.00%     |
+| navigation.js    | 93.87%     | 94.11%     | 71.42%     | 100%       |
+| utils.js         | 100%       | 100%       | 100%       | 100%       |
+| burger.js        | 63.63%     | 63.63%     | 50.00%     | 66.66%     |
 
 ### Coverage Goals
 
@@ -414,20 +419,20 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
-      
+          node-version: "18"
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Lint
         run: npm run lint
-      
+
       - name: Unit Tests
         run: npm run test:coverage
-      
+
       - name: E2E Tests
         run: npm run test:e2e
-      
+
       - name: Upload Coverage
         uses: codecov/codecov-action@v3
 ```
@@ -435,6 +440,7 @@ jobs:
 ### Quality Gates
 
 All must pass before merging:
+
 - ✅ ESLint: 0 errors, 0 warnings
 - ✅ Stylelint: 0 errors, 0 warnings
 - ✅ Jest: 100% tests passing
@@ -446,6 +452,7 @@ All must pass before merging:
 ### Unit Tests
 
 **Do:**
+
 - ✅ Test one thing per test
 - ✅ Use descriptive test names
 - ✅ Mock external dependencies
@@ -453,6 +460,7 @@ All must pass before merging:
 - ✅ Clean up after tests
 
 **Don't:**
+
 - ❌ Test implementation details
 - ❌ Write interdependent tests
 - ❌ Use fixed timeouts
@@ -461,6 +469,7 @@ All must pass before merging:
 ### E2E Tests
 
 **Do:**
+
 - ✅ Use semantic selectors (`getByRole`)
 - ✅ Wait for network idle
 - ✅ Test real user scenarios
@@ -468,6 +477,7 @@ All must pass before merging:
 - ✅ Check for console errors
 
 **Don't:**
+
 - ❌ Use brittle CSS selectors
 - ❌ Hard-code delays
 - ❌ Test only happy paths
@@ -476,6 +486,7 @@ All must pass before merging:
 ### General
 
 **Do:**
+
 - ✅ Write tests before fixing bugs
 - ✅ Keep tests readable and maintainable
 - ✅ Run tests locally before pushing
@@ -483,6 +494,7 @@ All must pass before merging:
 - ✅ Document complex test scenarios
 
 **Don't:**
+
 - ❌ Skip tests to save time
 - ❌ Commit broken tests
 - ❌ Lower coverage thresholds
@@ -531,18 +543,20 @@ npx playwright test --headed
 ### Related Documentation
 
 - [LINTING.md](./LINTING.md) - Code quality standards
-- [Architecture Guide](./ARCHITECTURE.md) - Project structure *(planned)*
-- [Contributing Guide](./CONTRIBUTING.md) - Contribution guidelines *(planned)*
+- [Architecture Guide](./ARCHITECTURE.md) - Project structure _(planned)_
+- [Contributing Guide](./CONTRIBUTING.md) - Contribution guidelines _(planned)_
 
 ## 🎯 Future Improvements
 
 ### Short Term
+
 - [ ] Increase branch coverage to 80%+
 - [ ] Add visual regression baselines
 - [ ] Integrate axe-core for accessibility
 - [ ] Add performance budgets
 
 ### Long Term
+
 - [ ] Add mutation testing
 - [ ] Implement contract testing
 - [ ] Add security scanning

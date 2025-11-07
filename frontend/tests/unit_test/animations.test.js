@@ -7,7 +7,7 @@
  * Tests scroll animations and Intersection Observer behavior
  */
 
-import { ScrollAnimations } from '../../assets/js/modules/animations.js';
+import { ScrollAnimations } from "../../assets/js/modules/animations.js";
 
 // Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
@@ -31,7 +31,7 @@ global.IntersectionObserver = class IntersectionObserver {
   disconnect() {}
 };
 
-describe('ScrollAnimations', () => {
+describe("ScrollAnimations", () => {
   let scrollAnimations;
 
   beforeEach(() => {
@@ -46,93 +46,97 @@ describe('ScrollAnimations', () => {
   });
 
   afterEach(() => {
-    document.body.innerHTML = '';
+    document.body.innerHTML = "";
   });
 
-  describe('Initialization', () => {
-    test('should initialize only once', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+  describe("Initialization", () => {
+    test("should initialize only once", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       scrollAnimations.init();
       expect(scrollAnimations.isInitialized).toBe(true);
 
       scrollAnimations.init();
-      expect(consoleSpy).toHaveBeenCalledWith('✅ Scroll animations initialized');
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "✅ Scroll animations initialized",
+      );
 
       consoleSpy.mockRestore();
     });
 
-    test('should find and store header element', () => {
+    test("should find and store header element", () => {
       scrollAnimations.init();
       expect(scrollAnimations.header).toBeTruthy();
-      expect(scrollAnimations.header.id).toBe('main-header');
+      expect(scrollAnimations.header.id).toBe("main-header");
     });
   });
 
-  describe('Scroll Animations Setup', () => {
-    test('should find animated elements', () => {
+  describe("Scroll Animations Setup", () => {
+    test("should find animated elements", () => {
       scrollAnimations.init();
 
-      const animatedElements = document.querySelectorAll('.fade-in, .animate-on-scroll');
+      const animatedElements = document.querySelectorAll(
+        ".fade-in, .animate-on-scroll",
+      );
       expect(animatedElements.length).toBeGreaterThan(0);
     });
 
-    test('should make filter buttons immediately visible', () => {
+    test("should make filter buttons immediately visible", () => {
       scrollAnimations.init();
 
-      const filterButtons = document.querySelectorAll('.filter-btn');
+      const filterButtons = document.querySelectorAll(".filter-btn");
       filterButtons.forEach((btn) => {
-        expect(btn.style.opacity).toBe('1');
-        expect(btn.style.transform).toBe('translateY(0)');
-        expect(btn.classList.contains('animate-in')).toBe(true);
+        expect(btn.style.opacity).toBe("1");
+        expect(btn.style.transform).toBe("translateY(0)");
+        expect(btn.classList.contains("animate-in")).toBe(true);
       });
     });
 
-    test('should handle missing animated elements gracefully', () => {
-      document.body.innerHTML = '<div>No animated elements</div>';
+    test("should handle missing animated elements gracefully", () => {
+      document.body.innerHTML = "<div>No animated elements</div>";
       scrollAnimations = new ScrollAnimations();
 
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
       scrollAnimations.init();
 
-      expect(consoleSpy).toHaveBeenCalledWith('No animated elements found');
+      expect(consoleSpy).toHaveBeenCalledWith("No animated elements found");
       consoleSpy.mockRestore();
     });
   });
 
-  describe('Header Scroll Behavior', () => {
-    test('should initialize header scroll tracking', () => {
+  describe("Header Scroll Behavior", () => {
+    test("should initialize header scroll tracking", () => {
       scrollAnimations.init();
       expect(scrollAnimations.lastScrollPosition).toBeDefined();
       expect(scrollAnimations.scrollThreshold).toBe(100);
     });
 
-    test('should have header reference after initialization', () => {
+    test("should have header reference after initialization", () => {
       scrollAnimations.init();
       expect(scrollAnimations.header).not.toBeNull();
     });
   });
 
-  describe('Intersection Observer', () => {
-    test('should create animation observer', () => {
+  describe("Intersection Observer", () => {
+    test("should create animation observer", () => {
       scrollAnimations.init();
       // Observer is created internally during setupScrollAnimations
       expect(scrollAnimations.isInitialized).toBe(true);
     });
 
-    test('should observe animated elements', () => {
-      const observeSpy = jest.spyOn(IntersectionObserver.prototype, 'observe');
-      
+    test("should observe animated elements", () => {
+      const observeSpy = jest.spyOn(IntersectionObserver.prototype, "observe");
+
       scrollAnimations.init();
-      
+
       // Should observe fade-in and animate-on-scroll elements (but not filter buttons)
       expect(observeSpy).toHaveBeenCalled();
-      
+
       observeSpy.mockRestore();
     });
   });
 
-  describe('Header Scroll Handling', () => {
+  describe("Header Scroll Handling", () => {
     beforeEach(() => {
       document.body.innerHTML = `
         <header id="main-header" style="transform: translateY(0)">Header</header>
@@ -142,51 +146,51 @@ describe('ScrollAnimations', () => {
       scrollAnimations = new ScrollAnimations();
     });
 
-    test('should hide header when scrolling down past threshold', () => {
+    test("should hide header when scrolling down past threshold", () => {
       scrollAnimations.init();
-      
+
       // Simulate scroll down past threshold
       scrollAnimations.lastScrollPosition = 50;
-      Object.defineProperty(window, 'pageYOffset', {
+      Object.defineProperty(window, "pageYOffset", {
         writable: true,
-        value: 200
+        value: 200,
       });
 
       scrollAnimations.handleHeaderScroll();
 
-      expect(scrollAnimations.header.style.transform).toBe('translateY(-100%)');
+      expect(scrollAnimations.header.style.transform).toBe("translateY(-100%)");
     });
 
-    test('should show header when scrolling up', () => {
+    test("should show header when scrolling up", () => {
       scrollAnimations.init();
-      
+
       // Simulate scroll up
       scrollAnimations.lastScrollPosition = 200;
-      Object.defineProperty(window, 'pageYOffset', {
+      Object.defineProperty(window, "pageYOffset", {
         writable: true,
-        value: 100
+        value: 100,
       });
 
       scrollAnimations.handleHeaderScroll();
 
-      expect(scrollAnimations.header.style.transform).toBe('translateY(0)');
+      expect(scrollAnimations.header.style.transform).toBe("translateY(0)");
     });
 
-    test('should show header at top of page', () => {
+    test("should show header at top of page", () => {
       scrollAnimations.init();
-      
+
       scrollAnimations.lastScrollPosition = 50;
-      Object.defineProperty(window, 'pageYOffset', {
+      Object.defineProperty(window, "pageYOffset", {
         writable: true,
-        value: 0
+        value: 0,
       });
 
       scrollAnimations.handleHeaderScroll();
 
-      expect(scrollAnimations.header.style.transform).toBe('translateY(0)');
+      expect(scrollAnimations.header.style.transform).toBe("translateY(0)");
     });
 
-    test('should not crash if header is missing', () => {
+    test("should not crash if header is missing", () => {
       document.body.innerHTML = `
         <div class="fade-in">Content</div>
       `;
@@ -199,19 +203,23 @@ describe('ScrollAnimations', () => {
     });
   });
 
-  describe('Projects Scroll Animations', () => {
-    test('should initialize projects scroll animations', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
-      
+  describe("Projects Scroll Animations", () => {
+    test("should initialize projects scroll animations", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
+
       scrollAnimations.initializeProjectsScrollAnimations();
 
-      expect(consoleSpy).toHaveBeenCalledWith('🎯 Initializing projects scroll animations');
-      expect(consoleSpy).toHaveBeenCalledWith('✅ Projects scroll animations initialized');
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "🎯 Initializing projects scroll animations",
+      );
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "✅ Projects scroll animations initialized",
+      );
 
       consoleSpy.mockRestore();
     });
 
-    test('should handle no project elements gracefully', () => {
+    test("should handle no project elements gracefully", () => {
       document.body.innerHTML = `<div>No animated content</div>`;
       scrollAnimations = new ScrollAnimations();
 
@@ -221,10 +229,13 @@ describe('ScrollAnimations', () => {
     });
   });
 
-  describe('Cleanup', () => {
-    test('should disconnect observer on destroy', () => {
-      const disconnectSpy = jest.spyOn(IntersectionObserver.prototype, 'disconnect');
-      
+  describe("Cleanup", () => {
+    test("should disconnect observer on destroy", () => {
+      const disconnectSpy = jest.spyOn(
+        IntersectionObserver.prototype,
+        "disconnect",
+      );
+
       scrollAnimations.init();
       scrollAnimations.destroy();
 
@@ -233,7 +244,7 @@ describe('ScrollAnimations', () => {
       disconnectSpy.mockRestore();
     });
 
-    test('should handle destroy without observer', () => {
+    test("should handle destroy without observer", () => {
       expect(() => {
         scrollAnimations.destroy();
       }).not.toThrow();

@@ -7,7 +7,7 @@
  * Tests project filtering functionality and animations
  */
 
-import { ProjectsFilter } from '../../assets/js/modules/projects.js';
+import { ProjectsFilter } from "../../assets/js/modules/projects.js";
 
 // Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
@@ -17,7 +17,7 @@ global.IntersectionObserver = class IntersectionObserver {
   disconnect() {}
 };
 
-describe('ProjectsFilter', () => {
+describe("ProjectsFilter", () => {
   let projectsFilter;
 
   beforeEach(() => {
@@ -42,13 +42,13 @@ describe('ProjectsFilter', () => {
   });
 
   afterEach(() => {
-    document.body.innerHTML = '';
+    document.body.innerHTML = "";
     jest.useRealTimers();
   });
 
-  describe('Initialization', () => {
-    test('should initialize with retry mechanism', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+  describe("Initialization", () => {
+    test("should initialize with retry mechanism", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       projectsFilter.init();
 
@@ -59,7 +59,7 @@ describe('ProjectsFilter', () => {
       consoleSpy.mockRestore();
     });
 
-    test('should find filter buttons and project cards', () => {
+    test("should find filter buttons and project cards", () => {
       projectsFilter.init();
       jest.runAllTimers();
 
@@ -67,23 +67,25 @@ describe('ProjectsFilter', () => {
       expect(projectsFilter.projectCards.length).toBe(3);
     });
 
-    test('should not initialize twice', () => {
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+    test("should not initialize twice", () => {
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       projectsFilter.init();
       jest.runAllTimers();
 
       projectsFilter.init();
 
-      expect(consoleSpy).toHaveBeenCalledWith('⚠️ Projects filter already initialized');
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "⚠️ Projects filter already initialized",
+      );
       consoleSpy.mockRestore();
     });
 
-    test('should handle missing elements gracefully', () => {
-      document.body.innerHTML = '<div></div>';
+    test("should handle missing elements gracefully", () => {
+      document.body.innerHTML = "<div></div>";
       projectsFilter = new ProjectsFilter();
 
-      const consoleSpy = jest.spyOn(console, 'info').mockImplementation();
+      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
 
       projectsFilter.init();
       jest.runAllTimers();
@@ -93,7 +95,7 @@ describe('ProjectsFilter', () => {
     });
   });
 
-  describe('Filter Functionality', () => {
+  describe("Filter Functionality", () => {
     beforeEach(() => {
       projectsFilter.init();
       jest.runAllTimers();
@@ -105,50 +107,56 @@ describe('ProjectsFilter', () => {
 
       jest.runAllTimers();
 
-      const visibleCards = document.querySelectorAll('.project-card:not(.project-hidden)');
+      const visibleCards = document.querySelectorAll(
+        ".project-card:not(.project-hidden)",
+      );
       expect(visibleCards.length).toBe(3);
     });
 
-    test('should filter projects by category', () => {
+    test("should filter projects by category", () => {
       const webButton = document.querySelector('[data-filter="web"]');
       webButton.click();
 
       jest.runAllTimers();
 
-      const webCards = document.querySelectorAll('[data-category="web"]:not(.project-hidden)');
-      const pythonCards = document.querySelectorAll('[data-category="python"]:not(.project-hidden)');
+      const webCards = document.querySelectorAll(
+        '[data-category="web"]:not(.project-hidden)',
+      );
+      const pythonCards = document.querySelectorAll(
+        '[data-category="python"]:not(.project-hidden)',
+      );
 
       expect(webCards.length).toBe(2);
       expect(pythonCards.length).toBe(0);
     });
 
-    test('should update active button state', () => {
+    test("should update active button state", () => {
       const webButton = document.querySelector('[data-filter="web"]');
       const allButton = document.querySelector('[data-filter="all"]');
 
       webButton.click();
       jest.runAllTimers();
 
-      expect(webButton.classList.contains('active')).toBe(true);
-      expect(allButton.classList.contains('active')).toBe(false);
+      expect(webButton.classList.contains("active")).toBe(true);
+      expect(allButton.classList.contains("active")).toBe(false);
     });
   });
 
-  describe('Project Card Visibility', () => {
+  describe("Project Card Visibility", () => {
     beforeEach(() => {
       projectsFilter.init();
       jest.runAllTimers();
     });
 
-    test('should make all cards visible initially', () => {
-      const cards = document.querySelectorAll('.project-card');
+    test("should make all cards visible initially", () => {
+      const cards = document.querySelectorAll(".project-card");
       cards.forEach((card) => {
-        expect(card.style.opacity).toBe('1');
-        expect(card.classList.contains('animate-in')).toBe(true);
+        expect(card.style.opacity).toBe("1");
+        expect(card.classList.contains("animate-in")).toBe(true);
       });
     });
 
-    test('should hide non-matching cards', () => {
+    test("should hide non-matching cards", () => {
       const pythonButton = document.querySelector('[data-filter="python"]');
       pythonButton.click();
 
@@ -156,11 +164,11 @@ describe('ProjectsFilter', () => {
 
       const webCards = document.querySelectorAll('[data-category="web"]');
       webCards.forEach((card) => {
-        expect(card.classList.contains('project-hidden')).toBe(true);
+        expect(card.classList.contains("project-hidden")).toBe(true);
       });
     });
 
-    test('should show matching cards', () => {
+    test("should show matching cards", () => {
       const pythonButton = document.querySelector('[data-filter="python"]');
       pythonButton.click();
 
@@ -168,27 +176,27 @@ describe('ProjectsFilter', () => {
 
       const pythonCards = document.querySelectorAll('[data-category="python"]');
       pythonCards.forEach((card) => {
-        expect(card.classList.contains('project-hidden')).toBe(false);
+        expect(card.classList.contains("project-hidden")).toBe(false);
       });
     });
   });
 
-  describe('Animation Timing', () => {
+  describe("Animation Timing", () => {
     beforeEach(() => {
       projectsFilter.init();
       jest.runAllTimers();
     });
 
-    test('should apply staggered animation delays', () => {
-      const cards = document.querySelectorAll('.project-card');
-      
+    test("should apply staggered animation delays", () => {
+      const cards = document.querySelectorAll(".project-card");
+
       // Set animation delays (simulating what the code does)
       cards.forEach((card, index) => {
         if (index > 0) {
           card.style.animationDelay = `${index * 0.1}s`;
         }
       });
-      
+
       // Check that animation delays are set
       cards.forEach((card, index) => {
         if (index > 0) {
@@ -199,40 +207,44 @@ describe('ProjectsFilter', () => {
     });
   });
 
-  describe('Counter Updates', () => {
-    test('should have counter element in DOM', () => {
+  describe("Counter Updates", () => {
+    test("should have counter element in DOM", () => {
       // Add counter element
-      document.body.innerHTML += '<div class="projects-counter">3 projets</div>';
+      document.body.innerHTML +=
+        '<div class="projects-counter">3 projets</div>';
       projectsFilter.init();
       jest.runAllTimers();
 
-      const counter = document.querySelector('.projects-counter');
+      const counter = document.querySelector(".projects-counter");
       expect(counter).toBeTruthy();
-      expect(counter.textContent).toContain('3');
+      expect(counter.textContent).toContain("3");
     });
   });
 
-  describe('DOM Ready State', () => {
-    test('should wait for DOMContentLoaded if DOM is loading', () => {
-      Object.defineProperty(document, 'readyState', {
+  describe("DOM Ready State", () => {
+    test("should wait for DOMContentLoaded if DOM is loading", () => {
+      Object.defineProperty(document, "readyState", {
         writable: true,
-        value: 'loading'
+        value: "loading",
       });
 
-      const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
+      const addEventListenerSpy = jest.spyOn(document, "addEventListener");
 
       const newFilter = new ProjectsFilter();
       newFilter.init();
 
-      expect(addEventListenerSpy).toHaveBeenCalledWith('DOMContentLoaded', expect.any(Function));
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "DOMContentLoaded",
+        expect.any(Function),
+      );
 
       addEventListenerSpy.mockRestore();
     });
 
-    test('should initialize immediately if DOM is ready', () => {
-      Object.defineProperty(document, 'readyState', {
+    test("should initialize immediately if DOM is ready", () => {
+      Object.defineProperty(document, "readyState", {
         writable: true,
-        value: 'complete'
+        value: "complete",
       });
 
       jest.useFakeTimers();
@@ -248,17 +260,19 @@ describe('ProjectsFilter', () => {
     });
   });
 
-  describe('Filter Container Visibility', () => {
-    test('should ensure filter container is visible', () => {
-      const container = document.querySelector('.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll');
-      
+  describe("Filter Container Visibility", () => {
+    test("should ensure filter container is visible", () => {
+      const container = document.querySelector(
+        ".flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll",
+      );
+
       projectsFilter.init();
       jest.runAllTimers();
 
       if (container) {
-        expect(container.style.opacity).toBe('1');
-        expect(container.style.visibility).toBe('visible');
-        expect(container.classList.contains('animate-in')).toBe(true);
+        expect(container.style.opacity).toBe("1");
+        expect(container.style.visibility).toBe("visible");
+        expect(container.classList.contains("animate-in")).toBe(true);
       }
     });
   });

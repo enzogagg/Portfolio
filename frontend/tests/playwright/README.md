@@ -9,6 +9,7 @@ Comprehensive functional and non-regression test suite for the portfolio, using 
 ### Tests by Page
 
 #### 1. **home.spec.js** - Homepage
+
 - ✅ Page loading and display
 - ✅ Navigation and header
 - ✅ Accessibility tests
@@ -18,6 +19,7 @@ Comprehensive functional and non-regression test suite for the portfolio, using 
 - **Total: ~20 tests**
 
 #### 2. **projects.spec.js** - Projects Page
+
 - ✅ Filtering system
 - ✅ Card animations
 - ✅ Project details
@@ -27,6 +29,7 @@ Comprehensive functional and non-regression test suite for the portfolio, using 
 - **Total: ~25 tests**
 
 #### 3. **navigation.spec.js** - Global Navigation
+
 - ✅ Desktop navigation
 - ✅ Mobile menu (hamburger)
 - ✅ Keyboard accessibility
@@ -36,6 +39,7 @@ Comprehensive functional and non-regression test suite for the portfolio, using 
 - **Total: ~20 tests**
 
 #### 4. **contact.spec.js** - Contact Page
+
 - ✅ Contact form
 - ✅ Field validation
 - ✅ Accessibility (labels, ARIA)
@@ -45,6 +49,7 @@ Comprehensive functional and non-regression test suite for the portfolio, using 
 - **Total: ~20 tests**
 
 #### 5. **about.spec.js** - About Page
+
 - ✅ Content (bio, skills, experience)
 - ✅ Profile picture
 - ✅ Social links
@@ -53,6 +58,7 @@ Comprehensive functional and non-regression test suite for the portfolio, using 
 - **Total: ~15 tests**
 
 #### 6. **regression.spec.js** - Visual Regression Tests
+
 - ✅ Screenshots of all pages (desktop + mobile)
 - ✅ Cross-browser tests
 - ✅ Performance tests
@@ -71,11 +77,13 @@ Comprehensive functional and non-regression test suite for the portfolio, using 
 ## 🚀 Running Tests
 
 ### All Tests
+
 ```bash
 npm run test:e2e
 ```
 
 ### Specific Tests
+
 ```bash
 # Tests for a specific page
 npx playwright test home.spec.js
@@ -91,12 +99,14 @@ npx playwright test --reporter=html
 ```
 
 ### Debug Mode
+
 ```bash
 npx playwright test --debug
 npx playwright test home.spec.js --debug
 ```
 
 ### Update Reference Screenshots
+
 ```bash
 npx playwright test regression.spec.js --update-snapshots
 ```
@@ -104,31 +114,37 @@ npx playwright test regression.spec.js --update-snapshots
 ## 🎨 Test Types
 
 ### 1. Functional Tests
+
 - Verify all features work correctly
 - Navigation, filters, forms
 - User interactions
 
 ### 2. Non-Regression Tests
+
 - Comparative screenshots
 - Detection of unintended visual changes
 - Stability verification
 
 ### 3. Accessibility Tests
+
 - Keyboard navigation
 - ARIA attributes
 - Labels and alternative text
 - Contrast and readability
 
 ### 4. Performance Tests
+
 - Loading time < 3s
 - No blocking resources
 - No memory leaks
 
 ### 5. Cross-Browser Tests
+
 - Chrome, Safari, Mobile compatibility
 - Identical behavior across browsers
 
 ### 6. Responsive Tests
+
 - Mobile, tablet, desktop adaptation
 - Mobile menu
 - Responsive images
@@ -136,19 +152,19 @@ npx playwright test regression.spec.js --update-snapshots
 ## 📝 Test Structure
 
 ```javascript
-test.describe('Test group', () => {
+test.describe("Test group", () => {
   test.beforeEach(async ({ page }) => {
     // Setup before each test
-    await page.goto('/frontend/page.html');
+    await page.goto("/frontend/page.html");
   });
 
-  test('should do something', async ({ page }) => {
+  test("should do something", async ({ page }) => {
     // Arrange
-    const element = page.locator('.selector');
-    
+    const element = page.locator(".selector");
+
     // Act
     await element.click();
-    
+
     // Assert
     await expect(element).toBeVisible();
   });
@@ -158,6 +174,7 @@ test.describe('Test group', () => {
 ## 🔍 Best Practices
 
 ### ✅ Do
+
 - Use semantic selectors (`getByRole`, `getByLabel`)
 - Wait for network loading (`waitForLoadState`)
 - Test error cases
@@ -165,6 +182,7 @@ test.describe('Test group', () => {
 - Clean up after tests
 
 ### ❌ Don't
+
 - Fragile CSS selectors (`.class-123`)
 - Excessive fixed timeouts
 - Interdependent tests
@@ -173,6 +191,7 @@ test.describe('Test group', () => {
 ## 📈 Expected Results
 
 All tests should pass with:
+
 - ✅ 0 critical errors
 - ✅ Identical screenshots (visual regression)
 - ✅ Loading time < 3s
@@ -182,16 +201,19 @@ All tests should pass with:
 ## 🐛 Debugging
 
 ### View Traces
+
 ```bash
 npx playwright show-trace trace.zip
 ```
 
 ### Generate Traces
+
 ```bash
 npx playwright test --trace on
 ```
 
 ### Interactive UI Mode
+
 ```bash
 npx playwright test --ui
 ```
@@ -199,6 +221,7 @@ npx playwright test --ui
 ## 📊 Reports
 
 HTML reports are automatically generated after each run:
+
 ```bash
 npx playwright show-report
 ```
@@ -206,6 +229,7 @@ npx playwright show-report
 ## 🔄 CI/CD
 
 E2E tests are run automatically:
+
 - On every push
 - On every pull request
 - On the test/frontend branch
@@ -223,4 +247,3 @@ Configuration in `.github/workflows/e2e-tests.yml` (if applicable)
 **Author**: Enzo Gaggiotti  
 **Last Updated**: November 2025  
 **Version**: 1.0.0
-
