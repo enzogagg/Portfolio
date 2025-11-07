@@ -10,7 +10,7 @@
     "lint:css": "npx stylelint 'frontend/assets/css/**/*.css' --config ./config/.stylelintrc.json",
     "lint:css:fix": "npx stylelint 'frontend/assets/css/**/*.css' --fix --config ./config/.stylelintrc.json",
     "lint:js": "npx eslint 'frontend/assets/js/**/*.js' --config ./config/.eslintrc.js",
-    "lint:js:fix": "npx eslint 'frontend/assets/js/**/*.js' --fix --config /config/.eslintrc.js",
+    "lint:js:fix": "npx eslint 'frontend/assets/js/**/*.js' --fix --config ./config/.eslintrc.js",
     "lint:fix": "npm run lint:css:fix && npm run lint:js:fix",
     "lint:report": "npm run lint 2>&1 | tee lint-report.txt",
     "format": "npx prettier --write '**/*.{html,css,js,json,md}'",
