@@ -5,7 +5,9 @@ This folder contains all technical documentation for the Portfolio project.
 
 ## 📋 Available Documentation
 
-- [LINTING.md](./LINTING.md): Enterprise linting configuration and code quality standards
+- [DOCUMENTATION_MAP.md](./DOCUMENTATION_MAP.md) - Visual guide to all documentation
+- [LINTING.md](./LINTING.md) - Enterprise linting configuration and code quality standards
+- [TESTING.md](./TESTING.md) - Comprehensive testing strategy and documentation
 
 ## 📝 Documentation Standards
 
@@ -20,20 +22,13 @@ All documentation in this project follows these guidelines:
 
 ## 🎯 Planned Documentation
 
-- **ARCHITECTURE.md**: Project structure and design decisions
-- **DEPLOYMENT.md**: Deployment process and CI/CD configuration
-- **CONTRIBUTING.md**: Contribution guidelines
-- **API.md**: JavaScript module API reference
-- **ACCESSIBILITY.md**: Accessibility features and WCAG compliance
-- **PERFORMANCE.md**: Performance optimization strategies
+- **ARCHITECTURE.md**: Project structure and design decisions *(planned)*
+- **DEPLOYMENT.md**: Deployment process and CI/CD configuration *(planned)*
+- **CONTRIBUTING.md**: Contribution guidelines *(planned)*
+- **API.md**: JavaScript module API reference *(planned)*
+- **ACCESSIBILITY.md**: Accessibility features and WCAG compliance *(planned)*
+- **PERFORMANCE.md**: Performance optimization strategies *(planned)*
 
 ---
 
-**Last Updated**: November 5, 2025
-- **API.md**: JavaScript module API reference
-- **ACCESSIBILITY.md**: Accessibility features and WCAG compliance
-- **PERFORMANCE.md**: Performance optimization strategies
-
----
-
-**Last Updated**: November 5, 2025
+**Last Updated**: November 2025

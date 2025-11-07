@@ -1,7 +1,51 @@
-Ce dossier contient les fichiers de configuration pour les outils de qualité et de test du projet :
-- jest.config.js
-- playwright.config.js
-- .eslintrc.js
-- .stylelintrc.json
+# ⚙️ Configuration Files
 
-Déplacez ici les fichiers de configuration pour garder la racine du projet propre.
+This directory contains all configuration files for quality tools, testing frameworks, and build systems.
+
+## 📁 Contents
+
+### Testing Configuration
+
+- **`jest.config.js`** - Jest unit testing configuration
+  - Test environment: jsdom
+  - Coverage thresholds: 80% lines, statements, branches
+  - Transform: Babel for ES6+ support
+  - Setup files for DOM mocking
+
+- **`playwright.config.js`** - Playwright E2E testing configuration
+  - Projects: Chromium, WebKit, Mobile Chrome
+  - Base URL: http://localhost:8000
+  - Screenshots and videos on failure
+  - Retry logic and timeouts
+
+### Code Transformation
+
+- **`babel.config.js`** - Babel transpiler configuration
+  - Presets: @babel/preset-env
+  - Target: Node.js current version
+  - Used by Jest for test transformation
+
+### Code Quality (Future)
+
+- `.eslintrc.js` - ESLint configuration *(to be moved here)*
+- `.stylelintrc.json` - Stylelint configuration *(to be moved here)*
+- `.prettierrc.json` - Prettier formatting *(to be moved here)*
+
+## 🎯 Purpose
+
+Centralizing configuration files in this directory:
+- ✅ Keeps project root clean
+- ✅ Makes configurations easier to find
+- ✅ Groups related tooling together
+- ✅ Improves maintainability
+
+## 📖 Related Documentation
+
+- [Testing Documentation](../docs/TESTING.md)
+- [Linting Standards](../docs/LINTING.md)
+- [Frontend README](../frontend/README.md)
+
+---
+
+**Last Updated**: November 2025
+

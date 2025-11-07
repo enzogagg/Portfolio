@@ -68,7 +68,6 @@ yarn-error.log*
 # Playwright
 playwright-report/*
 test-results/*
-# Résultats des tests unitaires et end-to-end
 coverage/
 test-results/
 playwright-report/
@@ -76,3 +75,4 @@ junit.xml
 *.lcov
 *.html
 *.xml
+/frontend/tests/playwright/regression.spec.js-snapshots/*

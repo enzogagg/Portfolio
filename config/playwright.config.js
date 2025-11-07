@@ -15,8 +15,9 @@ module.exports = defineConfig({
     { name: 'Mobile Chrome', use: { ...devices['Pixel 5'] } },
   ],
   webServer: {
-    command: 'npm run dev',
+    command: 'cd frontend && python3 -m http.server 8000',
     url: 'http://localhost:8000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true, // Always reuse if server is already running
+    timeout: 120 * 1000,
   },
 });
