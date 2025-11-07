@@ -27,7 +27,7 @@
  * =====================================================================================================
  */
 
-'use strict';
+"use strict";
 
 /**
  * Accessibility Manager
@@ -52,7 +52,7 @@ export class AccessibilityManager {
     this.setupKeyboardShortcuts();
     this.isInitialized = true;
 
-    console.info('✅ Accessibility features initialized');
+    console.info("✅ Accessibility features initialized");
   }
 
   /**
@@ -61,15 +61,15 @@ export class AccessibilityManager {
    */
   initializeKeyboardNavigation() {
     // Track keyboard usage
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
-        document.body.classList.add('keyboard-navigation');
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        document.body.classList.add("keyboard-navigation");
       }
     });
 
     // Track mouse usage
-    document.addEventListener('mousedown', () => {
-      document.body.classList.remove('keyboard-navigation');
+    document.addEventListener("mousedown", () => {
+      document.body.classList.remove("keyboard-navigation");
     });
   }
 
@@ -80,10 +80,10 @@ export class AccessibilityManager {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
     anchorLinks.forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
+      anchor.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const targetId = anchor.getAttribute('href');
+        const targetId = anchor.getAttribute("href");
         const targetElement = document.querySelector(targetId);
 
         if (!targetElement) {
@@ -92,15 +92,15 @@ export class AccessibilityManager {
 
         // Smooth scroll to target
         targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
+          behavior: "smooth",
+          block: "start",
         });
 
         // Update active navigation states
         this.updateActiveNavigation(anchor);
 
         // Close mobile menu if open (import needed)
-        import('./navigation.js').then(({ closeMobileMenu }) => {
+        import("./navigation.js").then(({ closeMobileMenu }) => {
           closeMobileMenu();
         });
       });
@@ -111,30 +111,33 @@ export class AccessibilityManager {
    * Setup keyboard shortcuts for better UX
    */
   setupKeyboardShortcuts() {
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener("keydown", (e) => {
       // Skip if user is typing in an input field
-      if (e.target.matches('input, textarea, [contenteditable]')) {
+      if (
+        e.target instanceof Element &&
+        e.target.matches("input, textarea, [contenteditable]")
+      ) {
         return;
       }
 
       switch (e.key.toLowerCase()) {
-      case 'escape':
-        // Close mobile menu
-        import('./navigation.js').then(({ closeMobileMenu }) => {
-          closeMobileMenu();
-        });
-        break;
-      case 'h':
-        // Go to home/top
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        break;
+        case "escape":
+          // Close mobile menu
+          import("./navigation.js").then(({ closeMobileMenu }) => {
+            closeMobileMenu();
+          });
+          break;
+        case "h":
+          // Go to home/top
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          break;
 
-      case '?':
-        // Show keyboard shortcuts help (could be implemented)
-        e.preventDefault();
-        console.info('Keyboard shortcuts: H = Home, ESC = Close menu');
-        break;
+        case "?":
+          // Show keyboard shortcuts help (could be implemented)
+          e.preventDefault();
+          console.info("Keyboard shortcuts: H = Home, ESC = Close menu");
+          break;
       }
     });
   }
@@ -144,13 +147,13 @@ export class AccessibilityManager {
    */
   updateActiveNavigation(activeLink) {
     // Remove active class from all nav links
-    document.querySelectorAll('nav a').forEach((link) => {
-      link.classList.remove('active');
+    document.querySelectorAll("nav a").forEach((link) => {
+      link.classList.remove("active");
     });
 
     // Add active class to clicked link
     if (activeLink) {
-      activeLink.classList.add('active');
+      activeLink.classList.add("active");
     }
   }
 
@@ -160,14 +163,14 @@ export class AccessibilityManager {
   setInitialNavigationState() {
     const currentPath = window.location.pathname;
     const isHomePage =
-      currentPath === '/' ||
-      currentPath.endsWith('index.html') ||
-      currentPath === '';
+      currentPath === "/" ||
+      currentPath.endsWith("index.html") ||
+      currentPath === "";
 
     if (isHomePage) {
       const homeLink = document.querySelector('nav a[href="#top"]');
       if (homeLink) {
-        homeLink.classList.add('active');
+        homeLink.classList.add("active");
       }
     }
   }
@@ -188,8 +191,8 @@ export class AccessibilityManager {
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];
 
-    container.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
+    container.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
         if (e.shiftKey) {
           // Shift + Tab
           if (document.activeElement === firstFocusable) {
@@ -217,11 +220,11 @@ export class AccessibilityManager {
    * @param {string} message - The message to announce
    * @param {string} priority - The priority level ('polite' or 'assertive')
    */
-  announceToScreenReader(message, priority = 'polite') {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('aria-live', priority);
-    announcement.setAttribute('aria-atomic', 'true');
-    announcement.className = 'sr-only';
+  announceToScreenReader(message, priority = "polite") {
+    const announcement = document.createElement("div");
+    announcement.setAttribute("aria-live", priority);
+    announcement.setAttribute("aria-atomic", "true");
+    announcement.className = "sr-only";
     announcement.textContent = message;
 
     document.body.appendChild(announcement);

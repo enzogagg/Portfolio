@@ -29,7 +29,7 @@
  * =====================================================================================================
  */
 
-'use strict';
+"use strict";
 
 (function () {
   /**
@@ -41,7 +41,7 @@
       this.isInitialized = false;
       this.modules = {};
       this.lastScrollY = window.scrollY;
-      this.scrollDirection = 'up';
+      this.scrollDirection = "up";
       this.isHeaderVisible = true;
     }
 
@@ -49,18 +49,18 @@
      * Initialize the entire application
      */
     async init() {
-      if (this.isInitialized || document.readyState === 'loading') {
+      if (this.isInitialized || document.readyState === "loading") {
         return;
       }
 
-      console.info('🚀 Initializing Portfolio Application (Standalone)...');
+      console.info("🚀 Initializing Portfolio Application (Standalone)...");
 
       // Critical: Ensure filter buttons are always visible
       this.ensureFiltersVisible();
 
       // Add progressive enhancement class
-      document.body.classList.add('js-enabled');
-      document.documentElement.classList.add('dark'); // Force dark mode only
+      document.body.classList.add("js-enabled");
+      document.documentElement.classList.add("dark"); // Force dark mode only
 
       try {
         // Initialize all modules
@@ -72,9 +72,9 @@
         this.setupEventListeners();
 
         this.isInitialized = true;
-        console.info('✅ Portfolio Application initialized successfully');
+        console.info("✅ Portfolio Application initialized successfully");
       } catch (error) {
-        console.error('❌ Error initializing application:', error);
+        console.error("❌ Error initializing application:", error);
         // Ensure filters are visible even if initialization fails
         this.ensureFiltersVisible();
       }
@@ -85,14 +85,14 @@
      * Ensures filter buttons are always visible in all environments
      */
     ensureFiltersVisible() {
-      const filterButtons = document.querySelectorAll('.filter-btn');
+      const filterButtons = document.querySelectorAll(".filter-btn");
 
       filterButtons.forEach((btn) => {
         if (btn) {
-          btn.style.opacity = '1';
-          btn.style.transform = 'translateY(0)';
-          btn.style.visibility = 'visible';
-          btn.style.display = 'inline-flex';
+          btn.style.opacity = "1";
+          btn.style.transform = "translateY(0)";
+          btn.style.visibility = "visible";
+          btn.style.display = "inline-flex";
         }
       });
 
@@ -100,15 +100,15 @@
       setTimeout(() => {
         filterButtons.forEach((btn) => {
           if (btn) {
-            btn.style.opacity = '1';
-            btn.style.transform = 'translateY(0)';
-            btn.style.visibility = 'visible';
-            btn.style.display = 'inline-flex';
+            btn.style.opacity = "1";
+            btn.style.transform = "translateY(0)";
+            btn.style.visibility = "visible";
+            btn.style.display = "inline-flex";
           }
         });
       }, 100);
 
-      console.info('🔧 Filter visibility enforced');
+      console.info("🔧 Filter visibility enforced");
     }
 
     /**
@@ -116,45 +116,45 @@
      * Mobile menu and header functionality
      */
     initializeNavigation() {
-      const mobileMenuToggle = document.querySelector('.burger-menu');
-      const mobileMenu = document.querySelector('.mobile-menu');
-      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      const mobileMenuToggle = document.querySelector(".burger-menu");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
       // Mobile menu toggle functionality
       const toggleMobileMenu = () => {
         if (mobileMenu && mobileMenuToggle) {
-          const isActive = mobileMenu.classList.contains('active');
+          const isActive = mobileMenu.classList.contains("active");
 
-          mobileMenu.classList.toggle('active');
-          mobileMenuToggle.classList.toggle('active');
+          mobileMenu.classList.toggle("active");
+          mobileMenuToggle.classList.toggle("active");
 
           // Manage body scroll
-          document.body.style.overflow = isActive ? 'auto' : 'hidden';
+          document.body.style.overflow = isActive ? "auto" : "hidden";
 
           // Update ARIA attributes
-          mobileMenuToggle.setAttribute('aria-expanded', !isActive);
-          mobileMenu.setAttribute('aria-hidden', isActive);
+          mobileMenuToggle.setAttribute("aria-expanded", !isActive);
+          mobileMenu.setAttribute("aria-hidden", isActive);
         }
       };
 
       // Close mobile menu
       const closeMobileMenu = () => {
         if (mobileMenu && mobileMenuToggle) {
-          mobileMenu.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
-          document.body.style.overflow = 'auto';
+          mobileMenu.classList.remove("active");
+          mobileMenuToggle.classList.remove("active");
+          document.body.style.overflow = "auto";
 
           // Update ARIA attributes
-          mobileMenuToggle.setAttribute('aria-expanded', 'false');
-          mobileMenu.setAttribute('aria-hidden', 'true');
+          mobileMenuToggle.setAttribute("aria-expanded", "false");
+          mobileMenu.setAttribute("aria-hidden", "true");
         }
       };
 
       // Event listeners
       if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-        mobileMenuToggle.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+        mobileMenuToggle.addEventListener("click", toggleMobileMenu);
+        mobileMenuToggle.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             toggleMobileMenu();
           }
@@ -163,12 +163,12 @@
 
       // Close menu when clicking nav links
       mobileNavLinks.forEach((link) => {
-        link.addEventListener('click', closeMobileMenu);
+        link.addEventListener("click", closeMobileMenu);
       });
 
       // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (mobileMenu && mobileMenu.classList.contains('active')) {
+      document.addEventListener("click", (e) => {
+        if (mobileMenu && mobileMenu.classList.contains("active")) {
           if (
             !mobileMenu.contains(e.target) &&
             !mobileMenuToggle.contains(e.target)
@@ -186,7 +186,7 @@
         close: closeMobileMenu,
       };
 
-      console.info('📱 Navigation module initialized');
+      console.info("📱 Navigation module initialized");
     }
 
     /**
@@ -194,7 +194,7 @@
      * Hide/show header based on scroll direction
      */
     initializeHeaderAutoHide() {
-      const header = document.querySelector('header');
+      const header = document.querySelector("header");
       if (!header) {
         return;
       }
@@ -206,27 +206,27 @@
 
         if (currentScrollY > this.lastScrollY && currentScrollY > 100) {
           // Scrolling down
-          if (this.scrollDirection !== 'down') {
-            this.scrollDirection = 'down';
-            header.classList.add('header-hidden');
-            header.classList.remove('header-visible');
+          if (this.scrollDirection !== "down") {
+            this.scrollDirection = "down";
+            header.classList.add("header-hidden");
+            header.classList.remove("header-visible");
             this.isHeaderVisible = false;
           }
         } else if (currentScrollY < this.lastScrollY) {
           // Scrolling up
-          if (this.scrollDirection !== 'up') {
-            this.scrollDirection = 'up';
-            header.classList.remove('header-hidden');
-            header.classList.add('header-visible');
+          if (this.scrollDirection !== "up") {
+            this.scrollDirection = "up";
+            header.classList.remove("header-hidden");
+            header.classList.add("header-visible");
             this.isHeaderVisible = true;
           }
         }
 
         // Add scrolled class for enhanced glassmorphism
         if (currentScrollY > 50) {
-          header.classList.add('scrolled');
+          header.classList.add("scrolled");
         } else {
-          header.classList.remove('scrolled');
+          header.classList.remove("scrolled");
         }
 
         this.lastScrollY = currentScrollY;
@@ -240,7 +240,7 @@
         }
       };
 
-      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener("scroll", onScroll, { passive: true });
     }
 
     /**
@@ -248,14 +248,14 @@
      * Project filtering and search functionality
      */
     initializeProjects() {
-      const filterButtons = document.querySelectorAll('.filter-btn');
+      const filterButtons = document.querySelectorAll(".filter-btn");
       const projectCards = document.querySelectorAll(
-        '.project-card, .project-card-enhanced',
+        ".project-card, .project-card-enhanced",
       );
-      const projectsContainer = document.querySelector('.projects-grid, .grid');
+      const projectsContainer = document.querySelector(".projects-grid, .grid");
 
       if (!filterButtons.length || !projectCards.length) {
-        console.info('📁 No projects or filters found');
+        console.info("📁 No projects or filters found");
         return;
       }
 
@@ -265,72 +265,72 @@
 
         projectCards.forEach((card) => {
           const cardCategories = card.dataset.category
-            ? card.dataset.category.toLowerCase().split(' ')
+            ? card.dataset.category.toLowerCase().split(" ")
             : [];
 
           const shouldShow =
-            category === 'all' ||
+            category === "all" ||
             cardCategories.includes(category.toLowerCase());
 
           if (shouldShow) {
-            card.style.display = 'block';
-            card.classList.remove('hidden');
-            card.classList.add('visible');
+            card.style.display = "block";
+            card.classList.remove("hidden");
+            card.classList.add("visible");
 
             // Trigger entrance animation
             setTimeout(() => {
-              card.classList.add('animate-in');
+              card.classList.add("animate-in");
             }, 50);
           } else {
-            card.style.display = 'none';
-            card.classList.add('hidden');
-            card.classList.remove('visible', 'animate-in');
+            card.style.display = "none";
+            card.classList.add("hidden");
+            card.classList.remove("visible", "animate-in");
           }
         });
 
         // Update active filter button
         filterButtons.forEach((btn) => {
-          btn.classList.remove('active', 'bg-blue-500', 'text-white');
-          btn.classList.add('bg-white/10', 'text-white/70');
+          btn.classList.remove("active", "bg-blue-500", "text-white");
+          btn.classList.add("bg-white/10", "text-white/70");
         });
 
         const activeButton = document.querySelector(
           `[data-filter="${category}"]`,
         );
         if (activeButton) {
-          activeButton.classList.add('active', 'bg-blue-500', 'text-white');
-          activeButton.classList.remove('bg-white/10', 'text-white/70');
+          activeButton.classList.add("active", "bg-blue-500", "text-white");
+          activeButton.classList.remove("bg-white/10", "text-white/70");
         }
 
         // Trigger container animation
         if (projectsContainer) {
-          projectsContainer.classList.add('filtering');
+          projectsContainer.classList.add("filtering");
           setTimeout(() => {
-            projectsContainer.classList.remove('filtering');
+            projectsContainer.classList.remove("filtering");
           }, 300);
         }
       };
 
       // Set up filter button event listeners
       filterButtons.forEach((button) => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener("click", (e) => {
           e.preventDefault();
-          const category = button.dataset.filter || 'all';
+          const category = button.dataset.filter || "all";
           filterProjects(category);
         });
 
         // Keyboard support
-        button.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+        button.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            const category = button.dataset.filter || 'all';
+            const category = button.dataset.filter || "all";
             filterProjects(category);
           }
         });
       });
 
       // Initialize with 'all' filter
-      filterProjects('all');
+      filterProjects("all");
 
       // Ensure filters remain visible
       this.ensureFiltersVisible();
@@ -341,7 +341,7 @@
       }, 2000);
 
       this.modules.projects = { filter: filterProjects };
-      console.info('📁 Projects module initialized');
+      console.info("📁 Projects module initialized");
     }
 
     /**
@@ -352,13 +352,13 @@
       // Intersection Observer for scroll animations
       const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
+        rootMargin: "0px 0px -50px 0px",
       };
 
       const animateOnScroll = (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
+            entry.target.classList.add("animate-in");
 
             // Add staggered delay for multiple elements
             const delay =
@@ -380,32 +380,32 @@
 
       // Observe elements with animation classes
       const animatedElements = document.querySelectorAll(
-        '.animate-on-scroll, .fade-in, .slide-up',
+        ".animate-on-scroll, .fade-in, .slide-up",
       );
       animatedElements.forEach((el) => {
         observer.observe(el);
       });
 
       // Special handling for filter buttons
-      const filterButtons = document.querySelectorAll('.filter-btn');
+      const filterButtons = document.querySelectorAll(".filter-btn");
       filterButtons.forEach((btn) => {
         // Force immediate visibility
-        btn.style.opacity = '1';
-        btn.style.transform = 'translateY(0)';
-        btn.style.visibility = 'visible';
-        btn.classList.add('animate-in');
+        btn.style.opacity = "1";
+        btn.style.transform = "translateY(0)";
+        btn.style.visibility = "visible";
+        btn.classList.add("animate-in");
       });
 
       // Floating animations for special elements
       const floatingElements = document.querySelectorAll(
-        '.floating, .floating-avatar',
+        ".floating, .floating-avatar",
       );
       floatingElements.forEach((el) => {
-        el.style.animationPlayState = 'running';
+        el.style.animationPlayState = "running";
       });
 
       this.modules.animations = { observer };
-      console.info('✨ Animations module initialized');
+      console.info("✨ Animations module initialized");
     }
 
     /**
@@ -414,14 +414,14 @@
      */
     initializeAccessibility() {
       // Skip to main content functionality
-      const skipLink = document.querySelector('.skip-nav, .skip-link');
+      const skipLink = document.querySelector(".skip-nav, .skip-link");
       if (skipLink) {
-        skipLink.addEventListener('click', (e) => {
+        skipLink.addEventListener("click", (e) => {
           e.preventDefault();
-          const main = document.querySelector('main');
+          const main = document.querySelector("main");
           if (main) {
             main.focus();
-            main.scrollIntoView({ behavior: 'smooth' });
+            main.scrollIntoView({ behavior: "smooth" });
           }
         });
       }
@@ -433,17 +433,17 @@
 
       interactiveElements.forEach((element) => {
         // Ensure proper focus states
-        element.addEventListener('focus', () => {
-          element.classList.add('focus-visible');
+        element.addEventListener("focus", () => {
+          element.classList.add("focus-visible");
         });
 
-        element.addEventListener('blur', () => {
-          element.classList.remove('focus-visible');
+        element.addEventListener("blur", () => {
+          element.classList.remove("focus-visible");
         });
 
         // Keyboard activation
-        element.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+        element.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
             if (!element.href) {
               // Don't prevent default for links
               e.preventDefault();
@@ -455,10 +455,10 @@
 
       // Announce page changes for screen readers
       const announcePageChange = (message) => {
-        const announcement = document.createElement('div');
-        announcement.setAttribute('aria-live', 'polite');
-        announcement.setAttribute('aria-atomic', 'true');
-        announcement.className = 'sr-only';
+        const announcement = document.createElement("div");
+        announcement.setAttribute("aria-live", "polite");
+        announcement.setAttribute("aria-atomic", "true");
+        announcement.className = "sr-only";
         announcement.textContent = message;
 
         document.body.appendChild(announcement);
@@ -484,7 +484,7 @@
         trapFocus: trapFocus,
       };
 
-      console.info('♿ Accessibility module initialized');
+      console.info("♿ Accessibility module initialized");
     }
 
     /**
@@ -514,7 +514,7 @@
 
       // Debug function for development
       window.portfolioDebug = () => {
-        console.info('Portfolio App Debug Info:', {
+        console.info("Portfolio App Debug Info:", {
           initialized: this.isInitialized,
           modules: Object.keys(this.modules),
           scrollDirection: this.scrollDirection,
@@ -522,7 +522,7 @@
         });
       };
 
-      console.info('🌐 Global functions exposed');
+      console.info("🌐 Global functions exposed");
     }
 
     /**
@@ -531,8 +531,8 @@
      */
     setupEventListeners() {
       // Handle page visibility changes
-      document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') {
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
           // Re-ensure filter visibility when page becomes visible
           this.ensureFiltersVisible();
         }
@@ -540,7 +540,7 @@
 
       // Handle window resize
       let resizeTimeout;
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
           // Close mobile menu on resize to desktop
@@ -554,8 +554,8 @@
       });
 
       // Handle escape key for closing modals/menus
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
           if (this.modules.navigation) {
             this.modules.navigation.close();
           }
@@ -563,22 +563,22 @@
       });
 
       // Handle smooth scrolling for anchor links
-      document.addEventListener('click', (e) => {
+      document.addEventListener("click", (e) => {
         const anchor = e.target.closest('a[href^="#"]');
-        if (anchor && anchor.getAttribute('href') !== '#') {
+        if (anchor && anchor.getAttribute("href") !== "#") {
           e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
+          const target = document.querySelector(anchor.getAttribute("href"));
           if (target) {
             const offsetTop = target.offsetTop - 80; // Account for header
             window.scrollTo({
               top: offsetTop,
-              behavior: 'smooth',
+              behavior: "smooth",
             });
           }
         }
       });
 
-      console.info('👂 Event listeners set up');
+      console.info("👂 Event listeners set up");
     }
 
     /**
@@ -589,7 +589,7 @@
       // Monitor scroll performance
       let scrolling = false;
       window.addEventListener(
-        'scroll',
+        "scroll",
         () => {
           if (!scrolling) {
             requestAnimationFrame(() => {
@@ -621,14 +621,14 @@
   const app = new PortfolioApp();
 
   // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => app.init());
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => app.init());
   } else {
     app.init();
   }
 
   // Fallback initialization after window load
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     if (!app.isInitialized) {
       app.init();
     }
@@ -637,7 +637,7 @@
   // Expose app to global scope for debugging
   window.PortfolioApp = app;
 
-  console.info('📋 Standalone application loaded');
+  console.info("📋 Standalone application loaded");
 })();
 
 /* =====================================================================================================

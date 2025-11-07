@@ -38,7 +38,7 @@
  */
 
 /* Fade animations */
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
   }
@@ -48,7 +48,7 @@
   }
 }
 
-@keyframes fadeOut {
+@keyframes fade-out {
   from {
     opacity: 1;
   }
@@ -59,7 +59,7 @@
 }
 
 /* Smooth reveal animation for IntersectionObserver */
-@keyframes revealElement {
+@keyframes reveal-element {
   0% {
     opacity: 0;
     transform: translateY(20px) scale(0.95);
@@ -71,7 +71,7 @@
   }
 }
 
-@keyframes fadeInUp {
+@keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -83,7 +83,7 @@
   }
 }
 
-@keyframes fadeInDown {
+@keyframes fade-in-down {
   from {
     opacity: 0;
     transform: translateY(-20px);
@@ -95,7 +95,7 @@
   }
 }
 
-@keyframes fadeInLeft {
+@keyframes fade-in-left {
   from {
     opacity: 0;
     transform: translateX(-20px);
@@ -107,7 +107,7 @@
   }
 }
 
-@keyframes fadeInRight {
+@keyframes fade-in-right {
   from {
     opacity: 0;
     transform: translateX(20px);
@@ -120,7 +120,7 @@
 }
 
 /* Scale animations */
-@keyframes scaleIn {
+@keyframes scale-in {
   from {
     opacity: 0;
     transform: scale(0.9);
@@ -132,7 +132,7 @@
   }
 }
 
-@keyframes scaleOut {
+@keyframes scale-out {
   from {
     opacity: 1;
     transform: scale(1);
@@ -145,7 +145,7 @@
 }
 
 /* Slide animations */
-@keyframes slideUp {
+@keyframes slide-up {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -157,7 +157,7 @@
   }
 }
 
-@keyframes slideDown {
+@keyframes slide-down {
   from {
     opacity: 0;
     transform: translateY(-30px);
@@ -180,7 +180,7 @@
   }
 }
 
-@keyframes rotateReverse {
+@keyframes rotate-reverse {
   from {
     transform: rotate(360deg);
   }
@@ -203,7 +203,7 @@
 }
 
 /* Gentle pulse animation */
-@keyframes gentlePulse {
+@keyframes gentle-pulse {
   0%,
   100% {
     opacity: 0.8;
@@ -308,15 +308,15 @@
 
 /* Scroll animation variants */
 .animate-fade-in {
-  animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
+  animation: fade-In var(--duration-slow) var(--ease-out) forwards;
 }
 
 .animate-slide-up {
-  animation: slideUp var(--duration-slow) var(--ease-out) forwards;
+  animation: slide-up var(--duration-slow) var(--ease-out) forwards;
 }
 
 .animate-scale-in {
-  animation: scaleIn var(--duration-slow) var(--ease-out) forwards;
+  animation: scale-in var(--duration-slow) var(--ease-out) forwards;
 }
 
 /* =====================================================================================================
@@ -370,7 +370,7 @@
 }
 
 .link-hover-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -414,7 +414,7 @@
 }
 
 .skeleton::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -460,7 +460,7 @@
 }
 
 .avatar-halo::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -10px;
   background: conic-gradient(
@@ -481,7 +481,7 @@
 }
 
 /* Timeline pulse effects */
-@keyframes pulseRingPrimary {
+@keyframes pulse-ring-primary {
   0% {
     box-shadow: 0 0 0 0 rgba(var(--accent-primary), 0.7);
   }
@@ -495,7 +495,7 @@
   }
 }
 
-@keyframes pulseRingSecondary {
+@keyframes pulse-ring-secondary {
   0% {
     box-shadow: 0 0 0 0 rgba(var(--accent-secondary), 0.7);
   }
@@ -510,11 +510,11 @@
 }
 
 .pulse-ring-primary {
-  animation: pulseRingPrimary 2s infinite;
+  animation: pulse-ring-primary 2s infinite;
 }
 
 .pulse-ring-secondary {
-  animation: pulseRingSecondary 2s infinite 0.5s;
+  animation: pulse-ring-secondary 2s infinite 0.5s;
 }
 
 /* Typewriter effect */
@@ -534,10 +534,10 @@
   white-space: nowrap;
   animation:
     typewriter 3s steps(40, end) forwards,
-    blinkCaret 1s step-end infinite;
+    blink-caret 1s step-end infinite;
 }
 
-@keyframes blinkCaret {
+@keyframes blink-caret {
   0%,
   100% {
     border-color: transparent;
@@ -623,7 +623,6 @@
  */
 
 /* Will-change property for frequently animated elements */
-.animate-on-scroll,
 .floating-avatar,
 .tech-card,
 .project-card,
@@ -810,7 +809,7 @@
 }
 
 .shimmer-effect::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -819,29 +818,29 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
+    rgb(255 255 255 / 10%) 50%,
     transparent 100%
   );
   background-size: 1000px 100%;
   animation: shimmer 3s infinite;
 }
 
-@keyframes pulseGlow {
+@keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 20px rgb(139 92 246 / 30%);
   }
 
   50% {
-    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 40px rgb(139 92 246 / 60%);
   }
 }
 
 .pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
-@keyframes rotateGradient {
+@keyframes rotate-gradient {
   0% {
     filter: hue-rotate(0deg);
   }
@@ -852,10 +851,10 @@
 }
 
 .rotate-gradient {
-  animation: rotateGradient 10s linear infinite;
+  animation: rotate-gradient 10s linear infinite;
 }
 
-@keyframes bounceSubtle {
+@keyframes bounce-subtle {
   0%,
   100% {
     transform: translateY(0);
@@ -867,7 +866,7 @@
 }
 
 .bounce-subtle {
-  animation: bounceSubtle 2s ease-in-out infinite;
+  animation: bounce-subtle 2s ease-in-out infinite;
 }
 
 .icon-hover {
@@ -878,7 +877,7 @@
   transform: scale(1.2) rotate(10deg);
 }
 
-@keyframes glowPulse {
+@keyframes glow-pulse {
   0%,
   100% {
     opacity: 0.5;
@@ -890,7 +889,7 @@
 }
 
 .glow-pulse {
-  animation: glowPulse 2s ease-in-out infinite;
+  animation: glow-pulse 2s ease-in-out infinite;
 }
 
 /* =====================================================================================================

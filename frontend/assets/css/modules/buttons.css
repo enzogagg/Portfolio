@@ -35,6 +35,32 @@
  * Primary glass button component - N8N Enhanced Glassmorphism
  * Features modern glassmorphism effects with backdrop blur and gradient accents
  */
+
+/**
+ * Shimmer animation effect for glass buttons
+ * Creates a purple light sweep across the button on hover
+ */
+.glass-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(139 92 246 / 20%),
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.glass-button:hover::before {
+  left: 100%;
+}
+
 .glass-button {
   /* Core Layout */
   display: inline-flex;
@@ -47,17 +73,17 @@
   /* Enhanced Glassmorphism Effect */
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%
+    rgb(255 255 255 / 10%) 0%,
+    rgb(255 255 255 / 5%) 100%
   );
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgb(255 255 255 / 20%);
 
   /* Enhanced Shadows & Lighting */
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 0 0 1px rgba(139, 92, 246, 0.1);
+    0 8px 32px rgb(0 0 0 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 10%),
+    0 0 0 1px rgb(139 92 246 / 10%);
 
   /* Typography */
   color: #f0f0f0; /* Adjusted to a slightly darker shade for better contrast */
@@ -67,29 +93,9 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/**
- * Shimmer animation effect for glass buttons
- * Creates a purple light sweep across the button on hover
- */
-.glass-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(139, 92, 246, 0.2),
-    transparent
-  );
-  transition: left 0.6s ease;
-  pointer-events: none;
-}
-
-.glass-button:hover::before {
-  left: 100%;
+.glass-button,
+.filter-btn {
+  animation: button-pulse 6s ease-in-out infinite;
 }
 
 /**
@@ -99,16 +105,16 @@
 .glass-button:hover {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.08) 100%
+    rgb(255 255 255 / 15%) 0%,
+    rgb(255 255 255 / 8%) 100%
   );
-  border-color: rgba(139, 92, 246, 0.4);
+  border-color: rgb(139 92 246 / 40%);
   transform: translateY(-3px) scale(1.02);
   box-shadow:
-    0 20px 40px rgba(139, 92, 246, 0.3),
-    0 0 0 1px rgba(139, 92, 246, 0.3),
-    0 0 30px rgba(139, 92, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 20px 40px rgb(139 92 246 / 30%),
+    0 0 0 1px rgb(139 92 246 / 30%),
+    0 0 30px rgb(139 92 246 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 20%);
 }
 
 /**
@@ -122,13 +128,13 @@
 .glass-button:focus {
   outline: none;
   box-shadow:
-    0 0 0 3px rgba(79, 172, 254, 0.3),
-    0 8px 32px rgba(31, 38, 135, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 0 0 3px rgb(79 172 254 / 30%),
+    0 8px 32px rgb(31 38 135 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
 }
 
 .glass-button:focus-visible {
-  outline: 2px solid rgba(79, 172, 254, 0.8);
+  outline: 2px solid rgb(79 172 254 / 80%);
   outline-offset: 2px;
 }
 
@@ -152,10 +158,10 @@
  */
 .filter-btn {
   /* Inherit glass button properties */
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255 255 255 / 8%);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgb(255 255 255 / 20%);
+  color: rgb(255 255 255 / 80%);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Filter-specific styling */
@@ -173,22 +179,22 @@
 .filter-btn.active {
   background: linear-gradient(
     135deg,
-    rgba(79, 172, 254, 0.8) 0%,
-    rgba(59, 130, 246, 0.8) 100%
+    rgb(79 172 254 / 80%) 0%,
+    rgb(59 130 246 / 80%) 100%
   );
-  border-color: rgba(79, 172, 254, 0.6);
+  border-color: rgb(79 172 254 / 60%);
   color: #e0e0e0; /* Adjusted to improve contrast */
   box-shadow:
-    0 8px 20px rgba(79, 172, 254, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 8px 20px rgb(79 172 254 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 20%);
 }
 
 /**
  * Filter button hover effects
  */
 .filter-btn:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgb(255 255 255 / 12%);
+  border-color: rgb(255 255 255 / 30%);
   color: #9ca3af;
   transform: translateY(-2px) scale(1.02);
 }
@@ -196,13 +202,13 @@
 .filter-btn.active:hover {
   background: linear-gradient(
     135deg,
-    rgba(79, 172, 254, 0.9) 0%,
-    rgba(59, 130, 246, 0.9) 100%
+    rgb(79 172 254 / 90%) 0%,
+    rgb(59 130 246 / 90%) 100%
   );
   transform: translateY(-2px) scale(1.02);
   box-shadow:
-    0 12px 24px rgba(79, 172, 254, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 12px 24px rgb(79 172 254 / 40%),
+    inset 0 1px 0 rgb(255 255 255 / 20%);
 }
 
 /* =====================================================================================================
@@ -212,23 +218,19 @@
 /**
  * Subtle pulse animation for interactive buttons
  */
-.glass-button,
-.filter-btn {
-  animation: buttonPulse 6s ease-in-out infinite;
-}
 
-@keyframes buttonPulse {
+@keyframes button-pulse {
   0%,
   100% {
     box-shadow:
-      0 8px 32px rgba(31, 38, 135, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 8px 32px rgb(31 38 135 / 20%),
+      inset 0 1px 0 rgb(255 255 255 / 10%);
   }
 
   50% {
     box-shadow:
-      0 12px 36px rgba(31, 38, 135, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      0 12px 36px rgb(31 38 135 / 25%),
+      inset 0 1px 0 rgb(255 255 255 / 15%);
   }
 }
 
@@ -293,22 +295,22 @@
   background-size: 200% 200%;
   color: #000;
   box-shadow:
-    0 4px 16px rgba(59, 130, 246, 0.4),
-    0 2px 8px rgba(139, 92, 246, 0.3);
-  animation: gradientShift 5s ease infinite;
+    0 4px 16px rgb(59 130 246 / 40%),
+    0 2px 8px rgb(139 92 246 / 30%);
+  animation: gradient-shift 5s ease infinite;
   position: relative;
   overflow: hidden;
 }
 
 .btn-modern-primary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(255 255 255 / 30%);
   transform: translate(-50%, -50%);
   transition:
     width 0.6s,
@@ -320,7 +322,7 @@
   height: 300px;
 }
 
-@keyframes gradientShift {
+@keyframes gradient-shift {
   0%,
   100% {
     background-position: 0% 50%;
@@ -333,39 +335,39 @@
 
 .btn-modern-primary:hover {
   box-shadow:
-    0 8px 32px rgba(59, 130, 246, 0.6),
-    0 4px 16px rgba(139, 92, 246, 0.5),
-    0 0 60px rgba(236, 72, 153, 0.3);
+    0 8px 32px rgb(59 130 246 / 60%),
+    0 4px 16px rgb(139 92 246 / 50%),
+    0 0 60px rgb(236 72 153 / 30%);
   transform: translateY(-3px) scale(1.05);
 }
 
 .btn-modern-primary:active {
   transform: translateY(0);
-  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 2px 12px rgb(59 130 246 / 40%);
 }
 
 .btn-modern-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(255 255 255 / 5%);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgb(255 255 255 / 10%);
   color: #000;
 }
 
 .btn-modern-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgb(255 255 255 / 8%);
+  border-color: rgb(255 255 255 / 15%);
   transform: translateY(-2px);
 }
 
 .btn-modern-outline {
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255 255 255 / 20%);
+  color: rgb(255 255 255);
 }
 
 .btn-modern-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgb(255 255 255 / 5%);
+  border-color: rgb(255 255 255 / 30%);
 }
 
 /* =====================================================================================================

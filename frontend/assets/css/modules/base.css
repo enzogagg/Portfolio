@@ -310,7 +310,7 @@ main {
   top: -40px;
   left: 6px;
   background: rgb(var(--accent-primary));
-  color: rgb(255, 255, 255);
+  color: rgb(255 255 255);
   padding: 8px;
   border-radius: 4px;
   text-decoration: none;
@@ -422,7 +422,7 @@ main {
   color: rgb(var(--text-primary)) !important;
 }
 
-.text-white\/70 {
+.text-white-70 {
   /* stylelint-disable-next-line declaration-no-important */
   color: rgba(var(--text-primary), 0.7) !important;
 }
@@ -604,7 +604,7 @@ main {
     /* stylelint-disable-next-line declaration-no-important */
     background: transparent !important;
     /* stylelint-disable-next-line declaration-no-important */
-    color: rgb(0, 0, 0) !important;
+    color: rgb(0 0 0) !important;
     /* stylelint-disable-next-line declaration-no-important */
     box-shadow: none !important;
     /* stylelint-disable-next-line declaration-no-important */
@@ -631,7 +631,7 @@ main {
   a {
     text-decoration: underline;
     /* stylelint-disable-next-line declaration-no-important */
-    color: rgb(0, 0, 0) !important;
+    color: rgb(0 0 0) !important;
   }
 
   .no-print {
@@ -662,7 +662,7 @@ main {
 
 .mesh-gradient-bg::before,
 .mesh-gradient-bg::after {
-  content: '';
+  content: "";
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
@@ -675,8 +675,8 @@ main {
   height: 900px;
   background: radial-gradient(
     circle,
-    rgba(139, 92, 246, 0.5) 0%,
-    rgba(236, 72, 153, 0.3) 50%,
+    rgb(139 92 246 / 50%) 0%,
+    rgb(236 72 153 / 30%) 50%,
     transparent 70%
   );
   top: -200px;
@@ -689,8 +689,8 @@ main {
   height: 700px;
   background: radial-gradient(
     circle,
-    rgba(59, 130, 246, 0.4) 0%,
-    rgba(34, 211, 238, 0.3) 50%,
+    rgb(59 130 246 / 40%) 0%,
+    rgb(34 211 238 / 30%) 50%,
     transparent 70%
   );
   bottom: -150px;
@@ -716,8 +716,8 @@ main {
   height: 600px;
   background: radial-gradient(
     circle,
-    rgba(236, 72, 153, 0.35) 0%,
-    rgba(167, 139, 250, 0.2) 50%,
+    rgb(236 72 153 / 35%) 0%,
+    rgb(167 139 250 / 20%) 50%,
     transparent 70%
   );
   top: 30%;
@@ -730,8 +730,8 @@ main {
   height: 550px;
   background: radial-gradient(
     circle,
-    rgba(34, 211, 238, 0.3) 0%,
-    rgba(59, 130, 246, 0.2) 50%,
+    rgb(34 211 238 / 30%) 0%,
+    rgb(59 130 246 / 20%) 50%,
     transparent 70%
   );
   bottom: 20%;
@@ -744,8 +744,8 @@ main {
   height: 500px;
   background: radial-gradient(
     circle,
-    rgba(251, 146, 60, 0.3) 0%,
-    rgba(251, 191, 36, 0.2) 50%,
+    rgb(251 146 60 / 30%) 0%,
+    rgb(251 191 36 / 20%) 50%,
     transparent 70%
   );
   top: 50%;
@@ -788,10 +788,10 @@ main {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgb(255 255 255 / 30%) 50%,
     transparent 100%
   );
-  animation: rayMove 10s linear infinite;
+  animation: ray-move 10s linear infinite;
   transform-origin: top;
 }
 
@@ -825,7 +825,7 @@ main {
   filter: hue-rotate(180deg);
 }
 
-@keyframes rayMove {
+@keyframes ray-move {
   0% {
     transform: translateY(-200px) rotate(45deg);
     opacity: 0;

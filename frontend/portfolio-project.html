@@ -86,20 +86,20 @@ Browser Support: Modern browsers with backdrop-filter
     var _paq = (globalThis._paq = globalThis._paq || []);
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     (function () {
-      var u = 'https://matomo.ega.ovh/';
+      var u = "https://matomo.ega.ovh/";
       _paq.push(
-        ['setCookieDomain', '*.portfolio.ega.ovh'],
-        ['setDomains', ['*.portfolio.ega.ovh']],
-        ['setTrackerUrl', u + 'matomo.php'],
-        ['setSiteId', '1'],
-        ['trackPageView'],
-        ['enableLinkTracking'],
+        ["setCookieDomain", "*.portfolio.ega.ovh"],
+        ["setDomains", ["*.portfolio.ega.ovh"]],
+        ["setTrackerUrl", u + "matomo.php"],
+        ["setSiteId", "1"],
+        ["trackPageView"],
+        ["enableLinkTracking"],
       );
       var d = document,
-        g = d.createElement('script'),
-        s = d.getElementsByTagName('script')[0];
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0];
       g.async = true;
-      g.src = u + 'matomo.js';
+      g.src = u + "matomo.js";
       s.parentNode.insertBefore(g, s);
     })();
   </script>
@@ -304,9 +304,9 @@ Browser Support: Modern browsers with backdrop-filter
           <div
             class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm"
           >
-            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span class="text-sm font-medium text-green-400"
-              >Projet Personnel • 2025</span
+            <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium text-orange-400"
+              >Projet en cours • 2025</span
             >
           </div>
 
@@ -330,22 +330,77 @@ Browser Support: Modern browsers with backdrop-filter
               présenter mon profil et mes projets. Responsive, accessible, sans
               framework lourd.
             </p>
-            <div class="grid grid-cols-2 gap-4 text-sm pt-4">
-              <div class="flex items-center gap-2">
-                <i class="fas fa-calendar text-blue-400"></i>
-                <span class="text-neutral-400">Juillet 2025</span>
+
+            <!-- Development Warning Badge -->
+            <p class="text-orange-400 font-medium">
+              ⚠️ Projet en cours de développement - Fonctionnalités en phase de
+              test
+            </p>
+
+            <!-- Project Stats -->
+            <div class="grid grid-cols-2 gap-4 pt-4">
+              <div
+                class="flex items-center gap-3 px-4 py-3 bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-xl backdrop-blur-sm hover:bg-blue-500/15 transition-colors"
+              >
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-calendar text-blue-400 text-lg"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-neutral-500 uppercase font-semibold">
+                    Date
+                  </div>
+                  <div class="text-sm text-white font-medium">Juillet 2025</div>
+                </div>
               </div>
-              <div class="flex items-center gap-2">
-                <i class="fas fa-clock text-purple-400"></i>
-                <span class="text-neutral-400">~15h de dev</span>
+
+              <div
+                class="flex items-center gap-3 px-4 py-3 bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-xl backdrop-blur-sm hover:bg-purple-500/15 transition-colors"
+              >
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-clock text-purple-400 text-lg"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-neutral-500 uppercase font-semibold">
+                    Durée
+                  </div>
+                  <div class="text-sm text-white font-medium">~15h de dev</div>
+                </div>
               </div>
-              <div class="flex items-center gap-2">
-                <i class="fas fa-code text-green-400"></i>
-                <span class="text-neutral-400">~2000 lignes</span>
+
+              <div
+                class="flex items-center gap-3 px-4 py-3 bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 rounded-xl backdrop-blur-sm hover:bg-green-500/15 transition-colors"
+              >
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-code text-green-400 text-lg"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-neutral-500 uppercase font-semibold">
+                    Code
+                  </div>
+                  <div class="text-sm text-white font-medium">~2000 lignes</div>
+                </div>
               </div>
-              <div class="flex items-center gap-2">
-                <i class="fas fa-file text-orange-400"></i>
-                <span class="text-neutral-400">6 pages HTML</span>
+
+              <div
+                class="flex items-center gap-3 px-4 py-3 bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-xl backdrop-blur-sm hover:bg-orange-500/15 transition-colors"
+              >
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-file text-orange-400 text-lg"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-neutral-500 uppercase font-semibold">
+                    Pages
+                  </div>
+                  <div class="text-sm text-white font-medium">6 pages HTML</div>
+                </div>
               </div>
             </div>
           </div>
@@ -395,8 +450,12 @@ Browser Support: Modern browsers with backdrop-filter
 
           <div class="grid md:grid-cols-3 gap-8">
             <!-- HTML -->
-            <div class="tech-card group relative overflow-hidden border-orange-500/30 hover:border-orange-500/50">
-              <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-red-500/5 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            <div
+              class="tech-card group relative overflow-hidden border-orange-500/30 hover:border-orange-500/50"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-red-500/5 opacity-50 group-hover:opacity-100 transition-opacity"
+              ></div>
               <div class="relative">
                 <div class="flex items-center gap-4 mb-4">
                   <div
@@ -429,8 +488,12 @@ Browser Support: Modern browsers with backdrop-filter
             </div>
 
             <!-- CSS -->
-            <div class="tech-card group relative overflow-hidden border-blue-500/30 hover:border-blue-500/50">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/5 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            <div
+              class="tech-card group relative overflow-hidden border-blue-500/30 hover:border-blue-500/50"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/5 opacity-50 group-hover:opacity-100 transition-opacity"
+              ></div>
               <div class="relative">
                 <div class="flex items-center gap-4 mb-4">
                   <div
@@ -439,8 +502,12 @@ Browser Support: Modern browsers with backdrop-filter
                     <i class="fab fa-css3-alt text-2xl text-white"></i>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-white">CSS3 + Tailwind</h3>
-                    <p class="text-sm text-blue-400 font-medium">Design moderne</p>
+                    <h3 class="text-xl font-bold text-white">
+                      CSS3 + Tailwind
+                    </h3>
+                    <p class="text-sm text-blue-400 font-medium">
+                      Design moderne
+                    </p>
                   </div>
                 </div>
                 <ul class="space-y-2 text-sm text-neutral-300">
@@ -465,8 +532,12 @@ Browser Support: Modern browsers with backdrop-filter
             </div>
 
             <!-- JavaScript -->
-            <div class="tech-card group relative overflow-hidden border-yellow-500/30 hover:border-yellow-500/50">
-              <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-amber-500/5 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            <div
+              class="tech-card group relative overflow-hidden border-yellow-500/30 hover:border-yellow-500/50"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-amber-500/5 opacity-50 group-hover:opacity-100 transition-opacity"
+              ></div>
               <div class="relative">
                 <div class="flex items-center gap-4 mb-4">
                   <div
@@ -476,7 +547,9 @@ Browser Support: Modern browsers with backdrop-filter
                   </div>
                   <div>
                     <h3 class="text-xl font-bold text-white">JavaScript</h3>
-                    <p class="text-sm text-yellow-400 font-medium">Vanilla ES6+</p>
+                    <p class="text-sm text-yellow-400 font-medium">
+                      Vanilla ES6+
+                    </p>
                   </div>
                 </div>
                 <ul class="space-y-2 text-sm text-neutral-300">

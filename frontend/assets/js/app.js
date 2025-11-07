@@ -28,18 +28,18 @@
  * =====================================================================================================
  */
 
-'use strict';
+"use strict";
 
 // Import all modules (theme module removed)
 import {
   mobileNavigation,
   toggleMobileMenu,
   closeMobileMenu,
-} from './modules/navigation.js';
-import { scrollAnimations } from './modules/animations.js';
-import { projectsFilter } from './modules/projects.js';
-import { accessibilityManager } from './modules/accessibility.js';
-import { performanceManager } from './modules/performance.js';
+} from "./modules/navigation.js";
+import { scrollAnimations } from "./modules/animations.js";
+import { projectsFilter } from "./modules/projects.js";
+import { accessibilityManager } from "./modules/accessibility.js";
+import { performanceManager } from "./modules/performance.js";
 
 /**
  * Portfolio Application Class
@@ -63,15 +63,15 @@ class PortfolioApp {
    */
   async init() {
     if (this.isInitialized) {
-      console.warn('Application already initialized');
+      console.warn("Application already initialized");
       return;
     }
 
-    console.info('🚀 Initializing Portfolio Application...');
+    console.info("🚀 Initializing Portfolio Application...");
 
     this.forceFilterVisibility();
 
-    document.body.classList.add('js-enabled');
+    document.body.classList.add("js-enabled");
 
     try {
       await this.initializeCore();
@@ -82,10 +82,10 @@ class PortfolioApp {
 
       this.isInitialized = true;
 
-      console.info('✅ Portfolio Application initialized successfully');
+      console.info("✅ Portfolio Application initialized successfully");
       this.logInitializationSummary();
     } catch (error) {
-      console.error('❌ Error initializing application:', error);
+      console.error("❌ Error initializing application:", error);
       throw error;
     }
   }
@@ -94,39 +94,39 @@ class PortfolioApp {
    * Force filter buttons to be visible immediately (critical for Vercel)
    */
   forceFilterVisibility() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterButtons = document.querySelectorAll(".filter-btn");
     const filterContainer = document.querySelector(
-      '.flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll',
+      ".flex.flex-wrap.justify-center.gap-4.mb-20.animate-on-scroll",
     );
     const projectCards = document.querySelectorAll(
-      '.project-card-enhanced, .project-card',
+      ".project-card-enhanced, .project-card",
     );
 
     // Force filter buttons visibility
     for (const btn of filterButtons) {
-      btn.style.opacity = '1';
-      btn.style.transform = 'translateY(0)';
-      btn.style.visibility = 'visible';
-      btn.style.display = 'inline-flex';
-      btn.classList.add('animate-in');
+      btn.style.opacity = "1";
+      btn.style.transform = "translateY(0)";
+      btn.style.visibility = "visible";
+      btn.style.display = "inline-flex";
+      btn.classList.add("animate-in");
     }
 
     if (filterContainer) {
-      filterContainer.style.opacity = '1';
-      filterContainer.style.transform = 'translateY(0)';
-      filterContainer.style.visibility = 'visible';
-      filterContainer.classList.add('animate-in');
+      filterContainer.style.opacity = "1";
+      filterContainer.style.transform = "translateY(0)";
+      filterContainer.style.visibility = "visible";
+      filterContainer.classList.add("animate-in");
     }
 
     // CRITICAL: Force project cards to be visible IMMEDIATELY
     for (const card of projectCards) {
       // Remove animation-delay to prevent flickering
-      card.style.removeProperty('animation-delay');
-      card.style.setProperty('opacity', '1', 'important');
-      card.style.setProperty('transform', 'translateY(0)', 'important');
-      card.style.setProperty('visibility', 'visible', 'important');
-      card.classList.add('animate-in');
-      card.classList.remove('project-hidden');
+      card.style.removeProperty("animation-delay");
+      card.style.setProperty("opacity", "1", "important");
+      card.style.setProperty("transform", "translateY(0)", "important");
+      card.style.setProperty("visibility", "visible", "important");
+      card.classList.add("animate-in");
+      card.classList.remove("project-hidden");
     }
 
     console.info(
@@ -159,7 +159,7 @@ class PortfolioApp {
 
     this.modules.accessibility.setInitialNavigationState();
 
-    console.info('✅ Core features initialized');
+    console.info("✅ Core features initialized");
   }
 
   /**
@@ -168,10 +168,10 @@ class PortfolioApp {
    */
   initializeHeaderAutoHide() {
     const header =
-      document.getElementById('main-header') ||
-      document.querySelector('header');
+      document.getElementById("main-header") ||
+      document.querySelector("header");
     if (!header) {
-      console.info('Header not found, skipping auto-hide initialization');
+      console.info("Header not found, skipping auto-hide initialization");
       return;
     }
 
@@ -200,8 +200,8 @@ class PortfolioApp {
 
       // Don't hide header if we're at the top of the page
       if (currentScrollY < scrollThreshold) {
-        header.classList.remove('header-hidden');
-        header.classList.add('header-visible');
+        header.classList.remove("header-hidden");
+        header.classList.add("header-visible");
         lastScrollY = currentScrollY;
         return;
       }
@@ -209,12 +209,12 @@ class PortfolioApp {
       // Hide header when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
         // Scrolling down - hide header
-        header.classList.add('header-hidden');
-        header.classList.remove('header-visible');
+        header.classList.add("header-hidden");
+        header.classList.remove("header-visible");
       } else if (currentScrollY < lastScrollY) {
         // Scrolling up - show header
-        header.classList.remove('header-hidden');
-        header.classList.add('header-visible');
+        header.classList.remove("header-hidden");
+        header.classList.add("header-visible");
       }
 
       lastScrollY = currentScrollY;
@@ -224,12 +224,12 @@ class PortfolioApp {
     const throttledHandleScroll = throttle(handleScroll, 16); // ~60fps
 
     // Add scroll event listener
-    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    window.addEventListener("scroll", throttledHandleScroll, { passive: true });
 
     // Initialize header state
-    header.classList.add('header-visible');
+    header.classList.add("header-visible");
 
-    console.info('🎯 Header auto-hide functionality initialized');
+    console.info("🎯 Header auto-hide functionality initialized");
   }
 
   /**
@@ -241,7 +241,7 @@ class PortfolioApp {
       this.modules.animations.initializeProjectsScrollAnimations();
     }
 
-    console.info('✅ Page-specific features initialized');
+    console.info("✅ Page-specific features initialized");
   }
 
   /**
@@ -258,19 +258,19 @@ class PortfolioApp {
     };
 
     // Handle page visibility changes for performance optimization
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener("visibilitychange", () => {
       this.modules.performance.handleVisibilityChange();
     });
 
     // Handle window resize for responsive adjustments
     window.addEventListener(
-      'resize',
+      "resize",
       this.debounce(() => {
         this.modules.accessibility.handleResize();
       }, 150),
     );
 
-    console.info('🔗 Global event listeners and functions setup complete');
+    console.info("🔗 Global event listeners and functions setup complete");
   }
 
   /**
@@ -297,8 +297,8 @@ class PortfolioApp {
    */
   isProjectsPage() {
     return (
-      globalThis.location.pathname.includes('projects') ||
-      document.querySelector('.projects-grid') !== null
+      globalThis.location.pathname.includes("projects") ||
+      document.querySelector(".projects-grid") !== null
     );
   }
 
@@ -308,7 +308,7 @@ class PortfolioApp {
    */
   isHomePage() {
     const path = globalThis.location.pathname;
-    return path === '/' || path.endsWith('index.html') || path === '';
+    return path === "/" || path.endsWith("index.html") || path === "";
   }
 
   /**
@@ -330,18 +330,18 @@ class PortfolioApp {
    */
   getCurrentPageType() {
     if (this.isHomePage()) {
-      return 'home';
+      return "home";
     }
     if (this.isProjectsPage()) {
-      return 'projects';
+      return "projects";
     }
-    if (globalThis.location.pathname.includes('about')) {
-      return 'about';
+    if (globalThis.location.pathname.includes("about")) {
+      return "about";
     }
-    if (globalThis.location.pathname.includes('contact')) {
-      return 'contact';
+    if (globalThis.location.pathname.includes("contact")) {
+      return "contact";
     }
-    return 'unknown';
+    return "unknown";
   }
 
   /**
@@ -350,10 +350,10 @@ class PortfolioApp {
   logInitializationSummary() {
     const status = this.getStatus();
 
-    console.group('📊 Application Status');
-    console.info('Initialized:', status.initialized);
-    console.info('Page Type:', status.currentPage);
-    console.info('Projects Filter Ready:', status.projectsFilterReady);
+    console.group("📊 Application Status");
+    console.info("Initialized:", status.initialized);
+    console.info("Page Type:", status.currentPage);
+    console.info("Projects Filter Ready:", status.projectsFilterReady);
     console.groupEnd();
   }
 
@@ -365,14 +365,14 @@ class PortfolioApp {
       this.modules.animations.destroy();
     }
 
-    console.info('🧹 Application cleanup completed');
+    console.info("🧹 Application cleanup completed");
   }
 
   /**
    * Restart application (useful for debugging)
    */
   async restart() {
-    console.info('🔄 Restarting application...');
+    console.info("🔄 Restarting application...");
 
     this.cleanup();
     this.isInitialized = false;
@@ -389,15 +389,15 @@ const app = new PortfolioApp();
  */
 function initializeImmediately() {
   app.init().catch((error) => {
-    console.error('Failed to initialize application:', error);
+    console.error("Failed to initialize application:", error);
   });
 }
 
 /**
  * Initialize application when DOM is ready
  */
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeImmediately);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeImmediately);
 } else {
   // DOM is already ready, initialize immediately
   initializeImmediately();
