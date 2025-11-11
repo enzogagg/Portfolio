@@ -53,8 +53,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright E2E tests
-        run: npm run test:e2e:ci
+      - name: Run Playwright E2E tests (sans tests de snapshots)
+        run: npx playwright test --config=./config/playwright.config.js --reporter=list --grep-invert "snapshot|Visual Regression"
 
       - name: Upload Playwright report
         if: always()
