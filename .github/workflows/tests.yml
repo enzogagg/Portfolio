@@ -109,7 +109,16 @@ jobs:
         run: npm install
 
       - name: Run full validation
-        run: npm run validate
+        run: npm run format:check
+
+      - name: Run full validation - lint
+        run: npm run lint
+
+      - name: Run full validation - unit tests coverage
+        run: npm run test:coverage
+
+      - name: Run Playwright E2E tests (validate - without snapshots)
+        run: npx playwright test --config=./config/playwright.config.js --reporter=list --grep-invert "snapshot|Visual Regression"
 
       - name: Success notification
         if: success()
