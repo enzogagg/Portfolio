@@ -73,7 +73,9 @@ test.describe("Homepage - Console Errors", () => {
         !err.includes("404") &&
         !err.includes("favicon") &&
         !err.includes("ERR_NAME_NOT_RESOLVED") && // DNS lookup failures for external resources
-        !err.includes("Failed to load resource"), // Missing external resources
+        !err.includes("Failed to load resource") && // Missing external resources
+        !err.includes("cookie") && // Cookie errors from Matomo analytics
+        !err.includes("_pk_testcookie"), // Matomo test cookie errors
     );
 
     expect(criticalErrors).toHaveLength(0);

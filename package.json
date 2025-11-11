@@ -19,9 +19,13 @@
     "preview": "npm run start",
     "validate": "npm run format:check && npm run lint && npm run test:coverage && npm run test:e2e",
     "test": "jest --config=../config/jest.config.js",
+    "test:unit": "jest --config=./config/jest.config.js",
     "test:coverage": "jest --coverage --config=./config/jest.config.js",
     "test:watch": "jest --watchAll --config=./config/jest.config.js",
-    "test:e2e": "playwright test --config=./config/playwright.config.js"
+    "test:e2e": "playwright test --config=./config/playwright.config.js",
+    "test:e2e:ci": "playwright test --config=./config/playwright.config.js --reporter=list",
+    "test:e2e:install": "playwright install --with-deps",
+    "test:ci": "npm run lint && npm run test:unit && npm run test:e2e:ci"
   },
   "repository": {
     "type": "git",
