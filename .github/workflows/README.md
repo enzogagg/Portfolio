@@ -82,6 +82,7 @@ Add this badge to your README:
 ## 🔧 Configuration
 
 Test configurations are in:
+
 - **Jest**: `config/jest.config.js`
 - **Playwright**: `config/playwright.config.js`
 - **ESLint**: `config/.eslintrc.js`
