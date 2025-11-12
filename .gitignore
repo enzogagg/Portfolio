@@ -75,4 +75,3 @@ junit.xml
 *.lcov
 *.html
 *.xml
-/frontend/tests/playwright/regression.spec.js-snapshots/*

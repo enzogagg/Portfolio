@@ -1,5 +1,8 @@
 # Portfolio
 
+![Tests](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Welcome to the personal portfolio repository of Enzo Gaggiotti.
 
 This project demonstrates a modern, modular, and enterprise-grade architecture, with a clear separation between frontend, backend, and technical documentation.
@@ -85,6 +88,30 @@ The project follows a logical documentation hierarchy:
 - [Testing Strategy](./docs/TESTING.md) - Unit tests, E2E tests, coverage
 - [Unit Tests](./frontend/tests/README.md) - Jest testing guide
 - [E2E Tests](./frontend/tests/playwright/README.md) - Playwright testing guide
+- [CI/CD](./.github/workflows/README.md) - GitHub Actions workflows
+
+### Scripts
+
+- [Scripts Documentation](./scripts/README.md) - Utility scripts for development
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm ci
+
+# Install Playwright browsers (first time only)
+npm run test:e2e:install
+
+# Run all CI tests locally
+./scripts/test-ci.sh
+
+# Or run tests individually
+npm run test:ci        # All tests
+npm run lint           # Linting only
+npm run test:unit      # Unit tests only
+npm run test:e2e:ci    # E2E tests only
+```
 
 ### Project Documentation
 
