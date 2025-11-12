@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
@@ -53,7 +53,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright E2E tests (sans tests de snapshots)
+      - name: Run Playwright E2E tests (without snapshot tests)
         run: npx playwright test --config=./config/playwright.config.js --reporter=list --grep-invert "snapshot|Visual Regression"
 
       - name: Upload Playwright report
@@ -108,20 +108,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
       - name: Run full validation
         run: npm run format:check
-
-      - name: Run full validation - lint
-        run: npm run lint
-
-      - name: Run full validation - unit tests coverage
-        run: npm run test:coverage
-
-      - name: Run Playwright E2E tests (validate - without snapshots)
-        run: npx playwright test --config=./config/playwright.config.js --reporter=list --grep-invert "snapshot|Visual Regression"
 
       - name: Success notification
         if: success()

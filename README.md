@@ -88,7 +88,7 @@ The project follows a logical documentation hierarchy:
 - [Testing Strategy](./docs/TESTING.md) - Unit tests, E2E tests, coverage
 - [Unit Tests](./frontend/tests/README.md) - Jest testing guide
 - [E2E Tests](./frontend/tests/playwright/README.md) - Playwright testing guide
-- [CI/CD](./github/workflows/README.md) - GitHub Actions workflows
+- [CI/CD](./.github/workflows/README.md) - GitHub Actions workflows
 
 ### Scripts
 
