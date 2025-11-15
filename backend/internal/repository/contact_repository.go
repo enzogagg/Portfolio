@@ -6,8 +6,14 @@ import (
 
 	"backend/internal/models"
 
+	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
+
+// DBExecutor interface for database operations (compatible with pgxpool.Pool and pgxmock)
+type DBExecutor interface {
+	Exec(ctx context.Context, sql string, arguments ...interface{}) (pgconn.CommandTag, error)
+}
 
 // IContactRepository defines the interface for contact repository
 type IContactRepository interface {
@@ -16,14 +22,19 @@ type IContactRepository interface {
 
 // ContactRepository implements IContactRepository
 type ContactRepository struct {
-	db *pgxpool.Pool
+	db DBExecutor
 }
 
 // NewContactRepository creates a new instance of ContactRepository
-func NewContactRepository(db *pgxpool.Pool) IContactRepository {
+func NewContactRepository(db DBExecutor) IContactRepository {
 	return &ContactRepository{
 		db: db,
 	}
+}
+
+// NewContactRepositoryFromPool creates a new instance from pgxpool.Pool (helper for main.go)
+func NewContactRepositoryFromPool(pool *pgxpool.Pool) IContactRepository {
+	return NewContactRepository(pool)
 }
 
 // SaveContactForm saves the contact form data to the database
