@@ -1,0 +1,56 @@
+services:
+  frontend:
+    image: nginx:alpine
+    container_name: portfolio-frontend
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - backend
+    
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: portfolio-backend
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:latest
+    container_name: portfolio-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DB_ADMIN_USER}
+      - POSTGRES_PASSWORD=${DB_ADMIN_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - DB_NAME=${DB_NAME}
+      - DB_BACKEND_USER=${DB_BACKEND_USER}
+      - DB_BACKEND_PASSWORD=${DB_BACKEND_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql
+      - ./db/config/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./db/config/02-init-db.sh:/docker-entrypoint-initdb.d/02-init-db.sh:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    restart: always
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "${DB_NAME}", "-U", "${DB_ADMIN_USER}"]
+      interval: 5s
+      timeout: 60s
+      retries: 10
+
+
+volumes:
+  db_data:
