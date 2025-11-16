@@ -12,7 +12,14 @@ unit: ## Run unit tests
 integration: ## Run integration tests (requires Docker Compose)
 	@echo "🧪 Running integration tests..."
 	@echo "⚠️  Make sure docker compose is running with 'docker compose up -d'"
-	RUN_INTEGRATION_TESTS=true go test -v -tags=integration ./tests/integration_test.go
+	@if [ ! -f ../.env ]; then \
+		echo "❌ Error: ../.env file not found!"; \
+		exit 1; \
+	fi
+	@export $$(cat ../.env | grep -v '^#' | xargs) && \
+	RUN_INTEGRATION_TESTS=true \
+	DB_HOST=localhost \
+	go test -v -tags=integration ./tests/integration_test.go
 
 coverage: unit ## Generate and display coverage report
 	@echo "📊 Coverage report:"

@@ -43,7 +43,7 @@ func (suite *IntegrationTestSuite) SetupSuite() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	dbURL := fmt.Sprintf("postgres://%s:%s@%s:%s/%s",
+	dbURL := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		cfg.DbUser, cfg.DbPassword, cfg.DbHost, cfg.DbPort, cfg.DbName)
 
 	pool, err := pgxpool.New(ctx, dbURL)
@@ -78,9 +78,9 @@ func (suite *IntegrationTestSuite) TearDownSuite() {
 
 func (suite *IntegrationTestSuite) SetupTest() {
 	// Clean up test data before each test
-	_, err := suite.db.Exec(context.Background(), "TRUNCATE TABLE contact_submissions RESTART IDENTITY")
+	_, err := suite.db.Exec(context.Background(), "DELETE FROM contact_submissions")
 	if err != nil {
-		suite.T().Logf("Warning: Could not truncate table: %v", err)
+		suite.T().Logf("Warning: Could not delete from table: %v", err)
 	}
 }
 
