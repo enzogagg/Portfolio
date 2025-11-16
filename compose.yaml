@@ -1,11 +1,11 @@
 services:
   frontend:
-    image: nginx:alpine
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     container_name: portfolio-frontend
-    volumes:
-      - ./frontend:/usr/share/nginx/html:ro
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+    env_file:
+      - .env
     ports:
       - "80:80"
     restart: always

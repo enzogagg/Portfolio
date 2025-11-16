@@ -40,6 +40,7 @@ import { scrollAnimations } from "./modules/animations.js";
 import { projectsFilter } from "./modules/projects.js";
 import { accessibilityManager } from "./modules/accessibility.js";
 import { performanceManager } from "./modules/performance.js";
+import { contactModule } from "./modules/contact.js";
 
 /**
  * Portfolio Application Class
@@ -55,6 +56,7 @@ class PortfolioApp {
       projects: projectsFilter,
       accessibility: accessibilityManager,
       performance: performanceManager,
+      contact: contactModule,
     };
   }
 
@@ -239,6 +241,15 @@ class PortfolioApp {
     // Initialize projects page if applicable
     if (this.isProjectsPage()) {
       this.modules.animations.initializeProjectsScrollAnimations();
+    }
+
+    // Initialize contact page features
+    if (this.getCurrentPageType() === "contact") {
+      try {
+        this.modules.contact.init();
+      } catch (err) {
+        console.error("Failed to initialize contact module:", err);
+      }
     }
 
     console.info("✅ Page-specific features initialized");
