@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"strings"
 
 	"backend/api"
 	"backend/api/handlers"
@@ -47,10 +48,21 @@ func main() {
 	}
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{config.FrontendURL, config.FrontendURL_Dev},
+		AllowOrigins:     []string{config.FrontendURL, config.FrontendURL_Dev, "http://localhost", "http://127.0.0.1"},
 		AllowMethods:     []string{"GET", "POST", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
 		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			// Allow configured origins
+			if origin == config.FrontendURL || origin == config.FrontendURL_Dev {
+				return true
+			}
+			// Allow localhost with any port (http://localhost:*) and 127.0.0.1
+			if strings.HasPrefix(origin, "http://localhost") || strings.HasPrefix(origin, "http://127.0.0.1") {
+				return true
+			}
+			return false
+		},
 	}))
 
 	api.RegisterRoutes(router, contactHandler)
