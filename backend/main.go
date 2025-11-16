@@ -42,7 +42,9 @@ func main() {
 	contactHandler := handlers.NewContactHandler(contactService)
 
 	router := gin.Default()
-	router.SetTrustedProxies([]string{"192.168.100.59", "127.0.0.1"})
+	if err := router.SetTrustedProxies([]string{"192.168.100.59", "127.0.0.1"}); err != nil {
+		log.Fatalf("Failed to set trusted proxies: %v", err)
+	}
 
 	router.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{config.FrontendURL, config.FrontendURL_Dev},
