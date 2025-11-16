@@ -81,17 +81,17 @@ jobs:
 
     - name: Setup test database
       env:
-        PGPASSWORD: test_password
+        PGPASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
       run: |
         psql -h localhost -U test_admin -d portfolio_test_db -f backend/../db/config/01-schema.sql || echo "Schema already exists"
         psql -h localhost -U test_admin -d portfolio_test_db << EOF
-        CREATE ROLE backend_test_user WITH LOGIN PASSWORD 'test_backend_password';
-        GRANT CONNECT ON DATABASE portfolio_test_db TO backend_test_user;
-        GRANT USAGE ON SCHEMA public TO backend_test_user;
-        GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO backend_test_user;
-        GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO backend_test_user;
-        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO backend_test_user;
-        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO backend_test_user;
+        CREATE ROLE ${{ secrets.DB_BACKEND_USER }} WITH LOGIN PASSWORD '${{ secrets.DB_BACKEND_PASSWORD }}';
+        GRANT CONNECT ON DATABASE portfolio_test_db TO ${{ secrets.DB_BACKEND_USER }};
+        GRANT USAGE ON SCHEMA public TO ${{ secrets.DB_BACKEND_USER }};
+        GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ${{ secrets.DB_BACKEND_USER }};
+        GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO ${{ secrets.DB_BACKEND_USER }};
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO ${{ secrets.DB_BACKEND_USER }};
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO ${{ secrets.DB_BACKEND_USER }};
         EOF
 
     - name: Run integration tests
@@ -101,13 +101,13 @@ jobs:
         DB_HOST: localhost
         DB_PORT: "5432"
         DB_NAME: portfolio_test_db
-        DB_USER: backend_test_user
-        DB_PASSWORD: test_backend_password
-        SMTP_HOST: smtp.example.com
-        SMTP_PORT: "465"
-        SMTP_USER: test@example.com
-        SMTP_PASSWORD: dummy
-        ADMIN_EMAIL: admin@example.com
+        DB_BACKEND_USER: ${{ secrets.DB_BACKEND_USER }}
+        DB_BACKEND_PASSWORD: ${{ secrets.DB_BACKEND_PASSWORD }}
+        SMTP_HOST: ${{ secrets.SMTP_HOST }}
+        SMTP_PORT: ${{ secrets.SMTP_PORT }}
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
       run: |
         go test -v -tags=integration ./tests/integration_test.go
 
