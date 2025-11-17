@@ -31,16 +31,16 @@ func NewContactHandler(contactService services.IContactService) *ContactHandler 
 func (h *ContactHandler) HandleSendContactForm(c *gin.Context) {
 	var form models.ContactForm
 
-	if error := c.ShouldBindJSON(&form); error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": error.Error()})
+	if err := c.ShouldBindJSON(&form); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if error := h.validator.Struct(form); error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": error.Error()})
+	if err := h.validator.Struct(form); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if error := h.contactService.SubmitContactForm(c.Request.Context(), form); error != nil {
+	if err := h.contactService.SubmitContactForm(c.Request.Context(), form); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to submit contact form"})
 		return
 	}

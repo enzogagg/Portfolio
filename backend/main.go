@@ -43,7 +43,13 @@ func main() {
 	contactHandler := handlers.NewContactHandler(contactService)
 
 	router := gin.Default()
-	if err := router.SetTrustedProxies([]string{"192.168.100.59", "127.0.0.1"}); err != nil {
+	// Use trusted proxies from configuration (set via TRUSTED_PROXIES env var).
+	// The config loader provides a default of "127.0.0.1" when unset.
+	trusted := config.TrustedProxies
+	if len(trusted) == 0 {
+		trusted = []string{"127.0.0.1"}
+	}
+	if err := router.SetTrustedProxies(trusted); err != nil {
 		log.Fatalf("Failed to set trusted proxies: %v", err)
 	}
 

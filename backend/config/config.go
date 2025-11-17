@@ -3,27 +3,29 @@ package config
 import (
 	"log"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 )
 
 type Config struct {
-	Port             string // Port on which the backend server will run
-	URL              string // Backend URL
-	SmtpHost         string // SMTP server host
-	SmtpPort         string // SMTP server port
-	SmtpUser         string // SMTP server username
-	SmtpPass         string // SMTP server password
-	FrontendURL      string // Frontend URL for CORS settings
-	FrontendPort     string // Frontend port for CORS settings
-	FrontendURL_Dev  string // Frontend URL for development environment
-	FrontendPort_Dev string // Frontend port for development environment
-	AdminEmail       string // Admin email address to receive contact form messages
-	DbHost           string // Database host
-	DbPort           string // Database port
-	DbUser           string // Database user
-	DbPassword       string // Database password
-	DbName           string // Database name
+	Port             string   // Port on which the backend server will run
+	URL              string   // Backend URL
+	SmtpHost         string   // SMTP server host
+	SmtpPort         string   // SMTP server port
+	SmtpUser         string   // SMTP server username
+	SmtpPass         string   // SMTP server password
+	FrontendURL      string   // Frontend URL for CORS settings
+	FrontendPort     string   // Frontend port for CORS settings
+	FrontendURL_Dev  string   // Frontend URL for development environment
+	FrontendPort_Dev string   // Frontend port for development environment
+	AdminEmail       string   // Admin email address to receive contact form messages
+	DbHost           string   // Database host
+	DbPort           string   // Database port
+	DbUser           string   // Database user
+	DbPassword       string   // Database password
+	DbName           string   // Database name
+	TrustedProxies   []string // Trusted proxy IPs (used by Gin)
 }
 
 func getEnv(key, fallback string) string {
@@ -54,6 +56,17 @@ func LoadConfig() (*Config, error) {
 		DbUser:           getEnv("DB_BACKEND_USER", ""),
 		DbPassword:       getEnv("DB_BACKEND_PASSWORD", ""),
 		DbName:           getEnv("DB_NAME", ""),
+	}
+	// Parse trusted proxies from env var (comma-separated). Default to localhost.
+	proxies := getEnv("TRUSTED_PROXIES", "127.0.0.1")
+	if proxies == "" {
+		config.TrustedProxies = []string{"127.0.0.1"}
+	} else {
+		parts := strings.Split(proxies, ",")
+		for i := range parts {
+			parts[i] = strings.TrimSpace(parts[i])
+		}
+		config.TrustedProxies = parts
 	}
 	return config, nil
 }

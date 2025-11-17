@@ -8,8 +8,26 @@ import { forceElementVisibility } from "./utils.js";
 
 const API_BASE =
   (globalThis && globalThis.API_BASE) || (window && window.API_BASE) || "";
-const API_ENDPOINT =
-  (API_BASE ? API_BASE.replace(/\/$/, "") : "") + "/api/v1/contact";
+
+// Build API endpoint robustly using the URL constructor to avoid malformed URLs
+let API_ENDPOINT;
+try {
+  if (API_BASE) {
+    // If API_BASE is absolute use it as-is, otherwise resolve against current origin
+    const base = /^https?:\/\//i.test(API_BASE)
+      ? new URL(API_BASE)
+      : new URL(API_BASE, window.location.origin);
+    // Append path relative to the base so existing base paths are preserved
+    API_ENDPOINT = new URL("api/v1/contact", base).toString();
+  } else {
+    // Fallback to same-origin absolute path
+    API_ENDPOINT = "/api/v1/contact";
+  }
+} catch (e) {
+  // Last-resort fallback to the previous behaviour (trim trailing slash)
+  API_ENDPOINT =
+    (API_BASE ? API_BASE.replace(/\/$/, "") : "") + "/api/v1/contact";
+}
 
 const contactModule = {
   init() {

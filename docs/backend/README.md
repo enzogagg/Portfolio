@@ -1,4 +1,3 @@
-````markdown
 # Backend — Quick Start
 
 This folder contains the technical documentation for the backend (Go service).
@@ -18,6 +17,7 @@ This folder contains the technical documentation for the backend (Go service).
 ```bash
 docker compose up -d db
 ```
+
 ````
 
 3. Start the backend locally:
@@ -48,3 +48,4 @@ See the files above for implementation and runtime details.
 ```
 
 ```
+````

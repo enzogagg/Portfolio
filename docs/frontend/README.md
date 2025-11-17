@@ -118,8 +118,6 @@ assets/js/modules/
 
 ## 📚 Documentation
 
-## 📚 Documentation
-
 - [CSS Architecture](./assets/css/README.md) - CSS modular structure
 - [JavaScript Architecture](./assets/js/README.md) - JS modules and configuration
 - [Testing Guide](./tests/README.md) - Testing strategy
