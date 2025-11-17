@@ -74,3 +74,17 @@ playwright-report/
 junit.xml
 *.lcov
 *.xml
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+backend/coverage.out
+backend/coverage.html
+backend/app
+backend/main

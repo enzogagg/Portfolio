@@ -1,10 +1,6 @@
-name: Tests
+name: Frontend Tests
 
-on:
-  push:
-    branches: [ main, develop, test/*, fix/*, ci/* ]
-  pull_request:
-    branches: [ main, develop ]
+on: [push, pull_request]
 
 jobs:
   unit-tests:

@@ -11,18 +11,19 @@ This project demonstrates a modern, modular, and enterprise-grade architecture, 
 
 ```plaintext
 Portfolio/
-├── frontend/   # Web application (HTML, CSS, JS)
-├── backend/    # API, server logic (coming soon)
-├── docs/        # Technical documentation (linting, architecture, tests, etc.)
-├── README.md   # General overview
+├── frontend/    # Web application (HTML, CSS, JS)
+├── backend/     # API, server logic (Go)
+├── docs/        # Technical documentation
+├── config/      # Configuration files (Jest, Playwright, etc.)
+└── README.md    # General overview
 ```
 
 ## 🎯 Philosophy
 
-- **Modularity**: Each part of the project is independent and well documented.
-- **Quality**: Strict linting, tests, CI/CD, comprehensive documentation.
-- **Accessibility**: WCAG standards, responsive design.
-- **Performance**: Optimized for modern web.
+- **Modularity**: Each part of the project is independent and well documented
+- **Quality**: Strict linting, tests, CI/CD, comprehensive documentation
+- **Accessibility**: WCAG standards, responsive design
+- **Performance**: Optimized for modern web
 
 ## 📚 Documentation Structure
 
@@ -36,7 +37,18 @@ The project follows a logical documentation hierarchy:
 ├── 📁 docs/                           # Central documentation hub
 │   ├── 📄 README.md                   # Documentation index
 │   ├── 📄 LINTING.md                  # Code quality standards
-│   └── 📄 TESTING.md                  # Testing strategy
+│   ├── 📄 TESTING.md                  # Testing strategy
+│   ├── 📁 backend/                    # Backend documentation
+│   │   ├── README.md                  # Backend quick start
+│   │   ├── API.md                     # REST API reference
+│   │   ├── CONFIG.md                  # Configuration guide
+│   │   ├── TESTS.md                   # Testing guide
+│   │   └── ARCHITECTURE.md            # Backend architecture
+│   └── 📁 frontend/                   # Frontend documentation
+│       ├── README.md                  # Frontend guide
+│       ├── assets/css/README.md       # CSS architecture
+│       ├── assets/js/README.md        # JS modules
+│       └── tests/README.md            # Testing overview
 │
 ├── 📁 config/                         # Configuration files
 │   ├── 📄 README.md                   # Config overview
@@ -44,22 +56,16 @@ The project follows a logical documentation hierarchy:
 │   ├── ⚙️ playwright.config.js       # E2E tests config
 │   └── ⚙️ babel.config.js            # Transpiler config
 │
-└── 📁 frontend/                       # Frontend application
-    ├── 📄 README.md                   # Frontend guide
-    │
-    ├── 📁 assets/
-    │   ├── css/
-    │   │   └── 📄 README.md           # CSS architecture
-    │   ├── js/
-    │   │   └── 📄 README.md           # JS architecture
-    │   └── documents/
-    │       └── 📄 README.md           # Document assets
-    │
-    └── 📁 tests/
-        ├── 📄 README.md               # Testing overview
-        ├── unit_test/                 # Jest unit tests
-        └── playwright/
-            └── 📄 README.md           # E2E test guide
+├── 📁 frontend/                       # Frontend application
+│   ├── index.html                     # Main page
+│   ├── assets/                        # CSS, JS, images
+│   └── tests/                         # Unit & E2E tests
+│
+└── 📁 backend/                        # Backend service (Go)
+    ├── cmd/                           # Application entrypoint
+    ├── api/                           # HTTP handlers
+    ├── internal/                      # Services, models
+    └── go.mod                         # Go dependencies
 ```
 
 ### Documentation Principles
@@ -70,29 +76,26 @@ The project follows a logical documentation hierarchy:
 - ✅ **Local READMEs for specific module documentation**
 - ✅ **Clear navigation between related documents**
 
-## � Quick Links
+## 📊 Quick Links
 
 ### Getting Started
 
-- [Frontend Setup](./frontend/README.md) - How to run the application
+- [Frontend Setup](./docs/frontend/README.md) - How to run the application
+- [Backend Setup](./docs/backend/README.md) - How to run and test the Go backend
 - [Configuration](./config/README.md) - All config files explained
 
 ### Development
 
-- [CSS Architecture](./frontend/assets/css/README.md) - Modular CSS structure
-- [JS Architecture](./frontend/assets/js/README.md) - JavaScript modules
+- [CSS Architecture](./docs/frontend/assets/css/README.md) - Modular CSS structure
+- [JS Architecture](./docs/frontend/assets/js/README.md) - JavaScript modules
+- [Backend API](./docs/backend/API.md) - REST API documentation
+- [Backend Architecture](./docs/backend/ARCHITECTURE.md) - Backend structure
 
 ### Quality & Testing
 
-- [Linting Standards](./docs/LINTING.md) - Code quality rules (ESLint, Stylelint)
-- [Testing Strategy](./docs/TESTING.md) - Unit tests, E2E tests, coverage
-- [Unit Tests](./frontend/tests/README.md) - Jest testing guide
-- [E2E Tests](./frontend/tests/playwright/README.md) - Playwright testing guide
-- [CI/CD](./.github/workflows/README.md) - GitHub Actions workflows
-
-### Scripts
-
-- [Scripts Documentation](./scripts/README.md) - Utility scripts for development
+- [Testing Strategy](./docs/TESTING.md) - Complete testing documentation
+- [Linting Standards](./docs/LINTING.md) - Code quality rules
+- [Backend Tests](./docs/backend/TESTS.md) - Backend testing guide
 
 ## 🚀 Quick Start
 
@@ -113,6 +116,21 @@ npm run test:unit      # Unit tests only
 npm run test:e2e:ci    # E2E tests only
 ```
 
+## 🐳 Docker Setup
+
+```bash
+# Start all services (frontend, backend, database)
+docker compose up --build
+
+# Start specific service
+docker compose up -d db
+docker compose up -d backend
+docker compose up -d frontend
+
+# View logs
+docker compose logs -f backend
+```
+
 ### Project Documentation
 
 - [Documentation Index](./docs/README.md) - All technical documentation
@@ -120,5 +138,16 @@ npm run test:e2e:ci    # E2E tests only
 ---
 
 **Author**: Enzo Gaggiotti  
-**Last Updated**: November 2025  
+**Last Updated**: 17 November 2025
+
+### Recent Changes (17 Nov 2025)
+
+- **Backend Service**: Go-based API with Gin framework, PostgreSQL database, SMTP email integration
+- **Comprehensive Testing**: Backend unit & integration tests with 85.9% coverage
+- **CI/CD**: GitHub Actions workflows for backend (unit, integration, lint) and frontend tests
+- **Runtime Configuration**: Frontend `.env` injection at Docker startup for dynamic API base URL
+- **Contact Form**: New module connecting to backend API with proper CORS configuration
+- **Documentation**: Complete reorganization with dedicated `docs/backend/` and `docs/frontend/` sections
+- **Code Quality**: All linting issues resolved (100% compliance), golangci-lint integrated
+
 **License**: MIT
