@@ -41,9 +41,13 @@ func (h *ContactHandler) HandleSendContactForm(c *gin.Context) {
 	}
 
 	if err := h.contactService.SubmitContactForm(c.Request.Context(), form); err != nil {
+		// Ensure sensitive POST responses are not cached
+		c.Header("Cache-Control", "no-store")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to submit contact form"})
 		return
 	}
 
+	// Ensure successful POST responses are not cached
+	c.Header("Cache-Control", "no-store")
 	c.JSON(http.StatusOK, gin.H{"message": "Successfully sent contact form"})
 }

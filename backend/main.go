@@ -7,6 +7,7 @@ import (
 	"backend/api"
 	"backend/api/handlers"
 	"backend/config"
+	"backend/internal/middleware"
 	"backend/internal/repository"
 	"backend/internal/services"
 
@@ -42,8 +43,11 @@ func main() {
 	contactService := services.NewContactService(contactRepo, emailService)
 	contactHandler := handlers.NewContactHandler(contactService)
 
-	router := gin.Default()
+	// Ensure Gin runs in release mode in production; set mode before creating the router
 	gin.SetMode(gin.ReleaseMode)
+	router := gin.Default()
+	// Apply security headers middleware to all responses
+	router.Use(middleware.SecurityHeaders())
 
 	// Use trusted proxies from configuration (set via TRUSTED_PROXIES env var).
 	// The config loader provides a default of "127.0.0.1" when unset.
