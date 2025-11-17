@@ -43,6 +43,8 @@ func main() {
 	contactHandler := handlers.NewContactHandler(contactService)
 
 	router := gin.Default()
+	gin.SetMode(gin.ReleaseMode)
+
 	// Use trusted proxies from configuration (set via TRUSTED_PROXIES env var).
 	// The config loader provides a default of "127.0.0.1" when unset.
 	trusted := config.TrustedProxies
