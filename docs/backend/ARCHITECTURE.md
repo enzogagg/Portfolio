@@ -18,8 +18,9 @@ Overview of modules and how the backend is organized.
 
 ```
 backend/
-├── cmd/               # Entrypoint(s) (main.go)
+├── main.go            # Entrypoint(s)
 ├── api/               # HTTP handlers (routes)
+├── config/            # Configuration loader
 ├── internal/
 │   ├── services/      # Business logic (SMTP, rules)
 │   ├── repository/    # DB access (pgxpool wrappers)

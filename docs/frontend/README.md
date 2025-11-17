@@ -123,7 +123,7 @@ assets/js/modules/
 - [CSS Architecture](./assets/css/README.md) - CSS modular structure
 - [JavaScript Architecture](./assets/js/README.md) - JS modules and configuration
 - [Testing Guide](./tests/README.md) - Testing strategy
-- [Linting Guide](../../LINTING.md) - ESLint & Stylelint configuration
+- [Linting Guide](../LINTING.md) - ESLint & Stylelint configuration
 - [Main Documentation](../../README.md) - Documentation index
 
 ## 🔧 Configuration Files
