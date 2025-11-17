@@ -44,7 +44,7 @@ Centralizing configuration files in this directory:
 
 - [Testing Documentation](../docs/TESTING.md)
 - [Linting Standards](../docs/LINTING.md)
-- [Frontend README](../frontend/README.md)
+- [Frontend README](../docs/frontend/README.md)
 
 ---
 

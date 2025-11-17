@@ -12,7 +12,7 @@ This project demonstrates a modern, modular, and enterprise-grade architecture, 
 ```plaintext
 Portfolio/
 ├── frontend/   # Web application (HTML, CSS, JS)
-├── backend/    # API, server logic (coming soon)
+├── backend/    # API, server logic (Go)
 ├── docs/        # Technical documentation (linting, architecture, tests, etc.)
 ├── README.md   # General overview
 ```
@@ -74,21 +74,22 @@ The project follows a logical documentation hierarchy:
 
 ### Getting Started
 
-- [Frontend Setup](./frontend/README.md) - How to run the application
+-- [Frontend Setup](./docs/frontend/README.md) - How to run the application
 - [Configuration](./config/README.md) - All config files explained
+-- [Backend Setup](./docs/backend/README.md) - How to run and test the Go backend
 
 ### Development
 
-- [CSS Architecture](./frontend/assets/css/README.md) - Modular CSS structure
-- [JS Architecture](./frontend/assets/js/README.md) - JavaScript modules
+-- [CSS Architecture](./docs/frontend/assets/css/README.md) - Modular CSS structure
+-- [JS Architecture](./docs/frontend/assets/js/README.md) - JavaScript modules
 
 ### Quality & Testing
 
-- [Linting Standards](./docs/LINTING.md) - Code quality rules (ESLint, Stylelint)
-- [Testing Strategy](./docs/TESTING.md) - Unit tests, E2E tests, coverage
-- [Unit Tests](./frontend/tests/README.md) - Jest testing guide
-- [E2E Tests](./frontend/tests/playwright/README.md) - Playwright testing guide
-- [CI/CD](./.github/workflows/README.md) - GitHub Actions workflows
+
+### Backend
+
+- The backend is implemented in Go using Gin, connects to Postgres via `pgxpool`, and sends email via SMTP.
+- Documentation: [docs/backend/README.md](./docs/backend/README.md)
 
 ### Scripts
 
@@ -120,5 +121,12 @@ npm run test:e2e:ci    # E2E tests only
 ---
 
 **Author**: Enzo Gaggiotti  
-**Last Updated**: November 2025  
+**Last Updated**: 16 November 2025
+**Recent Changes**: 16 November 2025
+- Added comprehensive backend unit & integration tests; improved coverage to 85.9%.
+- CI: GitHub Actions workflows updated for unit, integration and lint jobs; golangci-lint pinned for compatibility.
+- Frontend: added Docker build that generates `assets/js/config.js` from `.env` at container start; contact form module (`contact.js`) posts to `window.API_BASE`.
+- Docker Compose: frontend image now built so `.env` values are injected into the frontend at runtime; nginx configured for static serving by default (no proxy).
+- Backend: CORS configuration adjusted to allow local development origins (`http://localhost`, `http://127.0.0.1`).
+
 **License**: MIT

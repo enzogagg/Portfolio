@@ -42,7 +42,7 @@ LINTING.md  TESTING.md          assets/      tests/         *.html
 | ------------------------- | ---------------------------------- | ---------------------------- |
 | [docs/](../docs/)         | [README.md](../docs/README.md)     | Central documentation hub    |
 | [config/](../config/)     | [README.md](../config/README.md)   | Configuration files overview |
-| [frontend/](../frontend/) | [README.md](../frontend/README.md) | Frontend application guide   |
+| [frontend/](./frontend/) | [README.md](./frontend/README.md) | Frontend application guide   |
 
 ### 🎯 Level 3: Documentation (docs/)
 
@@ -58,16 +58,16 @@ LINTING.md  TESTING.md          assets/      tests/         *.html
 
 | Directory                                          | README                                              | Description              |
 | -------------------------------------------------- | --------------------------------------------------- | ------------------------ |
-| [assets/css/](../frontend/assets/css/)             | [README.md](../frontend/assets/css/README.md)       | CSS modular architecture |
-| [assets/js/](../frontend/assets/js/)               | [README.md](../frontend/assets/js/README.md)        | JavaScript modules       |
-| [assets/documents/](../frontend/assets/documents/) | [README.md](../frontend/assets/documents/README.md) | Downloadable files (CV)  |
+| [assets/css/](./frontend/assets/css/)             | [README.md](./frontend/assets/css/README.md)       | CSS modular architecture |
+| [assets/js/](./frontend/assets/js/)               | [README.md](./frontend/assets/js/README.md)        | JavaScript modules       |
+| [assets/documents/](./frontend/assets/documents/) | [README.md](./frontend/assets/documents/README.md) | Downloadable files (CV)  |
 
 ### 🎯 Level 3: Testing
 
 | Directory                                          | README                                              | Description                          |
 | -------------------------------------------------- | --------------------------------------------------- | ------------------------------------ |
-| [tests/](../frontend/tests/)                       | [README.md](../frontend/tests/README.md)            | Testing overview (Jest + Playwright) |
-| [tests/playwright/](../frontend/tests/playwright/) | [README.md](../frontend/tests/playwright/README.md) | E2E testing guide                    |
+| [tests/](./frontend/tests/)                       | [README.md](./frontend/tests/README.md)            | Testing overview (Jest + Playwright) |
+| [tests/playwright/](./frontend/tests/playwright/) | [README.md](./frontend/tests/playwright/README.md) | E2E testing guide                    |
 
 ## 🎨 Documentation Types
 
@@ -114,20 +114,20 @@ LINTING.md  TESTING.md          assets/      tests/         *.html
 #### Testing
 
 1. Start: [docs/TESTING.md](../docs/TESTING.md)
-2. Unit tests: [frontend/tests/README.md](../frontend/tests/README.md)
-3. E2E tests: [frontend/tests/playwright/README.md](../frontend/tests/playwright/README.md)
+2. Unit tests: [frontend/tests/README.md](./frontend/tests/README.md)
+3. E2E tests: [frontend/tests/playwright/README.md](./frontend/tests/playwright/README.md)
 4. Jest config: [config/jest.config.js](../config/jest.config.js)
 5. Playwright config: [config/playwright.config.js](../config/playwright.config.js)
 
 #### CSS Architecture
 
-1. Start: [frontend/assets/css/README.md](../frontend/assets/css/README.md)
-2. Modules: [frontend/assets/css/modules/](../frontend/assets/css/modules/)
+1. Start: [frontend/assets/css/README.md](./frontend/assets/css/README.md)
+2. Modules: [frontend/assets/css/modules/](./frontend/assets/css/modules/)
 
 #### JavaScript Architecture
 
-1. Start: [frontend/assets/js/README.md](../frontend/assets/js/README.md)
-2. Modules: [frontend/assets/js/modules/](../frontend/assets/js/modules/)
+1. Start: [frontend/assets/js/README.md](./frontend/assets/js/README.md)
+2. Modules: [frontend/assets/js/modules/](./frontend/assets/js/modules/)
 
 #### Configuration
 
@@ -138,16 +138,16 @@ LINTING.md  TESTING.md          assets/      tests/         *.html
 
 #### 👨‍💻 Frontend Developer
 
-- [Frontend README](../frontend/README.md)
-- [CSS Architecture](../frontend/assets/css/README.md)
-- [JS Architecture](../frontend/assets/js/README.md)
-- [Testing Guide](../frontend/tests/README.md)
+-- [Frontend README](./frontend/README.md)
+-- [CSS Architecture](./frontend/assets/css/README.md)
+-- [JS Architecture](./frontend/assets/js/README.md)
+-- [Testing Guide](./frontend/tests/README.md)
 
 #### 🧪 QA Engineer
 
 - [Testing Strategy](../docs/TESTING.md)
-- [Unit Tests](../frontend/tests/README.md)
-- [E2E Tests](../frontend/tests/playwright/README.md)
+- [Unit Tests](./frontend/tests/README.md)
+- [E2E Tests](./frontend/tests/playwright/README.md)
 
 #### 🛠️ DevOps Engineer
 
