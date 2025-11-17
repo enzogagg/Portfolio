@@ -16,9 +16,9 @@ Visual guide to all documentation in the Portfolio project.
 │  📁 docs/     │    │  📁 config/    │    │ 📁 backend/  │
 │  README.md    │    │  README.md     │    │  go.mod      │
 └───────────────┘    └────────────────┘    └──────────────┘
-        │                     │                     
-   ┌────┼────┐               │              
-   ▼    ▼    ▼               ▼              
+        │                     │
+   ┌────┼────┐               │
+   ▼    ▼    ▼               ▼
 backend/ frontend/ TESTING.md  jest.config.js
 README   README    LINTING.md  playwright.config.js
 ```
@@ -40,33 +40,33 @@ README   README    LINTING.md  playwright.config.js
 
 ### 🎯 Level 3: Documentation (docs/)
 
-| File/Folder                          | Description                            | Keywords                              |
-| ------------------------------------ | -------------------------------------- | ------------------------------------- |
-| [LINTING.md](./LINTING.md)           | ESLint + Stylelint rules, code quality | ESLint, Stylelint, quality, standards |
-| [TESTING.md](./TESTING.md)           | Testing strategy, Jest, Playwright     | Jest, Playwright, coverage, E2E       |
-| [backend/](./backend/)               | Backend documentation folder           | Go, API, PostgreSQL, tests            |
-| [frontend/](./frontend/)             | Frontend documentation folder          | HTML, CSS, JS, tests                  |
+| File/Folder                | Description                            | Keywords                              |
+| -------------------------- | -------------------------------------- | ------------------------------------- |
+| [LINTING.md](./LINTING.md) | ESLint + Stylelint rules, code quality | ESLint, Stylelint, quality, standards |
+| [TESTING.md](./TESTING.md) | Testing strategy, Jest, Playwright     | Jest, Playwright, coverage, E2E       |
+| [backend/](./backend/)     | Backend documentation folder           | Go, API, PostgreSQL, tests            |
+| [frontend/](./frontend/)   | Frontend documentation folder          | HTML, CSS, JS, tests                  |
 
 ### 🎯 Level 4: Backend Documentation (docs/backend/)
 
-| File                                   | Description                            |
-| -------------------------------------- | -------------------------------------- |
-| [README.md](./backend/README.md)       | Backend quick start guide              |
-| [API.md](./backend/API.md)             | REST API endpoints documentation       |
-| [CONFIG.md](./backend/CONFIG.md)       | Environment variables & configuration  |
-| [TESTS.md](./backend/TESTS.md)         | Testing guide (unit & integration)     |
-| [ARCHITECTURE.md](./backend/ARCHITECTURE.md) | Backend architecture & module layout |
+| File                                         | Description                           |
+| -------------------------------------------- | ------------------------------------- |
+| [README.md](./backend/README.md)             | Backend quick start guide             |
+| [API.md](./backend/API.md)                   | REST API endpoints documentation      |
+| [CONFIG.md](./backend/CONFIG.md)             | Environment variables & configuration |
+| [TESTS.md](./backend/TESTS.md)               | Testing guide (unit & integration)    |
+| [ARCHITECTURE.md](./backend/ARCHITECTURE.md) | Backend architecture & module layout  |
 
 ### 🎯 Level 4: Frontend Documentation (docs/frontend/)
 
-| Directory/File                                     | Description                          |
-| -------------------------------------------------- | ------------------------------------ |
-| [README.md](./frontend/README.md)                  | Frontend application guide           |
-| [assets/css/README.md](./frontend/assets/css/README.md) | CSS modular architecture        |
-| [assets/js/README.md](./frontend/assets/js/README.md)   | JavaScript modules              |
-| [assets/documents/README.md](./frontend/assets/documents/README.md) | Downloadable files (CV) |
-| [tests/README.md](./frontend/tests/README.md)      | Testing overview (Jest + Playwright) |
-| [tests/playwright/README.md](./frontend/tests/playwright/README.md) | E2E testing guide       |
+| Directory/File                                                      | Description                          |
+| ------------------------------------------------------------------- | ------------------------------------ |
+| [README.md](./frontend/README.md)                                   | Frontend application guide           |
+| [assets/css/README.md](./frontend/assets/css/README.md)             | CSS modular architecture             |
+| [assets/js/README.md](./frontend/assets/js/README.md)               | JavaScript modules                   |
+| [assets/documents/README.md](./frontend/assets/documents/README.md) | Downloadable files (CV)              |
+| [tests/README.md](./frontend/tests/README.md)                       | Testing overview (Jest + Playwright) |
+| [tests/playwright/README.md](./frontend/tests/playwright/README.md) | E2E testing guide                    |
 
 ---
 

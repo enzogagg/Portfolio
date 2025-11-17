@@ -43,8 +43,9 @@ SMTP_PASSWORD=smtp_pass
 SMTP_ADDRESS=hello@example.com
 
 FRONTEND_URL_DEV=http://localhost
-````
-````
+```
+
+```
 
 ## Notes
 
@@ -61,3 +62,4 @@ FRONTEND_URL_DEV=http://localhost
 ---
 
 **Last Updated**: 17 November 2025
+```

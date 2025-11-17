@@ -13,7 +13,7 @@ Run all tests:
 
 ```bash
 go test ./... -v
-````
+```
 
 Run tests with coverage (outputs `coverage.out`):
 
