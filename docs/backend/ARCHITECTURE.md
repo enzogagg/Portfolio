@@ -3,6 +3,7 @@
 Overview of modules and how the backend is organized.
 
 ## Main structure
+
 ```
 
 backend/
@@ -16,17 +17,19 @@ Overview of modules and how the backend is organized.
 ## Main structure
 
 ```
+
 backend/
-├── main.go            # Entrypoint(s)
-├── api/               # HTTP handlers (routes)
-├── config/            # Configuration loader
+├── main.go # Entrypoint(s)
+├── api/ # HTTP handlers (routes)
+├── config/ # Configuration loader
 ├── internal/
-│   ├── services/      # Business logic (SMTP, rules)
-│   ├── repository/    # DB access (pgxpool wrappers)
-│   ├── models/        # Data structures (ContactForm, etc.)
-│   └── config/        # Configuration loader
-├── tests/             # Integration tests / fixtures
+│ ├── services/ # Business logic (SMTP, rules)
+│ ├── repository/ # DB access (pgxpool wrappers)
+│ ├── models/ # Data structures (ContactForm, etc.)
+│ └── config/ # Configuration loader
+├── tests/ # Integration tests / fixtures
 └── go.mod
+
 ```
 
 ## Main components
@@ -56,3 +59,4 @@ backend/
 ---
 
 **Last Updated**: 17 November 2025
+```

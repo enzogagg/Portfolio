@@ -60,4 +60,7 @@ FRONTEND_URL_DEV=http://localhost
 ---
 
 **Last Updated**: 17 November 2025
+
+```
+
 ```
