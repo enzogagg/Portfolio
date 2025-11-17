@@ -118,8 +118,13 @@ assets/js/modules/
 
 ## 📚 Documentation
 
-- [Linting Guide](./docs/LINTING.md) - ESLint & Stylelint configuration
-- [Tests Guide](./tests/README.md) - Testing strategy (planned)
+## 📚 Documentation
+
+- [CSS Architecture](./assets/css/README.md) - CSS modular structure
+- [JavaScript Architecture](./assets/js/README.md) - JS modules and configuration
+- [Testing Guide](./tests/README.md) - Testing strategy
+- [Linting Guide](../../LINTING.md) - ESLint & Stylelint configuration
+- [Main Documentation](../../README.md) - Documentation index
 
 ## 🔧 Configuration Files
 
