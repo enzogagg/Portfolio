@@ -6,8 +6,10 @@
 
 import { forceElementVisibility } from "./utils.js";
 
-const API_BASE = (globalThis && globalThis.API_BASE) || (window && window.API_BASE) || "";
-const API_ENDPOINT = (API_BASE ? API_BASE.replace(/\/$/, "") : "") + "/api/v1/contact";
+const API_BASE =
+  (globalThis && globalThis.API_BASE) || (window && window.API_BASE) || "";
+const API_ENDPOINT =
+  (API_BASE ? API_BASE.replace(/\/$/, "") : "") + "/api/v1/contact";
 
 const contactModule = {
   init() {
@@ -58,7 +60,10 @@ const contactModule = {
           const data = await resp.json().catch(() => ({}));
 
           if (!resp.ok) {
-            const msg = data.error || data.message || "Erreur lors de l'envoi du message.";
+            const msg =
+              data.error ||
+              data.message ||
+              "Erreur lors de l'envoi du message.";
             showToast(msg, "error");
           } else {
             showToast("Message envoyé avec succès !", "success");
