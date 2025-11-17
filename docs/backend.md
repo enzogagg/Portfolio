@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Backend Documentation
 
 This document describes the backend service: how to configure, run, test and troubleshoot it.
@@ -32,6 +32,7 @@ docker compose up -d backend
 # or start all services
 docker compose up --build
 ```
+````
 
 3. Backend will listen on the port configured in `.env` (see `BACKEND_PORT` / `BACKEND_URL`).
 
@@ -93,4 +94,7 @@ Workflows are defined to run unit and integration tests and to upload coverage. 
 ---
 
 Last updated: 16 November 2025
+
+```
+
 ```

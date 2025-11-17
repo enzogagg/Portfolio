@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Backend API
 
 Base path: `/api/v1`
@@ -20,11 +20,12 @@ Submit the contact form from the frontend.
   "subject": "Contact portfolio"
 }
 ```
+````
 
- - Responses:
-  - `201 Created` — message stored / email sent (or enqueued)
-  - `400 Bad Request` — invalid payload (missing required field, invalid email)
-  - `500 Internal Server Error` — server / SMTP / DB error
+- Responses:
+- `201 Created` — message stored / email sent (or enqueued)
+- `400 Bad Request` — invalid payload (missing required field, invalid email)
+- `500 Internal Server Error` — server / SMTP / DB error
 
 - Exemple `curl`:
 

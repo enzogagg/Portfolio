@@ -4,11 +4,12 @@
 Petit aperçu des modules et de la façon dont le backend est organisé.
 
 ## Structure principale
-
 ```
+
 backend/
-├── cmd/               # Entrypoint(s) (main.go)
-├── api/               # Handlers HTTP (routes)
+├── cmd/ # Entrypoint(s) (main.go)
+├── api/ # Handlers HTTP (routes)
+
 # Backend Architecture
 
 Overview of modules and how the backend is organized.

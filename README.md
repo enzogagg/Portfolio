@@ -75,8 +75,9 @@ The project follows a logical documentation hierarchy:
 ### Getting Started
 
 -- [Frontend Setup](./docs/frontend/README.md) - How to run the application
+
 - [Configuration](./config/README.md) - All config files explained
--- [Backend Setup](./docs/backend/README.md) - How to run and test the Go backend
+  -- [Backend Setup](./docs/backend/README.md) - How to run and test the Go backend
 
 ### Development
 
@@ -84,7 +85,6 @@ The project follows a logical documentation hierarchy:
 -- [JS Architecture](./docs/frontend/assets/js/README.md) - JavaScript modules
 
 ### Quality & Testing
-
 
 ### Backend
 
@@ -123,6 +123,7 @@ npm run test:e2e:ci    # E2E tests only
 **Author**: Enzo Gaggiotti  
 **Last Updated**: 16 November 2025
 **Recent Changes**: 16 November 2025
+
 - Added comprehensive backend unit & integration tests; improved coverage to 85.9%.
 - CI: GitHub Actions workflows updated for unit, integration and lint jobs; golangci-lint pinned for compatibility.
 - Frontend: added Docker build that generates `assets/js/config.js` from `.env` at container start; contact form module (`contact.js`) posts to `window.API_BASE`.

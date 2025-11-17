@@ -1,10 +1,9 @@
-```markdown
+````markdown
 # Backend — Quick Start
 
 This folder contains the technical documentation for the backend (Go service).
 
 Key files:
-
 
 ## Quick start
 
@@ -14,6 +13,7 @@ Key files:
 ```bash
 docker compose up -d db
 ```
+````
 
 3. Start the backend locally:
 
@@ -26,7 +26,8 @@ docker compose up --build
 
 4. Check the health endpoint (if available) or test the contact endpoint with `curl` (see `API.md`).
 
-
 See the files above for implementation and runtime details.
+
+```
 
 ```

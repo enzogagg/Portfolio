@@ -38,10 +38,10 @@ LINTING.md  TESTING.md          assets/      tests/         *.html
 
 ### 🎯 Level 2: Main Directories
 
-| Directory                 | README                             | Purpose                      |
-| ------------------------- | ---------------------------------- | ---------------------------- |
-| [docs/](../docs/)         | [README.md](../docs/README.md)     | Central documentation hub    |
-| [config/](../config/)     | [README.md](../config/README.md)   | Configuration files overview |
+| Directory                | README                            | Purpose                      |
+| ------------------------ | --------------------------------- | ---------------------------- |
+| [docs/](../docs/)        | [README.md](../docs/README.md)    | Central documentation hub    |
+| [config/](../config/)    | [README.md](../config/README.md)  | Configuration files overview |
 | [frontend/](./frontend/) | [README.md](./frontend/README.md) | Frontend application guide   |
 
 ### 🎯 Level 3: Documentation (docs/)
@@ -56,16 +56,16 @@ LINTING.md  TESTING.md          assets/      tests/         *.html
 
 ### 🎯 Level 3: Frontend Assets
 
-| Directory                                          | README                                              | Description              |
-| -------------------------------------------------- | --------------------------------------------------- | ------------------------ |
+| Directory                                         | README                                             | Description              |
+| ------------------------------------------------- | -------------------------------------------------- | ------------------------ |
 | [assets/css/](./frontend/assets/css/)             | [README.md](./frontend/assets/css/README.md)       | CSS modular architecture |
 | [assets/js/](./frontend/assets/js/)               | [README.md](./frontend/assets/js/README.md)        | JavaScript modules       |
 | [assets/documents/](./frontend/assets/documents/) | [README.md](./frontend/assets/documents/README.md) | Downloadable files (CV)  |
 
 ### 🎯 Level 3: Testing
 
-| Directory                                          | README                                              | Description                          |
-| -------------------------------------------------- | --------------------------------------------------- | ------------------------------------ |
+| Directory                                         | README                                             | Description                          |
+| ------------------------------------------------- | -------------------------------------------------- | ------------------------------------ |
 | [tests/](./frontend/tests/)                       | [README.md](./frontend/tests/README.md)            | Testing overview (Jest + Playwright) |
 | [tests/playwright/](./frontend/tests/playwright/) | [README.md](./frontend/tests/playwright/README.md) | E2E testing guide                    |
 

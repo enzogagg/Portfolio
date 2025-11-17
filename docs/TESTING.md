@@ -26,15 +26,15 @@ Comprehensive testing strategy for the Portfolio project, covering unit tests, E
 
 ### Test Statistics
 
-| Metric                                | Value                                   | Status |
-| ------------------------------------- | --------------------------------------- | ------ |
-| **Backend Unit Tests**                | 21 (Go unit tests)                      | ✅ passing |
-| **Backend Integration Tests**         | 3 (Go integration tests)                | ✅ passing |
-| **Frontend Unit Tests**               | 129 (Jest)                              | ✅ passing |
-| **E2E Tests**                         | ~130                                    | ✅ Created |
-| **Code Coverage (overall)**           | 85.9% (combined, backend+frontend)      | ✅ Above target |
-| **Lint Errors**                       | 0                                       | ✅ Clean |
-| **Lint Warnings**                     | 0                                       | ✅ Clean |
+| Metric                        | Value                              | Status          |
+| ----------------------------- | ---------------------------------- | --------------- |
+| **Backend Unit Tests**        | 21 (Go unit tests)                 | ✅ passing      |
+| **Backend Integration Tests** | 3 (Go integration tests)           | ✅ passing      |
+| **Frontend Unit Tests**       | 129 (Jest)                         | ✅ passing      |
+| **E2E Tests**                 | ~130                               | ✅ Created      |
+| **Code Coverage (overall)**   | 85.9% (combined, backend+frontend) | ✅ Above target |
+| **Lint Errors**               | 0                                  | ✅ Clean        |
+| **Lint Warnings**             | 0                                  | ✅ Clean        |
 
 ## 🔺 Test Pyramid
 

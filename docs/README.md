@@ -45,4 +45,3 @@ All documentation in this project follows these guidelines:
 - Frontend contact: new module `assets/js/modules/contact.js` added; it POSTs JSON to `${API_BASE}/api/v1/contact` and shows inline toasts.
 - Docker Compose: frontend now built from `frontend/Dockerfile` and receives `.env` so runtime API base is injected.
 - CORS & local dev: backend updated to allow `http://localhost` / `http://127.0.0.1` origins for development (preflight OPTIONS handling fixed).
-

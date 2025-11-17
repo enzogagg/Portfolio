@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Backend — Tests
 
 Ce document décrit comment exécuter les tests unitaires et d'intégration pour le backend Go.
@@ -15,6 +15,7 @@ Exécuter tous les tests:
 ```bash
 go test ./... -v
 ```
+````
 
 Exécuter avec couverture (génère `coverage.out`):
 
@@ -39,7 +40,7 @@ docker compose up -d db
 
 2. Exporter les variables d'environnement nécessaires (ou utilisez `.env` à la racine):
 
-```bash
+````bash
 # example (zsh)
 export DB_HOST=127.0.0.1
 export DB_PORT=5432
@@ -59,7 +60,7 @@ Run all tests:
 
 ```bash
 go test ./... -v
-```
+````
 
 Run tests with coverage (outputs `coverage.out`):
 

@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Backend Configuration
 
 Le backend lit sa configuration depuis la variable d'environnement et/ou le fichier `.env` (utilise `godotenv` pour le développement).
@@ -27,7 +27,7 @@ Le backend lit sa configuration depuis la variable d'environnement et/ou le fich
 
 ## Exemple `.env`
 
-```dotenv
+````dotenv
 BACKEND_PORT=8080
 BACKEND_URL=http://localhost
 
@@ -84,7 +84,8 @@ SMTP_PASSWORD=smtp_pass
 SMTP_ADDRESS=hello@example.com
 
 FRONTEND_URL_DEV=http://localhost
-```
+````
+````
 
 ## Notes
 
