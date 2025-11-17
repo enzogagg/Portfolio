@@ -43,4 +43,5 @@ See `tests/` subdirectories for per-module coverage and test lists.
 ## 📚 Related Documentation
 
 - [Playwright Guide](./playwright/README.md)
-- [Linting Standards](../../docs/LINTING.md)
+- [Main Testing Documentation](../../TESTING.md)
+- [Linting Standards](../../LINTING.md)

@@ -10,12 +10,10 @@ frontend/
 │   ├── css/              # Stylesheets (modular architecture)
 │   ├── js/               # JavaScript modules
 │   ├── images/           # Images and media
-+│   └── documents/        # Downloadable documents
-├── docs/                 # 📚 Documentation
-│   ├── LINTING.md        # Linting configuration guide
-│   └── README.md         # Documentation index
-├── tests/                # 🧪 Tests (to be implemented)
-│   └── README.md         # Testing guidelines
+│   └── documents/        # Downloadable documents
+├── tests/                # 🧪 Tests
+│   ├── unit_test/        # Jest unit tests
+│   └── playwright/       # Playwright E2E tests
 ├── *.html                # HTML pages
 ├── package.json          # npm dependencies and scripts
 ├── .eslintrc.js          # ESLint configuration

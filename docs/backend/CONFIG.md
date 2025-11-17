@@ -1,44 +1,3 @@
-````markdown
-# Backend Configuration
-
-Le backend lit sa configuration depuis la variable d'environnement et/ou le fichier `.env` (utilise `godotenv` pour le développement).
-
-## Variables d'environnement importantes
-
-- `BACKEND_PORT` (default: `8080`) — port écouté par le service
-- `BACKEND_URL` — url (ex: `http://localhost`)
-
-- Base de données Postgres (pgxpool):
-  - `DB_HOST` (ex: `db` en Docker Compose)
-  - `DB_PORT` (ex: `5432`)
-  - `DB_NAME`
-  - `DB_USER`
-  - `DB_PASSWORD`
-
-- SMTP (pour envoi d'emails):
-  - `SMTP_HOST`
-  - `SMTP_PORT`
-  - `SMTP_USER`
-  - `SMTP_PASSWORD`
-  - `SMTP_ADDRESS` (adresse depuis laquelle sont envoyés les mails)
-
-- CORS / frontend origin:
-  - `FRONTEND_URL_DEV` — origine(s) autorisée(s) en développement (ex: `http://localhost` ou `http://127.0.0.1`)
-
-## Exemple `.env`
-
-````dotenv
-BACKEND_PORT=8080
-BACKEND_URL=http://localhost
-
-DB_HOST=db
-DB_PORT=5432
-DB_NAME=portfolio
-DB_USER=backend
-DB_PASSWORD=changeme
-
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
 # Backend Configuration
 
 The backend reads configuration from environment variables and (for local development) can load values from a `.env` file via `godotenv`.
@@ -91,3 +50,14 @@ FRONTEND_URL_DEV=http://localhost
 
 - In CI, configure the repository secrets (see `TESTS.md`) so integration workflows can start a database and run tests.
 - For production deploys, prefer using secure environment variable management provided by your host.
+
+## Related Documentation
+
+- [Backend README](./README.md) - Quick start guide
+- [API Documentation](./API.md) - REST API reference
+- [Testing Guide](./TESTS.md) - How to run tests
+- [Architecture](./ARCHITECTURE.md) - Backend structure
+
+---
+
+**Last Updated**: 17 November 2025

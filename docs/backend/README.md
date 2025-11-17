@@ -3,7 +3,12 @@
 
 This folder contains the technical documentation for the backend (Go service).
 
-Key files:
+## Key files
+
+- [API.md](./API.md) - REST API endpoints documentation
+- [CONFIG.md](./CONFIG.md) - Environment variables and configuration
+- [TESTS.md](./TESTS.md) - Testing guide (unit & integration)
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Backend architecture and module layout
 
 ## Quick start
 
@@ -27,6 +32,18 @@ docker compose up --build
 4. Check the health endpoint (if available) or test the contact endpoint with `curl` (see `API.md`).
 
 See the files above for implementation and runtime details.
+
+## Related Documentation
+
+- [Main Documentation Index](../README.md)
+- [API Reference](./API.md)
+- [Configuration Guide](./CONFIG.md)
+- [Testing Guide](./TESTS.md)
+- [Architecture](./ARCHITECTURE.md)
+
+---
+
+**Last Updated**: 17 November 2025
 
 ```
 

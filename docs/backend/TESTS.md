@@ -1,50 +1,3 @@
-````markdown
-# Backend — Tests
-
-Ce document décrit comment exécuter les tests unitaires et d'intégration pour le backend Go.
-
-## Types de tests
-
-- **Unitaires**: tests de fonctions, handlers, services (utilisent `pgxmock` pour mocker la DB)
-- **Intégration**: tests qui utilisent une vraie base Postgres (docker compose) et qui valident le flux complet
-
-## Commandes locales
-
-Exécuter tous les tests:
-
-```bash
-go test ./... -v
-```
-````
-
-Exécuter avec couverture (génère `coverage.out`):
-
-```bash
-go test ./... -coverprofile=coverage.out
-go tool cover -html=coverage.out -o coverage.html
-```
-
-Exécuter uniquement les tests du package `internal` (exemple):
-
-```bash
-go test ./internal/... -v
-```
-
-## Intégration
-
-1. Démarrer la DB via Docker Compose:
-
-```bash
-docker compose up -d db
-```
-
-2. Exporter les variables d'environnement nécessaires (ou utilisez `.env` à la racine):
-
-````bash
-# example (zsh)
-export DB_HOST=127.0.0.1
-export DB_PORT=5432
-export DB_USER=backend
 # Backend — Tests
 
 This document explains how to run unit and integration tests for the Go backend.
@@ -114,3 +67,14 @@ go test ./... -run Integration -v
 
 - Clean the DB between integration tests if they modify shared state.
 - Use fixtures or factories to create deterministic test data.
+
+## Related Documentation
+
+- [Backend README](./README.md) - Quick start guide
+- [Configuration](./CONFIG.md) - Environment variables needed for tests
+- [Architecture](./ARCHITECTURE.md) - Backend structure
+- [Main Testing Documentation](../TESTING.md) - Overall testing strategy
+
+---
+
+**Last Updated**: 17 November 2025

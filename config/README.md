@@ -40,12 +40,15 @@ Centralizing configuration files in this directory:
 - ✅ Groups related tooling together
 - ✅ Improves maintainability
 
-## 📖 Related Documentation
+## 📚 Related Documentation
 
 - [Testing Documentation](../docs/TESTING.md)
 - [Linting Standards](../docs/LINTING.md)
 - [Frontend README](../docs/frontend/README.md)
+- [Backend Configuration](../docs/backend/CONFIG.md)
 
 ---
+
+**Last Updated**: November 2025
 
 **Last Updated**: November 2025

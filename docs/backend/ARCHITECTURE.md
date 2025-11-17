@@ -1,9 +1,9 @@
 ```markdown
 # Backend Architecture
 
-Petit aperçu des modules et de la façon dont le backend est organisé.
+Overview of modules and how the backend is organized.
 
-## Structure principale
+## Main structure
 ```
 
 backend/
@@ -45,3 +45,14 @@ backend/
 
 - Logs via the standard Gin logger — configure level per environment.
 - Errors are returned from services to make assertions easier in tests.
+
+## Related Documentation
+
+- [Backend README](./README.md) - Quick start guide
+- [API Documentation](./API.md) - REST API reference
+- [Configuration](./CONFIG.md) - Environment variables
+- [Testing Guide](./TESTS.md) - How to run tests
+
+---
+
+**Last Updated**: 17 November 2025
