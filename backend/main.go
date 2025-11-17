@@ -15,15 +15,15 @@ import (
 )
 
 func main() {
-	config, error := config.LoadConfig()
-	if error != nil {
-		log.Fatalf("Error loading config: %v", error)
+	config, err := config.LoadConfig()
+	if err != nil {
+		log.Fatalf("Error loading config: %v", err)
 	}
 
 	// Initialize database pool
-	pool, error := repository.NewDbPool(*config)
-	if error != nil {
-		log.Fatalf("Error creating database pool: %v", error)
+	pool, err := repository.NewDbPool(*config)
+	if err != nil {
+		log.Fatalf("Error creating database pool: %v", err)
 	}
 	defer pool.Close()
 
@@ -74,7 +74,7 @@ func main() {
 	api.RegisterRoutes(router, contactHandler)
 
 	log.Printf("Starting server on port %s...", config.Port)
-	if error := router.Run(":" + config.Port); error != nil {
-		log.Fatalf("Error starting server: %v", error)
+	if err := router.Run(":" + config.Port); err != nil {
+		log.Fatalf("Error starting server: %v", err)
 	}
 }

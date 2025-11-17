@@ -1,4 +1,3 @@
-```markdown
 # Backend Architecture
 
 Overview of modules and how the backend is organized.

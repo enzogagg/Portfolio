@@ -18,8 +18,6 @@ This folder contains the technical documentation for the backend (Go service).
 docker compose up -d db
 ```
 
-````
-
 3. Start the backend locally:
 
 ```bash
@@ -44,8 +42,3 @@ See the files above for implementation and runtime details.
 ---
 
 **Last Updated**: 17 November 2025
-
-```
-
-```
-````

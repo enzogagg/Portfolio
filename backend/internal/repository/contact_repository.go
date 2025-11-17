@@ -45,9 +45,9 @@ func (r *ContactRepository) SaveContactForm(ctx context.Context, form models.Con
 		`
 
 	// Call Exec on the db pool
-	_, error := r.db.Exec(ctx, query, form.Name, form.Email, form.Subject, form.Message)
-	if error != nil {
-		return fmt.Errorf("unable to insert contact in database: %w", error)
+	_, err := r.db.Exec(ctx, query, form.Name, form.Email, form.Subject, form.Message)
+	if err != nil {
+		return fmt.Errorf("unable to insert contact in database: %w", err)
 	}
 	return nil
 }

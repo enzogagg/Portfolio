@@ -45,8 +45,6 @@ SMTP_ADDRESS=hello@example.com
 FRONTEND_URL_DEV=http://localhost
 ```
 
-```
-
 ## Notes
 
 - In CI, configure the repository secrets (see `TESTS.md`) so integration workflows can start a database and run tests.
