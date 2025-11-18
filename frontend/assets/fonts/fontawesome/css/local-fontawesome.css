@@ -1,0 +1,9 @@
+/* Local FontAwesome loader: imports the official `all.min.css` from the same folder.
+   This enables using FontAwesome icons without requesting the CDN.
+   Files were copied into `frontend/assets/fonts/fontawesome/css/all.min.css`
+   and `frontend/assets/fonts/fontawesome/webfonts/`.
+*/
+@import url("./all.min.css");
+
+/* Ensure font-display swap for better performance */
+/* The `all.min.css` already contains @font-face rules; if needed, override here. */
