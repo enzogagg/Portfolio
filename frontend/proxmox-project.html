@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="fr" class="text-white scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Infrastructure Proxmox - Cluster de Virtualisation | Enzo Gaggiotti
+    </title>
+    <meta
+      name="description"
+      content="Cluster Proxmox VE 3 nœuds avec Proxmox Backup Server. Infrastructure de virtualisation complète avec HA, snapshots automatiques et monitoring Grafana."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/loader.css" />
+  </head>
+  <!doctype html>
+  <html lang="fr" class="text-white scroll-smooth">
+    <head>
+      <meta charset="UTF-8" />
+      <!-- Gradient Orbs -->
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+
+      <!-- Light Rays -->
+      <div class="light-rays">
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+      </div>
+    </div>
+
+    <!-- Minimalist loader -->
+    <div class="minimal-loader">
+      <div class="minimal-spinner"></div>
+    </div>
+
+    <!-- HEADER NAVIGATION -->
+    <header id="main-header">
+      <div class="header-container">
+        <a href="index.html#top" class="logo" aria-label="Accueil">
+          <div
+            class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            EG
+          </div>
+        </a>
+        <nav class="nav-primary" , aria-label="Navigation principale">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <div class="burger-menu">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobile-menu">
+        <nav class="mobile-nav" , aria-label="Navigation mobile">
+          <a href="index.html#top" class="nav-link">Accueil</a>
+          <a href="projects.html" class="nav-link">Projets</a>
+          <a href="about.html" class="nav-link">À propos</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section
+      class="relative min-h-[90vh] flex items-center justify-center px-6 pt-20 pb-16 overflow-hidden"
+    >
+      <!-- Animated Background -->
+      <div class="absolute inset-0 opacity-30">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-red-500/10 to-orange-500/10"
+        ></div>
+        <div
+          class="absolute top-20 left-10 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl animate-pulse"
+        ></div>
+        <div
+          class="absolute bottom-20 right-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse"
+          style="animation-delay: 2s"
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center"
+      >
+        <!-- Project Visual -->
+        <div class="flex justify-center lg:justify-end order-2 lg:order-1">
+          <div class="relative group">
+            <!-- Main project showcase -->
+            <div
+              class="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden relative"
+            >
+              <!-- Proxmox Cluster Illustration -->
+              <div class="w-full h-full flex items-center justify-center">
+                <div
+                  class="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900 shadow-2xl transform group-hover:scale-105 transition-all duration-500"
+                >
+                  <!-- Cluster diagram mockup -->
+                  <div
+                    class="relative h-full bg-gradient-to-br from-neutral-900 via-orange-950/20 to-red-950/20 p-6 flex flex-col justify-center items-center"
+                  >
+                    <div class="space-y-4 w-full max-w-xs">
+                      <!-- Cluster Title -->
+                      <div class="text-center mb-6">
+                        <i
+                          class="fas fa-server text-orange-400 text-4xl mb-2"
+                        ></i>
+                        <div class="text-sm text-orange-300 font-semibold">
+                          Proxmox VE Cluster
+                        </div>
+                      </div>
+
+                      <!-- Nodes -->
+                      <div class="grid grid-cols-3 gap-3">
+                        <div
+                          class="bg-orange-500/20 border border-orange-400/30 rounded-lg p-2 text-center"
+                        >
+                          <i class="fas fa-desktop text-orange-400 text-lg"></i>
+                          <div
+                            class="text-[10px] text-orange-300 font-semibold mt-1"
+                          >
+                            Optiplex 3050
+                          </div>
+                          <div class="text-[8px] text-orange-400">Node 1</div>
+                        </div>
+                        <div
+                          class="bg-orange-500/20 border border-orange-400/30 rounded-lg p-2 text-center"
+                        >
+                          <i class="fas fa-desktop text-orange-400 text-lg"></i>
+                          <div
+                            class="text-[10px] text-orange-300 font-semibold mt-1"
+                          >
+                            Optiplex 3050
+                          </div>
+                          <div class="text-[8px] text-orange-400">Node 2</div>
+                        </div>
+                        <div
+                          class="bg-red-500/20 border border-red-400/30 rounded-lg p-2 text-center"
+                        >
+                          <i class="fas fa-server text-red-400 text-lg"></i>
+                          <div
+                            class="text-[10px] text-red-300 font-semibold mt-1"
+                          >
+                            HP Gen8
+                          </div>
+                          <div class="text-[8px] text-red-400">Backup</div>
+                        </div>
+                      </div>
+
+                      <!-- VMs -->
+                      <div
+                        class="bg-neutral-800/50 border border-neutral-700 rounded-lg p-3"
+                      >
+                        <div
+                          class="text-[10px] text-neutral-400 font-semibold mb-2 text-center"
+                        >
+                          Virtual Machines
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                          <div class="flex items-center gap-1">
+                            <i
+                              class="fas fa-circle text-green-400 text-[6px]"
+                            ></i>
+                            <span class="text-[9px] text-neutral-300"
+                              >Home Assistant</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1">
+                            <i
+                              class="fas fa-circle text-green-400 text-[6px]"
+                            ></i>
+                            <span class="text-[9px] text-neutral-300"
+                              >Docker Host</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1">
+                            <i
+                              class="fas fa-circle text-green-400 text-[6px]"
+                            ></i>
+                            <span class="text-[9px] text-neutral-300"
+                              >Grafana</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1">
+                            <i
+                              class="fas fa-circle text-green-400 text-[6px]"
+                            ></i>
+                            <span class="text-[9px] text-neutral-300"
+                              >Dev/Test</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-4 flex gap-2 flex-wrap justify-center">
+                      <span
+                        class="tech-tag px-2 py-1 rounded-full text-xs text-orange-300 bg-orange-950/40 border border-orange-400/20"
+                        >Proxmox VE</span
+                      >
+                      <span
+                        class="tech-tag px-2 py-1 rounded-full text-xs text-red-300 bg-red-950/40 border border-red-400/20"
+                        >PBS</span
+                      >
+                      <span
+                        class="tech-tag px-2 py-1 rounded-full text-xs text-blue-300 bg-blue-950/40 border border-blue-400/20"
+                        >Ansible</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="text-center lg:text-left space-y-8 order-1 lg:order-2">
+          <!-- Badge -->
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-full backdrop-blur-sm"
+          >
+            <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium text-orange-400"
+              >Infrastructure Production • Auto-hébergement</span
+            >
+          </div>
+
+          <!-- Title -->
+          <div class="space-y-4">
+            <h1
+              class="text-5xl lg:text-7xl font-black tracking-tight leading-tight gradient-text-animated"
+            >
+              Infrastructure Proxmox
+            </h1>
+            <div
+              class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mx-auto lg:mx-0"
+            ></div>
+          </div>
+
+          <!-- Description -->
+          <div class="space-y-4 text-lg leading-relaxed max-w-2xl">
+            <p class="text-neutral-300">
+              Cluster de virtualisation haute disponibilité basé sur
+              <span class="text-orange-400 font-semibold">Proxmox VE</span>,
+              composé de <strong>3 nœuds</strong> hébergeant
+              <strong>13 VMs</strong>
+              pour services auto-hébergés et environnements de développement.
+            </p>
+            <p class="text-neutral-300">
+              Infrastructure pensée pour la
+              <span class="text-red-400 font-semibold">fiabilité</span>, l'<span
+                class="text-orange-400 font-semibold"
+                >évolutivité</span
+              >
+              et l'<span class="text-blue-400 font-semibold">autonomie</span>,
+              avec monitoring <strong>Grafana/Prometheus</strong> et
+              orchestration <strong>Kestra</strong>.
+            </p>
+            <p class="text-orange-400 font-medium">
+              ✅ 13 VMs - 2 PBS - Monitoring temps réel - Orchestration Kestra
+            </p>
+          </div>
+
+          <!-- Actions -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6"
+          >
+            <a
+              href="#architecture"
+              class="group px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 rounded-xl font-semibold text-white flex items-center gap-3 hover:shadow-lg hover:shadow-orange-500/20 transition-all"
+            >
+              <i class="fas fa-server text-xl"></i>
+              <span>Architecture</span>
+            </a>
+            <a
+              href="#vms"
+              class="group px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3 hover:border-white/40 transition-all"
+            >
+              <i class="fas fa-cube text-lg"></i>
+              <span>VMs & Services</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HARDWARE ARCHITECTURE ========== -->
+    <section id="architecture" class="relative py-20 fade-in">
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-20 right-20 w-64 h-64 border border-orange-500/20 rounded-full"
+        ></div>
+        <div
+          class="absolute bottom-20 left-20 w-48 h-48 border border-red-500/20 rounded-full"
+        ></div>
+      </div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-server text-orange-400"></i>
+            <span class="text-sm font-medium text-orange-400"
+              >Infrastructure & Équipements</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-orange-200 to-white bg-clip-text text-transparent"
+              >Architecture
+            </span>
+            <span
+              class="bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 bg-clip-text text-transparent"
+              >Matérielle</span
+            >
+          </h2>
+          <p class="text-neutral-400 text-lg max-w-3xl mx-auto">
+            Cluster Proxmox VE haute disponibilité avec 3 nœuds physiques
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Nœuds Proxmox -->
+          <div
+            class="bg-gradient-to-br from-orange-500/5 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-orange-400/40 transition-all duration-300 group"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-desktop text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">
+              2× Dell Optiplex 3050
+            </h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span
+                  ><strong>Intel Core i5-7500T</strong> - 4 cœurs @ 2.7GHz</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span
+                  ><strong>16GB + 32GB DDR4</strong> - Configuration mixte</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span><strong>SSD 250GB</strong> - Stockage local rapide</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span
+                  ><strong>1× Gigabit Ethernet</strong> - Connexion
+                  cluster</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-orange-400 mt-1"></i>
+                <span><strong>Rôle</strong> - Nœuds principaux du cluster</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Serveur de Backup -->
+          <div
+            class="bg-gradient-to-br from-red-500/5 to-red-600/5 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-red-400/40 transition-all duration-300 group"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-hdd text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">
+              HP ProLiant MicroServer Gen8
+            </h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-red-400 mt-1"></i>
+                <span
+                  ><strong>Intel Xeon E3-1265L V2</strong> - 4 cœurs @
+                  2.5GHz</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-red-400 mt-1"></i>
+                <span><strong>16GB ECC</strong> - Mémoire serveur</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-red-400 mt-1"></i>
+                <span
+                  ><strong>2× 1TB + 1× 4TB HDD</strong> - Stockage mixte</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-red-400 mt-1"></i>
+                <span><strong>RAID logiciel</strong> - Protection données</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-red-400 mt-1"></i>
+                <span
+                  ><strong>Rôle</strong> - Proxmox Backup Server +
+                  Stockage</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Interface Proxmox - AVEC IMAGE -->
+          <div
+            class="bg-gradient-to-br from-blue-500/5 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 group md:col-span-2"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-desktop text-white text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-white">
+                  Interface Cluster Proxmox
+                </h3>
+                <p class="text-neutral-400 text-sm">
+                  Vue d'ensemble du cluster 3 nœuds
+                </p>
+              </div>
+            </div>
+
+            <!-- IMAGE - Screenshot Proxmox VE -->
+            <div
+              class="rounded-xl overflow-hidden border border-neutral-700 mb-4"
+            >
+              <img
+                src="assets/images/proxmox-cluster.png"
+                alt="Interface Proxmox VE - Vue du cluster"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <ul class="space-y-2 text-neutral-300 text-sm">
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-blue-400 mt-1 text-xs"></i>
+                  <span><strong>3 nœuds</strong> - Haute disponibilité</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-blue-400 mt-1 text-xs"></i>
+                  <span><strong>13 VMs</strong> - Services actifs</span>
+                </li>
+              </ul>
+              <ul class="space-y-2 text-neutral-300 text-sm">
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-blue-400 mt-1 text-xs"></i>
+                  <span
+                    ><strong>Migration à chaud</strong> - Sans
+                    interruption</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-blue-400 mt-1 text-xs"></i>
+                  <span
+                    ><strong>Interface web</strong> - Gestion centralisée</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Capacités totales -->
+          <div
+            class="bg-gradient-to-br from-green-500/5 to-green-600/5 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300 group"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-chart-line text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">
+              Capacités Totales
+            </h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span><strong>64GB RAM</strong> - 32+16+16 GB cluster</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span><strong>12 cœurs CPU</strong> - Puissance de calcul</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span><strong>500GB SSD</strong> - Stockage rapide VMs</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-green-400 mt-1"></i>
+                <span><strong>6TB HDD</strong> - Sauvegardes et archives</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SOFTWARE STACK ========== -->
+    <section id="software" class="relative py-20">
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-code text-purple-400"></i>
+            <span class="text-sm font-medium text-purple-400"
+              >Logiciels & Technologies</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent"
+              >Infrastructure
+            </span>
+            <span
+              class="bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+              >Logicielle</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Hyperviseur -->
+          <div
+            class="bg-gradient-to-br from-orange-500/5 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-orange-400/40 transition-all duration-300"
+          >
+            <div class="text-center mb-6">
+              <i class="fas fa-server text-orange-400 text-4xl mb-3"></i>
+              <h3 class="text-xl font-bold text-white">Hyperviseur</h3>
+            </div>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-orange-400"></i>
+                <span>Proxmox VE 8.x</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-orange-400"></i>
+                <span>Cluster 3 nœuds</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-orange-400"></i>
+                <span>Migration à chaud</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Sauvegardes -->
+          <div
+            class="bg-gradient-to-br from-red-500/5 to-red-600/5 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-red-400/40 transition-all duration-300"
+          >
+            <div class="text-center mb-6">
+              <i class="fas fa-database text-red-400 text-4xl mb-3"></i>
+              <h3 class="text-xl font-bold text-white">Sauvegardes</h3>
+            </div>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-red-400"></i>
+                <span>Proxmox Backup Server</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-red-400"></i>
+                <span>Sauvegardes quotidiennes</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-red-400"></i>
+                <span>Snapshots programmés</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-red-400"></i>
+                <span>Déduplication & compression</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Systèmes invités -->
+          <div
+            class="bg-gradient-to-br from-blue-500/5 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300"
+          >
+            <div class="text-center mb-6">
+              <i class="fas fa-cube text-blue-400 text-4xl mb-3"></i>
+              <h3 class="text-xl font-bold text-white">Systèmes Invités</h3>
+            </div>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-blue-400"></i>
+                <span>9× Ubuntu Server (Docker)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-blue-400"></i>
+                <span>1× Home Assistant OS</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-blue-400"></i>
+                <span>1× OpenMediaVault</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-angle-right text-blue-400"></i>
+                <span>2× Proxmox Backup Server</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== VMS & SERVICES ========== -->
+    <section id="vms" class="relative py-20">
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-cubes text-green-400"></i>
+            <span class="text-sm font-medium text-green-400"
+              >Machines Virtuelles & Services</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-green-200 to-white bg-clip-text text-transparent"
+              >Services
+            </span>
+            <span
+              class="bg-gradient-to-r from-green-400 via-emerald-400 to-green-400 bg-clip-text text-transparent"
+              >Hébergés</span
+            >
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Dashboard Grafana VMs - AVEC IMAGE -->
+          <div
+            class="bg-gradient-to-br from-cyan-500/5 to-blue-500/5 border border-cyan-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-chart-area text-white text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-white">
+                  Monitoring VMs - Dashboard Grafana
+                </h3>
+                <p class="text-neutral-400 text-sm">
+                  Métriques détaillées des 13 machines virtuelles
+                </p>
+              </div>
+            </div>
+
+            <!-- IMAGE GRAFANA VMs -->
+            <div
+              class="rounded-xl overflow-hidden border border-neutral-700 mb-6"
+            >
+              <img
+                src="assets/images/grafana-vms.png"
+                alt="Dashboard Grafana - Monitoring VMs"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-circle text-green-400 text-xs"></i>
+                  <span class="text-neutral-300 text-sm"
+                    ><strong>Performance</strong> - CPU, RAM, I/O</span
+                  >
+                </div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-circle text-blue-400 text-xs"></i>
+                  <span class="text-neutral-300 text-sm"
+                    ><strong>Resources</strong> - Utilisation temps réel</span
+                  >
+                </div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-circle text-cyan-400 text-xs"></i>
+                  <span class="text-neutral-300 text-sm"
+                    ><strong>Health</strong> - État des services</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Home Assistant -->
+          <div
+            class="bg-gradient-to-br from-blue-500/5 to-blue-600/5 border border-blue-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-home text-white text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Home Assistant
+                </h3>
+                <p class="text-neutral-400 text-sm mb-3">
+                  VM dédiée pour l'automatisation domotique et supervision de
+                  l'aquarium
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-blue-950/40 border border-blue-400/20 rounded-full text-xs text-blue-300"
+                    >VM 4GB RAM</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-blue-950/40 border border-blue-400/20 rounded-full text-xs text-blue-300"
+                    >HASS OS</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-blue-950/40 border border-blue-400/20 rounded-full text-xs text-blue-300"
+                    >Auto-démarrage</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Docker Host - Ubuntu VMs -->
+          <div
+            class="bg-gradient-to-br from-cyan-500/5 to-cyan-600/5 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fab fa-docker text-white text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  9× Ubuntu Docker Hosts
+                </h3>
+                <p class="text-neutral-400 text-sm mb-3">
+                  VMs Ubuntu hébergeant conteneurs Docker (Grafana, Prometheus,
+                  services web)
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-cyan-950/40 border border-cyan-400/20 rounded-full text-xs text-cyan-300"
+                    >Ubuntu 22.04</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-cyan-950/40 border border-cyan-400/20 rounded-full text-xs text-cyan-300"
+                    >Docker Compose</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-cyan-950/40 border border-cyan-400/20 rounded-full text-xs text-cyan-300"
+                    >Monitoring</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OpenMediaVault -->
+          <div
+            class="bg-gradient-to-br from-green-500/5 to-green-600/5 border border-green-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-hdd text-white text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  OpenMediaVault
+                </h3>
+                <p class="text-neutral-400 text-sm mb-3">
+                  VM NAS pour gestion centralisée du stockage et partages réseau
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-green-950/40 border border-green-400/20 rounded-full text-xs text-green-300"
+                    >NAS Software</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-950/40 border border-green-400/20 rounded-full text-xs text-green-300"
+                    >SMB/NFS</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-green-950/40 border border-green-400/20 rounded-full text-xs text-green-300"
+                    >Stockage centralisé</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proxmox Backup VMs -->
+          <div
+            class="bg-gradient-to-br from-red-500/5 to-red-600/5 border border-red-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-red-400/40 transition-all duration-300"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-database text-white text-xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  2× Proxmox Backup Server
+                </h3>
+                <p class="text-neutral-400 text-sm mb-3">
+                  VMs dédiées aux sauvegardes avec déduplication et compression
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-red-950/40 border border-red-400/20 rounded-full text-xs text-red-300"
+                    >PBS</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-red-950/40 border border-red-400/20 rounded-full text-xs text-red-300"
+                    >Déduplication</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-red-950/40 border border-red-400/20 rounded-full text-xs text-red-300"
+                    >Automatisé</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== AUTOMATION & MONITORING ========== -->
+    <section id="automation" class="relative py-20">
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border border-yellow-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-robot text-yellow-400"></i>
+            <span class="text-sm font-medium text-yellow-400"
+              >Automatisation & Supervision</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent"
+              >Automatisation
+            </span>
+            <span
+              class="bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-400 bg-clip-text text-transparent"
+              >& Monitoring</span
+            >
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Proxmox Backup Server - AVEC IMAGE -->
+          <div
+            class="bg-gradient-to-br from-red-500/5 to-pink-500/5 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-red-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-600 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-database text-white text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-white">
+                  Proxmox Backup Server - Sauvegardes Automatiques
+                </h3>
+                <p class="text-neutral-400 text-sm">
+                  Gestion centralisée des backups avec déduplication
+                </p>
+              </div>
+            </div>
+
+            <!-- IMAGE PBS -->
+            <div
+              class="rounded-xl overflow-hidden border border-neutral-700 mb-6"
+            >
+              <img
+                src="assets/images/proxmox-backup.png"
+                alt="Proxmox Backup Server - Interface de sauvegarde"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <ul class="space-y-3 text-neutral-300">
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-check text-red-400 mt-1"></i>
+                  <span>Sauvegardes quotidiennes via <strong>PBS</strong></span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-check text-red-400 mt-1"></i>
+                  <span>Snapshots programmés pour restauration rapide</span>
+                </li>
+              </ul>
+              <ul class="space-y-3 text-neutral-300">
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-check text-red-400 mt-1"></i>
+                  <span>Rétention personnalisée par VM</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fas fa-check text-red-400 mt-1"></i>
+                  <span>Déduplication & compression automatique</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Dashboard Grafana Proxmox - AVEC IMAGE -->
+            <div
+              class="bg-gradient-to-br from-amber-500/5 to-orange-500/5 border border-amber-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-amber-400/40 transition-all duration-300"
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-xl flex items-center justify-center"
+                >
+                  <i class="fas fa-chart-line text-white text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-white">
+                    Monitoring Proxmox - Dashboard Grafana
+                  </h3>
+                  <p class="text-neutral-400 text-sm">
+                    Métriques des 3 nœuds du cluster
+                  </p>
+                </div>
+              </div>
+
+              <!-- IMAGE GRAFANA PROXMOX -->
+              <div
+                class="rounded-xl overflow-hidden border border-neutral-700 mb-6"
+              >
+                <img
+                  src="assets/images/grafana-proxmox.png"
+                  alt="Dashboard Grafana - Monitoring nœuds Proxmox"
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <ul class="space-y-3 text-neutral-300">
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-amber-400 mt-1"></i>
+                    <span
+                      >Monitoring <strong>Grafana</strong> &
+                      <strong>Prometheus</strong></span
+                    >
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-amber-400 mt-1"></i>
+                    <span>Métriques nœuds en temps réel</span>
+                  </li>
+                </ul>
+                <ul class="space-y-3 text-neutral-300">
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-amber-400 mt-1"></i>
+                    <span>CPU, RAM, stockage, réseau</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-amber-400 mt-1"></i>
+                    <span>Alertes automatiques critiques</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Kestra Orchestration - AVEC IMAGE -->
+            <div
+              class="bg-gradient-to-br from-green-500/5 to-emerald-500/5 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300"
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center"
+                >
+                  <i class="fas fa-project-diagram text-white text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-white">
+                    Kestra - Orchestration & Automatisation
+                  </h3>
+                  <p class="text-neutral-400 text-sm">
+                    Workflows automatisés pour gestion des VMs
+                  </p>
+                </div>
+              </div>
+
+              <!-- IMAGE KESTRA -->
+              <div
+                class="rounded-xl overflow-hidden border border-neutral-700 mb-6"
+              >
+                <img
+                  src="assets/images/kestra-flows.png"
+                  alt="Kestra - Workflows d'orchestration"
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <ul class="space-y-3 text-neutral-300">
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span><strong>Kestra</strong> pour tâches récurrentes</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Scripts <strong>Bash</strong> automatisés</span>
+                  </li>
+                </ul>
+                <ul class="space-y-3 text-neutral-300">
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Workflows programmés (backups, cleanups)</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Orchestration multi-VMs coordonnée</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section class="relative py-20">
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 rounded-full backdrop-blur-sm mb-6"
+          >
+            <i class="fas fa-graduation-cap text-indigo-400"></i>
+            <span class="text-sm font-medium text-indigo-400"
+              >Compétences Techniques</span
+            >
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-white via-indigo-200 to-white bg-clip-text text-transparent"
+              >Compétences
+            </span>
+            <span
+              class="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent"
+              >Mises en Œuvre</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Skill 1 -->
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-orange-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <i class="fas fa-server text-orange-400 text-xl"></i>
+              <h3 class="text-lg font-bold text-white">
+                Virtualisation & Clustering
+              </h3>
+            </div>
+            <p class="text-neutral-400 text-sm">
+              Configuration et maintenance de cluster Proxmox VE haute
+              disponibilité
+            </p>
+          </div>
+
+          <!-- Skill 2 -->
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-red-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <i class="fas fa-hdd text-red-400 text-xl"></i>
+              <h3 class="text-lg font-bold text-white">Gestion du Stockage</h3>
+            </div>
+            <p class="text-neutral-400 text-sm">
+              Optimisation SSD/HDD, RAID logiciel, planification des ressources
+            </p>
+          </div>
+
+          <!-- Skill 3 -->
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <i class="fas fa-robot text-green-400 text-xl"></i>
+              <h3 class="text-lg font-bold text-white">
+                Orchestration & Automatisation
+              </h3>
+            </div>
+            <p class="text-neutral-400 text-sm">
+              Workflows Kestra et scripts Bash pour tâches récurrentes sur VMs
+            </p>
+          </div>
+
+          <!-- Skill 4 -->
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-yellow-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <i class="fas fa-chart-line text-yellow-400 text-xl"></i>
+              <h3 class="text-lg font-bold text-white">
+                Supervision & Monitoring
+              </h3>
+            </div>
+            <p class="text-neutral-400 text-sm">
+              Monitoring Grafana/Prometheus des nœuds Proxmox et VMs temps réel
+            </p>
+          </div>
+
+          <!-- Skill 5 -->
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <i class="fas fa-database text-blue-400 text-xl"></i>
+              <h3 class="text-lg font-bold text-white">
+                Sauvegarde & Restauration
+              </h3>
+            </div>
+            <p class="text-neutral-400 text-sm">
+              Configuration Proxmox Backup Server et stratégies de rétention
+            </p>
+          </div>
+
+          <!-- Skill 6 -->
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-300"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <i class="fas fa-home text-purple-400 text-xl"></i>
+              <h3 class="text-lg font-bold text-white">Auto-Hébergement</h3>
+            </div>
+            <p class="text-neutral-400 text-sm">
+              Hébergement et maintenance de services auto-hébergés sécurisés
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECT ACTIONS ========== -->
+    <section class="relative py-20">
+      <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <div
+          class="bg-gradient-to-br from-orange-500/5 to-red-500/5 border border-orange-500/20 rounded-3xl p-12 backdrop-blur-sm"
+        >
+          <h2 class="text-4xl font-black mb-6">
+            <span
+              class="bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 bg-clip-text text-transparent"
+              >Infrastructure en Production</span
+            >
+          </h2>
+          <p class="text-neutral-300 text-lg mb-8 max-w-2xl mx-auto">
+            Cluster Proxmox VE fiable et évolutif, servant de base pour
+            l'hébergement de mes services personnels et projets de
+            développement.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a
+              href="projects.html"
+              class="px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 rounded-xl font-semibold text-white flex items-center gap-3 hover:shadow-lg hover:shadow-orange-500/20 transition-all"
+            >
+              <i class="fas fa-arrow-left"></i>
+              <span>Retour aux Projets</span>
+            </a>
+            <a
+              href="contact.html"
+              class="px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3 hover:border-white/40 transition-all"
+            >
+              <i class="fas fa-envelope"></i>
+              <span>Me Contacter</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer
+      class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl"
+    >
+      <!-- Social links -->
+      <div class="flex justify-center items-center gap-6 mb-4">
+        <a
+          href="mailto:enzo.gaggiotti@epitech.eu"
+          class="hover:text-white transition"
+          title="Email"
+          aria-label="Email"
+        >
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
+        <a
+          href="https://github.com/enzogagg"
+          class="hover:text-white transition"
+          title="GitHub"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
+          class="hover:text-white transition"
+          title="LinkedIn"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+      </div>
+
+      <!-- Copyright notice -->
+      <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/visual-effects.js"></script>
+    <script src="assets/js/module-loader.js"></script>
+    <script src="assets/js/burger.js"></script>
+    <script src="assets/js/loader.js"></script>
+  </body>
+</html>
