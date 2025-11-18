@@ -151,3 +151,54 @@ docker compose logs -f backend
 - **Code Quality**: All linting issues resolved (100% compliance), golangci-lint integrated
 
 **License**: MIT
+
+### What's New (18 Nov 2025)
+
+Recent frontend improvements to enhance performance, security and user experience:
+
+- **Self-hosted FontAwesome**: `all.min.css` and the webfonts are now included locally under `frontend/assets/fonts/fontawesome/` to remove external requests to `cdnjs.cloudflare.com` (prevents third-party cookies and Lighthouse warnings).
+- **Local loader CSS**: `frontend/assets/css/local-fontawesome.css` now imports `../fonts/fontawesome/css/all.min.css` (and the file was cleaned of accidental Markdown fences).
+- **Font preload**: added `<link rel="preload">` for `fa-solid-900.woff2`, `fa-regular-400.woff2` and `fa-brands-400.woff2` on affected pages (e.g. `projects.html`) to reduce layout shifts during render.
+- **Critical icons as inline SVG**: main project card icons (server, fish, globe) were replaced with inline SVGs in `frontend/projects.html` to guarantee stable positioning before font load.
+- **JS fix — re-apply active filter**: `frontend/assets/js/modules/projects.js` now re-applies the active filter immediately after initialization (simulates a click) to force a layout recalculation and avoid mispositioning observed prior to user interaction.
+- **Meta charset & head cleanup**: Several HTML files were cleaned up to place `<meta charset>` early and avoid parsing issues.
+- **HTML structure fixes**: `proxmox-project.html` and other pages received structural corrections (duplicate `<!doctype>`/`<head>` removed).
+- **CSP update**: server-side Content-Security-Policy configuration was updated to remove `cdnjs.cloudflare.com` from allowed sources (consistent with self-hosting assets).
+
+Example modified files:
+
+- `frontend/assets/fonts/fontawesome/css/all.min.css`
+- `frontend/assets/fonts/fontawesome/webfonts/*` (woff2/ttf)
+- `frontend/assets/css/local-fontawesome.css`
+- `frontend/projects.html` (inline SVGs + preload)
+- `frontend/assets/css/modules/cards.css` (adjusted `.project-icon`)
+- `frontend/assets/js/modules/projects.js` (re-apply filter)
+- `frontend/nginx.conf` (CSP update)
+
+Checks & local testing
+
+1. Start a local server from the `frontend` folder:
+
+```bash
+cd frontend
+python3 -m http.server 8000
+```
+
+2. Open `http://localhost:8000/projects.html` and perform a hard reload (Cmd+Shift+R). Verify:
+- card icons remain stable on load (no layout jump),
+- webfonts are preloaded (check Network tab),
+- no Lighthouse warnings about third-party cookies from `cdnjs.cloudflare.com`.
+
+Suggested commit
+
+```bash
+git add frontend/assets/fonts/fontawesome frontend/assets/css/local-fontawesome.css frontend/projects.html frontend/assets/js/modules/projects.js
+git commit -m "feat(frontend): self-host FontAwesome, inline SVG icons, preload fonts and fix projects layout"
+git push
+```
+
+Notes & options
+
+- If you want to remove all external dependencies, I can also self-host the `Inter` font (currently loaded via Google Fonts). Would you like me to do that?
+- For an extra mitigation against layout shifts, we can add `font-display: swap` in `all.min.css` (I can apply that automatically).
+

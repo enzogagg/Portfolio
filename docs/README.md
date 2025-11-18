@@ -60,3 +60,10 @@ All documentation in this project follows these guidelines:
 - **CORS Configuration**: Backend adjusted to allow local development origins
 - **Documentation Reorganization**: All docs now properly organized under `docs/backend/` and `docs/frontend/`
 - **Code Quality**: All linting issues resolved (100% compliance), golangci-lint integrated
+
+### Frontend Enhancements (18 Nov 2025)
+
+- **Self-hosted FontAwesome**: FontAwesome CSS and webfonts are now hosted locally under `frontend/assets/fonts/fontawesome/` to remove CDN requests and related Lighthouse warnings.
+- **Font preload & inline SVGs**: Key webfonts are preloaded on important pages and critical project card icons were converted to inline SVGs to eliminate layout shifts.
+- **JS layout fix**: The projects filtering module now re-applies the active filter after initialization to force a layout recalculation and avoid initial mispositioning.
+- **Security**: CSP updated to remove references to `cdnjs.cloudflare.com` where appropriate.

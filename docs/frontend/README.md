@@ -126,18 +126,11 @@ assets/js/modules/
 
 ## 🔧 Configuration Files
 
-- `.eslintrc.js` - JavaScript linting rules (35 rules)
-- `.stylelintrc.json` - CSS linting rules (15 rules)
-- `.prettierrc.json` - Code formatting rules
-- `package.json` - Dependencies and scripts
 
 ## 🚀 Deployment
 
 This is a static website. Deploy the `frontend/` directory to:
 
-- Nginx server (recommended)
-- Apache HTTP Server
-- Any static file hosting
 
 **Production deployment**:
 
@@ -152,8 +145,22 @@ docker run -d -p 80:80 \
 
 MIT License - See LICENSE file for details
 
----
 
 **Version**: 2.1.0  
-**Last Updated**: November 5, 2025  
+**Last Updated**: November 18, 2025  
 **Author**: Enzo Gaggiotti
+
+## 🔔 Recent Enhancements
+## 🔔 Recent Enhancements (18 Nov 2025)
+
+Recent frontend improvements to improve performance, security and layout stability:
+
+- **Self-hosted FontAwesome**: FontAwesome CSS and webfonts were moved to `frontend/assets/fonts/fontawesome/` to remove external CDN requests and prevent third-party cookie warnings.
+- **Local loader CSS**: `frontend/assets/css/local-fontawesome.css` imports the local `all.min.css` and acts as a drop-in replacement for previous CDN links.
+- **Preload webfonts**: Key FontAwesome woff2 files are preloaded on important pages (e.g. `projects.html`) to reduce layout shifts.
+- **Inline critical icons**: Main project card icons (server, fish, globe) were converted to inline SVG to avoid layout jumps while fonts load.
+- **JS fix for layout**: `frontend/assets/js/modules/projects.js` re-applies the active filter after initialization to force layout recalculation that previously only happened after user interaction.
+- **CSP update & HTML cleanup**: Content-Security-Policy updated and HTML files cleaned (early `<meta charset>`, removed duplicated head/doctypes).
+
+These changes are documented across the frontend docs and READMEs under `docs/frontend/`.
+See `../ENHANCEMENTS.md` for the latest frontend improvements (self-hosted FontAwesome, font preloads, inline SVG icons for project cards, JS layout fixes, and CSP updates).

@@ -50,8 +50,14 @@ assets/css/
 ## 🔧 Dependencies
 
 - **Tailwind CSS** (via CDN) - Utility-first framework
-- **FontAwesome 6.4.0** - Icon library
-- **Inter Font** (Google Fonts) - Typography
+- **FontAwesome** - now self-hosted under `frontend/assets/fonts/fontawesome/` (previously served from CDN)
+- **Inter Font** - currently loaded via Google Fonts; consider self-hosting for full offline/privacy control
 
 **Author**: Enzo Gaggiotti  
-**Last Updated**: November 5, 2025
+**Last Updated**: November 18, 2025
+
+## Recent frontend CSS-related enhancements
+
+- FontAwesome CSS and webfonts were moved to local assets to remove third-party requests and eliminate Lighthouse third-party cookie warnings.
+- A small loader CSS (`frontend/assets/css/local-fontawesome.css`) was added to import the local FontAwesome bundle and act as a drop-in replacement for previous CDN links.
+- Preload hints for the FontAwesome webfonts (woff2) were added on key pages to reduce Cumulative Layout Shift (CLS).

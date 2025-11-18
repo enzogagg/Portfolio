@@ -48,5 +48,11 @@ assets/js/
 - Automatic protocol detection (file:// vs http/https)
 - Programmatic API and debugging hooks
 
+## Recent frontend JS updates (18 Nov 2025)
+
+- `projects.js` now re-applies the active filter after initialization to force a layout recalculation and prevent visual mispositioning that previously only corrected after user interaction.
+- Critical project card icons were converted to inline SVG in `projects.html` to avoid layout shifts while fonts load.
+- Font preload hints were added to relevant pages to ensure webfonts are fetched early and reduce rendering jitter.
+
 **Author**: Enzo Gaggiotti  
 **Last Updated**: November 5, 2025
