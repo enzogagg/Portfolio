@@ -15,7 +15,32 @@
       rel="stylesheet"
     />
     <!-- Local FontAwesome (place assets in assets/fonts/fontawesome/) -->
-    <link rel="stylesheet" href="assets/fonts/fontawesome/css/local-fontawesome.css" />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome/css/local-fontawesome.css"
+    />
+    <!-- Preload local FontAwesome webfonts to reduce layout shift on icon render -->
+    <link
+      rel="preload"
+      href="assets/fonts/fontawesome/webfonts/fa-solid-900.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/fontawesome/webfonts/fa-regular-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/fontawesome/webfonts/fa-brands-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- ========== CSS FRAMEWORKS & STYLES ========== -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -214,8 +239,20 @@
             <div class="project-icon-container">
               <div class="project-icon-bg infrastructure">
                 <!-- Inline SVG network icon (local, avoids FontAwesome dependency) -->
-                <svg class="project-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  class="project-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
                     <circle cx="12" cy="6" r="2" />
                     <circle cx="5" cy="18" r="2" />
                     <circle cx="19" cy="18" r="2" />

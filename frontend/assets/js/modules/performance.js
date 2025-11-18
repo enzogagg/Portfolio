@@ -211,17 +211,20 @@ export class PerformanceManager {
     try {
       if (document.hidden) {
         // Pause heavy observers when tab is hidden
-        if (this.longTaskObserver && typeof this.longTaskObserver.disconnect === 'function') {
+        if (
+          this.longTaskObserver &&
+          typeof this.longTaskObserver.disconnect === "function"
+        ) {
           this.longTaskObserver.disconnect();
         }
-        console.info('Performance: page hidden — observers paused');
+        console.info("Performance: page hidden — observers paused");
       } else {
         // Resume monitoring when visible
         this.monitorLongTasks();
-        console.info('Performance: page visible — observers resumed');
+        console.info("Performance: page visible — observers resumed");
       }
     } catch (err) {
-      console.warn('Performance.handleVisibilityChange error:', err);
+      console.warn("Performance.handleVisibilityChange error:", err);
     }
   }
 
