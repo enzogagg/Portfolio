@@ -105,6 +105,20 @@ export class ProjectsFilter {
       this.setupFilterButtons();
       this.isInitialized = true;
 
+      // Force a layout recalculation and re-apply the active filter after
+      // initialization to avoid initial layout shift that users see until
+      // they interact with filter buttons. This simulates the effect of a
+      // user click without changing UI state.
+      setTimeout(() => {
+        try {
+          const active = this.getActiveFilter();
+          console.info(`🔁 Re-applying active filter: ${active}`);
+          this.filterProjects(active);
+        } catch (err) {
+          console.warn("⚠️ Failed to re-apply active filter:", err);
+        }
+      }, 50);
+
       initState.markInitialized("projectCards");
 
       console.info("✅ Projects page functionality initialized");
