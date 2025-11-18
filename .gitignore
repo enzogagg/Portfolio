@@ -73,7 +73,6 @@ test-results/
 playwright-report/
 junit.xml
 *.lcov
-*.xml
 
 # Go
 *.exe
