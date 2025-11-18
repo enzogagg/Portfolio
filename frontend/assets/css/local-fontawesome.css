@@ -1,8 +1,2 @@
-/* Local loader kept at `frontend/assets/css/local-fontawesome.css` to match existing HTML
-   references. This imports the real `all.min.css` from the fontawesome folder.
-*/
 @import url("../fonts/fontawesome/css/all.min.css");
-
-/* Optional: force font-display swap for better performance (if needed, uncomment and adjust):
-   @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
-*/
+@import url("../fonts/fontawesome/css/all.min.css");
