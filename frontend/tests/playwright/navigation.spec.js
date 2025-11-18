@@ -86,9 +86,10 @@ test.describe("Navigation - Mobile", () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto("/index.html");
+    await waitForPageReady(page);
   });
 
-  test("should display hamburger button on mobile", async ({ page }) => {
+  test("should display burger menu on mobile", async ({ page }) => {
     const burgerMenu = page.locator(
       '.burger-menu, .hamburger, button[aria-label*="menu" i]',
     );
@@ -99,11 +100,20 @@ test.describe("Navigation - Mobile", () => {
   });
 
   test("should open mobile menu on click", async ({ page }) => {
+    // Wait for burger menu to be available
+    await page.waitForSelector(".burger-menu, .hamburger", { timeout: 5000 });
     const burgerMenu = page.locator(".burger-menu, .hamburger").first();
 
     if ((await burgerMenu.count()) > 0) {
       await burgerMenu.click();
-      await page.waitForTimeout(500);
+      
+      // Wait for the mobile menu to have the active class
+      await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", { 
+        timeout: 5000,
+        state: 'attached'
+      });
+      
+      await page.waitForTimeout(300);
 
       // Check that mobile menu becomes visible (has active class or is displayed)
       const mobileMenu = page.locator(
@@ -115,13 +125,21 @@ test.describe("Navigation - Mobile", () => {
   });
 
   test("should close mobile menu after navigation", async ({ page }) => {
+    // Wait for burger menu to be available
+    await page.waitForSelector(".burger-menu, .hamburger", { timeout: 5000 });
     const burgerMenu = page.locator(".burger-menu, .hamburger").first();
 
     if ((await burgerMenu.count()) > 0) {
       // Open menu
       await burgerMenu.click();
-      await page.waitForTimeout(300);
+      await page.waitForTimeout(500);
 
+      // Wait for the mobile menu to be visible
+      await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", { timeout: 5000 });
+      
+      // Wait for navigation link to be visible
+      await page.waitForSelector(".mobile-menu a:visible, #mobile-menu a:visible", { timeout: 5000 });
+      
       // Click on a navigation link inside the mobile menu
       const navLink = page.locator(".mobile-menu a, #mobile-menu a").first();
       if ((await navLink.count()) > 0) {
