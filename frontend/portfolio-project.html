@@ -638,84 +638,535 @@
           </div>
 
           <!-- Architecture -->
-          <div class="mt-12 glass-card">
-            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
-              <i class="fas fa-sitemap text-purple-400"></i>
-              <span>Architecture du projet</span>
-            </h3>
-            <div
-              class="glass-card bg-black/30 rounded-xl p-6 font-mono text-sm overflow-x-auto"
-            >
-              <pre class="text-green-400">
-portfolio/
-├── frontend/                      # Application web
-│   ├── index.html                 # Page d'accueil
-│   ├── projects.html              # Liste des projets
-│   ├── about.html                 # À propos
-│   ├── contact.html               # Contact (formulaire API)
-│   ├── aquarium-project.html      # Détail projet aquarium
-│   ├── portfolio-project.html     # Détail projet portfolio
-│   ├── Dockerfile                 # Image Docker Nginx
-│   ├── nginx.conf                 # Configuration serveur
-│   └── assets/
-│       ├── css/
-│       │   ├── main.css           # Styles principaux
-│       │   └── modules/           # CSS modulaire (10 fichiers)
-│       ├── js/
-│       │   ├── app.js             # Point d'entrée ES6
-│       │   ├── standalone.js      # Version sans modules
-│       │   └── modules/           # JS modulaire (contact, animations, etc.)
-│       ├── fonts/
-│       │   └── fontawesome/       # FontAwesome self-hosted
-│       └── images/
-│           └── *.png              # Assets graphiques
-├── backend/                       # API Go
-│   ├── main.go                    # Entrypoint serveur
-│   ├── api/                       # Routes HTTP (handlers)
-│   ├── internal/
-│   │   ├── services/              # Logique métier (SMTP, etc.)
-│   │   ├── repository/            # Accès DB (pgxpool)
-│   │   └── models/                # Structures données
-│   ├── config/                    # Chargement config
-│   ├── tests/                     # Tests unitaires & intégration
-│   ├── Dockerfile                 # Image Docker Go
-│   └── go.mod                     # Dépendances Go
-├── db/
-│   └── config/
-│       ├── 01-schema.sql          # Schema PostgreSQL
-│       └── 02-init-db.sh          # Script init DB
-├── docs/                          # Documentation technique
-│   ├── backend/                   # Docs backend (API, tests, etc.)
-│   └── frontend/                  # Docs frontend
-├── config/                        # Config tests (Jest, Playwright)
-├── compose.yaml                   # Docker Compose (3 services)
-└── package.json                   # Tests E2E & linting</pre
+          <div class="mt-12">
+            <h3 class="text-3xl font-bold mb-12 text-center">
+              <span
+                class="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent"
               >
-            </div>
-            <div class="mt-6 grid md:grid-cols-4 gap-4 text-sm">
-              <div class="glass-card bg-blue-500/10 border-blue-500/30">
-                <div class="font-semibold text-blue-400 mb-2">
-                  Total fichiers
+                Architecture du projet
+              </span>
+            </h3>
+
+            <!-- Diagramme de flux vertical avec connexions -->
+            <div class="max-w-4xl mx-auto">
+              <!-- Flow chart moderne -->
+              <div class="relative">
+                <!-- Ligne verticale de connexion -->
+                <div
+                  class="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500/20 via-cyan-500/40 via-indigo-500/40 to-green-500/20 -translate-x-1/2 hidden md:block"
+                ></div>
+
+                <!-- Étape 1: User / Client -->
+                <div class="relative mb-12">
+                  <div class="flex items-center justify-center mb-6">
+                    <div class="relative">
+                      <div
+                        class="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-2xl animate-pulse"
+                      ></div>
+                      <div
+                        class="relative w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl shadow-purple-500/50"
+                      >
+                        <i class="fas fa-user text-white text-2xl"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <h4 class="text-xl font-bold text-white mb-2">
+                      Utilisateur
+                    </h4>
+                    <p class="text-sm text-neutral-400">
+                      Navigateur Web • HTTPS
+                    </p>
+                  </div>
+
+                  <!-- Flèche vers le bas -->
+                  <div class="flex justify-center mt-6">
+                    <div class="flex flex-col items-center gap-2">
+                      <i
+                        class="fas fa-chevron-down text-purple-400 animate-bounce"
+                      ></i>
+                      <span class="text-xs text-purple-400 font-mono"
+                        >Request</span
+                      >
+                    </div>
+                  </div>
                 </div>
-                <div class="text-2xl font-bold">~50 fichiers</div>
-              </div>
-              <div class="glass-card bg-purple-500/10 border-purple-500/30">
-                <div class="font-semibold text-purple-400 mb-2">
-                  Lignes de code
+
+                <!-- Étape 2: Frontend Layer -->
+                <div class="relative mb-12">
+                  <div
+                    class="glass-card bg-gradient-to-br from-blue-500/10 to-blue-600/5 border-blue-500/30 p-8"
+                  >
+                    <div class="flex items-center gap-6 mb-6">
+                      <div class="relative">
+                        <div
+                          class="absolute inset-0 bg-blue-500/30 rounded-2xl blur-xl"
+                        ></div>
+                        <div
+                          class="relative w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/40"
+                        >
+                          <i class="fas fa-laptop-code text-white text-2xl"></i>
+                        </div>
+                      </div>
+                      <div class="flex-grow">
+                        <h4 class="text-2xl font-bold text-white mb-1">
+                          Frontend Layer
+                        </h4>
+                        <p class="text-sm text-blue-400">
+                          Interface utilisateur • Nginx :80
+                        </p>
+                      </div>
+                      <div class="hidden lg:block">
+                        <div
+                          class="px-3 py-1 bg-blue-500/20 border border-blue-400/30 rounded-full"
+                        >
+                          <span class="text-xs text-blue-300 font-mono"
+                            >Static Files</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                      <div
+                        class="p-4 bg-black/30 rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all group"
+                      >
+                        <div class="flex items-center gap-3 mb-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg"
+                          >
+                            <i class="fab fa-html5 text-white text-lg"></i>
+                          </div>
+                          <span class="font-bold text-white text-base"
+                            >HTML5</span
+                          >
+                        </div>
+                        <div class="text-sm text-neutral-300 space-y-1">
+                          <div>• 6 pages</div>
+                          <div>• Sémantique</div>
+                          <div>• SEO optimisé</div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="p-4 bg-black/30 rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all group"
+                      >
+                        <div class="flex items-center gap-3 mb-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center shadow-lg"
+                          >
+                            <i class="fab fa-css3-alt text-white text-lg"></i>
+                          </div>
+                          <span class="font-bold text-white text-base"
+                            >CSS3</span
+                          >
+                        </div>
+                        <div class="text-sm text-neutral-300 space-y-1">
+                          <div>• ~1000 lignes</div>
+                          <div>• 10 modules</div>
+                          <div>• Tailwind CSS</div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="p-4 bg-black/30 rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all group"
+                      >
+                        <div class="flex items-center gap-3 mb-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center shadow-lg"
+                          >
+                            <i class="fab fa-js text-white text-lg"></i>
+                          </div>
+                          <span class="font-bold text-white text-base"
+                            >JavaScript</span
+                          >
+                        </div>
+                        <div class="text-sm text-neutral-300 space-y-1">
+                          <div>• ~800 lignes</div>
+                          <div>• ES6+ modules</div>
+                          <div>• Fetch API</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Flèche bidirectionnelle -->
+                  <div class="flex justify-center my-6">
+                    <div class="flex flex-col items-center gap-2">
+                      <i
+                        class="fas fa-chevron-down text-cyan-400 animate-bounce"
+                      ></i>
+                      <span class="text-xs text-cyan-400 font-mono"
+                        >POST /api/v1/contact</span
+                      >
+                      <i class="fas fa-chevron-up text-cyan-400"></i>
+                    </div>
+                  </div>
                 </div>
-                <div class="text-2xl font-bold">~3500 lignes</div>
-              </div>
-              <div class="glass-card bg-green-500/10 border-green-500/30">
-                <div class="font-semibold text-green-400 mb-2">
-                  Tests coverage
+
+                <!-- Étape 3: Backend Layer -->
+                <div class="relative mb-12">
+                  <div
+                    class="glass-card bg-gradient-to-br from-cyan-500/10 to-teal-600/5 border-cyan-500/30 p-8"
+                  >
+                    <div class="flex items-center gap-6 mb-6">
+                      <div class="relative">
+                        <div
+                          class="absolute inset-0 bg-cyan-500/30 rounded-2xl blur-xl"
+                        ></div>
+                        <div
+                          class="relative w-16 h-16 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-500/40"
+                        >
+                          <i class="fab fa-golang text-white text-2xl"></i>
+                        </div>
+                      </div>
+                      <div class="flex-grow">
+                        <h4 class="text-2xl font-bold text-white mb-1">
+                          Backend Layer
+                        </h4>
+                        <p class="text-sm text-cyan-400">
+                          API REST • Go + Gin :8080
+                        </p>
+                      </div>
+                      <div class="hidden lg:block">
+                        <div
+                          class="px-3 py-1 bg-cyan-500/20 border border-cyan-400/30 rounded-full"
+                        >
+                          <span class="text-xs text-cyan-300 font-mono"
+                            >~1500 LOC</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Architecture MVC -->
+                    <div class="space-y-3">
+                      <div
+                        class="flex items-start gap-4 p-4 bg-gradient-to-r from-cyan-500/10 to-transparent rounded-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all"
+                      >
+                        <div
+                          class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg"
+                        >
+                          <span class="text-white font-bold text-base">H</span>
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-bold text-white mb-1 text-base">
+                            Handlers
+                          </div>
+                          <div class="text-sm text-neutral-300">
+                            Routes Gin • Validation des payloads • Middleware
+                            CORS
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="flex items-start gap-4 p-4 bg-gradient-to-r from-cyan-500/10 to-transparent rounded-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all"
+                      >
+                        <div
+                          class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg"
+                        >
+                          <span class="text-white font-bold text-base">S</span>
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-bold text-white mb-1 text-base">
+                            Services
+                          </div>
+                          <div class="text-sm text-neutral-300">
+                            Business logic • Service SMTP • Error handling
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="flex items-start gap-4 p-4 bg-gradient-to-r from-cyan-500/10 to-transparent rounded-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all"
+                      >
+                        <div
+                          class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg"
+                        >
+                          <span class="text-white font-bold text-base">R</span>
+                        </div>
+                        <div class="flex-grow">
+                          <div class="font-bold text-white mb-1 text-base">
+                            Repository
+                          </div>
+                          <div class="text-sm text-neutral-300">
+                            Data access layer • pgxpool • Prepared statements
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Flèche bidirectionnelle -->
+                  <div class="flex justify-center my-6">
+                    <div class="flex flex-col items-center gap-2">
+                      <i
+                        class="fas fa-chevron-down text-indigo-400 animate-bounce"
+                      ></i>
+                      <span class="text-xs text-indigo-400 font-mono"
+                        >SQL Queries</span
+                      >
+                      <i class="fas fa-chevron-up text-indigo-400"></i>
+                    </div>
+                  </div>
                 </div>
-                <div class="text-2xl font-bold">85.9%</div>
-              </div>
-              <div class="glass-card bg-cyan-500/10 border-cyan-500/30">
-                <div class="font-semibold text-cyan-400 mb-2">
-                  Services Docker
+
+                <!-- Étape 4: Database Layer -->
+                <div class="relative mb-12">
+                  <div
+                    class="glass-card bg-gradient-to-br from-indigo-500/10 to-indigo-600/5 border-indigo-500/30 p-8"
+                  >
+                    <div class="flex items-center gap-6 mb-6">
+                      <div class="relative">
+                        <div
+                          class="absolute inset-0 bg-indigo-500/30 rounded-2xl blur-xl"
+                        ></div>
+                        <div
+                          class="relative w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/40"
+                        >
+                          <i class="fas fa-database text-white text-2xl"></i>
+                        </div>
+                      </div>
+                      <div class="flex-grow">
+                        <h4 class="text-2xl font-bold text-white mb-1">
+                          Database Layer
+                        </h4>
+                        <p class="text-sm text-indigo-400">
+                          PostgreSQL :5432 • Persistence
+                        </p>
+                      </div>
+                      <div class="hidden lg:block">
+                        <div
+                          class="px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full"
+                        >
+                          <span class="text-xs text-indigo-300 font-mono"
+                            >Latest</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                      <div
+                        class="p-4 bg-black/30 rounded-xl border border-indigo-500/20"
+                      >
+                        <div class="text-center mb-3">
+                          <i
+                            class="fas fa-table text-indigo-400 text-3xl mb-2"
+                          ></i>
+                          <div class="font-bold text-white text-base">
+                            Schema
+                          </div>
+                        </div>
+                        <div
+                          class="text-sm text-neutral-300 text-center space-y-1"
+                        >
+                          <div>Table contacts</div>
+                          <div>Constraints</div>
+                          <div>Indexes</div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="p-4 bg-black/30 rounded-xl border border-indigo-500/20"
+                      >
+                        <div class="text-center mb-3">
+                          <i
+                            class="fas fa-sync text-indigo-400 text-3xl mb-2"
+                          ></i>
+                          <div class="font-bold text-white text-base">
+                            Migrations
+                          </div>
+                        </div>
+                        <div
+                          class="text-sm text-neutral-300 text-center space-y-1"
+                        >
+                          <div>Init scripts</div>
+                          <div>Auto-migration</div>
+                          <div>Versioning</div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="p-4 bg-black/30 rounded-xl border border-indigo-500/20"
+                      >
+                        <div class="text-center mb-3">
+                          <i
+                            class="fas fa-hdd text-indigo-400 text-3xl mb-2"
+                          ></i>
+                          <div class="font-bold text-white text-base">
+                            Volume
+                          </div>
+                        </div>
+                        <div
+                          class="text-sm text-neutral-300 text-center space-y-1"
+                        >
+                          <div>Docker volume</div>
+                          <div>Persistence</div>
+                          <div>Backup ready</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="text-2xl font-bold">3 containers</div>
+
+                <!-- Stats globales -->
+                <div class="grid md:grid-cols-3 gap-6 mt-12 mb-8">
+                  <div
+                    class="text-center p-6 bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/30 rounded-2xl"
+                  >
+                    <div
+                      class="text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2"
+                    >
+                      ~3500
+                    </div>
+                    <div class="text-sm text-neutral-300 font-medium">
+                      Lignes de code
+                    </div>
+                    <div class="text-xs text-neutral-500 mt-1">
+                      Frontend + Backend
+                    </div>
+                  </div>
+
+                  <div
+                    class="text-center p-6 bg-gradient-to-br from-sky-500/10 to-blue-600/5 border border-sky-500/30 rounded-2xl"
+                  >
+                    <div class="text-5xl font-black text-sky-400 mb-2">3</div>
+                    <div class="text-sm text-neutral-300 font-medium">
+                      Containers Docker
+                    </div>
+                    <div class="text-xs text-neutral-500 mt-1">
+                      Nginx • Go • PostgreSQL
+                    </div>
+                  </div>
+
+                  <div
+                    class="text-center p-6 bg-gradient-to-br from-green-500/10 to-emerald-600/5 border border-green-500/30 rounded-2xl"
+                  >
+                    <div class="text-5xl font-black text-green-400 mb-2">
+                      85.9%
+                    </div>
+                    <div class="text-sm text-neutral-300 font-medium">
+                      Tests coverage
+                    </div>
+                    <div class="text-xs text-neutral-500 mt-1">Backend Go</div>
+                  </div>
+                </div>
+
+                <!-- Infrastructure complémentaire -->
+                <div class="grid md:grid-cols-3 gap-6">
+                  <!-- Docker Compose -->
+                  <div
+                    class="glass-card bg-gradient-to-br from-sky-500/5 to-blue-600/5 border-sky-500/30 p-6 text-center hover:border-sky-400/50 transition-all"
+                  >
+                    <div
+                      class="w-14 h-14 mx-auto bg-gradient-to-br from-sky-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-sky-500/30 mb-4"
+                    >
+                      <i class="fab fa-docker text-white text-2xl"></i>
+                    </div>
+                    <h5 class="text-lg font-bold text-white mb-2">
+                      Docker Compose
+                    </h5>
+                    <p class="text-xs text-neutral-400 mb-4">
+                      Orchestration des 3 services
+                    </p>
+                    <div class="space-y-2 text-sm">
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Networks</span>
+                        <span class="text-sky-400 text-base">✓</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Volumes</span>
+                        <span class="text-sky-400 text-base">✓</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Healthchecks</span>
+                        <span class="text-sky-400 text-base">✓</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- CI/CD -->
+                  <div
+                    class="glass-card bg-gradient-to-br from-green-500/5 to-emerald-600/5 border-green-500/30 p-6 text-center hover:border-green-400/50 transition-all"
+                  >
+                    <div
+                      class="w-14 h-14 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/30 mb-4"
+                    >
+                      <i class="fas fa-check-double text-white text-2xl"></i>
+                    </div>
+                    <h5 class="text-lg font-bold text-white mb-2">
+                      CI/CD Pipeline
+                    </h5>
+                    <p class="text-sm text-neutral-400 mb-4">
+                      Tests & Quality Assurance
+                    </p>
+                    <div class="space-y-2 text-sm">
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Backend Tests</span>
+                        <span class="text-green-400 text-base">✓</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">E2E Playwright</span>
+                        <span class="text-green-400 text-base">✓</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Linting</span>
+                        <span class="text-green-400">✓ ESLint + Go</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Documentation -->
+                  <div
+                    class="glass-card bg-gradient-to-br from-orange-500/5 to-amber-600/5 border-orange-500/30 p-6 text-center hover:border-orange-400/50 transition-all"
+                  >
+                    <div
+                      class="w-14 h-14 mx-auto bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/30 mb-4"
+                    >
+                      <i class="fas fa-book text-white text-2xl"></i>
+                    </div>
+                    <h5 class="text-lg font-bold text-white mb-2">
+                      Documentation
+                    </h5>
+                    <p class="text-sm text-neutral-400 mb-4">
+                      ~15 fichiers Markdown
+                    </p>
+                    <div class="space-y-2 text-sm">
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Backend</span>
+                        <span class="text-orange-400">5 MD</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Frontend</span>
+                        <span class="text-orange-400">3 MD</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between p-3 bg-black/20 rounded-lg"
+                      >
+                        <span class="text-neutral-300">Config</span>
+                        <span class="text-orange-400">7 MD</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1201,97 +1652,507 @@ portfolio/
             </p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fas fa-code text-blue-400"></i>
-                <span>Développement frontend</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• Structure HTML sémantique et accessible (ARIA, roles)</li>
-                <li>• CSS moderne (Flexbox, Grid, animations, variables)</li>
-                <li>• JavaScript ES6+ (modules, async, API DOM, fetch)</li>
-                <li>• Responsive design mobile-first avec Tailwind</li>
-                <li>• Compatibilité cross-browser (Safari, Firefox, Chrome)</li>
-                <li>• Formulaire connecté à une API REST</li>
-              </ul>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1: Frontend Development -->
+            <div class="relative group h-full">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+              ></div>
+              <div
+                class="relative glass-card hover:border-blue-400/60 transition-all duration-300 p-8 h-full flex flex-col"
+              >
+                <div class="text-center mb-6">
+                  <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-500/40 group-hover:shadow-blue-500/60 group-hover:scale-110 transition-all duration-300"
+                  >
+                    <i class="fas fa-code text-white text-3xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white mt-4 mb-1">
+                    Frontend
+                  </h3>
+                  <p class="text-sm text-blue-400 font-medium">
+                    Web Development
+                  </p>
+                </div>
+                <div class="space-y-3 flex-grow">
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-blue-400/30"
+                    >
+                      <i class="fas fa-check text-blue-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >HTML sémantique & accessible</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-blue-400/30"
+                    >
+                      <i class="fas fa-check text-blue-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >CSS Grid, Flexbox & animations</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-blue-400/30"
+                    >
+                      <i class="fas fa-check text-blue-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >JavaScript ES6+ modulaire</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-blue-400/30"
+                    >
+                      <i class="fas fa-check text-blue-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Responsive mobile-first</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-blue-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-blue-400/30"
+                    >
+                      <i class="fas fa-check text-blue-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Cross-browser compatible</span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fab fa-golang text-cyan-400"></i>
-                <span>Développement backend</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• API REST avec Go et framework Gin</li>
-                <li>• Architecture modulaire (services, repository, models)</li>
-                <li>• Connexion PostgreSQL avec pgxpool</li>
-                <li>• Configuration CORS pour cross-origin requests</li>
-                <li>• Service SMTP pour envoi d'emails</li>
-                <li>• Gestion des erreurs et logging structuré</li>
-              </ul>
+            <!-- Card 2: Backend & API -->
+            <div class="relative group h-full">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-teal-600/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+              ></div>
+              <div
+                class="relative glass-card hover:border-cyan-400/60 transition-all duration-300 p-8 h-full flex flex-col"
+              >
+                <div class="text-center mb-6">
+                  <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-cyan-500 to-teal-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-cyan-500/40 group-hover:shadow-cyan-500/60 group-hover:scale-110 transition-all duration-300"
+                  >
+                    <i class="fab fa-golang text-white text-3xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white mt-4 mb-1">
+                    Backend
+                  </h3>
+                  <p class="text-sm text-cyan-400 font-medium">Go & API REST</p>
+                </div>
+                <div class="space-y-3 flex-grow">
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-cyan-500/30 to-teal-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-cyan-400/30"
+                    >
+                      <i class="fas fa-check text-cyan-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200">API REST avec Gin</span>
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-cyan-500/30 to-teal-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-cyan-400/30"
+                    >
+                      <i class="fas fa-check text-cyan-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Architecture MVC modulaire</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-cyan-500/30 to-teal-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-cyan-400/30"
+                    >
+                      <i class="fas fa-check text-cyan-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >CORS & middleware config</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-cyan-500/30 to-teal-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-cyan-400/30"
+                    >
+                      <i class="fas fa-check text-cyan-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200">Service SMTP emails</span>
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-cyan-500/30 to-teal-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-cyan-400/30"
+                    >
+                      <i class="fas fa-check text-cyan-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Error handling & logging</span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fas fa-database text-indigo-400"></i>
-                <span>Base de données & persistance</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• Schéma SQL PostgreSQL avec contraintes</li>
-                <li>• Scripts d'initialisation automatique</li>
-                <li>• Connection pooling pour performances</li>
-                <li>• Requêtes préparées et injection SQL prevention</li>
-                <li>• Timestamps automatiques (created_at)</li>
-                <li>• Gestion des transactions</li>
-              </ul>
+            <!-- Card 3: Database -->
+            <div class="relative group h-full">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-indigo-500/30 to-indigo-600/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+              ></div>
+              <div
+                class="relative glass-card hover:border-indigo-400/60 transition-all duration-300 p-8 h-full flex flex-col"
+              >
+                <div class="text-center mb-6">
+                  <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-indigo-500/40 group-hover:shadow-indigo-500/60 group-hover:scale-110 transition-all duration-300"
+                  >
+                    <i class="fas fa-database text-white text-3xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white mt-4 mb-1">
+                    Database
+                  </h3>
+                  <p class="text-sm text-indigo-400 font-medium">PostgreSQL</p>
+                </div>
+                <div class="space-y-3 flex-grow">
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-indigo-500/30 to-indigo-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-indigo-400/30"
+                    >
+                      <i class="fas fa-check text-indigo-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Schéma SQL avec contraintes</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-indigo-500/30 to-indigo-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-indigo-400/30"
+                    >
+                      <i class="fas fa-check text-indigo-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Connection pooling (pgxpool)</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-indigo-500/30 to-indigo-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-indigo-400/30"
+                    >
+                      <i class="fas fa-check text-indigo-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Requêtes préparées & sécurité</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-indigo-500/30 to-indigo-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-indigo-400/30"
+                    >
+                      <i class="fas fa-check text-indigo-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Migrations automatiques</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-indigo-500/30 to-indigo-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-indigo-400/30"
+                    >
+                      <i class="fas fa-check text-indigo-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Gestion des transactions</span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fab fa-docker text-sky-400"></i>
-                <span>DevOps & containerisation</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• Docker Compose multi-services (3 containers)</li>
-                <li>• Dockerfiles optimisés (multi-stage builds)</li>
-                <li>• Configuration .env et variables d'environnement</li>
-                <li>• Healthchecks et depends_on avec conditions</li>
-                <li>• Volumes persistants pour la DB</li>
-                <li>• Networking entre containers</li>
-              </ul>
+            <!-- Card 4: DevOps -->
+            <div class="relative group h-full">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-sky-500/30 to-blue-600/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+              ></div>
+              <div
+                class="relative glass-card hover:border-sky-400/60 transition-all duration-300 p-8 h-full flex flex-col"
+              >
+                <div class="text-center mb-6">
+                  <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-sky-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-sky-500/40 group-hover:shadow-sky-500/60 group-hover:scale-110 transition-all duration-300"
+                  >
+                    <i class="fab fa-docker text-white text-3xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white mt-4 mb-1">
+                    DevOps
+                  </h3>
+                  <p class="text-sm text-sky-400 font-medium">
+                    Docker & Compose
+                  </p>
+                </div>
+                <div class="space-y-3 flex-grow">
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-sky-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-sky-400/30"
+                    >
+                      <i class="fas fa-check text-sky-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Docker Compose multi-services</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-sky-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-sky-400/30"
+                    >
+                      <i class="fas fa-check text-sky-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Dockerfiles multi-stage optimisés</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-sky-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-sky-400/30"
+                    >
+                      <i class="fas fa-check text-sky-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Variables d'environnement (.env)</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-sky-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-sky-400/30"
+                    >
+                      <i class="fas fa-check text-sky-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Healthchecks & dependencies</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-sky-500/30 to-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-sky-400/30"
+                    >
+                      <i class="fas fa-check text-sky-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200">Volumes & networking</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fas fa-check-circle text-green-400"></i>
-                <span>Tests & qualité du code</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• Tests unitaires Go avec mocks (pgxmock)</li>
-                <li>• Tests d'intégration avec DB réelle</li>
-                <li>• Tests E2E frontend avec Playwright</li>
-                <li>• Coverage 85%+ sur le backend</li>
-                <li>• Linting avec golangci-lint et ESLint</li>
-                <li>• GitHub Actions CI/CD automatique</li>
-              </ul>
+            <!-- Card 5: Testing -->
+            <div class="relative group h-full">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-green-500/30 to-emerald-600/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+              ></div>
+              <div
+                class="relative glass-card hover:border-green-400/60 transition-all duration-300 p-8 h-full flex flex-col"
+              >
+                <div class="text-center mb-6">
+                  <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-green-500/40 group-hover:shadow-green-500/60 group-hover:scale-110 transition-all duration-300"
+                  >
+                    <i class="fas fa-vial text-white text-3xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white mt-4 mb-1">
+                    Testing
+                  </h3>
+                  <p class="text-sm text-green-400 font-medium">Unit & E2E</p>
+                </div>
+                <div class="space-y-3 flex-grow">
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-green-500/30 to-emerald-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-green-400/30"
+                    >
+                      <i class="fas fa-check text-green-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Tests Go avec mocks (pgxmock)</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-green-500/30 to-emerald-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-green-400/30"
+                    >
+                      <i class="fas fa-check text-green-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Tests d'intégration avec DB réelle</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-green-500/30 to-emerald-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-green-400/30"
+                    >
+                      <i class="fas fa-check text-green-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >E2E frontend (Playwright)</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-green-500/30 to-emerald-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-green-400/30"
+                    >
+                      <i class="fas fa-check text-green-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Coverage 85%+ sur le backend</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-green-500/30 to-emerald-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-green-400/30"
+                    >
+                      <i class="fas fa-check text-green-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >CI/CD avec GitHub Actions</span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fas fa-tachometer-alt text-purple-400"></i>
-                <span>Performance & accessibilité</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• Intersection Observer pour animations performantes</li>
-                <li>• Self-hosting FontAwesome (pas de CDN tiers)</li>
-                <li>• Preload hints pour webfonts critiques</li>
-                <li>• ARIA labels et navigation clavier complète</li>
-                <li>
-                  • Lighthouse audits (95+ performance, 100 accessibility)
-                </li>
-                <li>• CSP (Content Security Policy) configurée</li>
-              </ul>
+            <!-- Card 6: Performance & Security -->
+            <div class="relative group h-full">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+              ></div>
+              <div
+                class="relative glass-card hover:border-purple-400/60 transition-all duration-300 p-8 h-full flex flex-col"
+              >
+                <div class="text-center mb-6">
+                  <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-purple-500/40 group-hover:shadow-purple-500/60 group-hover:scale-110 transition-all duration-300"
+                  >
+                    <i class="fas fa-shield-alt text-white text-3xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white mt-4 mb-1">
+                    Performance
+                  </h3>
+                  <p class="text-sm text-purple-400 font-medium">
+                    Optimization
+                  </p>
+                </div>
+                <div class="space-y-3 flex-grow">
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-purple-400/30"
+                    >
+                      <i class="fas fa-check text-purple-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Intersection Observer API</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-purple-400/30"
+                    >
+                      <i class="fas fa-check text-purple-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Self-hosted assets (no CDN)</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-purple-400/30"
+                    >
+                      <i class="fas fa-check text-purple-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >Preload hints & optimization</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-purple-400/30"
+                    >
+                      <i class="fas fa-check text-purple-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200"
+                      >ARIA labels & keyboard nav</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-start gap-3 text-sm group/item hover:translate-x-2 transition-all duration-200"
+                  >
+                    <div
+                      class="w-6 h-6 bg-gradient-to-br from-purple-500/30 to-purple-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border border-purple-400/30"
+                    >
+                      <i class="fas fa-check text-purple-400 text-xs"></i>
+                    </div>
+                    <span class="text-neutral-200">CSP & security headers</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1350,76 +2211,165 @@ portfolio/
             </div>
           </div>
 
-          <div class="glass-card">
-            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
-              <i class="fas fa-info-circle text-blue-400"></i>
-              <span>Détails techniques</span>
-            </h3>
-            <div class="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4
-                  class="font-semibold text-neutral-400 mb-3 uppercase text-sm"
+          <!-- Détails techniques avec cartes visuelles -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Frontend Card -->
+            <div
+              class="glass-card bg-gradient-to-br from-blue-500/5 to-blue-600/5 border-blue-500/30 hover:border-blue-500/50 transition-all p-6"
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30"
                 >
-                  Frontend
-                </h4>
-                <ul class="space-y-2 text-neutral-300 text-sm">
-                  <li>
-                    • 6 pages HTML (index, projects, about, contact, 2 détails
-                    projet)
-                  </li>
-                  <li>• ~1000 lignes de CSS (main.css + 10 modules)</li>
-                  <li>• ~800 lignes de JavaScript (app.js + 6 modules)</li>
-                  <li>• Tailwind CSS 3.x via CDN</li>
-                  <li>• FontAwesome 6.4 self-hosted (local)</li>
-                  <li>• Google Fonts (Inter) préchargée</li>
-                  <li>• Tests E2E avec Playwright</li>
-                </ul>
+                  <i class="fas fa-browser text-white text-lg"></i>
+                </div>
+                <h4 class="font-bold text-white text-lg">Frontend</h4>
               </div>
-              <div>
-                <h4
-                  class="font-semibold text-neutral-400 mb-3 uppercase text-sm"
-                >
-                  Backend & Infrastructure
-                </h4>
-                <ul class="space-y-2 text-neutral-300 text-sm">
-                  <li>• Backend Go avec Gin framework</li>
-                  <li>• ~1500 lignes de code Go (API + services + tests)</li>
-                  <li>• PostgreSQL database (schema SQL + init scripts)</li>
-                  <li>• Docker Compose (3 services orchestrés)</li>
-                  <li>• Tests unitaires + intégration (85.9% coverage)</li>
-                  <li>• GitHub Actions CI/CD (lint, test, build)</li>
-                  <li>• Configuration SMTP pour emails</li>
-                </ul>
+              <div class="space-y-2 text-xs text-neutral-300">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                  <span>6 pages HTML</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                  <span>~1000 lignes CSS</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                  <span>~800 lignes JavaScript</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                  <span>Tailwind CSS 3.x</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                  <span>FontAwesome self-hosted</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                  <span>Tests E2E Playwright</span>
+                </div>
               </div>
-              <div>
-                <h4
-                  class="font-semibold text-neutral-400 mb-3 uppercase text-sm"
+            </div>
+
+            <!-- Backend Card -->
+            <div
+              class="glass-card bg-gradient-to-br from-cyan-500/5 to-teal-600/5 border-cyan-500/30 hover:border-cyan-500/50 transition-all p-6"
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/30"
                 >
-                  Hébergement
-                </h4>
-                <ul class="space-y-2 text-neutral-300 text-sm">
-                  <li>• Frontend : GitHub Pages (hébergement gratuit)</li>
-                  <li>• Backend : Container Docker sur serveur dédié</li>
-                  <li>• Database : PostgreSQL container avec volumes</li>
-                  <li>• Domaine custom : portfolio.ega.ovh</li>
-                  <li>• HTTPS activé (Let's Encrypt)</li>
-                  <li>• Matomo analytics self-hosted</li>
-                </ul>
+                  <i class="fab fa-golang text-white text-lg"></i>
+                </div>
+                <h4 class="font-bold text-white text-lg">Backend</h4>
               </div>
-              <div>
-                <h4
-                  class="font-semibold text-neutral-400 mb-3 uppercase text-sm"
+              <div class="space-y-2 text-xs text-neutral-300">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                  <span>Go + Gin framework</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                  <span>~1500 lignes Go</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                  <span>PostgreSQL DB</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                  <span>Docker Compose</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                  <span>85.9% coverage</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                  <span>GitHub Actions CI/CD</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hosting Card -->
+            <div
+              class="glass-card bg-gradient-to-br from-purple-500/5 to-purple-600/5 border-purple-500/30 hover:border-purple-500/50 transition-all p-6"
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30"
                 >
-                  Documentation
-                </h4>
-                <ul class="space-y-2 text-neutral-300 text-sm">
-                  <li>• ~15 fichiers Markdown de documentation</li>
-                  <li>• Architecture backend complète documentée</li>
-                  <li>• API REST référence (endpoints, payloads)</li>
-                  <li>• Guide de tests (unit, integration, E2E)</li>
-                  <li>• Configuration Docker et environnement</li>
-                  <li>• Stratégie de linting et code quality</li>
-                </ul>
+                  <i class="fas fa-server text-white text-lg"></i>
+                </div>
+                <h4 class="font-bold text-white text-lg">Hosting</h4>
+              </div>
+              <div class="space-y-2 text-xs text-neutral-300">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>GitHub Pages</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>Docker serveur dédié</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>PostgreSQL container</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>portfolio.ega.ovh</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>HTTPS Let's Encrypt</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>Matomo analytics</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Documentation Card -->
+            <div
+              class="glass-card bg-gradient-to-br from-orange-500/5 to-amber-600/5 border-orange-500/30 hover:border-orange-500/50 transition-all p-6"
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30"
+                >
+                  <i class="fas fa-book text-white text-lg"></i>
+                </div>
+                <h4 class="font-bold text-white text-lg">Docs</h4>
+              </div>
+              <div class="space-y-2 text-xs text-neutral-300">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                  <span>~15 fichiers MD</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                  <span>Architecture backend</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                  <span>API REST reference</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                  <span>Testing guides</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                  <span>Docker config</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                  <span>Code quality</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1486,39 +2436,202 @@ portfolio/
     </main>
 
     <!-- ========== FOOTER ========== -->
-    <footer
-      class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl"
-    >
-      <!-- Social links -->
-      <div class="flex justify-center gap-6 mb-6">
-        <a
-          href="mailto:enzo.gaggiotti@epitech.eu"
-          class="hover:text-white transition"
-          title="Email"
-          aria-label="Email"
-        >
-          <i class="fas fa-envelope text-2xl"></i>
-        </a>
-        <a
-          href="https://github.com/enzogagg"
-          class="hover:text-white transition"
-          title="GitHub"
-          aria-label="GitHub"
-        >
-          <i class="fab fa-github text-2xl"></i>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
-          class="hover:text-white transition"
-          title="LinkedIn"
-          aria-label="LinkedIn"
-        >
-          <i class="fab fa-linkedin text-2xl"></i>
-        </a>
-      </div>
+    <footer class="relative py-20 mt-32 overflow-hidden">
+      <!-- Glassmorphism background like header -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"
+      ></div>
+      <div class="absolute inset-0 backdrop-blur-[20px] saturate-[180%]"></div>
+      <div
+        class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"
+      ></div>
+      <div
+        class="absolute inset-0 shadow-[0_-4px_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)]"
+      ></div>
 
-      <!-- Copyright notice -->
-      <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
+      <div class="relative max-w-7xl mx-auto px-6">
+        <!-- Main content -->
+        <div class="grid md:grid-cols-12 gap-12 mb-16">
+          <!-- Brand section -->
+          <div class="md:col-span-5">
+            <div class="mb-6">
+              <h3
+                class="text-3xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2"
+              >
+                Enzo Gaggiotti
+              </h3>
+              <p
+                class="text-blue-400/80 text-sm font-semibold tracking-wider uppercase"
+              >
+                Développeur
+              </p>
+            </div>
+            <p class="text-base text-neutral-300 leading-relaxed mb-6">
+              Étudiant curieux et passionné par l’infrastructure moderne :
+              réseau, système, devops..
+            </p>
+            <div class="flex gap-3">
+              <a
+                href="mailto:enzo.gaggiotti@epitech.eu"
+                class="group relative w-12 h-12 bg-gradient-to-br from-blue-500/20 to-blue-600/20 hover:from-blue-500/30 hover:to-blue-600/30 border border-blue-500/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25"
+              >
+                <i class="fas fa-envelope text-blue-400 text-lg"></i>
+              </a>
+              <a
+                href="https://github.com/enzogagg"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-600/20 hover:from-purple-500/30 hover:to-purple-600/30 border border-purple-500/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/25"
+              >
+                <i class="fab fa-github text-purple-400 text-lg"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 hover:from-cyan-500/30 hover:to-cyan-600/30 border border-cyan-500/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
+              >
+                <i class="fab fa-linkedin text-cyan-400 text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Navigation sections -->
+          <div class="md:col-span-7 grid sm:grid-cols-2 gap-8">
+            <!-- Quick links -->
+            <div>
+              <h4
+                class="text-white font-bold text-lg mb-4 flex items-center gap-2"
+              >
+                <span
+                  class="w-1 h-6 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full"
+                ></span>
+                Navigation
+              </h4>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="index.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>Accueil</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="projects.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>Projets</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="about.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>À propos</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="contact.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>Contact</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Projects showcase -->
+            <div>
+              <h4
+                class="text-white font-bold text-lg mb-4 flex items-center gap-2"
+              >
+                <span
+                  class="w-1 h-6 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"
+                ></span>
+                Projets phares
+              </h4>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="portfolio-project.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>Portfolio Web</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="proxmox-project.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>Infrastructure Proxmox</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="aquarium-project.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>Aquarium Connecté</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="network-project.html"
+                    class="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                  >
+                    <i
+                      class="fas fa-chevron-right text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    ></i>
+                    <span>Réseau Personnel</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom bar with decorative line -->
+        <div class="relative pt-8">
+          <div
+            class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-700 to-transparent"
+          ></div>
+          <div
+            class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm"
+          >
+            <p class="text-neutral-400">
+              &copy; 2025
+              <span class="text-white font-semibold">Enzo Gaggiotti</span> ·
+              Tous droits réservés
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- ========== JAVASCRIPT INITIALIZATION ========== -->

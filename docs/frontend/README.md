@@ -143,8 +143,8 @@ docker run -d -p 80:80 \
 
 MIT License - See LICENSE file for details
 
-**Version**: 2.1.0  
-**Last Updated**: November 18, 2025  
+**Version**: 2.1.0
+**Last Updated**: November 18, 2025
 **Author**: Enzo Gaggiotti
 
 ## 🔔 Recent Enhancements (18 Nov 2025)
