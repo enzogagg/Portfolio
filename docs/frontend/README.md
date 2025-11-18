@@ -126,11 +126,9 @@ assets/js/modules/
 
 ## 🔧 Configuration Files
 
-
 ## 🚀 Deployment
 
 This is a static website. Deploy the `frontend/` directory to:
-
 
 **Production deployment**:
 
@@ -145,12 +143,10 @@ docker run -d -p 80:80 \
 
 MIT License - See LICENSE file for details
 
-
 **Version**: 2.1.0  
 **Last Updated**: November 18, 2025  
 **Author**: Enzo Gaggiotti
 
-## 🔔 Recent Enhancements
 ## 🔔 Recent Enhancements (18 Nov 2025)
 
 Recent frontend improvements to improve performance, security and layout stability:

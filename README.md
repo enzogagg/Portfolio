@@ -185,6 +185,7 @@ python3 -m http.server 8000
 ```
 
 2. Open `http://localhost:8000/projects.html` and perform a hard reload (Cmd+Shift+R). Verify:
+
 - card icons remain stable on load (no layout jump),
 - webfonts are preloaded (check Network tab),
 - no Lighthouse warnings about third-party cookies from `cdnjs.cloudflare.com`.
@@ -201,4 +202,3 @@ Notes & options
 
 - If you want to remove all external dependencies, I can also self-host the `Inter` font (currently loaded via Google Fonts). Would you like me to do that?
 - For an extra mitigation against layout shifts, we can add `font-display: swap` in `all.min.css` (I can apply that automatically).
-

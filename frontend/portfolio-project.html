@@ -8,8 +8,6 @@
       name="description"
       content="Découvrez les détails techniques du portfolio d'Enzo Gaggiotti : architecture, design system, fonctionnalités et processus de développement."
     />
-
-    <!-- ========== EXTERNAL RESOURCES ========== -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
@@ -19,52 +17,23 @@
       rel="stylesheet"
       href="assets/fonts/fontawesome/css/local-fontawesome.css"
     />
-
-    <!-- ========== CSS FRAMEWORKS & STYLES ========== -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/loader.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
-
-    <!-- Force glassmorphism si cache CSS -->
-    <style>
-      .tech-card,
-      .glass-card {
-        background: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 1.5rem !important;
-        padding: 1.5rem !important;
-        box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.1),
-          0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      }
-      .tech-card:hover,
-      .glass-card:hover {
-        background: rgba(255, 255, 255, 0.06) !important;
-        border-color: rgba(255, 255, 255, 0.2) !important;
-        transform: translateY(-4px) !important;
-        box-shadow:
-          0 12px 48px rgba(96, 165, 250, 0.15),
-          0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/loader.css" />
   </head>
   <!-- Matomo -->
   <script>
     var _paq = (globalThis._paq = globalThis._paq || []);
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(
+      ["setCookieDomain", "*.portfolio.ega.ovh"],
+      ["setDomains", ["*.portfolio.ega.ovh"]],
+      ["trackPageView"],
+      ["enableLinkTracking"],
+    );
     (function () {
       var u = "https://matomo.ega.ovh/";
-      _paq.push(
-        ["setCookieDomain", "*.portfolio.ega.ovh"],
-        ["setDomains", ["*.portfolio.ega.ovh"]],
-        ["setTrackerUrl", u + "matomo.php"],
-        ["setSiteId", "1"],
-        ["trackPageView"],
-        ["enableLinkTracking"],
-      );
+      _paq.push(["setTrackerUrl", u + "matomo.php"], ["setSiteId", "1"]);
       var d = document,
         g = d.createElement("script"),
         s = d.getElementsByTagName("script")[0];
@@ -102,10 +71,14 @@
       </div>
     </div>
 
-    <!-- ========== HEADER NAVIGATION ========== -->
+    <!-- Minimalist loader -->
+    <div class="minimal-loader">
+      <div class="minimal-spinner"></div>
+    </div>
+
+    <!-- HEADER NAVIGATION -->
     <header id="main-header">
       <div class="header-container">
-        <!-- Logo / Home Link -->
         <a href="index.html#top" class="logo" aria-label="Accueil">
           <div
             class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
@@ -113,18 +86,13 @@
             EG
           </div>
         </a>
-
-        <!-- Desktop Navigation -->
         <nav class="nav-primary" , aria-label="Navigation principale">
           <a href="index.html#top" class="nav-link">Accueil</a>
           <a href="projects.html" class="nav-link">Projets</a>
           <a href="about.html" class="nav-link">À propos</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
-
-        <!-- Header Controls (Mobile Menu) -->
         <div class="flex items-center gap-4">
-          <!-- Mobile Hamburger Menu -->
           <div class="burger-menu">
             <div class="burger-line"></div>
             <div class="burger-line"></div>
@@ -132,8 +100,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Mobile Navigation Menu -->
       <div class="mobile-menu" id="mobile-menu">
         <nav class="mobile-nav" , aria-label="Navigation mobile">
           <a href="index.html#top" class="nav-link">Accueil</a>
@@ -296,15 +262,16 @@
           <!-- Description -->
           <div class="space-y-4 text-lg leading-relaxed max-w-2xl">
             <p class="text-neutral-300">
-              Site web développé from scratch en HTML/CSS/JavaScript pour
-              présenter mon profil et mes projets. Responsive, accessible, sans
-              framework lourd.
+              Site web full-stack développé from scratch : frontend moderne en
+              HTML/CSS/JavaScript, backend Go avec API REST, base de données
+              PostgreSQL. Architecture complète avec Docker, tests automatisés
+              et CI/CD.
             </p>
 
             <!-- Development Warning Badge -->
             <p class="text-orange-400 font-medium">
-              ⚠️ Projet en cours de développement - Fonctionnalités en phase de
-              test
+              ⚠️ Projet en cours de développement - Nouvelles fonctionnalités
+              ajoutées régulièrement
             </p>
 
             <!-- Project Stats -->
@@ -353,7 +320,7 @@
                   <div class="text-xs text-neutral-500 uppercase font-semibold">
                     Code
                   </div>
-                  <div class="text-sm text-white font-medium">~2000 lignes</div>
+                  <div class="text-sm text-white font-medium">~3500 lignes</div>
                 </div>
               </div>
 
@@ -363,13 +330,13 @@
                 <div
                   class="flex-shrink-0 w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center"
                 >
-                  <i class="fas fa-file text-orange-400 text-lg"></i>
+                  <i class="fas fa-database text-orange-400 text-lg"></i>
                 </div>
                 <div>
                   <div class="text-xs text-neutral-500 uppercase font-semibold">
-                    Pages
+                    Stack
                   </div>
-                  <div class="text-sm text-white font-medium">6 pages HTML</div>
+                  <div class="text-sm text-white font-medium">Full-stack</div>
                 </div>
               </div>
             </div>
@@ -537,7 +504,133 @@
                   </li>
                   <li class="flex items-start gap-2">
                     <span class="text-yellow-400 mt-0.5">•</span>
-                    <span>Fallback standalone pour file://</span>
+                    <span>Formulaire de contact avec API</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Go Backend -->
+            <div
+              class="tech-card group relative overflow-hidden border-cyan-500/30 hover:border-cyan-500/50"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-teal-500/5 opacity-50 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <div class="relative">
+                <div class="flex items-center gap-4 mb-4">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center icon-hover shadow-lg shadow-cyan-500/30"
+                  >
+                    <i class="fab fa-golang text-2xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white">Go Backend</h3>
+                    <p class="text-sm text-cyan-400 font-medium">
+                      API REST + Services
+                    </p>
+                  </div>
+                </div>
+                <ul class="space-y-2 text-sm text-neutral-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 mt-0.5">•</span>
+                    <span>Framework Gin (HTTP router)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 mt-0.5">•</span>
+                    <span>Architecture modulaire (services, repo)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 mt-0.5">•</span>
+                    <span>Tests unitaires & intégration (85%+)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-cyan-400 mt-0.5">•</span>
+                    <span>SMTP service pour emails</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- PostgreSQL -->
+            <div
+              class="tech-card group relative overflow-hidden border-indigo-500/30 hover:border-indigo-500/50"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-blue-500/5 opacity-50 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <div class="relative">
+                <div class="flex items-center gap-4 mb-4">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center icon-hover shadow-lg shadow-indigo-500/30"
+                  >
+                    <i class="fas fa-database text-2xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white">PostgreSQL</h3>
+                    <p class="text-sm text-indigo-400 font-medium">
+                      Base de données
+                    </p>
+                  </div>
+                </div>
+                <ul class="space-y-2 text-sm text-neutral-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-indigo-400 mt-0.5">•</span>
+                    <span>Schema SQL avec migrations</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-indigo-400 mt-0.5">•</span>
+                    <span>Table contacts avec timestamps</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-indigo-400 mt-0.5">•</span>
+                    <span>Connection pool (pgxpool)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-indigo-400 mt-0.5">•</span>
+                    <span>Healthcheck automatique</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Docker -->
+            <div
+              class="tech-card group relative overflow-hidden border-sky-500/30 hover:border-sky-500/50"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-blue-500/5 opacity-50 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <div class="relative">
+                <div class="flex items-center gap-4 mb-4">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex items-center justify-center icon-hover shadow-lg shadow-sky-500/30"
+                  >
+                    <i class="fab fa-docker text-2xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white">Docker</h3>
+                    <p class="text-sm text-sky-400 font-medium">
+                      Containerisation
+                    </p>
+                  </div>
+                </div>
+                <ul class="space-y-2 text-sm text-neutral-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-sky-400 mt-0.5">•</span>
+                    <span>Docker Compose 3 services</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-sky-400 mt-0.5">•</span>
+                    <span>Frontend (Nginx), Backend, DB</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-sky-400 mt-0.5">•</span>
+                    <span>Volumes persistants pour Postgres</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-sky-400 mt-0.5">•</span>
+                    <span>Configuration .env dynamique</span>
                   </li>
                 </ul>
               </div>
@@ -555,52 +648,74 @@
             >
               <pre class="text-green-400">
 portfolio/
-├── index.html              # Page d'accueil
-├── projects.html           # Liste des projets
-├── about.html              # À propos
-├── contact.html            # Contact
-├── aquarium-project.html   # Détail projet aquarium
-├── portfolio-project.html  # Détail projet portfolio (cette page)
-└── assets/
-    ├── css/
-    │   ├── main.css                    # Styles principaux
-    │   └── modules/                    # CSS modulaire
-    │       ├── animations.css          # Keyframes & transitions
-    │       ├── buttons.css             # Composants boutons
-    │       ├── cards.css               # Cartes projet
-    │       ├── header.css              # Navigation
-    │       └── variables.css           # Variables CSS
-    ├── js/
-    │   ├── app.js                      # Point d'entrée ES6
-    │   ├── standalone.js               # Version sans modules
-    │   ├── loader.js                   # Animation chargement
-    │   ├── burger.js                   # Menu mobile
-    │   └── modules/
-    │       ├── animations.js           # Scroll animations
-    │       ├── navigation.js           # Navigation mobile
-    │       ├── projects.js             # Filtrage projets
-    │       ├── accessibility.js        # Raccourcis clavier
-    │       └── performance.js          # Optimisations
-    └── images/
-        └── *.png                       # Assets graphiques</pre
+├── frontend/                      # Application web
+│   ├── index.html                 # Page d'accueil
+│   ├── projects.html              # Liste des projets
+│   ├── about.html                 # À propos
+│   ├── contact.html               # Contact (formulaire API)
+│   ├── aquarium-project.html      # Détail projet aquarium
+│   ├── portfolio-project.html     # Détail projet portfolio
+│   ├── Dockerfile                 # Image Docker Nginx
+│   ├── nginx.conf                 # Configuration serveur
+│   └── assets/
+│       ├── css/
+│       │   ├── main.css           # Styles principaux
+│       │   └── modules/           # CSS modulaire (10 fichiers)
+│       ├── js/
+│       │   ├── app.js             # Point d'entrée ES6
+│       │   ├── standalone.js      # Version sans modules
+│       │   └── modules/           # JS modulaire (contact, animations, etc.)
+│       ├── fonts/
+│       │   └── fontawesome/       # FontAwesome self-hosted
+│       └── images/
+│           └── *.png              # Assets graphiques
+├── backend/                       # API Go
+│   ├── main.go                    # Entrypoint serveur
+│   ├── api/                       # Routes HTTP (handlers)
+│   ├── internal/
+│   │   ├── services/              # Logique métier (SMTP, etc.)
+│   │   ├── repository/            # Accès DB (pgxpool)
+│   │   └── models/                # Structures données
+│   ├── config/                    # Chargement config
+│   ├── tests/                     # Tests unitaires & intégration
+│   ├── Dockerfile                 # Image Docker Go
+│   └── go.mod                     # Dépendances Go
+├── db/
+│   └── config/
+│       ├── 01-schema.sql          # Schema PostgreSQL
+│       └── 02-init-db.sh          # Script init DB
+├── docs/                          # Documentation technique
+│   ├── backend/                   # Docs backend (API, tests, etc.)
+│   └── frontend/                  # Docs frontend
+├── config/                        # Config tests (Jest, Playwright)
+├── compose.yaml                   # Docker Compose (3 services)
+└── package.json                   # Tests E2E & linting</pre
               >
             </div>
-            <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+            <div class="mt-6 grid md:grid-cols-4 gap-4 text-sm">
               <div class="glass-card bg-blue-500/10 border-blue-500/30">
                 <div class="font-semibold text-blue-400 mb-2">
                   Total fichiers
                 </div>
-                <div class="text-2xl font-bold">~25 fichiers</div>
+                <div class="text-2xl font-bold">~50 fichiers</div>
               </div>
               <div class="glass-card bg-purple-500/10 border-purple-500/30">
                 <div class="font-semibold text-purple-400 mb-2">
                   Lignes de code
                 </div>
-                <div class="text-2xl font-bold">~2000 lignes</div>
+                <div class="text-2xl font-bold">~3500 lignes</div>
               </div>
               <div class="glass-card bg-green-500/10 border-green-500/30">
-                <div class="font-semibold text-green-400 mb-2">Poids total</div>
-                <div class="text-2xl font-bold">< 500 KB</div>
+                <div class="font-semibold text-green-400 mb-2">
+                  Tests coverage
+                </div>
+                <div class="text-2xl font-bold">85.9%</div>
+              </div>
+              <div class="glass-card bg-cyan-500/10 border-cyan-500/30">
+                <div class="font-semibold text-cyan-400 mb-2">
+                  Services Docker
+                </div>
+                <div class="text-2xl font-bold">3 containers</div>
               </div>
             </div>
           </div>
@@ -709,25 +824,79 @@ portfolio/
             <!-- Step 4 -->
             <div class="flex gap-6">
               <div
-                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center font-bold text-xl"
+                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-full flex items-center justify-center font-bold text-xl"
               >
                 4
               </div>
               <div class="flex-grow">
-                <h3 class="text-xl font-bold mb-2">Optimisation & Tests</h3>
+                <h3 class="text-xl font-bold mb-2">Backend Go & API REST</h3>
                 <p class="text-neutral-300 mb-3">
-                  Tests sur différents navigateurs et tailles d'écran.
-                  Optimisation des performances, ajout de preload pour les
-                  fonts, lazy loading images, amélioration de l'accessibilité
-                  (ARIA, keyboard nav).
+                  Création d'un backend en Go avec le framework Gin. API REST
+                  pour le formulaire de contact, connexion PostgreSQL avec
+                  pgxpool, service SMTP pour l'envoi d'emails. Architecture
+                  modulaire avec services, repository et models.
                 </p>
                 <div class="bg-black/30 rounded-lg p-4 border border-white/10">
                   <p class="text-sm text-neutral-400 mb-2">
-                    <strong>Durée :</strong> 2-3 heures
+                    <strong>Durée :</strong> 8-10 heures
                   </p>
                   <p class="text-sm text-neutral-400">
-                    <strong>Améliorations :</strong> SEO, meta tags,
-                    accessibilité clavier, performance
+                    <strong>Défis :</strong> Configuration CORS, tests avec
+                    pgxmock, gestion des erreurs SMTP
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="flex gap-6">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center font-bold text-xl"
+              >
+                5
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2">Base de données & Docker</h3>
+                <p class="text-neutral-300 mb-3">
+                  Configuration PostgreSQL avec schema SQL, scripts
+                  d'initialisation automatique. Docker Compose pour orchestrer
+                  les 3 services (frontend Nginx, backend Go, database Postgres)
+                  avec volumes persistants et healthchecks.
+                </p>
+                <div class="bg-black/30 rounded-lg p-4 border border-white/10">
+                  <p class="text-sm text-neutral-400 mb-2">
+                    <strong>Durée :</strong> 6-8 heures
+                  </p>
+                  <p class="text-sm text-neutral-400">
+                    <strong>Défis :</strong> Configuration .env dynamique,
+                    permissions DB, orchestration des dépendances
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="flex gap-6">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center font-bold text-xl"
+              >
+                6
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2">Tests & CI/CD</h3>
+                <p class="text-neutral-300 mb-3">
+                  Tests unitaires (Jest) et E2E (Playwright) pour le frontend.
+                  Tests unitaires et d'intégration pour le backend Go (85.9%
+                  coverage). GitHub Actions pour CI/CD automatique : lint,
+                  tests, build à chaque push.
+                </p>
+                <div class="bg-black/30 rounded-lg p-4 border border-white/10">
+                  <p class="text-sm text-neutral-400 mb-2">
+                    <strong>Durée :</strong> 4-5 heures
+                  </p>
+                  <p class="text-sm text-neutral-400">
+                    <strong>Défis :</strong> Tests d'intégration avec DB réelle,
+                    configuration GitHub Actions multi-jobs
                   </p>
                 </div>
               </div>
@@ -891,37 +1060,121 @@ portfolio/
                 <div
                   class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center"
                 >
-                  <i class="fas fa-filter text-purple-400"></i>
+                  <i class="fas fa-network-wired text-purple-400"></i>
                 </div>
                 <div class="flex-grow">
                   <h3 class="text-xl font-bold mb-2 text-white">
-                    Filtrage qui cache les projets au chargement
+                    Configuration CORS entre frontend et backend
                   </h3>
                   <p class="text-neutral-300 mb-3">
-                    Le script de filtrage appliquait display:none sur tous les
-                    projets au chargement, puis les réaffichait. Résultat :
-                    flash de contenu vide pendant 200ms.
+                    Le formulaire de contact ne pouvait pas envoyer de requêtes
+                    au backend à cause des politiques CORS. Le navigateur
+                    bloquait les requêtes cross-origin avec l'erreur "blocked by
+                    CORS policy".
                   </p>
                   <div
                     class="bg-black/50 rounded-lg p-4 text-sm font-mono overflow-x-auto"
                   >
                     <div class="text-green-400 mb-2">
-                      // Solution : ne filtrer que sur action utilisateur
+                      // Solution : Middleware CORS dans Gin (Go)
                     </div>
                     <div class="text-neutral-300">
-                      function initProjectsFilter() {
+                      router.Use(cors.New(cors.Config{
                     </div>
                     <div class="text-neutral-300 ml-4">
-                      // Pas de filtre au chargement initial
+                      AllowOrigins: []string{"https://portfolio.ega.ovh"},
                     </div>
                     <div class="text-neutral-300 ml-4">
-                      filterButtons.forEach(btn => {
+                      AllowMethods: []string{"POST", "OPTIONS"},
                     </div>
+                    <div class="text-neutral-300 ml-4">
+                      AllowHeaders: []string{"Content-Type"},
+                    </div>
+                    <div class="text-neutral-300">}))</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 5 -->
+            <div
+              class="bg-cyan-500/5 border border-cyan-500/20 rounded-2xl p-6 hover:bg-cyan-500/10 transition-all"
+            >
+              <div class="flex items-start gap-4">
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-database text-cyan-400"></i>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="text-xl font-bold mb-2 text-white">
+                    Tests unitaires du backend avec mocks de la DB
+                  </h3>
+                  <p class="text-neutral-300 mb-3">
+                    Difficulté à tester le repository sans dépendance à une
+                    vraie base de données. Il fallait mocker pgxpool pour tester
+                    la logique d'insertion sans toucher à Postgres.
+                  </p>
+                  <div
+                    class="bg-black/50 rounded-lg p-4 text-sm font-mono overflow-x-auto"
+                  >
+                    <div class="text-green-400 mb-2">
+                      // Solution : pgxmock pour simuler la DB
+                    </div>
+                    <div class="text-neutral-300">
+                      mock, _ := pgxmock.NewPool()
+                    </div>
+                    <div class="text-neutral-300">
+                      mock.ExpectExec("INSERT INTO contacts").WillReturnResult(
+                    </div>
+                    <div class="text-neutral-300 ml-4">
+                      pgxmock.NewResult("INSERT", 1)
+                    </div>
+                    <div class="text-neutral-300">)</div>
+                    <div class="text-neutral-300">
+                      repo := NewContactRepositoryFromPool(mock)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 6 -->
+            <div
+              class="bg-sky-500/5 border border-sky-500/20 rounded-2xl p-6 hover:bg-sky-500/10 transition-all"
+            >
+              <div class="flex items-start gap-4">
+                <div
+                  class="flex-shrink-0 w-10 h-10 bg-sky-500/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fab fa-docker text-sky-400"></i>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="text-xl font-bold mb-2 text-white">
+                    Orchestration Docker Compose avec dépendances
+                  </h3>
+                  <p class="text-neutral-300 mb-3">
+                    Le backend démarrait avant que la DB soit prête, causant des
+                    erreurs de connexion. Il fallait attendre que Postgres soit
+                    complètement initialisé avant de lancer l'API.
+                  </p>
+                  <div
+                    class="bg-black/50 rounded-lg p-4 text-sm font-mono overflow-x-auto"
+                  >
+                    <div class="text-green-400 mb-2">
+                      # Solution : healthcheck et depends_on condition
+                    </div>
+                    <div class="text-neutral-300">db:</div>
+                    <div class="text-neutral-300 ml-4">healthcheck:</div>
                     <div class="text-neutral-300 ml-8">
-                      btn.addEventListener('click', () => applyFilter());
+                      test: ["CMD", "pg_isready", "-d", "portfolio"]
                     </div>
-                    <div class="text-neutral-300 ml-4">});</div>
-                    <div class="text-neutral-300">}</div>
+                    <div class="text-neutral-300">backend:</div>
+                    <div class="text-neutral-300 ml-4">depends_on:</div>
+                    <div class="text-neutral-300 ml-8">db:</div>
+                    <div class="text-neutral-300 ml-12">
+                      condition: service_healthy
+                    </div>
                   </div>
                 </div>
               </div>
@@ -952,56 +1205,92 @@ portfolio/
             <div class="glass-card">
               <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
                 <i class="fas fa-code text-blue-400"></i>
-                <span>Développement web</span>
+                <span>Développement frontend</span>
               </h3>
               <ul class="space-y-2 text-neutral-300">
                 <li>• Structure HTML sémantique et accessible (ARIA, roles)</li>
                 <li>• CSS moderne (Flexbox, Grid, animations, variables)</li>
-                <li>• JavaScript ES6+ (modules, async, API DOM)</li>
+                <li>• JavaScript ES6+ (modules, async, API DOM, fetch)</li>
                 <li>• Responsive design mobile-first avec Tailwind</li>
                 <li>• Compatibilité cross-browser (Safari, Firefox, Chrome)</li>
+                <li>• Formulaire connecté à une API REST</li>
               </ul>
             </div>
 
             <div class="glass-card">
               <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fas fa-tachometer-alt text-green-400"></i>
-                <span>Performance web</span>
+                <i class="fab fa-golang text-cyan-400"></i>
+                <span>Développement backend</span>
+              </h3>
+              <ul class="space-y-2 text-neutral-300">
+                <li>• API REST avec Go et framework Gin</li>
+                <li>• Architecture modulaire (services, repository, models)</li>
+                <li>• Connexion PostgreSQL avec pgxpool</li>
+                <li>• Configuration CORS pour cross-origin requests</li>
+                <li>• Service SMTP pour envoi d'emails</li>
+                <li>• Gestion des erreurs et logging structuré</li>
+              </ul>
+            </div>
+
+            <div class="glass-card">
+              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                <i class="fas fa-database text-indigo-400"></i>
+                <span>Base de données & persistance</span>
+              </h3>
+              <ul class="space-y-2 text-neutral-300">
+                <li>• Schéma SQL PostgreSQL avec contraintes</li>
+                <li>• Scripts d'initialisation automatique</li>
+                <li>• Connection pooling pour performances</li>
+                <li>• Requêtes préparées et injection SQL prevention</li>
+                <li>• Timestamps automatiques (created_at)</li>
+                <li>• Gestion des transactions</li>
+              </ul>
+            </div>
+
+            <div class="glass-card">
+              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                <i class="fab fa-docker text-sky-400"></i>
+                <span>DevOps & containerisation</span>
+              </h3>
+              <ul class="space-y-2 text-neutral-300">
+                <li>• Docker Compose multi-services (3 containers)</li>
+                <li>• Dockerfiles optimisés (multi-stage builds)</li>
+                <li>• Configuration .env et variables d'environnement</li>
+                <li>• Healthchecks et depends_on avec conditions</li>
+                <li>• Volumes persistants pour la DB</li>
+                <li>• Networking entre containers</li>
+              </ul>
+            </div>
+
+            <div class="glass-card">
+              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                <i class="fas fa-check-circle text-green-400"></i>
+                <span>Tests & qualité du code</span>
+              </h3>
+              <ul class="space-y-2 text-neutral-300">
+                <li>• Tests unitaires Go avec mocks (pgxmock)</li>
+                <li>• Tests d'intégration avec DB réelle</li>
+                <li>• Tests E2E frontend avec Playwright</li>
+                <li>• Coverage 85%+ sur le backend</li>
+                <li>• Linting avec golangci-lint et ESLint</li>
+                <li>• GitHub Actions CI/CD automatique</li>
+              </ul>
+            </div>
+
+            <div class="glass-card">
+              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                <i class="fas fa-tachometer-alt text-purple-400"></i>
+                <span>Performance & accessibilité</span>
               </h3>
               <ul class="space-y-2 text-neutral-300">
                 <li>• Intersection Observer pour animations performantes</li>
-                <li>• Lazy loading des images et ressources</li>
-                <li>• Optimisation CSS (modules, minification)</li>
-                <li>• Debounce/throttle des event listeners</li>
-                <li>• Lighthouse audits et optimisations</li>
-              </ul>
-            </div>
-
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fas fa-universal-access text-purple-400"></i>
-                <span>Accessibilité</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• ARIA labels et attributs pour screen readers</li>
-                <li>• Navigation complète au clavier (Tab, Esc, Enter)</li>
-                <li>• Contraste WCAG AA minimum</li>
-                <li>• Focus management et skip links</li>
-                <li>• Tests avec lecteurs d'écran</li>
-              </ul>
-            </div>
-
-            <div class="glass-card">
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
-                <i class="fas fa-tools text-orange-400"></i>
-                <span>Workflow & outils</span>
-              </h3>
-              <ul class="space-y-2 text-neutral-300">
-                <li>• Git pour versioning (commits atomiques, branches)</li>
-                <li>• Architecture modulaire CSS et JS</li>
-                <li>• Debugging avec Chrome/Firefox DevTools</li>
-                <li>• Tests cross-browser et mobile</li>
-                <li>• Déploiement GitHub Pages avec domaine custom</li>
+                <li>• Self-hosting FontAwesome (pas de CDN tiers)</li>
+                <li>• Preload hints pour webfonts critiques</li>
+                <li>• ARIA labels et navigation clavier complète</li>
+                <li>
+                  • Lighthouse audits (95+ performance, 100 accessibility)
+                </li>
+                <li>• CSP (Content Security Policy) configurée</li>
               </ul>
             </div>
           </div>
@@ -1051,12 +1340,12 @@ portfolio/
               </div>
             </div>
             <div
-              class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-xl p-6 text-center hover:scale-105 transition-transform"
+              class="bg-gradient-to-br from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 rounded-xl p-6 text-center hover:scale-105 transition-transform"
             >
-              <div class="text-5xl font-black text-orange-400 mb-2">< 500</div>
-              <div class="text-sm text-neutral-400">KB Total</div>
+              <div class="text-5xl font-black text-cyan-400 mb-2">85.9%</div>
+              <div class="text-sm text-neutral-400">Backend Coverage</div>
               <div class="text-xs text-neutral-500 mt-1">
-                Poids (sans Tailwind CDN)
+                Tests Go unitaires
               </div>
             </div>
           </div>
@@ -1078,26 +1367,58 @@ portfolio/
                     • 6 pages HTML (index, projects, about, contact, 2 détails
                     projet)
                   </li>
-                  <li>• ~800 lignes de CSS (main.css + 10 modules)</li>
-                  <li>• ~600 lignes de JavaScript (app.js + 5 modules)</li>
+                  <li>• ~1000 lignes de CSS (main.css + 10 modules)</li>
+                  <li>• ~800 lignes de JavaScript (app.js + 6 modules)</li>
                   <li>• Tailwind CSS 3.x via CDN</li>
-                  <li>• Font Awesome 6.4 pour icônes</li>
+                  <li>• FontAwesome 6.4 self-hosted (local)</li>
                   <li>• Google Fonts (Inter) préchargée</li>
+                  <li>• Tests E2E avec Playwright</li>
                 </ul>
               </div>
               <div>
                 <h4
                   class="font-semibold text-neutral-400 mb-3 uppercase text-sm"
                 >
-                  Hébergement & Déploiement
+                  Backend & Infrastructure
                 </h4>
                 <ul class="space-y-2 text-neutral-300 text-sm">
-                  <li>• GitHub Pages (hébergement gratuit)</li>
+                  <li>• Backend Go avec Gin framework</li>
+                  <li>• ~1500 lignes de code Go (API + services + tests)</li>
+                  <li>• PostgreSQL database (schema SQL + init scripts)</li>
+                  <li>• Docker Compose (3 services orchestrés)</li>
+                  <li>• Tests unitaires + intégration (85.9% coverage)</li>
+                  <li>• GitHub Actions CI/CD (lint, test, build)</li>
+                  <li>• Configuration SMTP pour emails</li>
+                </ul>
+              </div>
+              <div>
+                <h4
+                  class="font-semibold text-neutral-400 mb-3 uppercase text-sm"
+                >
+                  Hébergement
+                </h4>
+                <ul class="space-y-2 text-neutral-300 text-sm">
+                  <li>• Frontend : GitHub Pages (hébergement gratuit)</li>
+                  <li>• Backend : Container Docker sur serveur dédié</li>
+                  <li>• Database : PostgreSQL container avec volumes</li>
                   <li>• Domaine custom : portfolio.ega.ovh</li>
-                  <li>• HTTPS activé automatiquement</li>
-                  <li>• Déploiement automatique via git push</li>
-                  <li>• Matomo analytics (self-hosted sur matomo.ega.ovh)</li>
-                  <li>• Temps de build : ~5 secondes</li>
+                  <li>• HTTPS activé (Let's Encrypt)</li>
+                  <li>• Matomo analytics self-hosted</li>
+                </ul>
+              </div>
+              <div>
+                <h4
+                  class="font-semibold text-neutral-400 mb-3 uppercase text-sm"
+                >
+                  Documentation
+                </h4>
+                <ul class="space-y-2 text-neutral-300 text-sm">
+                  <li>• ~15 fichiers Markdown de documentation</li>
+                  <li>• Architecture backend complète documentée</li>
+                  <li>• API REST référence (endpoints, payloads)</li>
+                  <li>• Guide de tests (unit, integration, E2E)</li>
+                  <li>• Configuration Docker et environnement</li>
+                  <li>• Stratégie de linting et code quality</li>
                 </ul>
               </div>
             </div>
@@ -1113,21 +1434,49 @@ portfolio/
             </h3>
             <div class="grid md:grid-cols-2 gap-4 text-neutral-300 text-sm">
               <div>
-                <h4 class="font-semibold text-white mb-2">Technique</h4>
+                <h4 class="font-semibold text-white mb-2">Frontend</h4>
                 <ul class="space-y-1">
                   <li>• Passer à un bundler (Vite) pour optimiser le JS</li>
                   <li>• Ajouter du TypeScript pour la robustesse</li>
                   <li>• Implémenter PWA (service worker, offline)</li>
-                  <li>• Optimiser les images (WebP, lazy loading natif)</li>
+                  <li>• Self-host Inter font (éliminer Google Fonts)</li>
+                  <li>• Mode clair/sombre avec toggle</li>
+                  <li>• Internationalisation (FR/EN)</li>
                 </ul>
               </div>
               <div>
-                <h4 class="font-semibold text-white mb-2">Contenu</h4>
+                <h4 class="font-semibold text-white mb-2">
+                  Backend & Infrastructure
+                </h4>
                 <ul class="space-y-1">
-                  <li>• Ajouter une section blog/articles</li>
-                  <li>• Formulaire de contact fonctionnel (API)</li>
-                  <li>• Mode clair/sombre avec toggle</li>
-                  <li>• Internationalisation (FR/EN)</li>
+                  <li>• Ajouter des endpoints supplémentaires (blog API)</li>
+                  <li>• Authentification JWT pour admin panel</li>
+                  <li>• Rate limiting sur l'API</li>
+                  <li>• Monitoring avec Prometheus + Grafana</li>
+                  <li>• CI/CD avec auto-deploy sur push main</li>
+                  <li>• Backup automatique de la DB</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-2">Fonctionnalités</h4>
+                <ul class="space-y-1">
+                  <li>• Section blog/articles avec CMS headless</li>
+                  <li>• Dashboard admin pour gérer les contacts</li>
+                  <li>• Système de notifications en temps réel</li>
+                  <li>• Analytics avancées (heatmaps, funnels)</li>
+                  <li>• Formulaire multi-étapes avec validation</li>
+                  <li>• Upload de fichiers (CV, portfolio)</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-2">Tests & Qualité</h4>
+                <ul class="space-y-1">
+                  <li>• Augmenter le coverage backend à 95%+</li>
+                  <li>• Tests de charge avec k6 ou Apache Bench</li>
+                  <li>• Tests de sécurité automatisés (OWASP)</li>
+                  <li>• Tests de régression visuelle (Percy.io)</li>
+                  <li>• Pre-commit hooks avec husky</li>
+                  <li>• Semantic versioning automatique</li>
                 </ul>
               </div>
             </div>
@@ -1142,6 +1491,14 @@ portfolio/
     >
       <!-- Social links -->
       <div class="flex justify-center gap-6 mb-6">
+        <a
+          href="mailto:enzo.gaggiotti@epitech.eu"
+          class="hover:text-white transition"
+          title="Email"
+          aria-label="Email"
+        >
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
         <a
           href="https://github.com/enzogagg"
           class="hover:text-white transition"
