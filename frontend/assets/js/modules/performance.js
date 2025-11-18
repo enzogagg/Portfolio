@@ -191,7 +191,8 @@ export class PerformanceManager {
    */
   monitorLongTasks() {
     if ("PerformanceObserver" in window) {
-      const observer = new PerformanceObserver((list) => {
+      // Keep a reference to the observer so we can disconnect when the page is hidden
+      this.longTaskObserver = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
           if (entry.duration > 50) {
             console.warn(`Long task detected: ${entry.duration}ms`);
@@ -199,7 +200,28 @@ export class PerformanceManager {
         });
       });
 
-      observer.observe({ entryTypes: ["longtask"] });
+      this.longTaskObserver.observe({ entryTypes: ["longtask"] });
+    }
+  }
+
+  /**
+   * Handle document visibility changes to pause/resume observers and reduce work when hidden
+   */
+  handleVisibilityChange() {
+    try {
+      if (document.hidden) {
+        // Pause heavy observers when tab is hidden
+        if (this.longTaskObserver && typeof this.longTaskObserver.disconnect === 'function') {
+          this.longTaskObserver.disconnect();
+        }
+        console.info('Performance: page hidden — observers paused');
+      } else {
+        // Resume monitoring when visible
+        this.monitorLongTasks();
+        console.info('Performance: page visible — observers resumed');
+      }
+    } catch (err) {
+      console.warn('Performance.handleVisibilityChange error:', err);
     }
   }
 
