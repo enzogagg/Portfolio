@@ -1,0 +1,36 @@
+/*
+  Local FontAwesome placeholder CSS
+
+  Purpose:
+  - This file is a local placeholder which prevents requests to the Cloudflare CDN
+    and avoids third-party cookies being set by cdnjs.cloudflare.com.
+  - To fully restore FontAwesome icons, download the FontAwesome Free webfont package
+    (CSS + webfonts) and place the files under:
+      assets/fonts/fontawesome/css/all.min.css
+      assets/fonts/fontawesome/webfonts/*
+
+  If you place the real `all.min.css` and `webfonts/` in that folder, you can replace
+  this file or `@import` the real CSS from here.
+
+  Minimal safe fallback: no icons, no external requests. You can later replace
+  this with the real FontAwesome CSS to restore icons.
+*/
+
+/* No-op placeholder to avoid 3rd-party CDN requests */
+/* Add actual FontAwesome files into assets/fonts/fontawesome/ as described above. */
+
+/* Example: if you add the real all.min.css you can forward-import it like this:
+   @import url("./all.min.css");
+*/
+
+/* Keep a very small font-face stub to avoid CSS errors in some setups (no actual font). */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  src: local("" );
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* No icon class definitions here — this file intentionally does not provide icons.
+   To enable icons: download FontAwesome Free and place files as explained above. */
