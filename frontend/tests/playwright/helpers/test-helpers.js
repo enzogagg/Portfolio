@@ -19,6 +19,20 @@ async function waitForPageReady(page, options = {}) {
 
   await page.waitForLoadState("networkidle");
 
+  // Wait for components to be loaded
+  try {
+    await page.evaluate(() => {
+      if (window.waitForComponents) {
+        return window.waitForComponents();
+      }
+      return Promise.resolve();
+    });
+    // Give extra time for any scripts that run after component loading
+    await page.waitForTimeout(300);
+  } catch (error) {
+    // Components might not use the loader system
+  }
+
   // Wait for loader to disappear (if it exists)
   try {
     await page.waitForSelector(".minimal-loader", {

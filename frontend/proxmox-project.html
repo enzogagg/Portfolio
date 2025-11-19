@@ -44,38 +44,7 @@
     </div>
 
     <!-- HEADER NAVIGATION -->
-    <header id="main-header">
-      <div class="header-container">
-        <a href="index.html#top" class="logo" aria-label="Accueil">
-          <div
-            class="logo-img w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
-          >
-            EG
-          </div>
-        </a>
-        <nav class="nav-primary" , aria-label="Navigation principale">
-          <a href="index.html#top" class="nav-link">Accueil</a>
-          <a href="projects.html" class="nav-link">Projets</a>
-          <a href="about.html" class="nav-link">À propos</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-        <div class="flex items-center gap-4">
-          <div class="burger-menu">
-            <div class="burger-line"></div>
-            <div class="burger-line"></div>
-            <div class="burger-line"></div>
-          </div>
-        </div>
-      </div>
-      <div class="mobile-menu" id="mobile-menu">
-        <nav class="mobile-nav" , aria-label="Navigation mobile">
-          <a href="index.html#top" class="nav-link">Accueil</a>
-          <a href="projects.html" class="nav-link">Projets</a>
-          <a href="about.html" class="nav-link">À propos</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-      </div>
-    </header>
+    <div data-component="header"></div>
 
     <!-- ========== HERO SECTION ========== -->
     <section
@@ -1211,42 +1180,11 @@
     </section>
 
     <!-- ========== FOOTER ========== -->
-    <footer
-      class="glass-card py-12 mt-12 text-center text-sm text-neutral-400 backdrop-blur-xl"
-    >
-      <!-- Social links -->
-      <div class="flex justify-center items-center gap-6 mb-4">
-        <a
-          href="mailto:enzo.gaggiotti@epitech.eu"
-          class="hover:text-white transition"
-          title="Email"
-          aria-label="Email"
-        >
-          <i class="fas fa-envelope text-2xl"></i>
-        </a>
-        <a
-          href="https://github.com/enzogagg"
-          class="hover:text-white transition"
-          title="GitHub"
-          aria-label="GitHub"
-        >
-          <i class="fab fa-github text-2xl"></i>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
-          class="hover:text-white transition"
-          title="LinkedIn"
-          aria-label="LinkedIn"
-        >
-          <i class="fab fa-linkedin text-2xl"></i>
-        </a>
-      </div>
-
-      <!-- Copyright notice -->
-      <p>&copy; 2025 Enzo Gaggiotti · Tous droits réservés</p>
-    </footer>
+    <!-- ========== FOOTER ========== -->
+    <div data-component="footer"></div>
 
     <!-- Scripts -->
+    <script src="assets/js/component-loader.js"></script>
     <script src="assets/js/visual-effects.js"></script>
     <script src="assets/js/module-loader.js"></script>
     <script src="assets/js/burger.js"></script>
