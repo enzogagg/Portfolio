@@ -5,7 +5,9 @@ This directory contains reusable HTML components that are dynamically loaded int
 ## Available Components
 
 ### 1. **footer.html**
+
 The main footer section with:
+
 - Brand information and description
 - Social media links (Email, GitHub, LinkedIn)
 - Navigation links
@@ -13,14 +15,18 @@ The main footer section with:
 - Copyright information
 
 ### 2. **header.html**
+
 The navigation header with:
+
 - Logo
 - Desktop navigation menu
 - Mobile hamburger menu
 - Responsive mobile navigation
 
 ### 3. **background.html**
+
 The animated background with:
+
 - Gradient orbs animation
 - Light rays effect
 - Loading spinner
@@ -34,6 +40,7 @@ To use a component in any HTML page:
 ```
 
 For example:
+
 ```html
 <div data-component="header"></div>
 <div data-component="footer"></div>
@@ -48,6 +55,7 @@ Components are loaded automatically by the `component-loader.js` script. Make su
 ```
 
 The component loader will:
+
 1. Scan the DOM for elements with `data-component` attribute
 2. Fetch the corresponding HTML file from the `components/` directory
 3. Replace the placeholder element with the component content

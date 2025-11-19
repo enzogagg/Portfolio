@@ -106,13 +106,13 @@ test.describe("Navigation - Mobile", () => {
 
     if ((await burgerMenu.count()) > 0) {
       await burgerMenu.click();
-      
+
       // Wait for the mobile menu to have the active class
-      await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", { 
+      await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", {
         timeout: 5000,
-        state: 'attached'
+        state: "attached",
       });
-      
+
       await page.waitForTimeout(300);
 
       // Check that mobile menu becomes visible (has active class or is displayed)
@@ -135,11 +135,16 @@ test.describe("Navigation - Mobile", () => {
       await page.waitForTimeout(500);
 
       // Wait for the mobile menu to be visible
-      await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", { timeout: 5000 });
-      
+      await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", {
+        timeout: 5000,
+      });
+
       // Wait for navigation link to be visible
-      await page.waitForSelector(".mobile-menu a:visible, #mobile-menu a:visible", { timeout: 5000 });
-      
+      await page.waitForSelector(
+        ".mobile-menu a:visible, #mobile-menu a:visible",
+        { timeout: 5000 },
+      );
+
       // Click on a navigation link inside the mobile menu
       const navLink = page.locator(".mobile-menu a, #mobile-menu a").first();
       if ((await navLink.count()) > 0) {

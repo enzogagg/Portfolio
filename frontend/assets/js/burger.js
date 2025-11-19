@@ -73,7 +73,9 @@ function initBurgerMenu() {
   }
 
   // Close menu when clicking on navigation links
-  const mobileNavLinks = document.querySelectorAll("#mobile-menu a, .mobile-menu a");
+  const mobileNavLinks = document.querySelectorAll(
+    "#mobile-menu a, .mobile-menu a",
+  );
   mobileNavLinks.forEach((link) => {
     link.removeEventListener("click", _closeMobileMenu);
     link.addEventListener("click", _closeMobileMenu);
@@ -102,7 +104,7 @@ function handleEscapeKey(e) {
 function handleClickOutside(e) {
   const menu = document.getElementById("mobile-menu");
   const burger = document.querySelector(".burger-menu");
-  
+
   if (menu && menu.classList.contains("active")) {
     // Check if click is outside menu and burger
     if (!menu.contains(e.target) && !burger?.contains(e.target)) {
@@ -115,7 +117,7 @@ function handleClickOutside(e) {
 if (typeof window !== "undefined" && typeof document !== "undefined") {
   // Listen for components loaded event
   document.addEventListener("allComponentsLoaded", initBurgerMenu);
-  
+
   // Fallback for when components are already loaded or not used
   window.addEventListener("DOMContentLoaded", () => {
     // Small delay to let component-loader finish if it's running
