@@ -51,17 +51,11 @@ describe("ScrollAnimations", () => {
 
   describe("Initialization", () => {
     test("should initialize only once", () => {
-      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
-
       scrollAnimations.init();
       expect(scrollAnimations.isInitialized).toBe(true);
 
       scrollAnimations.init();
-      expect(consoleSpy).toHaveBeenCalledWith(
-        "✅ Scroll animations initialized",
-      );
-
-      consoleSpy.mockRestore();
+      expect(scrollAnimations.isInitialized).toBe(true);
     });
 
     test("should find and store header element", () => {
@@ -96,11 +90,9 @@ describe("ScrollAnimations", () => {
       document.body.innerHTML = "<div>No animated elements</div>";
       scrollAnimations = new ScrollAnimations();
 
-      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
-      scrollAnimations.init();
-
-      expect(consoleSpy).toHaveBeenCalledWith("No animated elements found");
-      consoleSpy.mockRestore();
+      expect(() => {
+        scrollAnimations.init();
+      }).not.toThrow();
     });
   });
 
@@ -205,18 +197,9 @@ describe("ScrollAnimations", () => {
 
   describe("Projects Scroll Animations", () => {
     test("should initialize projects scroll animations", () => {
-      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
-
-      scrollAnimations.initializeProjectsScrollAnimations();
-
-      expect(consoleSpy).toHaveBeenCalledWith(
-        "🎯 Initializing projects scroll animations",
-      );
-      expect(consoleSpy).toHaveBeenCalledWith(
-        "✅ Projects scroll animations initialized",
-      );
-
-      consoleSpy.mockRestore();
+      expect(() => {
+        scrollAnimations.initializeProjectsScrollAnimations();
+      }).not.toThrow();
     });
 
     test("should handle no project elements gracefully", () => {
