@@ -53,8 +53,6 @@ export class ScrollAnimations {
     this.setupScrollAnimations();
     this.setupHeaderScroll();
     this.isInitialized = true;
-
-    console.info("✅ Scroll animations initialized");
   }
 
   /**
@@ -67,7 +65,6 @@ export class ScrollAnimations {
     );
 
     if (animatedElements.length === 0) {
-      console.info("No animated elements found");
       return;
     }
 
@@ -113,7 +110,6 @@ export class ScrollAnimations {
     }, observerOptions);
 
     // Start observing all animated elements EXCEPT project cards
-    let observedCount = 0;
     for (const element of animatedElements) {
       if (
         element.classList.contains("project-card-enhanced") ||
@@ -122,13 +118,7 @@ export class ScrollAnimations {
         continue;
       }
       this.animationObserver.observe(element);
-      observedCount++;
     }
-
-    const projectCardsCount = animatedElements.length - observedCount;
-    console.info(
-      `🎬 Animation Observer: ${observedCount} elements observed (${projectCardsCount} project cards excluded)`,
-    );
   }
 
   /**
@@ -136,7 +126,6 @@ export class ScrollAnimations {
    */
   setupHeaderScroll() {
     if (!this.header) {
-      console.warn("Header element not found");
       return;
     }
 
@@ -191,8 +180,6 @@ export class ScrollAnimations {
       return;
     }
 
-    console.info("🎯 Initializing projects scroll animations");
-
     const observerOptions = {
       threshold: 0.1,
       rootMargin: "0px 0px -50px 0px",
@@ -209,8 +196,6 @@ export class ScrollAnimations {
     for (const el of projectElements) {
       observer.observe(el);
     }
-
-    console.info("✅ Projects scroll animations initialized");
   }
 
   /**

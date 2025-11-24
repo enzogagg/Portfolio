@@ -171,5 +171,3 @@ export function isResponsibleFor(moduleName, responsibility) {
 export function getResponsibleModule(responsibility) {
   return APP_CONFIG.responsibilities[responsibility] || null;
 }
-
-console.info("📋 Centralized configuration loaded");

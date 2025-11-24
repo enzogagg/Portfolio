@@ -51,8 +51,6 @@ export class AccessibilityManager {
     this.initializeSmoothScroll();
     this.setupKeyboardShortcuts();
     this.isInitialized = true;
-
-    console.info("✅ Accessibility features initialized");
   }
 
   /**
@@ -71,6 +69,14 @@ export class AccessibilityManager {
     document.addEventListener("mousedown", () => {
       document.body.classList.remove("keyboard-navigation");
     });
+  }
+
+  /**
+   * Stub for resize handling – currently no specific actions needed.
+   * This prevents TypeError when app.js calls this.modules.accessibility.handleResize().
+   */
+  handleResize() {
+    // Future responsive adjustments can be added here.
   }
 
   /**
