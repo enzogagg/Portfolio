@@ -38,27 +38,6 @@ function hideLoader() {
   }
 }
 
-/**
- * Wait for everything to be ready before hiding loader
- */
-async function initLoader() {
-  // Wait for components to load if component system is used
-  if (window.waitForComponents) {
-    try {
-      await window.waitForComponents();
-    } catch (error) {
-      console.warn("Component loading timeout:", error);
-    }
-  }
-
-  // Also wait for window load event
-  if (document.readyState === "complete") {
-    hideLoader();
-  } else {
-    window.addEventListener("load", hideLoader);
-  }
-}
-
 // Listen for components loaded event
 document.addEventListener("allComponentsLoaded", () => {
   // Give a small delay to ensure everything is rendered
