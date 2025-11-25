@@ -1,10 +1,109 @@
 <!doctype html>
-<html lang="fr" class="text-white scroll-smooth" style="background:#000">
+<html lang="fr" style="background: #000">
   <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        background: #000 !important;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      #l {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+
+      #s {
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+
+      #s > div:nth-child(1) {
+        position: absolute;
+        inset: 0;
+        border: 3px solid transparent;
+        border-top-color: #8b5cf6;
+        border-right-color: #3b82f6;
+        border-radius: 50%;
+        animation: s 1s linear infinite;
+      }
+
+      #s > div:nth-child(2) {
+        position: absolute;
+        inset: 8px;
+        border: 3px solid transparent;
+        border-bottom-color: #a855f7;
+        border-left-color: #06b6d4;
+        border-radius: 50%;
+        animation: sr 1.5s linear infinite;
+      }
+
+      #s > div:nth-child(3) {
+        position: absolute;
+        inset: 20px;
+        background: #fff;
+        border-radius: 50%;
+        animation: p 1s ease-in-out infinite;
+        box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+      }
+
+      @keyframes s {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes sr {
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+
+      @keyframes p {
+        0%,
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      @keyframes f {
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+
+        50% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+      }
+    </style>
     <meta charset="UTF-8" />
-    <!-- Critical inline style - loads instantly to prevent white flash -->
-    <style>html{background:#000}body{background:transparent;margin:0;padding:0;padding-top:80px}</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Theme color for browser chrome -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-navbutton-color" content="#000000" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <title>Projets - Enzo Gaggiotti | Portfolio & Réalisations</title>
     <meta
       name="description"
@@ -44,19 +143,45 @@
       crossorigin
     />
 
-        <!-- Critical CSS inline for instant dark background -->
+    <!-- Critical CSS inline for instant dark background -->
     <style>
-      body{background:#000;margin:0;overflow-x:hidden}
-      .minimal-loader{position:fixed;inset:0;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:1;transition:opacity 0.5s ease}
-      .minimal-spinner{width:40px;height:40px;border:3px solid rgba(139,92,246,0.3);border-top-color:#8b5cf6;border-radius:50%;animation:spin 0.8s linear infinite}
-      @keyframes spin{to{transform:rotate(360deg)}}
-      .mesh-gradient-bg{position:fixed;inset:0;background:radial-gradient(circle at 20% 30%,rgba(139,92,246,0.15),transparent 50%),radial-gradient(circle at 80% 70%,rgba(59,130,246,0.1),transparent 50%),radial-gradient(circle at 50% 50%,rgba(168,85,247,0.08),transparent 70%),#000;z-index:-1}
+      body {
+        background: #000;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      .minimal-loader {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
 
     <!-- CSS Frameworks & Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/loader.css" />
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
     <!-- Matomo -->
     <script>
@@ -80,20 +205,54 @@
         s.parentNode.insertBefore(g, s);
       })();
     </script>
-    <noscript
-      ><p>
+    <noscript>
+      <p>
         <img
           referrerpolicy="no-referrer-when-downgrade"
           src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
           style="border: 0"
           alt=""
-        /></p
-    ></noscript>
+        />
+      </p>
+    </noscript>
     <!-- End Matomo Code -->
   </head>
 
-  <body class="min-h-screen flex flex-col">
-    <div data-component="background"></div>
+  <body
+    class="min-h-screen flex flex-col text-white"
+    style="
+      padding-top: 0 !important;
+      background-color: #000 !important;
+      margin: 0 !important;
+    "
+  >
+    <script>
+      // Inject loader immediately
+      document.write(
+        '<div id="l"><div id="s"><div></div><div></div><div></div></div></div>',
+      );
+    </script>
+
+    <script>
+      (function () {
+        const l = document.getElementById("l");
+        const r = () => {
+          if (l && l.parentNode) {
+            l.style.opacity = "0";
+            setTimeout(() => l.remove(), 500);
+          }
+        };
+        window.addEventListener("load", r);
+        setTimeout(r, 3000);
+        document.body.style.overflow = "auto";
+      })();
+    </script>
+    <div class="noise-overlay"></div>
+    <div
+      id="webgl-background"
+      class="fixed inset-0 pointer-events-none"
+      style="z-index: 0"
+    ></div>
 
     <!-- ========== HEADER NAVIGATION ========== -->
     <div data-component="header"></div>
@@ -139,7 +298,10 @@
     </section>
 
     <!-- ========== PROJECTS SHOWCASE ========== -->
-    <main class="flex-grow container mx-auto px-6 pb-20 pt-12">
+    <main
+      class="flex-grow container mx-auto px-6 pb-20 pt-12"
+      style="flex: 1 0 auto; min-height: 60vh"
+    >
       <!-- ========== PROJECT FILTERS ========== -->
       <div
         class="flex flex-wrap justify-center gap-4 mb-20 animate-on-scroll mt-12"
@@ -183,7 +345,7 @@
         <!-- ========== INFRASTRUCTURE PROJECTS ========== -->
         <!-- Project: Network Infrastructure -->
         <div
-          class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll"
+          class="project-card-enhanced transition-all duration-500 animate-on-scroll"
           data-category="infrastructure"
           style="animation-delay: 0s"
         >
@@ -256,7 +418,7 @@
 
         <!-- Project: Proxmox Infrastructure -->
         <div
-          class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll"
+          class="project-card-enhanced transition-all duration-500 animate-on-scroll"
           data-category="infrastructure"
           style="animation-delay: 0.05s"
         >
@@ -336,7 +498,7 @@
 
         <!-- Project: Box Domotique Aquarium (Featured) -->
         <div
-          class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll"
+          class="project-card-enhanced transition-all duration-500 animate-on-scroll"
           data-category="iot"
           style="animation-delay: 0.1s"
         >
@@ -408,7 +570,7 @@
 
         <!-- Project: Interactive Portfolio -->
         <div
-          class="project-card-enhanced glass-button transition-all duration-500 animate-on-scroll"
+          class="project-card-enhanced transition-all duration-500 animate-on-scroll"
           data-category="web"
           style="animation-delay: 0.15s"
         >
@@ -499,5 +661,8 @@
     <script src="assets/js/burger.js"></script>
     <script src="assets/js/module-loader.js"></script>
     <script src="assets/js/visual-effects.js"></script>
+    <script src="assets/js/three-bg.js"></script>
+
+    <script src="assets/js/smooth-scroll.js"></script>
   </body>
 </html>

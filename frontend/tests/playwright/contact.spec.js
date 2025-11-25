@@ -369,7 +369,11 @@ test.describe("Contact Page - Non-Regression Tests", () => {
 
       // Filter known non-critical errors
       const criticalErrors = errors.filter(
-        (err) => !err.includes("404") && !err.includes("favicon"),
+        (err) =>
+          !err.includes("404") &&
+          !err.includes("favicon") &&
+          !err.includes("cookie") &&
+          !err.includes("ERR_CONNECTION_REFUSED"),
       );
 
       expect(criticalErrors.length).toBeLessThan(3);

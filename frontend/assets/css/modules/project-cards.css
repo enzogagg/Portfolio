@@ -1,0 +1,312 @@
+/**
+ * =====================================================================================================
+ * PORTFOLIO - PREMIUM PROJECT PAGE ENHANCEMENTS
+ * =====================================================================================================
+ *
+ * Author: Enzo Gaggiotti
+ * File: project-enhancements.css
+ * Version: 1.0.0
+ *
+ * Description:
+ * Premium visual enhancements for project detail pages including animated borders,
+ * gradient effects, and advanced hover states for a modern aesthetic.
+ *
+ * =====================================================================================================
+ */
+
+/* =====================================================================================================
+   ANIMATED SECTION HEADERS
+   ===================================================================================================== */
+
+/**
+ * Decorative line animation for section headers
+ */
+.section-header-line {
+  position: relative;
+  display: inline-block;
+}
+
+.section-header-line::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(139 92 246 / 80%),
+    rgb(59 130 246 / 80%),
+    transparent
+  );
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.section-header-line:hover::after {
+  width: 100%;
+}
+
+/* =====================================================================================================
+   PREMIUM BADGE ANIMATIONS
+   ===================================================================================================== */
+
+/**
+ * Animated status badge with pulse effect
+ */
+.status-badge-premium {
+  position: relative;
+  overflow: hidden;
+}
+
+.status-badge-premium::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 30%) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s ease-out;
+  border-radius: 50%;
+}
+
+.status-badge-premium:hover::before {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+/* =====================================================================================================
+   ANIMATED BORDER EFFECTS
+   ===================================================================================================== */
+
+/**
+ * Rotating gradient border effect for premium cards
+ */
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.card-animated-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 90deg,
+    rgb(139 92 246 / 50%) 90deg 180deg,
+    transparent 180deg 270deg,
+    rgb(59 130 246 / 50%) 270deg 360deg
+  );
+  border-radius: inherit;
+  animation: rotate-border 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.card-animated-border:hover::before {
+  opacity: 1;
+}
+
+/* =====================================================================================================
+   FLOATING ANIMATION
+   ===================================================================================================== */
+
+/**
+ * Subtle floating animation for hero mockups
+ */
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.float-animation {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+/* =====================================================================================================
+   SHIMMER TEXT EFFECT
+   ===================================================================================================== */
+
+/**
+ * Animated shimmer effect for headings
+ */
+@keyframes shimmer-text {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 80%) 0%,
+    rgb(255 255 255 / 100%) 50%,
+    rgb(255 255 255 / 80%) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 3s linear infinite;
+}
+
+/* =====================================================================================================
+   METRIC COUNTER ANIMATION
+   ===================================================================================================== */
+
+/**
+ * Pulse effect for metric cards
+ */
+@keyframes metric-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 8px 32px rgb(0 0 0 / 30%),
+      inset 0 0 0 1px rgb(255 255 255 / 5%);
+  }
+
+  50% {
+    box-shadow:
+      0 12px 40px rgb(139 92 246 / 40%),
+      inset 0 0 0 1px rgb(139 92 246 / 20%);
+  }
+}
+
+.metric-card-premium:hover {
+  animation: metric-pulse 2s ease-in-out infinite;
+}
+
+/* =====================================================================================================
+   TECH STACK GRID ENHANCEMENTS
+   ===================================================================================================== */
+
+/**
+ * Staggered fade-in animation for tech stack items
+ */
+@keyframes fade-in-up-stagger {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tech-stack-item {
+  animation: fade-in-up-stagger 0.6s ease-out backwards;
+}
+
+.tech-stack-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.tech-stack-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.tech-stack-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.tech-stack-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.tech-stack-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.tech-stack-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* =====================================================================================================
+   ICON HOVER EFFECTS
+   ===================================================================================================== */
+
+/**
+ * 3D icon rotation on hover
+ */
+.icon-3d-hover {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.icon-3d-hover:hover {
+  transform: rotateY(180deg) scale(1.1);
+}
+
+/* =====================================================================================================
+   GLOW EFFECTS
+   ===================================================================================================== */
+
+/**
+ * Animated glow effect for important elements
+ */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px rgb(139 92 246 / 30%));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 20px rgb(139 92 246 / 60%));
+  }
+}
+
+.glow-effect {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* =====================================================================================================
+   RESPONSIVE ADJUSTMENTS
+   ===================================================================================================== */
+
+@media (width <=768px) {
+  .float-animation {
+    animation: none;
+
+    /* Disable on mobile for performance */
+  }
+
+  .card-animated-border::before {
+    animation: none;
+
+    /* Disable on mobile for performance */
+  }
+}
+
+/* =====================================================================================================
+   END OF PROJECT ENHANCEMENTS
+   ===================================================================================================== */

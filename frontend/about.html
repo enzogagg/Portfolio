@@ -1,9 +1,23 @@
 <!doctype html>
-<html lang="fr" class="text-white scroll-smooth" style="background:#000">
+<html lang="fr" class="text-white scroll-smooth" style="background: #000">
   <head>
     <meta charset="UTF-8" />
     <!-- Critical inline style - loads instantly to prevent white flash -->
-    <style>html{background:#000}body{background:transparent;margin:0;padding:0;padding-top:80px}</style>
+    <script>
+      document.documentElement.style.background = "#000";
+    </script>
+    <style>
+      html {
+        background: #000;
+      }
+
+      body {
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        padding-top: 80px;
+      }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       À propos - Enzo Gaggiotti | Développeur Infrastructure & Systèmes
@@ -26,52 +40,143 @@
 
     <!-- Critical CSS inline for instant dark background -->
     <style>
-      body{background:#000;margin:0;overflow-x:hidden}
-      .minimal-loader{position:fixed;inset:0;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:1;transition:opacity 0.5s ease}
-      .minimal-spinner{width:40px;height:40px;border:3px solid rgba(139,92,246,0.3);border-top-color:#8b5cf6;border-radius:50%;animation:spin 0.8s linear infinite}
-      @keyframes spin{to{transform:rotate(360deg)}}
-      .mesh-gradient-bg{position:fixed;inset:0;background:radial-gradient(circle at 20% 30%,rgba(139,92,246,0.15),transparent 50%),radial-gradient(circle at 80% 70%,rgba(59,130,246,0.1),transparent 50%),radial-gradient(circle at 50% 50%,rgba(168,85,247,0.08),transparent 70%),#000;z-index:-1}
+      body {
+        background: #000;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      .minimal-loader {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+
+      .minimal-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(139, 92, 246, 0.3);
+        border-top-color: #8b5cf6;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .mesh-gradient-bg {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(139, 92, 246, 0.15),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(59, 130, 246, 0.1),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(168, 85, 247, 0.08),
+            transparent 70%
+          ),
+          #000;
+        z-index: -1;
+      }
     </style>
 
     <!-- CSS Frameworks & Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/loader.css" />
+
+    <!-- Level Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- Matomo -->
+    <script>
+      var _paq = (globalThis._paq = globalThis._paq || []);
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      (function () {
+        var u = "https://matomo.ega.ovh/";
+        _paq.push(
+          ["setCookieDomain", "*.portfolio.ega.ovh"],
+          ["setDomains", ["*.portfolio.ega.ovh"]],
+          ["setTrackerUrl", u + "matomo.php"],
+          ["setSiteId", "1"],
+          ["trackPageView"],
+          ["enableLinkTracking"],
+        );
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = u + "matomo.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <noscript>
+      <p>
+        <img
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+          style="border: 0"
+          alt=""
+        />
+      </p>
+    </noscript>
+    <!-- End Matomo Code -->
   </head>
-  <!-- Matomo -->
-  <script>
-    var _paq = (globalThis._paq = globalThis._paq || []);
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    (function () {
-      var u = "https://matomo.ega.ovh/";
-      _paq.push(
-        ["setCookieDomain", "*.portfolio.ega.ovh"],
-        ["setDomains", ["*.portfolio.ega.ovh"]],
-        ["setTrackerUrl", u + "matomo.php"],
-        ["setSiteId", "1"],
-        ["trackPageView"],
-        ["enableLinkTracking"],
-      );
-      var d = document,
-        g = d.createElement("script"),
-        s = d.getElementsByTagName("script")[0];
-      g.async = true;
-      g.src = u + "matomo.js";
-      s.parentNode.insertBefore(g, s);
-    })();
-  </script>
-  <noscript
-    ><p>
-      <img
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
-        style="border: 0"
-        alt=""
-      /></p
-  ></noscript>
-  <!-- End Matomo Code -->
-  <body class="min-h-screen flex flex-col">
-    <div data-component="background"></div>
+
+  <body class="min-h-screen flex flex-col text-white">
+    <!-- Global Preloader to prevent flash -->
+    <div
+      id="global-loader"
+      style="
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 99999;
+        transition: opacity 0.5s ease-out;
+      "
+    ></div>
+    <script>
+      (function () {
+        const loader = document.getElementById("global-loader");
+        const removeLoader = () => {
+          if (loader && loader.parentNode) {
+            loader.style.opacity = "0";
+            setTimeout(() => loader.remove(), 500);
+          }
+        };
+
+        window.addEventListener("load", removeLoader);
+
+        // Safety fallback: force remove after 3s if load event hangs
+        setTimeout(removeLoader, 3000);
+      })();
+    </script>
+    <div class="noise-overlay"></div>
+    <div
+      id="webgl-background"
+      class="fixed inset-0 z-0 pointer-events-none"
+    ></div>
 
     <!-- ========== HEADER NAVIGATION ========== -->
     <div data-component="header"></div>
@@ -280,11 +385,11 @@
 
                 <!-- Key Stats -->
                 <div class="grid grid-cols-2 gap-6 pt-8">
-                  <div class="glass-button p-6 rounded-xl text-center">
+                  <div class="glass-card-premium p-6 rounded-xl text-center">
                     <div class="text-3xl font-bold text-blue-400 mb-2">3+</div>
                     <div class="text-sm text-neutral-400">Années d'études</div>
                   </div>
-                  <div class="glass-button p-6 rounded-xl text-center">
+                  <div class="glass-card-premium p-6 rounded-xl text-center">
                     <div class="text-3xl font-bold text-purple-400 mb-2">
                       10+
                     </div>
@@ -458,6 +563,21 @@
               <h3 class="text-lg font-semibold mb-2">Électronique & DIY</h3>
               <p class="text-neutral-400 text-sm">
                 Montages simples, capteurs, prototypage avec ESP32
+              </p>
+            </div>
+
+            <!-- 3d modeling and printing-->
+            <div class="text-center group cursor-pointer fade-in">
+              <div
+                class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+              >
+                <i class="fas fa-cube text-3xl text-white dark:text-white"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">
+                Modélisation 3D & Impression
+              </h3>
+              <p class="text-neutral-400 text-sm">
+                Modélisation 3D, impression 3D, prototypage
               </p>
             </div>
 
@@ -730,5 +850,7 @@
     <script src="assets/js/burger.js"></script>
     <script src="assets/js/module-loader.js"></script>
     <script src="assets/js/visual-effects.js"></script>
+    <script src="assets/js/three-bg.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
   </body>
 </html>

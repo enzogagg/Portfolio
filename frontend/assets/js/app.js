@@ -65,7 +65,6 @@ class PortfolioApp {
    */
   async init() {
     if (this.isInitialized) {
-      console.warn("Application already initialized");
       return;
     }
 
@@ -150,6 +149,25 @@ class PortfolioApp {
    * The animations module explicitly excludes project cards from its observer.
    */
   async initializeCore() {
+    // Wait for components (header/footer) to be loaded first
+    if (window.waitForComponents) {
+      await window.waitForComponents();
+      console.info("✅ Components loaded, proceeding with initialization");
+    } else {
+      // Fallback: wait for event if waitForComponents is not available yet
+      await new Promise((resolve) => {
+        if (document.querySelector("header")) {
+          resolve();
+        } else {
+          document.addEventListener("allComponentsLoaded", resolve, {
+            once: true,
+          });
+          // Timeout fallback after 2s
+          setTimeout(resolve, 2000);
+        }
+      });
+    }
+
     // STEP 1: Initialize project cards (handled by projects module)
     this.modules.projects.init();
 

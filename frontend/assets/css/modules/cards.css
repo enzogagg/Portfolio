@@ -92,18 +92,24 @@
   /* Enhanced Glassmorphism Effect */
   background: linear-gradient(
     135deg,
-    rgb(255 255 255 / 5%) 0%,
-    rgb(255 255 255 / 2%) 100%
+    rgb(255 255 255 / 3%) 0%,
+    rgb(255 255 255 / 1%) 100%
   );
   backdrop-filter: blur(20px);
-  border: 1px solid rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 5%);
 
   /* Enhanced Shadows & Transitions */
   box-shadow:
-    0 8px 32px rgb(0 0 0 / 30%),
-    inset 0 1px 0 rgb(255 255 255 / 10%);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    0 8px 32px rgb(0 0 0 / 40%),
+    inset 0 1px 0 rgb(255 255 255 / 5%);
+  transition:
+    all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.1s linear;
+
+  /* Fast transform for tilt */
   animation: fadeInUp 0.6s ease-out backwards;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 /**
@@ -114,7 +120,8 @@
 .project-card {
   opacity: 1;
   transform: scale(1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); Removed to avoid conflict with tilt */
   pointer-events: auto;
 }
 
@@ -123,18 +130,18 @@
  * Enhanced visual feedback with scaling and purple glow effects
  */
 .project-card-home:hover {
-  transform: translateY(-12px) scale(1.03);
+  /* transform: translateY(-12px) scale(1.03); Handled by JS tilt now */
   background: linear-gradient(
     135deg,
-    rgb(255 255 255 / 8%) 0%,
-    rgb(255 255 255 / 4%) 100%
+    rgb(255 255 255 / 5%) 0%,
+    rgb(255 255 255 / 2%) 100%
   );
   box-shadow:
-    0 20px 60px rgb(0 0 0 / 40%),
-    0 0 0 1px rgb(139 92 246 / 30%),
-    0 0 40px rgb(139 92 246 / 20%),
-    inset 0 1px 0 rgb(255 255 255 / 20%);
-  border-color: rgb(139 92 246 / 40%);
+    0 20px 60px rgb(0 0 0 / 50%),
+    0 0 0 1px rgba(var(--accent-glow), 0.3),
+    0 0 40px rgba(var(--accent-glow), 0.2),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+  border-color: rgba(var(--accent-primary), 0.4);
 }
 
 /**
@@ -175,8 +182,12 @@
   /* Core Layout */
   display: flex;
   flex-direction: column;
-  min-height: 480px; /* Minimum height instead of fixed */
-  height: auto; /* Hauteur flexible */
+  min-height: 480px;
+
+  /* Minimum height instead of fixed */
+  height: auto;
+
+  /* Hauteur flexible */
   padding: 2rem;
   border-radius: 20px;
   position: relative;
@@ -451,7 +462,9 @@
   flex-direction: column;
   gap: 1rem;
   position: relative;
-  min-height: 0; /* Important to prevent overflow */
+  min-height: 0;
+
+  /* Important to prevent overflow */
 }
 
 .project-title {
@@ -956,7 +969,7 @@
 /**
  * Tablet breakpoint adjustments
  */
-@media (width <= 1024px) {
+@media (width <=1024px) {
   .project-card-home,
   .project-card-enhanced {
     min-height: 380px;
@@ -976,7 +989,7 @@
 /**
  * Mobile breakpoint adjustments
  */
-@media (width <= 768px) {
+@media (width <=768px) {
   .project-card-home,
   .project-card-enhanced {
     min-height: 350px;
@@ -1021,7 +1034,7 @@
 /**
  * Small mobile adjustments
  */
-@media (width <= 480px) {
+@media (width <=480px) {
   .project-card-home,
   .project-card-enhanced {
     min-height: 320px;
@@ -1051,13 +1064,13 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-@media (width >= 640px) {
+@media (width >=640px) {
   .projects-grid {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 }
 
-@media (width >= 1024px) {
+@media (width >=1024px) {
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1136,6 +1149,57 @@
   padding: 2rem;
   position: relative;
   z-index: 1;
+}
+
+/* =====================================================================================================
+   LEVEL 10 PREMIUM COMPONENTS
+   ===================================================================================================== */
+
+.glass-card-premium {
+  background: rgb(10 10 20 / 60%);
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgb(255 255 255 / 8%);
+  box-shadow:
+    0 20px 50px rgb(0 0 0 / 50%),
+    inset 0 0 0 1px rgb(255 255 255 / 5%),
+    inset 0 0 20px rgb(139 92 246 / 10%);
+  border-radius: 24px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card-premium::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgb(139 92 246 / 30%) 50%,
+    transparent 60%
+  );
+  z-index: -1;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+.glass-card-premium:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow:
+    0 30px 60px rgb(0 0 0 / 60%),
+    inset 0 0 0 1px rgb(255 255 255 / 10%),
+    inset 0 0 30px rgb(139 92 246 / 20%);
+  border-color: rgb(139 92 246 / 30%);
+}
+
+.glass-card-premium:hover::before {
+  opacity: 1;
 }
 
 /* =====================================================================================================

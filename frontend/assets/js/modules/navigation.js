@@ -51,13 +51,11 @@ export class MobileNavigation {
     this.burgerMenu = document.querySelector(".burger-menu");
 
     if (!this.mobileMenu || !this.burgerMenu) {
-      console.warn("Mobile navigation elements not found");
       return;
     }
 
     this.setupEventListeners();
     this.isInitialized = true;
-    console.info("✅ Mobile navigation initialized");
   }
 
   /**
@@ -71,11 +69,22 @@ export class MobileNavigation {
       }
     });
 
-    // Handle click outside menu
+    // Handle burger menu click (Event Delegation)
     document.addEventListener("click", (e) => {
+      const burgerBtn = e.target.closest(".burger-menu");
+      if (burgerBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.toggle();
+        return;
+      }
+
+      // Handle click outside menu
       if (
-        !this.burgerMenu.contains(e.target) &&
-        !this.mobileMenu.contains(e.target)
+        this.isOpen &&
+        this.mobileMenu &&
+        !this.mobileMenu.contains(e.target) &&
+        !e.target.closest(".burger-menu")
       ) {
         this.close();
       }
@@ -93,6 +102,8 @@ export class MobileNavigation {
    * Toggle mobile menu visibility
    */
   toggle() {
+    this.refreshElements();
+
     if (!this.mobileMenu || !this.burgerMenu) {
       return;
     }
@@ -110,6 +121,8 @@ export class MobileNavigation {
    * Open mobile menu
    */
   open() {
+    this.refreshElements();
+
     if (!this.mobileMenu || !this.burgerMenu) {
       return;
     }
@@ -119,14 +132,14 @@ export class MobileNavigation {
     this.burgerMenu.setAttribute("aria-expanded", "true");
     document.body.classList.add("menu-open");
     this.isOpen = true;
-
-    console.info("Mobile menu opened");
   }
 
   /**
    * Close mobile menu and reset states
    */
   close() {
+    this.refreshElements();
+
     if (!this.mobileMenu || !this.burgerMenu) {
       return;
     }
@@ -136,8 +149,16 @@ export class MobileNavigation {
     this.burgerMenu.setAttribute("aria-expanded", "false");
     document.body.classList.remove("menu-open");
     this.isOpen = false;
+  }
 
-    console.info("Mobile menu closed");
+  /**
+   * Refresh DOM elements references
+   */
+  refreshElements() {
+    if (!this.mobileMenu)
+      this.mobileMenu = document.getElementById("mobile-menu");
+    if (!this.burgerMenu)
+      this.burgerMenu = document.querySelector(".burger-menu");
   }
 
   /**

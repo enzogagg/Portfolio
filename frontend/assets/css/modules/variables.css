@@ -35,48 +35,49 @@
 
   /**
    * Background Colors
-   * RGB values for alpha channel compatibility
+   * Richer dark tones for premium feel
    */
-  --bg-primary: 10, 10, 10; /* Main background - Deep neutral */
-  --bg-secondary: 23, 23, 23; /* Secondary background - Dark neutral */
-  --bg-tertiary: 38, 38, 38; /* Card backgrounds - Medium neutral */
-  --bg-surface: 51, 51, 51; /* Surface elements - Light neutral */
-  --bg-hover: 64, 64, 64; /* Hover states - Interactive neutral */
+  --bg-primary: 5, 5, 10; /* Deepest blue-black */
+  --bg-secondary: 15, 17, 26; /* Rich dark blue-grey */
+  --bg-tertiary: 25, 28, 40; /* Lighter blue-grey for cards */
+  --bg-surface: 40, 44, 60; /* Surface elements */
+  --bg-hover: 50, 55, 75; /* Hover states */
 
   /**
    * Text Colors
    * High contrast for accessibility compliance
    */
-  --text-primary: 255, 255, 255; /* Primary text - Pure white */
-  --text-secondary: 163, 163, 163; /* Secondary text - Light gray */
-  --text-muted: 115, 115, 115; /* Muted text - Medium gray */
-  --text-placeholder: 82, 82, 82; /* Placeholder text - Dark gray */
+  --text-primary: 250, 250, 255; /* Cool white */
+  --text-secondary: 180, 185, 200; /* Cool grey */
+  --text-muted: 120, 125, 140; /* Muted cool grey */
+  --text-placeholder: 90, 95, 110; /* Darker cool grey */
 
   /**
    * Accent & Brand Colors
-   * Blue-based palette for modern professional look
+   * Vibrant neon-like palette
    */
-  --accent-primary: 59, 130, 246; /* Primary accent - Blue 500 */
-  --accent-secondary: 37, 99, 235; /* Secondary accent - Blue 600 */
-  --accent-hover: 29, 78, 216; /* Hover accent - Blue 700 */
-  --accent-light: 147, 197, 253; /* Light accent - Blue 300 */
+  --accent-primary: 99, 102, 241; /* Indigo 500 - Vibrant */
+  --accent-secondary: 79, 70, 229; /* Indigo 600 - Deep */
+  --accent-hover: 67, 56, 202; /* Indigo 700 - Darker */
+  --accent-light: 165, 180, 252; /* Indigo 200 - Glow */
+  --accent-glow: 99, 102, 241; /* For box-shadow glows */
 
   /**
    * Status Colors
-   * For success, warning, error states
+   * Neon variants
    */
-  --success: 34, 197, 94; /* Success green */
-  --warning: 245, 158, 11; /* Warning amber */
-  --error: 239, 68, 68; /* Error red */
-  --info: 59, 130, 246; /* Info blue */
+  --success: 34, 211, 238; /* Cyan for success/active */
+  --warning: 251, 191, 36; /* Amber */
+  --error: 244, 63, 94; /* Rose */
+  --info: 56, 189, 248; /* Sky blue */
 
   /**
    * Border Colors
    * Subtle borders for glassmorphism
    */
-  --border-primary: 64, 64, 64; /* Primary borders */
-  --border-secondary: 38, 38, 38; /* Secondary borders */
-  --border-accent: 59, 130, 246; /* Accent borders */
+  --border-primary: 255, 255, 255; /* Use with low opacity */
+  --border-secondary: 40, 44, 60;
+  --border-accent: 99, 102, 241;
 
   /* =====================================================================================================
      TYPOGRAPHY SYSTEM
@@ -86,11 +87,11 @@
    * Font Families
    * Modern font stack with fallbacks
    */
-  --font-primary:
-    "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
-  --font-secondary: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
-  --font-heading:
-    "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+  --font-primary: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display:
+    "Outfit", "Inter", system-ui, sans-serif; /* New display font */
+
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
   /**
    * Font Sizes
@@ -102,14 +103,14 @@
   --text-lg: 1.125rem; /* 18px */
   --text-xl: 1.25rem; /* 20px */
   --text-2xl: 1.5rem; /* 24px */
-  --text-3xl: 1.875rem; /* 30px */
-  --text-4xl: 2.25rem; /* 36px */
-  --text-5xl: 3rem; /* 48px */
-  --text-6xl: 3.75rem; /* 60px */
+  --text-3xl: 2rem; /* 32px */
+  --text-4xl: 2.5rem; /* 40px */
+  --text-5xl: 3.5rem; /* 56px */
+  --text-6xl: 4.5rem; /* 72px */
+  --text-7xl: 6rem; /* 96px */
 
   /**
    * Font Weights
-   * Semantic weight naming
    */
   --font-light: 300;
   --font-normal: 400;
@@ -117,6 +118,7 @@
   --font-semibold: 600;
   --font-bold: 700;
   --font-extrabold: 800;
+  --font-black: 900;
 
   /**
    * Line Heights

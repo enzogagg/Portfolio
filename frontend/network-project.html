@@ -1,10 +1,107 @@
 <!doctype html>
-<html lang="fr" class="text-white scroll-smooth" style="background:#000">
+<html lang="fr" style="background: #000">
   <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        background: #000 !important;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      #l {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+
+      #s {
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+
+      #s > div:nth-child(1) {
+        position: absolute;
+        inset: 0;
+        border: 3px solid transparent;
+        border-top-color: #8b5cf6;
+        border-right-color: #3b82f6;
+        border-radius: 50%;
+        animation: s 1s linear infinite;
+      }
+
+      #s > div:nth-child(2) {
+        position: absolute;
+        inset: 8px;
+        border: 3px solid transparent;
+        border-bottom-color: #a855f7;
+        border-left-color: #06b6d4;
+        border-radius: 50%;
+        animation: sr 1.5s linear infinite;
+      }
+
+      #s > div:nth-child(3) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        animation: p 2s ease-in-out infinite;
+      }
+
+      @keyframes s {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes sr {
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+
+      @keyframes p {
+        0%,
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+
+        50% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+      }
+    </style>
+
+    <script>
+      document.documentElement.style.background = "#000";
+    </script>
+
     <meta charset="UTF-8" />
-    <!-- Critical inline style - loads instantly to prevent white flash -->
-    <style>html{background:#000}body{background:transparent;margin:0;padding:0;padding-top:80px}</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Theme color for browser chrome -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-navbutton-color" content="#000000" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
     <title>Infrastructure Réseau - Projet HomeLab | Enzo Gaggiotti</title>
     <meta
       name="description"
@@ -21,50 +118,135 @@
     />
     <!-- Critical CSS inline for instant dark background -->
     <style>
-      body{background:#000;margin:0;overflow-x:hidden}
-      .minimal-loader{position:fixed;inset:0;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:1;transition:opacity 0.5s ease}
-      .minimal-spinner{width:40px;height:40px;border:3px solid rgba(139,92,246,0.3);border-top-color:#8b5cf6;border-radius:50%;animation:spin 0.8s linear infinite}
-      @keyframes spin{to{transform:rotate(360deg)}}
-      .mesh-gradient-bg{position:fixed;inset:0;background:radial-gradient(circle at 20% 30%,rgba(139,92,246,0.15),transparent 50%),radial-gradient(circle at 80% 70%,rgba(59,130,246,0.1),transparent 50%),radial-gradient(circle at 50% 50%,rgba(168,85,247,0.08),transparent 70%),#000;z-index:-1}
+      body {
+        background: #000;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      .minimal-loader {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+
+      .minimal-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(139, 92, 246, 0.3);
+        border-top-color: #8b5cf6;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .mesh-gradient-bg {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(139, 92, 246, 0.15),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(59, 130, 246, 0.1),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(168, 85, 247, 0.08),
+            transparent 70%
+          ),
+          #000;
+        z-index: -1;
+      }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/loader.css" />
-  </head>
-  <!-- Matomo -->
-  <script>
-    var _paq = (globalThis._paq = globalThis._paq || []);
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(
-      ["setCookieDomain", "*.portfolio.ega.ovh"],
-      ["setDomains", ["*.portfolio.ega.ovh"]],
-      ["trackPageView"],
-      ["enableLinkTracking"],
-    );
-    (function () {
-      var u = "https://matomo.ega.ovh/";
-      _paq.push(["setTrackerUrl", u + "matomo.php"], ["setSiteId", "1"]);
-      var d = document,
-        g = d.createElement("script"),
-        s = d.getElementsByTagName("script")[0];
-      g.async = true;
-      g.src = u + "matomo.js";
-      s.parentNode.insertBefore(g, s);
-    })();
-  </script>
-  <noscript
-    ><p>
-      <img
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
-        style="border: 0"
-        alt=""
-      /></p
-  ></noscript>
-  <!-- End Matomo Code -->
 
-  <body class="min-h-screen flex flex-col">
-    <div data-component="background"></div>
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+  </head>
+
+  <body style="background: #000; margin: 0; padding: 0">
+    <div id="l">
+      <div id="s">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <!-- Matomo -->
+    <script>
+      var _paq = (globalThis._paq = globalThis._paq || []);
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(
+        ["setCookieDomain", "*.portfolio.ega.ovh"],
+        ["setDomains", ["*.portfolio.ega.ovh"]],
+        ["trackPageView"],
+        ["enableLinkTracking"],
+      );
+      (function () {
+        var u = "https://matomo.ega.ovh/";
+        _paq.push(["setTrackerUrl", u + "matomo.php"], ["setSiteId", "1"]);
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = u + "matomo.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <noscript>
+      <p>
+        <img
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+          style="border: 0"
+          alt=""
+        />
+      </p>
+    </noscript>
+    <!-- End Matomo Code -->
+
+    <script>
+      (function () {
+        const l = document.getElementById("l");
+        const r = () => {
+          if (l && l.parentNode) {
+            l.style.opacity = "0";
+            setTimeout(() => l.remove(), 500);
+          }
+        };
+        window.addEventListener("load", r);
+        setTimeout(r, 3000);
+        document.body.style.overflow = "auto";
+        document.body.className = "min-h-screen flex flex-col text-white";
+      })();
+    </script>
+    <div class="noise-overlay"></div>
+    <div
+      id="webgl-background"
+      class="fixed inset-0 z-0 pointer-events-none"
+    ></div>
 
     <!-- HEADER NAVIGATION -->
     <div data-component="header"></div>
@@ -91,7 +273,7 @@
         class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center"
       >
         <!-- Project Visual -->
-        <div class="flex justify-center lg:justify-end order-2 lg:order-1">
+        <div class="flex justify-center lg:justify-end">
           <div class="relative group">
             <!-- Main project showcase -->
             <div
@@ -129,34 +311,38 @@
                             class="fas fa-network-wired text-blue-400 text-2xl mb-1"
                           ></i>
                           <div class="text-xs text-blue-300 font-semibold">
-                            USW Lite 16 PoE
+                            Switch Managed
                           </div>
                         </div>
                       </div>
                       <!-- VLANs -->
                       <div
-                        class="bg-purple-500/20 border border-purple-400/30 rounded-lg p-2 text-center"
-                      >
-                        <div class="text-[10px] text-purple-300 font-semibold">
-                          VLAN 10
-                        </div>
-                        <div class="text-[8px] text-purple-400">Mgmt</div>
-                      </div>
-                      <div
                         class="bg-green-500/20 border border-green-400/30 rounded-lg p-2 text-center"
                       >
-                        <div class="text-[10px] text-green-300 font-semibold">
+                        <div class="text-[10px] text-green-300 font-bold">
+                          VLAN 10
+                        </div>
+                        <i
+                          class="fas fa-laptop text-green-400 text-sm mt-1"
+                        ></i>
+                      </div>
+                      <div
+                        class="bg-purple-500/20 border border-purple-400/30 rounded-lg p-2 text-center"
+                      >
+                        <div class="text-[10px] text-purple-300 font-bold">
                           VLAN 20
                         </div>
-                        <div class="text-[8px] text-green-400">Prod</div>
+                        <i
+                          class="fas fa-server text-purple-400 text-sm mt-1"
+                        ></i>
                       </div>
                       <div
                         class="bg-orange-500/20 border border-orange-400/30 rounded-lg p-2 text-center"
                       >
-                        <div class="text-[10px] text-orange-300 font-semibold">
+                        <div class="text-[10px] text-orange-300 font-bold">
                           VLAN 30
                         </div>
-                        <div class="text-[8px] text-orange-400">IoT</div>
+                        <i class="fas fa-wifi text-orange-400 text-sm mt-1"></i>
                       </div>
                     </div>
                     <div class="mt-4 flex gap-2">
@@ -181,7 +367,7 @@
         </div>
 
         <!-- Content -->
-        <div class="text-center lg:text-left space-y-8 order-1 lg:order-2">
+        <div class="text-center lg:text-left space-y-8">
           <!-- Badge -->
           <div
             class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-full backdrop-blur-sm"
@@ -229,23 +415,33 @@
             </p>
           </div>
 
-          <!-- Actions -->
+          <!-- Premium Actions -->
           <div
             class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6"
           >
             <a
               href="#architecture"
-              class="group px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 rounded-xl font-semibold text-white flex items-center gap-3"
+              class="glass-button group relative px-8 py-4 bg-gradient-to-r from-green-600/90 to-blue-600/90 rounded-xl font-semibold text-white flex items-center gap-3 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(34,197,94,0.5)]"
             >
-              <i class="fas fa-network-wired text-xl"></i>
-              <span>Architecture</span>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></div>
+              <i
+                class="fas fa-network-wired text-xl relative z-10 group-hover:scale-110 transition-transform duration-300"
+              ></i>
+              <span class="relative z-10">Architecture</span>
             </a>
             <a
               href="#vlans"
-              class="group px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3"
+              class="glass-button group relative px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-green-400/50 hover:bg-white/10"
             >
-              <i class="fas fa-project-diagram text-lg"></i>
-              <span>VLANs</span>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></div>
+              <i
+                class="fas fa-project-diagram text-lg relative z-10 group-hover:rotate-6 transition-transform duration-300"
+              ></i>
+              <span class="relative z-10">VLANs</span>
             </a>
           </div>
         </div>
@@ -287,9 +483,7 @@
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Pare-feu -->
-          <div
-            class="bg-gradient-to-br from-red-500/5 to-red-600/5 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-red-400/40 transition-all duration-300 group"
-          >
+          <div class="glass-card-premium p-8 group">
             <div
               class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
             >
@@ -330,9 +524,7 @@
           </div>
 
           <!-- Switch -->
-          <div
-            class="bg-gradient-to-br from-blue-500/5 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 group"
-          >
+          <div class="glass-card-premium p-8 group">
             <div
               class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
             >
@@ -360,9 +552,7 @@
           </div>
 
           <!-- Wi-Fi -->
-          <div
-            class="bg-gradient-to-br from-purple-500/5 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-300 group"
-          >
+          <div class="glass-card-premium p-8 group">
             <div
               class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
             >
@@ -392,9 +582,7 @@
           </div>
 
           <!-- Cluster Proxmox -->
-          <div
-            class="bg-gradient-to-br from-green-500/5 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-green-400/40 transition-all duration-300 group"
-          >
+          <div class="glass-card-premium p-8 group">
             <div
               class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
             >
@@ -436,9 +624,7 @@
         </div>
 
         <!-- NAS Synology -->
-        <div
-          class="mt-6 bg-gradient-to-br from-cyan-500/5 to-cyan-600/5 border border-cyan-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 group"
-        >
+        <div class="mt-6 glass-card-premium p-8 group">
           <div class="flex items-start gap-6">
             <div
               class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
@@ -511,9 +697,7 @@
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- VLAN RESEAU_PERSONNEL - 192.168.10.1 -->
-          <div
-            class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center"
@@ -553,9 +737,7 @@
           </div>
 
           <!-- VLAN RESEAU_INVITE - 192.168.20.1 -->
-          <div
-            class="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 border border-yellow-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center"
@@ -595,9 +777,7 @@
           </div>
 
           <!-- VLAN NAS - 192.168.30.1 -->
-          <div
-            class="bg-gradient-to-br from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center"
@@ -637,9 +817,7 @@
           </div>
 
           <!-- VLAN MEDIA - 192.168.40.1 -->
-          <div
-            class="bg-gradient-to-br from-pink-500/10 to-pink-600/5 border border-pink-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center"
@@ -679,9 +857,7 @@
           </div>
 
           <!-- VLAN IOT - 192.168.50.1 -->
-          <div
-            class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center"
@@ -721,9 +897,7 @@
           </div>
 
           <!-- VLAN MANAGEMENT - 192.168.100.1 -->
-          <div
-            class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center"
@@ -767,9 +941,7 @@
           </div>
 
           <!-- VLAN LAN - 192.168.1.1 -->
-          <div
-            class="bg-gradient-to-br from-green-500/10 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center"
@@ -813,9 +985,7 @@
           </div>
 
           <!-- VLAN TORRENT - 192.168.130.1 -->
-          <div
-            class="bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center"
@@ -883,9 +1053,7 @@
 
         <div class="grid md:grid-cols-3 gap-6">
           <!-- Firewall -->
-          <div
-            class="bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div
               class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-6"
             >
@@ -916,9 +1084,7 @@
           </div>
 
           <!-- VPN -->
-          <div
-            class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div
               class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6"
             >
@@ -948,9 +1114,7 @@
           </div>
 
           <!-- Monitoring -->
-          <div
-            class="bg-gradient-to-br from-green-500/10 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div
               class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-6"
             >
@@ -979,9 +1143,7 @@
         </div>
 
         <!-- Backup -->
-        <div
-          class="mt-8 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-8 backdrop-blur-sm"
-        >
+        <div class="mt-8 glass-card-premium p-8">
           <div class="flex items-start gap-4">
             <div
               class="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -1147,9 +1309,7 @@
           </div>
 
           <!-- Monitoring -->
-          <div
-            class="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-2xl p-8 backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8">
             <div class="flex items-center gap-4 mb-6">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center"
@@ -1207,9 +1367,7 @@
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <!-- Production -->
-          <div
-            class="bg-gradient-to-br from-green-500/10 to-emerald-600/5 border border-green-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8 text-center">
             <div
               class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4"
             >
@@ -1221,9 +1379,7 @@
           </div>
 
           <!-- VLANs -->
-          <div
-            class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8 text-center">
             <div
               class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"
             >
@@ -1265,9 +1421,7 @@
           </div>
 
           <!-- Firewall Rules -->
-          <div
-            class="bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8 text-center">
             <div
               class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-4"
             >
@@ -1309,9 +1463,7 @@
           </div>
 
           <!-- Monitoring -->
-          <div
-            class="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 rounded-2xl p-8 text-center backdrop-blur-sm"
-          >
+          <div class="glass-card-premium p-8 text-center">
             <div
               class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4"
             >
@@ -1329,10 +1481,11 @@
 
     <!-- FOOTER -->
     <div data-component="footer"></div>
+    <!-- Scripts -->
     <script src="assets/js/component-loader.js"></script>
-    <script src="assets/js/loader.js"></script>
-    <script src="assets/js/burger.js"></script>
     <script src="assets/js/module-loader.js"></script>
     <script src="assets/js/visual-effects.js"></script>
+    <script src="assets/js/three-bg.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
   </body>
 </html>

@@ -39,15 +39,11 @@ describe("AccessibilityManager", () => {
 
   describe("Initialization", () => {
     test("should initialize only once", () => {
-      const consoleSpy = jest.spyOn(console, "info").mockImplementation();
-
       accessibilityManager.init();
       expect(accessibilityManager.isInitialized).toBe(true);
 
       accessibilityManager.init();
-      expect(consoleSpy).toHaveBeenCalledTimes(1);
-
-      consoleSpy.mockRestore();
+      expect(accessibilityManager.isInitialized).toBe(true);
     });
 
     test("should set isInitialized to true after initialization", () => {

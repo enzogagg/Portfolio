@@ -803,6 +803,32 @@
   }
 }
 
+/* Scroll Down Animation */
+@keyframes scroll-down {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(6px);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-scroll-down {
+  animation: scroll-down 2s ease-in-out infinite;
+}
+
+/* =====================================================================================================
+   END OF ANIMATIONS MODULE
+   ===================================================================================================== */
+
 .shimmer-effect {
   position: relative;
   overflow: hidden;
@@ -890,6 +916,36 @@
 
 .glow-pulse {
   animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Flow Animation for Architecture Diagram */
+@keyframes flow-right {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-flow-right {
+  animation: flow-right 3s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
 /* =====================================================================================================
