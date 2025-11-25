@@ -101,39 +101,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- Matomo -->
+    <script>
+      var _paq = (globalThis._paq = globalThis._paq || []);
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(
+        ["setCookieDomain", "*.portfolio.ega.ovh"],
+        ["setDomains", ["*.portfolio.ega.ovh"]],
+        ["trackPageView"],
+        ["enableLinkTracking"],
+      );
+      (function () {
+        var u = "https://matomo.ega.ovh/";
+        _paq.push(["setTrackerUrl", u + "matomo.php"], ["setSiteId", "1"]);
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = u + "matomo.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <noscript>
+      <p>
+        <img
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+          style="border: 0"
+          alt=""
+        />
+      </p>
+    </noscript>
+    <!-- End Matomo Code -->
   </head>
-  <!-- Matomo -->
-  <script>
-    var _paq = (globalThis._paq = globalThis._paq || []);
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(
-      ["setCookieDomain", "*.portfolio.ega.ovh"],
-      ["setDomains", ["*.portfolio.ega.ovh"]],
-      ["trackPageView"],
-      ["enableLinkTracking"],
-    );
-    (function () {
-      var u = "https://matomo.ega.ovh/";
-      _paq.push(["setTrackerUrl", u + "matomo.php"], ["setSiteId", "1"]);
-      var d = document,
-        g = d.createElement("script"),
-        s = d.getElementsByTagName("script")[0];
-      g.async = true;
-      g.src = u + "matomo.js";
-      s.parentNode.insertBefore(g, s);
-    })();
-  </script>
-  <noscript>
-    <p>
-      <img
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
-        style="border: 0"
-        alt=""
-      />
-    </p>
-  </noscript>
-  <!-- End Matomo Code -->
 
   <body class="min-h-screen flex flex-col text-white">
     <!-- Global Preloader to prevent flash -->
