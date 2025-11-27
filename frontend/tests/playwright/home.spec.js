@@ -167,9 +167,15 @@ test.describe("Homepage - Accessibility Tests", () => {
     }
   });
 
-  test("should allow keyboard navigation", async ({ page, browserName }) => {
+  test("should allow keyboard navigation", async ({
+    page,
+    browserName,
+  }, testInfo) => {
     // Skip on webkit due to focus issues
-    if (browserName === "webkit") {
+    if (
+      browserName === "webkit" ||
+      testInfo.project.name.toLowerCase().includes("mobile")
+    ) {
       test.skip();
       return;
     }

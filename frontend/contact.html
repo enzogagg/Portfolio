@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <!-- Critical inline style - loads instantly to prevent white flash -->
-    <script>
-      document.documentElement.style.background = "#000";
-    </script>
+    <!-- Critical inline style - loads instantly to prevent white flash -->
+    <script src="assets/js/theme-init.js"></script>
     <style>
       html {
         background: #000;
@@ -26,6 +25,13 @@
       name="description"
       content="Contactez Enzo Gaggiotti pour discuter de vos projets d'infrastructure, systèmes et développement. Étudiant à Epitech Lyon."
     />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://matomo.ega.ovh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://matomo.ega.ovh; connect-src 'self' https://matomo.ega.ovh; object-src 'none'; base-uri 'self'; form-action 'self'; require-trusted-types-for 'script';"
+    />
+
+    <!-- Security Init -->
+    <script src="assets/js/security.js"></script>
 
     <!-- External Fonts & Icons -->
     <link
@@ -110,27 +116,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
     <!-- Matomo -->
-    <script>
-      var _paq = (globalThis._paq = globalThis._paq || []);
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      var u = "https://matomo.ega.ovh/";
-      _paq.push(
-        ["setCookieDomain", "*.portfolio.ega.ovh"],
-        ["setDomains", ["*.portfolio.ega.ovh"]],
-        ["trackPageView"],
-        ["enableLinkTracking"],
-        ["setTrackerUrl", u + "matomo.php"],
-        ["setSiteId", "1"],
-      );
-      (function () {
-        var d = document,
-          g = d.createElement("script"),
-          s = d.getElementsByTagName("script")[0];
-        g.async = true;
-        g.src = u + "matomo.js";
-        s.parentNode.insertBefore(g, s);
-      })();
-    </script>
+    <script src="assets/js/matomo-init.js"></script>
     <noscript>
       <p>
         <img
@@ -156,22 +142,7 @@
         transition: opacity 0.5s ease-out;
       "
     ></div>
-    <script>
-      (function () {
-        const loader = document.getElementById("global-loader");
-        const removeLoader = () => {
-          if (loader && loader.parentNode) {
-            loader.style.opacity = "0";
-            setTimeout(() => loader.remove(), 500);
-          }
-        };
-
-        window.addEventListener("load", removeLoader);
-
-        // Safety fallback: force remove after 3s if load event hangs
-        setTimeout(removeLoader, 3000);
-      })();
-    </script>
+    <script src="assets/js/loader-init.js"></script>
     <div class="noise-overlay"></div>
     <div
       id="webgl-background"
@@ -275,11 +246,12 @@
                 <a
                   href="mailto:enzo.gaggiotti@epitech.eu"
                   class="contact-method-card group block"
+                  aria-label="Envoyer un email à enzo.gaggiotti@epitech.eu"
                 >
                   <div class="contact-card-content">
                     <div class="contact-icon-wrapper">
                       <div class="contact-icon-email contact-icon-enhanced">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <div class="icon-pulse-ring"></div>
                       </div>
                     </div>
@@ -289,12 +261,15 @@
                         enzo.gaggiotti@epitech.eu
                       </span>
                       <div class="contact-method-description">
-                        <i class="fas fa-clock contact-meta-icon"></i>
+                        <i
+                          class="fas fa-clock contact-meta-icon"
+                          aria-hidden="true"
+                        ></i>
                         Réponse sous 24h garantie
                       </div>
                     </div>
                     <div class="contact-card-arrow">
-                      <i class="fas fa-arrow-right"></i>
+                      <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </div>
                   </div>
                   <div class="contact-card-glow email-glow"></div>
@@ -306,11 +281,12 @@
                   href="https://www.linkedin.com/in/enzo-gaggiotti-867a0229a/"
                   target="_blank"
                   class="contact-method-card group block"
+                  aria-label="Voir mon profil LinkedIn"
                 >
                   <div class="contact-card-content">
                     <div class="contact-icon-wrapper">
                       <div class="contact-icon-linkedin contact-icon-enhanced">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
                         <div class="icon-pulse-ring"></div>
                       </div>
                     </div>
@@ -320,12 +296,18 @@
                         Enzo Gaggiotti
                       </span>
                       <div class="contact-method-description">
-                        <i class="fas fa-users contact-meta-icon"></i>
+                        <i
+                          class="fas fa-users contact-meta-icon"
+                          aria-hidden="true"
+                        ></i>
                         Connectons-nous sur LinkedIn
                       </div>
                     </div>
                     <div class="contact-card-arrow">
-                      <i class="fas fa-external-link-alt"></i>
+                      <i
+                        class="fas fa-external-link-alt"
+                        aria-hidden="true"
+                      ></i>
                     </div>
                   </div>
                   <div class="contact-card-glow linkedin-glow"></div>
@@ -337,11 +319,12 @@
                   href="https://github.com/enzogagg"
                   target="_blank"
                   class="contact-method-card group block"
+                  aria-label="Voir mon profil GitHub"
                 >
                   <div class="contact-card-content">
                     <div class="contact-icon-wrapper">
                       <div class="contact-icon-github contact-icon-enhanced">
-                        <i class="fab fa-github"></i>
+                        <i class="fab fa-github" aria-hidden="true"></i>
                         <div class="icon-pulse-ring"></div>
                       </div>
                     </div>
@@ -351,12 +334,18 @@
                         @enzogagg
                       </span>
                       <div class="contact-method-description">
-                        <i class="fas fa-code contact-meta-icon"></i>
+                        <i
+                          class="fas fa-code contact-meta-icon"
+                          aria-hidden="true"
+                        ></i>
                         Découvrez mes contributions
                       </div>
                     </div>
                     <div class="contact-card-arrow">
-                      <i class="fas fa-external-link-alt"></i>
+                      <i
+                        class="fas fa-external-link-alt"
+                        aria-hidden="true"
+                      ></i>
                     </div>
                   </div>
                   <div class="contact-card-glow github-glow"></div>

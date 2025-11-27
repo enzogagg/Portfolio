@@ -103,6 +103,13 @@
       name="description"
       content="Découvrez le portfolio interactif d'Enzo Gaggiotti : un projet full-stack moderne avec HTML/CSS/JS, Go backend, PostgreSQL et Docker."
     />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://matomo.ega.ovh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://matomo.ega.ovh; connect-src 'self' https://matomo.ega.ovh; object-src 'none'; base-uri 'self'; form-action 'self'; require-trusted-types-for 'script';"
+    />
+
+    <!-- Security Init -->
+    <script src="assets/js/security.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
       rel="stylesheet"
@@ -130,21 +137,7 @@
       </div>
     </div>
 
-    <script>
-      (function () {
-        const l = document.getElementById("l");
-        const r = () => {
-          if (l && l.parentNode) {
-            l.style.opacity = "0";
-            setTimeout(() => l.remove(), 500);
-          }
-        };
-        window.addEventListener("load", r);
-        setTimeout(r, 3000);
-        document.body.style.overflow = "auto";
-        document.body.className = "min-h-screen flex flex-col text-white";
-      })();
-    </script>
+    <script src="assets/js/portfolio-loader.js"></script>
     <div class="noise-overlay"></div>
     <div
       id="webgl-background"

@@ -64,21 +64,7 @@ test.describe("Projects Page - Filtering Functionality", () => {
         expect(bodyText?.length).toBeGreaterThan(100);
       });
 
-      test.skip(`should match snapshot`, async ({ page }) => {
-        await page.goto(`/${pageName}`, { waitUntil: "networkidle" });
-        await waitForPageReady(page);
 
-        // Wait for the main title to be visible before taking screenshot
-        const mainTitle = page.locator("h1").first();
-        await expect(mainTitle).toBeVisible({ timeout: 10000 });
-
-        // Wait for animations to complete
-        await page.waitForTimeout(1500);
-
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-          `${pageName}-snapshot.png`,
-        );
-      });
     });
   }
   test("should have functional filter buttons", async ({ page }) => {

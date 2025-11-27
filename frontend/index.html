@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <!-- Critical inline style - loads instantly to prevent white flash -->
-    <script>
-      document.documentElement.style.background = "#000";
-    </script>
+    <!-- Critical inline style - loads instantly to prevent white flash -->
+    <script src="assets/js/theme-init.js"></script>
     <style>
       body {
         background: transparent;
@@ -17,6 +16,13 @@
     <!-- Meta Information -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio - Enzo Gaggiotti</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://matomo.ega.ovh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://matomo.ega.ovh; connect-src 'self' https://matomo.ega.ovh; object-src 'none'; base-uri 'self'; form-action 'self'; require-trusted-types-for 'script';"
+    />
+
+    <!-- Security Init -->
+    <script src="assets/js/security.js"></script>
     <meta
       name="description"
       content="Enzo Gaggiotti - Explorateur de l’infrastructure moderne : réseau, système, devops. Étudiant en troisième année à Epitech spécialisé en C/C++, réseau et infrastructure."
@@ -104,27 +110,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
     <!-- Matomo -->
-    <script>
-      var _paq = (globalThis._paq = globalThis._paq || []);
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      (function () {
-        var u = "https://matomo.ega.ovh/";
-        _paq.push(
-          ["setCookieDomain", "*.portfolio.ega.ovh"],
-          ["setDomains", ["*.portfolio.ega.ovh"]],
-          ["setTrackerUrl", u + "matomo.php"],
-          ["setSiteId", "1"],
-          ["trackPageView"],
-          ["enableLinkTracking"],
-        );
-        var d = document,
-          g = d.createElement("script"),
-          s = d.getElementsByTagName("script")[0];
-        g.async = true;
-        g.src = u + "matomo.js";
-        s.parentNode.insertBefore(g, s);
-      })();
-    </script>
+    <script src="assets/js/matomo-init.js"></script>
     <noscript>
       <p>
         <img
@@ -150,22 +136,7 @@
         transition: opacity 0.5s ease-out;
       "
     ></div>
-    <script>
-      (function () {
-        const loader = document.getElementById("global-loader");
-        const removeLoader = () => {
-          if (loader && loader.parentNode) {
-            loader.style.opacity = "0";
-            setTimeout(() => loader.remove(), 500);
-          }
-        };
-
-        window.addEventListener("load", removeLoader);
-
-        // Safety fallback: force remove after 3s if load event hangs
-        setTimeout(removeLoader, 3000);
-      })();
-    </script>
+    <script src="assets/js/loader-init.js"></script>
     <div class="noise-overlay"></div>
     <div
       id="webgl-background"

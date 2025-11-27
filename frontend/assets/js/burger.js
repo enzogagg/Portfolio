@@ -37,7 +37,9 @@ function toggleMobileMenu() {
     }
     if (menu.classList.contains("active")) {
       menu.style.display = "block";
-      setTimeout(() => (menu.style.opacity = "1"), 10);
+      // Force reflow to ensure transition works
+      void menu.offsetWidth;
+      menu.style.opacity = "1";
     } else {
       menu.style.opacity = "0";
       setTimeout(() => (menu.style.display = "none"), 300);
@@ -56,30 +58,36 @@ function _closeMobileMenu() {
     setTimeout(() => (menu.style.display = "none"), 300);
   }
 }
+// Handle burger menu click via delegation
+function handleBurgerClick(e) {
+  if (e.target.closest(".burger-menu")) {
+    toggleMobileMenu();
+  }
+}
+
+// Handle mobile link clicks via delegation
+function handleMobileLinkClick(e) {
+  if (e.target.closest("#mobile-menu a, .mobile-menu a")) {
+    _closeMobileMenu();
+  }
+}
 // Function to initialize burger menu
 function initBurgerMenu() {
   const menu = document.getElementById("mobile-menu");
-  if (menu) {
+  if (menu && !menu.classList.contains("active")) {
     menu.style.display = "none";
     menu.style.opacity = "0";
   }
 
   // Add event listener to burger menu
-  const burger = document.querySelector(".burger-menu");
-  if (burger) {
-    // Remove existing listener if any to avoid duplicates
-    burger.removeEventListener("click", toggleMobileMenu);
-    burger.addEventListener("click", toggleMobileMenu);
-  }
+  // Add event listener to burger menu using delegation
+  // This ensures it works even if the element is loaded dynamically
+  document.removeEventListener("click", handleBurgerClick);
+  document.addEventListener("click", handleBurgerClick);
 
-  // Close menu when clicking on navigation links
-  const mobileNavLinks = document.querySelectorAll(
-    "#mobile-menu a, .mobile-menu a",
-  );
-  mobileNavLinks.forEach((link) => {
-    link.removeEventListener("click", _closeMobileMenu);
-    link.addEventListener("click", _closeMobileMenu);
-  });
+  // Close menu when clicking on navigation links (using delegation)
+  document.removeEventListener("click", handleMobileLinkClick);
+  document.addEventListener("click", handleMobileLinkClick);
 
   // Close menu with Escape key
   document.removeEventListener("keydown", handleEscapeKey);
@@ -103,11 +111,10 @@ function handleEscapeKey(e) {
 // Handle click outside menu
 function handleClickOutside(e) {
   const menu = document.getElementById("mobile-menu");
-  const burger = document.querySelector(".burger-menu");
 
   if (menu && menu.classList.contains("active")) {
     // Check if click is outside menu and burger
-    if (!menu.contains(e.target) && !burger?.contains(e.target)) {
+    if (!menu.contains(e.target) && !e.target.closest(".burger-menu")) {
       _closeMobileMenu();
     }
   }

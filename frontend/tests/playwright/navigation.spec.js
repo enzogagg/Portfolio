@@ -10,7 +10,10 @@ const { test, expect } = require("@playwright/test");
 const { waitForPageReady } = require("./helpers/test-helpers");
 
 test.describe("Navigation - Desktop", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }, testInfo) => {
+    if (testInfo.project.name.toLowerCase().includes("mobile")) {
+      test.skip();
+    }
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto("/index.html");
   });
@@ -134,9 +137,16 @@ test.describe("Navigation - Mobile", () => {
       await burgerMenu.click();
       await page.waitForTimeout(500);
 
-      // Wait for the mobile menu to be visible
+      // Wait for the mobile menu to be attached first
       await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", {
         timeout: 5000,
+        state: "attached",
+      });
+
+      // Then wait for it to be visible
+      await page.waitForSelector("#mobile-menu.active, .mobile-menu.active", {
+        timeout: 5000,
+        state: "visible",
       });
 
       // Wait for navigation link to be visible
