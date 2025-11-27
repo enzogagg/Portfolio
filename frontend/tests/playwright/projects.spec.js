@@ -41,7 +41,7 @@ test.describe("Projects Page - Filtering Functionality", () => {
     test.describe(`${pageName} - Project Page`, () => {
       test(`should load and display main content`, async ({ page }) => {
         await page.goto(`/${pageName}`);
-        await waitForPageReady(page);
+        await waitForPageReady(page, { waitUntil: "domcontentloaded" });
 
         // Wait for the main title to be visible (ensures content is loaded)
         const mainTitle = page.locator("h1").first();

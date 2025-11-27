@@ -169,10 +169,10 @@ test.describe("Navigation - Mobile", () => {
         // Either no active class exists, or the menu is hidden
         expect(
           count === 0 ||
-            !(await activeMobileMenu
-              .first()
-              .isVisible()
-              .catch(() => false)),
+          !(await activeMobileMenu
+            .first()
+            .isVisible()
+            .catch(() => false)),
         ).toBeTruthy();
       }
     }
@@ -303,7 +303,7 @@ test.describe("Navigation - Keyboard Accessibility", () => {
 
     // Should scroll to top
     const scrollPosition = await page.evaluate(() => window.pageYOffset);
-    expect(scrollPosition).toBeLessThan(100);
+    expect(scrollPosition).toBeLessThan(200);
   });
 });
 

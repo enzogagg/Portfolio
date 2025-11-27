@@ -15,9 +15,9 @@
  * @param {boolean} options.waitForContent - Wait for main content to be visible
  */
 async function waitForPageReady(page, options = {}) {
-  const { waitForContent = true } = options;
+  const { waitForContent = true, waitUntil = "networkidle" } = options;
 
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState(waitUntil);
 
   // Wait for components to be loaded
   try {
