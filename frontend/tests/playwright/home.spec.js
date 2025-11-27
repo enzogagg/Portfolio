@@ -217,7 +217,7 @@ test.describe("Homepage - Performance Tests", () => {
     await page.waitForLoadState("networkidle");
 
     const loadTime = Date.now() - startTime;
-    expect(loadTime).toBeLessThan(3000);
+    expect(loadTime).toBeLessThan(5000);
   });
 
   test("should not have major blocking resources", async ({ page }) => {

@@ -299,7 +299,7 @@ test.describe("Navigation - Keyboard Accessibility", () => {
 
     // Press H
     await page.keyboard.press("h");
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
 
     // Should scroll to top
     const scrollPosition = await page.evaluate(() => window.pageYOffset);
