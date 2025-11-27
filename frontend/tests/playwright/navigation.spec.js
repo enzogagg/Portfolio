@@ -169,10 +169,10 @@ test.describe("Navigation - Mobile", () => {
         // Either no active class exists, or the menu is hidden
         expect(
           count === 0 ||
-          !(await activeMobileMenu
-            .first()
-            .isVisible()
-            .catch(() => false)),
+            !(await activeMobileMenu
+              .first()
+              .isVisible()
+              .catch(() => false)),
         ).toBeTruthy();
       }
     }

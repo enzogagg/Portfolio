@@ -63,8 +63,6 @@ test.describe("Projects Page - Filtering Functionality", () => {
         const bodyText = await content.textContent();
         expect(bodyText?.length).toBeGreaterThan(100);
       });
-
-
     });
   }
   test("should have functional filter buttons", async ({ page }) => {
