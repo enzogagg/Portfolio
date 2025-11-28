@@ -1,6 +1,6 @@
 # Portfolio
 
-![Tests](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml/badge.svg)
+[![Tests](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml/badge.svg)]
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Welcome to the personal portfolio repository of Enzo Gaggiotti.
