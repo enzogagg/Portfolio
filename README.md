@@ -1,7 +1,16 @@
-# Portfolio
+<div align="center">
 
-[![Tests](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml/badge.svg)]
+# Portfolio - Enzo Gaggiotti
+
+[![Tests](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml/badge.svg)](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Playwright](https://img.shields.io/badge/-playwright-%232EAD33?style=for-the-badge&logo=playwright&logoColor=white)
+
+</div>
 
 Welcome to the personal portfolio repository of Enzo Gaggiotti.
 
