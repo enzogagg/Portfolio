@@ -2,8 +2,9 @@
 
 # Portfolio - Enzo Gaggiotti
 
-[![Tests](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml/badge.svg)](https://github.com/enzogagg/Portfolio/actions/workflows/tests.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Backend Tests](https://img.shields.io/github/actions/workflow/status/enzogagg/Portfolio/backend-tests.yml?branch=main&label=Backend%20Tests&style=for-the-badge&logo=github)](https://github.com/enzogagg/Portfolio/actions/workflows/backend-tests.yml)
+[![Frontend Tests](https://img.shields.io/github/actions/workflow/status/enzogagg/Portfolio/frontend-tests.yml?branch=main&label=Frontend%20Tests&style=for-the-badge&logo=github)](https://github.com/enzogagg/Portfolio/actions/workflows/frontend-tests.yml)
+[![License](https://img.shields.io/github/license/enzogagg/Portfolio?style=for-the-badge&color=blue)](https://opensource.org/licenses/MIT)
 
 ![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
