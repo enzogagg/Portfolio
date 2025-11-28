@@ -1,727 +1,601 @@
 <!doctype html>
 <html lang="fr" class="text-white scroll-smooth" style="background: #000">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- Critical inline style - loads instantly to prevent white flash -->
-    <!-- Critical inline style - loads instantly to prevent white flash -->
-    <script src="assets/js/theme-init.js"></script>
-    <style>
-      body {
-        background: transparent;
-        margin: 0;
-        padding: 0;
-        padding-top: 80px;
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- Critical inline style - loads instantly to prevent white flash -->
+  <!-- Critical inline style - loads instantly to prevent white flash -->
+  <script src="assets/js/theme-init.js"></script>
+  <style>
+    body {
+      background: transparent;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+  </style>
+  <!-- Meta Information -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Enzo Gaggiotti</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://matomo.ega.ovh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://matomo.ega.ovh; connect-src 'self' https://matomo.ega.ovh; object-src 'none'; base-uri 'self'; form-action 'self'; require-trusted-types-for 'script';" />
+
+  <!-- Security Init -->
+  <script src="assets/js/security.js"></script>
+  <meta name="description"
+    content="Enzo Gaggiotti - Explorateur de l’infrastructure moderne : réseau, système, devops. Étudiant en troisième année à Epitech spécialisé en C/C++, réseau et infrastructure." />
+
+  <!-- External Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <!-- Local FontAwesome (place assets in assets/fonts/fontawesome/) -->
+  <link rel="stylesheet" href="assets/fonts/fontawesome/css/local-fontawesome.css" />
+
+  <!-- Critical CSS inline for instant dark background -->
+  <style>
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .minimal-loader {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .minimal-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(139, 92, 246, 0.3);
+      border-top-color: #8b5cf6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
       }
-    </style>
-    <!-- Meta Information -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Enzo Gaggiotti</title>
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://matomo.ega.ovh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://matomo.ega.ovh; connect-src 'self' https://matomo.ega.ovh; object-src 'none'; base-uri 'self'; form-action 'self'; require-trusted-types-for 'script';"
-    />
+    }
 
-    <!-- Security Init -->
-    <script src="assets/js/security.js"></script>
-    <meta
-      name="description"
-      content="Enzo Gaggiotti - Explorateur de l’infrastructure moderne : réseau, système, devops. Étudiant en troisième année à Epitech spécialisé en C/C++, réseau et infrastructure."
-    />
+    .mesh-gradient-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%,
+          rgba(139, 92, 246, 0.15),
+          transparent 50%),
+        radial-gradient(circle at 80% 70%,
+          rgba(59, 130, 246, 0.1),
+          transparent 50%),
+        radial-gradient(circle at 50% 50%,
+          rgba(168, 85, 247, 0.08),
+          transparent 70%),
+        #000;
+      z-index: -1;
+    }
+  </style>
 
-    <!-- External Fonts & Icons -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Local FontAwesome (place assets in assets/fonts/fontawesome/) -->
-    <link
-      rel="stylesheet"
-      href="assets/fonts/fontawesome/css/local-fontawesome.css"
-    />
+  <!-- CSS Frameworks & Styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/loader.css" />
 
-    <!-- Critical CSS inline for instant dark background -->
-    <style>
-      body {
-        margin: 0;
-        overflow-x: hidden;
-      }
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
-      .minimal-loader {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        opacity: 1;
-        transition: opacity 0.5s ease;
-      }
+  <!-- Matomo -->
+  <script src="assets/js/matomo-init.js"></script>
+  <noscript>
+    <p>
+      <img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
+        style="border: 0" alt="" />
+    </p>
+  </noscript>
+  <!-- End Matomo Code -->
+</head>
 
-      .minimal-spinner {
-        width: 40px;
-        height: 40px;
-        border: 3px solid rgba(139, 92, 246, 0.3);
-        border-top-color: #8b5cf6;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .mesh-gradient-bg {
-        position: fixed;
-        inset: 0;
-        background:
-          radial-gradient(
-            circle at 20% 30%,
-            rgba(139, 92, 246, 0.15),
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 80% 70%,
-            rgba(59, 130, 246, 0.1),
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 50% 50%,
-            rgba(168, 85, 247, 0.08),
-            transparent 70%
-          ),
-          #000;
-        z-index: -1;
-      }
-    </style>
-
-    <!-- CSS Frameworks & Styles -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/loader.css" />
-
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
-
-    <!-- Matomo -->
-    <script src="assets/js/matomo-init.js"></script>
-    <noscript>
-      <p>
-        <img
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://matomo.ega.ovh/matomo.php?idsite=1&amp;rec=1"
-          style="border: 0"
-          alt=""
-        />
-      </p>
-    </noscript>
-    <!-- End Matomo Code -->
-  </head>
-
-  <body class="min-h-screen flex flex-col text-white">
-    <!-- Global Preloader to prevent flash -->
-    <div
-      id="global-loader"
-      style="
+<body class="min-h-screen flex flex-col text-white">
+  <!-- Global Preloader to prevent flash -->
+  <div id="global-loader" style="
         position: fixed;
         inset: 0;
         background: #000;
         z-index: 99999;
         transition: opacity 0.5s ease-out;
-      "
-    ></div>
-    <script src="assets/js/loader-init.js"></script>
-    <div class="noise-overlay"></div>
-    <div
-      id="webgl-background"
-      class="fixed inset-0 z-0 pointer-events-none"
-    ></div>
+      "></div>
+  <script src="assets/js/loader-init.js"></script>
+  <div class="noise-overlay"></div>
+  <div id="webgl-background" class="fixed inset-0 z-0 pointer-events-none"></div>
 
-    <!-- Minimalist loader -->
-    <div class="minimal-loader">
-      <div class="minimal-spinner"></div>
+  <!-- Minimalist loader -->
+  <div class="minimal-loader">
+    <div class="minimal-spinner"></div>
+  </div>
+  <!-- ========== HEADER NAVIGATION ========== -->
+  <div data-component="header"></div>
+
+  <!-- ========== HERO SECTION ========== -->
+  <div id="top"
+    class="flex flex-col md:flex-row items-center justify-center gap-20 px-6 pt-32 pb-20 fade-in relative overflow-visible">
+    <!-- Subtle background effect -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none">
     </div>
-    <!-- ========== HEADER NAVIGATION ========== -->
-    <div data-component="header"></div>
+    <div class="text-center md:text-left space-y-8 max-w-xl relative z-10">
+      <div class="inline-block">
+        <h1
+          class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+          Enzo Gaggiotti
+        </h1>
+      </div>
+      <p class="text-lg sm:text-xl text-neutral-400 mb-10 leading-relaxed">
+        Explorateur de l’infrastructure moderne : réseau, système, devops.
+      </p>
+      <div class="mt-12 flex flex-col sm:flex-row items-center sm:justify-center gap-6">
+        <a href="about.html"
+          class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]">
+          <span class="flex items-center gap-3">
+            <i class="fas fa-user text-sm group-hover:rotate-12 transition-transform duration-300"></i>
+            <span>En savoir plus</span>
+          </span>
+        </a>
+        <a href="contact.html"
+          class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]">
+          <span class="flex items-center gap-3">
+            <i class="fas fa-envelope text-sm group-hover:rotate-12 transition-transform duration-300"></i>
+            <span>Me contacter</span>
+          </span>
+        </a>
+      </div>
 
-    <!-- ========== HERO SECTION ========== -->
-    <div
-      id="top"
-      class="flex flex-col md:flex-row items-center justify-center gap-20 px-6 pt-32 pb-20 fade-in relative overflow-visible"
-    >
-      <!-- Subtle background effect -->
+      <!-- Decorative animated dots -->
+      <div class="flex justify-center md:justify-start gap-4 mt-8 opacity-60">
+        <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+        <div class="w-2 h-2 bg-purple-400 rounded-full" style="animation-delay: 0.5s"></div>
+        <div class="w-2 h-2 bg-blue-400 rounded-full" style="animation-delay: 1s"></div>
+      </div>
+    </div>
+
+    <!-- ========== HERO AVATAR ========== -->
+    <!-- Apple-inspired Avatar Design with Floating Animation -->
+    <div class="relative floating group">
+      <!-- Background Glow Effect with Enhanced Depth -->
       <div
-        class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none"
-      ></div>
-      <div class="text-center md:text-left space-y-8 max-w-xl relative z-10">
-        <div class="inline-block">
-          <h1
-            class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.25] bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse"
-          >
-            Enzo Gaggiotti
-          </h1>
-        </div>
-        <p class="text-lg sm:text-xl text-neutral-400 mb-10 leading-relaxed">
-          Explorateur de l’infrastructure moderne : réseau, système, devops.
-        </p>
+        class="absolute inset-0 w-64 h-64 bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-blue-500/10 rounded-full blur-3xl scale-110 opacity-60 group-hover:opacity-80 transition-opacity duration-700">
+      </div>
+
+      <!-- Main Avatar Container -->
+      <div class="relative w-64 h-64 p-2">
+        <!-- Outer Ring with Subtle Border -->
         <div
-          class="mt-12 flex flex-col sm:flex-row items-center sm:justify-center gap-6"
-        >
-          <a
-            href="about.html"
-            class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]"
-          >
-            <span class="flex items-center gap-3">
-              <i
-                class="fas fa-user text-sm group-hover:rotate-12 transition-transform duration-300"
-              ></i>
-              <span>En savoir plus</span>
-            </span>
-          </a>
-          <a
-            href="contact.html"
-            class="glass-button text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 group min-w-[200px]"
-          >
-            <span class="flex items-center gap-3">
-              <i
-                class="fas fa-envelope text-sm group-hover:rotate-12 transition-transform duration-300"
-              ></i>
-              <span>Me contacter</span>
-            </span>
-          </a>
+          class="w-full h-full rounded-full bg-gradient-to-b from-white/8 to-white/4 p-[1px] shadow-2xl group-hover:shadow-blue-500/20 transition-shadow duration-700">
+          <!-- Inner Circle with Avatar Image -->
+          <div
+            class="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-gray-900 to-black shadow-inner">
+            <!-- Avatar Image -->
+            <img src="assets/images/avatar-stylisé.png" alt="Avatar stylisé d'Enzo Gaggiotti - Développeur Full Stack"
+              class="object-cover w-full h-full transition-all duration-700 group-hover:scale-110 group-hover:brightness-110" />
+
+            <!-- Hover Overlay Effect -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
+
+            <!-- Apple Signature Reflection at Top -->
+            <div
+              class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 via-white/5 to-transparent rounded-t-full opacity-40">
+            </div>
+
+            <!-- Soft Inner Shadow -->
+            <div class="absolute inset-0 rounded-full shadow-inner"
+              style="box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3)"></div>
+          </div>
         </div>
 
-        <!-- Decorative animated dots -->
-        <div class="flex justify-center md:justify-start gap-4 mt-8 opacity-60">
-          <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-          <div
-            class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
-            style="animation-delay: 0.5s"
-          ></div>
-          <div
-            class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
-            style="animation-delay: 1s"
-          ></div>
+        <!-- Online Status Indicator (Apple Style) -->
+        <div
+          class="absolute bottom-4 right-4 w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full border-4 border-white/20 shadow-lg backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+          <div class="absolute inset-1 bg-green-300 rounded-full animate-pulse"></div>
+          <!-- Reflection on Status Indicator -->
+          <div class="absolute top-1 left-1 w-2 h-2 bg-white/60 rounded-full blur-[1px]"></div>
+        </div>
+
+        <!-- Enhanced Floating Decorative Points -->
+        <div class="absolute -top-6 -left-4 group-hover:scale-125 transition-transform duration-500">
+          <div class="w-3 h-3 bg-blue-400/60 rounded-full animate-pulse shadow-lg shadow-blue-400/30"></div>
+        </div>
+        <div class="absolute top-8 -right-6 group-hover:scale-125 transition-transform duration-500"
+          style="animation-delay: 1.5s">
+          <div class="w-2 h-2 bg-purple-400/60 rounded-full animate-pulse shadow-lg shadow-purple-400/30"></div>
+        </div>
+        <div class="absolute -bottom-4 -left-8 group-hover:scale-125 transition-transform duration-500"
+          style="animation-delay: 3s">
+          <div class="w-4 h-4 bg-indigo-400/40 rounded-full animate-pulse shadow-lg shadow-indigo-400/20"></div>
+        </div>
+
+        <!-- Enhanced hover halo effect -->
+        <div
+          class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-xl scale-150">
+        </div>
+      </div>
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50">
+        <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
+          <div class="w-1 h-2 bg-white/50 rounded-full animate-scroll-down"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ========== TECHNOLOGIES SECTION ========== -->
+  <section class="py-20 relative text-center fade-in">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Section Header -->
+      <h2 class="text-4xl font-bold mb-4 gradient-text">
+        Technos maîtrisées
+      </h2>
+      <p class="text-neutral-400 mb-16 text-lg">
+        Les technologies avec lesquelles je travaille au quotidien
+      </p>
+
+      <!-- Technologies grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- C / C++ Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-purple-500 to-purple-600 glow-purple">
+            <i class="fas fa-code text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">C / C++</h3>
+          <p class="text-neutral-400 text-sm">
+            Développement système, performance, GUI (SFML)
+          </p>
+        </div>
+
+        <!-- Linux Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-gray-600 to-gray-700 glow-blue">
+            <i class="fab fa-linux text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Linux</h3>
+          <p class="text-neutral-400 text-sm">
+            Administration et gestion serveur
+          </p>
+        </div>
+
+        <!-- Git Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-orange-500 to-red-500 glow-gradient">
+            <i class="fab fa-git-alt text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Git</h3>
+          <p class="text-neutral-400 text-sm">
+            Gestion de versions et collaboration
+          </p>
+        </div>
+
+        <!-- Makefile Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-yellow-500 to-yellow-600 glow-gradient">
+            <i class="fas fa-file-code text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Makefile</h3>
+          <p class="text-neutral-400 text-sm">
+            Automatisation de compilation et organisation
+          </p>
+        </div>
+
+        <!-- Network Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-green-600 to-green-700 glow-blue">
+            <i class="fas fa-network-wired text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Réseau</h3>
+          <p class="text-neutral-400 text-sm">
+            TCP/IP, configuration, sécurité basique
+          </p>
+        </div>
+
+        <!-- Proxmox Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-teal-500 to-cyan-600 glow-blue">
+            <i class="fas fa-server text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Proxmox</h3>
+          <p class="text-neutral-400 text-sm">
+            Virtualisation, gestion de clusters
+          </p>
+        </div>
+
+        <!-- Bash Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-yellow-600 to-yellow-700 glow-gradient">
+            <i class="fas fa-terminal text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Bash</h3>
+          <p class="text-neutral-400 text-sm">Scripting et automatisation</p>
+        </div>
+
+        <!-- ESP32 & IoT Technology Card -->
+        <div class="tech-card group">
+          <div class="tech-icon bg-gradient-to-br from-indigo-600 to-indigo-700 glow-purple">
+            <i class="fas fa-microchip text-3xl icon-hover"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">ESP32 & Domotique</h3>
+          <p class="text-neutral-400 text-sm">
+            Programmation embarquée, intégration de capteurs
+          </p>
         </div>
       </div>
 
-      <!-- ========== HERO AVATAR ========== -->
-      <!-- Apple-inspired Avatar Design with Floating Animation -->
-      <div class="relative floating group">
-        <!-- Background Glow Effect with Enhanced Depth -->
-        <div
-          class="absolute inset-0 w-64 h-64 bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-blue-500/10 rounded-full blur-3xl scale-110 opacity-60 group-hover:opacity-80 transition-opacity duration-700"
-        ></div>
+      <!-- ========== ADDITIONAL SKILLS SECTION ========== -->
+      <div class="mt-16 pt-12 border-t border-neutral-800">
+        <h3 class="text-2xl font-bold mb-8 text-center">
+          <i class="fas fa-plus-circle mr-3 text-blue-500"></i>
+          Également à l'aise avec
+        </h3>
 
-        <!-- Main Avatar Container -->
-        <div class="relative w-64 h-64 p-2">
-          <!-- Outer Ring with Subtle Border -->
-          <div
-            class="w-full h-full rounded-full bg-gradient-to-b from-white/8 to-white/4 p-[1px] shadow-2xl group-hover:shadow-blue-500/20 transition-shadow duration-700"
-          >
-            <!-- Inner Circle with Avatar Image -->
-            <div
-              class="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-gray-900 to-black shadow-inner"
-            >
-              <!-- Avatar Image -->
-              <img
-                src="assets/images/avatar-stylisé.png"
-                alt="Avatar stylisé d'Enzo Gaggiotti - Développeur Full Stack"
-                class="object-cover w-full h-full transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-              />
-
-              <!-- Hover Overlay Effect -->
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-blue-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              ></div>
-
-              <!-- Apple Signature Reflection at Top -->
-              <div
-                class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 via-white/5 to-transparent rounded-t-full opacity-40"
-              ></div>
-
-              <!-- Soft Inner Shadow -->
-              <div
-                class="absolute inset-0 rounded-full shadow-inner"
-                style="box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3)"
-              ></div>
-            </div>
+        <!-- Skills tags grid -->
+        <div class="flex flex-wrap justify-center gap-2 max-w-6xl mx-auto px-4">
+          <!-- Network Security Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-shield-alt text-red-400 group-hover:text-red-300 transition-colors duration-300"></i>
+            <span>pfSense & Sécurité réseau</span>
           </div>
 
-          <!-- Online Status Indicator (Apple Style) -->
-          <div
-            class="absolute bottom-4 right-4 w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full border-4 border-white/20 shadow-lg backdrop-blur-sm group-hover:scale-110 transition-transform duration-300"
-          >
-            <div
-              class="absolute inset-1 bg-green-300 rounded-full animate-pulse"
-            ></div>
-            <!-- Reflection on Status Indicator -->
-            <div
-              class="absolute top-1 left-1 w-2 h-2 bg-white/60 rounded-full blur-[1px]"
-            ></div>
+          <!-- Wi-Fi Management Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-wifi text-blue-400 group-hover:text-blue-300 transition-colors duration-300"></i>
+            <span>Unifi & Gestion Wi-Fi</span>
           </div>
 
-          <!-- Enhanced Floating Decorative Points -->
-          <div
-            class="absolute -top-6 -left-4 group-hover:scale-125 transition-transform duration-500"
-          >
-            <div
-              class="w-3 h-3 bg-blue-400/60 rounded-full animate-pulse shadow-lg shadow-blue-400/30"
-            ></div>
-          </div>
-          <div
-            class="absolute top-8 -right-6 group-hover:scale-125 transition-transform duration-500"
-            style="animation-delay: 1.5s"
-          >
-            <div
-              class="w-2 h-2 bg-purple-400/60 rounded-full animate-pulse shadow-lg shadow-purple-400/30"
-            ></div>
-          </div>
-          <div
-            class="absolute -bottom-4 -left-8 group-hover:scale-125 transition-transform duration-500"
-            style="animation-delay: 3s"
-          >
-            <div
-              class="w-4 h-4 bg-indigo-400/40 rounded-full animate-pulse shadow-lg shadow-indigo-400/20"
-            ></div>
+          <!-- Proxmox Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-server text-gray-400 group-hover:text-gray-300 transition-colors duration-300"></i>
+            <span>Proxmox & Virtualisation</span>
           </div>
 
-          <!-- Enhanced hover halo effect -->
-          <div
-            class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-xl scale-150"
-          ></div>
-        </div>
-        <!-- Scroll Indicator -->
-        <div
-          class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50"
-        >
-          <div
-            class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1"
-          >
-            <div
-              class="w-1 h-2 bg-white/50 rounded-full animate-scroll-down"
-            ></div>
+          <!-- ESP32 & IoT Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-microchip text-green-400 group-hover:text-green-300 transition-colors duration-300"></i>
+            <span>ESP32 & IoT embarqué</span>
+          </div>
+
+          <!-- Network Administration Skill -->
+          <div class="skill-tag-simple group">
+            <i
+              class="fas fa-network-wired text-orange-400 group-hover:text-orange-300 transition-colors duration-300"></i>
+            <span>Administration réseaux & dépannage</span>
+          </div>
+
+          <!-- Bash Scripting Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-terminal text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300"></i>
+            <span>Scripting Bash & automatisation</span>
+          </div>
+
+          <!-- Hardware Maintenance Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-tools text-purple-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+            <span>Maintenance systèmes & dépannage hardware</span>
+          </div>
+
+          <!-- Home Assistant Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-home text-teal-400 group-hover:text-teal-300 transition-colors duration-300"></i>
+            <span>Domotique avec Home Assistant</span>
+          </div>
+
+          <!-- Media Management Skill -->
+          <div class="skill-tag-simple group">
+            <i class="fas fa-photo-video text-pink-400 group-hover:text-pink-300 transition-colors duration-300"></i>
+            <span>Gestion système média (Plex, Sonarr, Radarr)</span>
           </div>
         </div>
       </div>
     </div>
-    <!-- ========== TECHNOLOGIES SECTION ========== -->
-    <section class="py-20 relative text-center fade-in">
-      <div class="max-w-6xl mx-auto px-6">
-        <!-- Section Header -->
-        <h2 class="text-4xl font-bold mb-4 gradient-text">
-          Technos maîtrisées
-        </h2>
-        <p class="text-neutral-400 mb-16 text-lg">
-          Les technologies avec lesquelles je travaille au quotidien
-        </p>
+  </section>
 
-        <!-- Technologies grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          <!-- C / C++ Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-purple-500 to-purple-600 glow-purple"
-            >
-              <i class="fas fa-code text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">C / C++</h3>
-            <p class="text-neutral-400 text-sm">
-              Développement système, performance, GUI (SFML)
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="py-20 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center fade-in">
+        <div class="glass-card-premium p-8">
+          <h2 class="text-4xl font-bold mb-8 gradient-text">
+            À propos de moi
+          </h2>
+          <div class="space-y-6 text-neutral-300 leading-relaxed">
+            <p>
+              Étudiant en troisième année à Epitech Lyon, je me consacre au
+              développement de compétences solides en infrastructure, réseau
+              et programmation. Mon parcours me permet d’aborder les
+              problématiques techniques avec méthode et pragmatisme, en
+              privilégiant l’efficacité et la qualité des solutions.
             </p>
-          </div>
-
-          <!-- Linux Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-gray-600 to-gray-700 glow-blue"
-            >
-              <i class="fab fa-linux text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">Linux</h3>
-            <p class="text-neutral-400 text-sm">
-              Administration et gestion serveur
-            </p>
-          </div>
-
-          <!-- Git Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-orange-500 to-red-500 glow-gradient"
-            >
-              <i class="fab fa-git-alt text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">Git</h3>
-            <p class="text-neutral-400 text-sm">
-              Gestion de versions et collaboration
-            </p>
-          </div>
-
-          <!-- Makefile Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-yellow-500 to-yellow-600 glow-gradient"
-            >
-              <i class="fas fa-file-code text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">Makefile</h3>
-            <p class="text-neutral-400 text-sm">
-              Automatisation de compilation et organisation
-            </p>
-          </div>
-
-          <!-- Network Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-green-600 to-green-700 glow-blue"
-            >
-              <i class="fas fa-network-wired text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">Réseau</h3>
-            <p class="text-neutral-400 text-sm">
-              TCP/IP, configuration, sécurité basique
-            </p>
-          </div>
-
-          <!-- Proxmox Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-teal-500 to-cyan-600 glow-blue"
-            >
-              <i class="fas fa-server text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">Proxmox</h3>
-            <p class="text-neutral-400 text-sm">
-              Virtualisation, gestion de clusters
-            </p>
-          </div>
-
-          <!-- Bash Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-yellow-600 to-yellow-700 glow-gradient"
-            >
-              <i class="fas fa-terminal text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">Bash</h3>
-            <p class="text-neutral-400 text-sm">Scripting et automatisation</p>
-          </div>
-
-          <!-- ESP32 & IoT Technology Card -->
-          <div class="tech-card group">
-            <div
-              class="tech-icon bg-gradient-to-br from-indigo-600 to-indigo-700 glow-purple"
-            >
-              <i class="fas fa-microchip text-3xl icon-hover"></i>
-            </div>
-            <h3 class="font-semibold text-lg mb-2">ESP32 & Domotique</h3>
-            <p class="text-neutral-400 text-sm">
-              Programmation embarquée, intégration de capteurs
+            <p>
+              Motivé par l’innovation et la résolution de problèmes complexes,
+              je suis à la recherche d’opportunités pour contribuer activement
+              à des projets ambitieux, tout en continuant à approfondir mes
+              connaissances dans un environnement professionnel exigeant.
             </p>
           </div>
         </div>
+        <div class="text-center">
+          <div class="relative inline-block">
+            <div
+              class="w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center border-4 border-blue-500/30 about-section-main-circle">
+              <div class="text-center">
+                <i class="fas fa-code text-6xl text-blue-400 mb-4 about-section-icon"></i>
+                <div class="text-2xl font-bold text-neutral-300">EG</div>
+                <div class="text-sm text-neutral-400 mt-2">Développeur</div>
+              </div>
+            </div>
+            <div
+              class="absolute -bottom-4 -right-4 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg about-section-icon transition-transform duration-300 hover:scale-110">
+              <i class="fas fa-check text-white text-xl"></i>
+            </div>
+            <div
+              class="absolute -top-4 -left-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg about-section-icon transition-transform duration-300 hover:scale-110">
+              <i class="fas fa-laptop-code text-white text-sm"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- ========== ADDITIONAL SKILLS SECTION ========== -->
-        <div class="mt-16 pt-12 border-t border-neutral-800">
-          <h3 class="text-2xl font-bold mb-8 text-center">
-            <i class="fas fa-plus-circle mr-3 text-blue-500"></i>
-            Également à l'aise avec
-          </h3>
+  <!-- ========== RECENT PROJECTS SECTION ========== -->
+  <section id="projects" class="py-20 relative text-center">
+    <!-- Section Header -->
+    <div class="mb-16 fade-in">
+      <h2 class="text-4xl font-bold mb-4 gradient-text-animated">
+        Projets récents
+      </h2>
+      <p class="text-neutral-400 text-lg">
+        Découvrez mes réalisations les plus marquantes
+      </p>
+    </div>
 
-          <!-- Skills tags grid -->
+    <!-- Projects grid with better spacing -->
+    <div class="grid gap-12 md:grid-cols-2 max-w-6xl mx-auto fade-in px-6">
+      <!-- Portfolio Project Card - Cohesive Design -->
+      <div class="project-card-home group">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg web">
+              <i class="fas fa-globe project-icon"></i>
+            </div>
+          </div>
+          <div class="project-status-badge">
+            <div class="status-dot active"></div>
+            <span>Actif</span>
+          </div>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">Portfolio Interactif</h3>
+          <p class="project-description">
+            Site portfolio moderne avec animations fluides, design responsive
+            et architecture modulaire. Utilise les dernières technologies web
+            avec un système de design Apple-inspiré et des effets
+            glassmorphism avancés.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag html">HTML5</span>
+            <span class="tech-tag css">CSS3</span>
+            <span class="tech-tag javascript">JavaScript</span>
+            <span class="tech-tag tailwind">Tailwind</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="portfolio-project.html" class="project-btn btn-primary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Voir le projet</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aquarium Project Card - Cohesive Design -->
+      <div class="project-card-home group">
+        <div class="project-card-header">
+          <div class="project-icon-container">
+            <div class="project-icon-bg monitoring">
+              <i class="fas fa-fish project-icon"></i>
+            </div>
+          </div>
+          <div class="project-status-badge">
+            <div class="status-dot active"></div>
+            <span>Actif</span>
+          </div>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">Box Domotique Aquarium</h3>
+          <p class="project-description">
+            Solution IoT complète de monitoring d'aquarium avec ESP32,
+            capteurs multiples et intégration Home Assistant. Surveillance
+            intelligente avec alertes automatisées et contrôle à distance.
+          </p>
+
+          <div class="project-technologies">
+            <span class="tech-tag qt">ESP32</span>
+            <span class="tech-tag iot">IoT</span>
+            <span class="tech-tag prometheus">Home Assistant</span>
+            <span class="tech-tag realtime">Capteurs</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="aquarium-project.html" class="project-btn btn-primary">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Voir le projet</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Call to action button -->
+    <div class="mt-20 text-center fade-in">
+      <div class="relative inline-block">
+        <!-- Background glow effect -->
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur-xl scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        </div>
+
+        <!-- Main button -->
+        <a href="projects.html"
+          class="glass-button group relative inline-flex items-center gap-4 text-white font-semibold px-12 py-6 rounded-2xl transition-all duration-300 hover:scale-105">
+          <!-- Icon container -->
           <div
-            class="flex flex-wrap justify-center gap-2 max-w-6xl mx-auto px-4"
-          >
-            <!-- Network Security Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-shield-alt text-red-400 group-hover:text-red-300 transition-colors duration-300"
-              ></i>
-              <span>pfSense & Sécurité réseau</span>
-            </div>
-
-            <!-- Wi-Fi Management Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-wifi text-blue-400 group-hover:text-blue-300 transition-colors duration-300"
-              ></i>
-              <span>Unifi & Gestion Wi-Fi</span>
-            </div>
-
-            <!-- Proxmox Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-server text-gray-400 group-hover:text-gray-300 transition-colors duration-300"
-              ></i>
-              <span>Proxmox & Virtualisation</span>
-            </div>
-
-            <!-- ESP32 & IoT Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-microchip text-green-400 group-hover:text-green-300 transition-colors duration-300"
-              ></i>
-              <span>ESP32 & IoT embarqué</span>
-            </div>
-
-            <!-- Network Administration Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-network-wired text-orange-400 group-hover:text-orange-300 transition-colors duration-300"
-              ></i>
-              <span>Administration réseaux & dépannage</span>
-            </div>
-
-            <!-- Bash Scripting Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-terminal text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300"
-              ></i>
-              <span>Scripting Bash & automatisation</span>
-            </div>
-
-            <!-- Hardware Maintenance Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-tools text-purple-400 group-hover:text-purple-300 transition-colors duration-300"
-              ></i>
-              <span>Maintenance systèmes & dépannage hardware</span>
-            </div>
-
-            <!-- Home Assistant Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-home text-teal-400 group-hover:text-teal-300 transition-colors duration-300"
-              ></i>
-              <span>Domotique avec Home Assistant</span>
-            </div>
-
-            <!-- Media Management Skill -->
-            <div class="skill-tag-simple group">
-              <i
-                class="fas fa-photo-video text-pink-400 group-hover:text-pink-300 transition-colors duration-300"
-              ></i>
-              <span>Gestion système média (Plex, Sonarr, Radarr)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== ABOUT SECTION ========== -->
-    <section class="py-20 relative">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-16 items-center fade-in">
-          <div class="glass-card-premium p-8">
-            <h2 class="text-4xl font-bold mb-8 gradient-text">
-              À propos de moi
-            </h2>
-            <div class="space-y-6 text-neutral-300 leading-relaxed">
-              <p>
-                Étudiant en troisième année à Epitech Lyon, je me consacre au
-                développement de compétences solides en infrastructure, réseau
-                et programmation. Mon parcours me permet d’aborder les
-                problématiques techniques avec méthode et pragmatisme, en
-                privilégiant l’efficacité et la qualité des solutions.
-              </p>
-              <p>
-                Motivé par l’innovation et la résolution de problèmes complexes,
-                je suis à la recherche d’opportunités pour contribuer activement
-                à des projets ambitieux, tout en continuant à approfondir mes
-                connaissances dans un environnement professionnel exigeant.
-              </p>
-            </div>
-          </div>
-          <div class="text-center">
-            <div class="relative inline-block">
-              <div
-                class="w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center border-4 border-blue-500/30 about-section-main-circle"
-              >
-                <div class="text-center">
-                  <i
-                    class="fas fa-code text-6xl text-blue-400 mb-4 about-section-icon"
-                  ></i>
-                  <div class="text-2xl font-bold text-neutral-300">EG</div>
-                  <div class="text-sm text-neutral-400 mt-2">Développeur</div>
-                </div>
-              </div>
-              <div
-                class="absolute -bottom-4 -right-4 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg about-section-icon transition-transform duration-300 hover:scale-110"
-              >
-                <i class="fas fa-check text-white text-xl"></i>
-              </div>
-              <div
-                class="absolute -top-4 -left-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg about-section-icon transition-transform duration-300 hover:scale-110"
-              >
-                <i class="fas fa-laptop-code text-white text-sm"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== RECENT PROJECTS SECTION ========== -->
-    <section id="projects" class="py-20 relative text-center">
-      <!-- Section Header -->
-      <div class="mb-16 fade-in">
-        <h2 class="text-4xl font-bold mb-4 gradient-text-animated">
-          Projets récents
-        </h2>
-        <p class="text-neutral-400 text-lg">
-          Découvrez mes réalisations les plus marquantes
-        </p>
-      </div>
-
-      <!-- Projects grid with better spacing -->
-      <div class="grid gap-12 md:grid-cols-2 max-w-6xl mx-auto fade-in px-6">
-        <!-- Portfolio Project Card - Cohesive Design -->
-        <div class="project-card-home group">
-          <div class="project-card-header">
-            <div class="project-icon-container">
-              <div class="project-icon-bg web">
-                <i class="fas fa-globe project-icon"></i>
-              </div>
-            </div>
-            <div class="project-status-badge">
-              <div class="status-dot active"></div>
-              <span>Actif</span>
-            </div>
+            class="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300">
+            <i class="fas fa-folder-open text-lg group-hover:rotate-12 transition-transform duration-300"></i>
           </div>
 
-          <div class="project-content">
-            <h3 class="project-title">Portfolio Interactif</h3>
-            <p class="project-description">
-              Site portfolio moderne avec animations fluides, design responsive
-              et architecture modulaire. Utilise les dernières technologies web
-              avec un système de design Apple-inspiré et des effets
-              glassmorphism avancés.
-            </p>
+          <!-- Button text -->
+          <span class="text-lg font-medium">Découvrir tous mes projets</span>
 
-            <div class="project-technologies">
-              <span class="tech-tag html">HTML5</span>
-              <span class="tech-tag css">CSS3</span>
-              <span class="tech-tag javascript">JavaScript</span>
-              <span class="tech-tag tailwind">Tailwind</span>
-            </div>
-
-            <div class="project-actions">
-              <a href="portfolio-project.html" class="project-btn btn-primary">
-                <i class="fas fa-external-link-alt"></i>
-                <span>Voir le projet</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Aquarium Project Card - Cohesive Design -->
-        <div class="project-card-home group">
-          <div class="project-card-header">
-            <div class="project-icon-container">
-              <div class="project-icon-bg monitoring">
-                <i class="fas fa-fish project-icon"></i>
-              </div>
-            </div>
-            <div class="project-status-badge">
-              <div class="status-dot active"></div>
-              <span>Actif</span>
-            </div>
-          </div>
-
-          <div class="project-content">
-            <h3 class="project-title">Box Domotique Aquarium</h3>
-            <p class="project-description">
-              Solution IoT complète de monitoring d'aquarium avec ESP32,
-              capteurs multiples et intégration Home Assistant. Surveillance
-              intelligente avec alertes automatisées et contrôle à distance.
-            </p>
-
-            <div class="project-technologies">
-              <span class="tech-tag qt">ESP32</span>
-              <span class="tech-tag iot">IoT</span>
-              <span class="tech-tag prometheus">Home Assistant</span>
-              <span class="tech-tag realtime">Capteurs</span>
-            </div>
-
-            <div class="project-actions">
-              <a href="aquarium-project.html" class="project-btn btn-primary">
-                <i class="fas fa-external-link-alt"></i>
-                <span>Voir le projet</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Call to action button -->
-      <div class="mt-20 text-center fade-in">
-        <div class="relative inline-block">
-          <!-- Background glow effect -->
+          <!-- Arrow icon -->
           <div
-            class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur-xl scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          ></div>
+            class="w-8 h-8 bg-gradient-to-br from-white/10 to-white/5 rounded-lg flex items-center justify-content border border-white/10 group-hover:border-white/20 group-hover:translate-x-1 transition-all duration-300">
+            <i class="fas fa-arrow-right text-sm mx-auto"></i>
+          </div>
 
-          <!-- Main button -->
-          <a
-            href="projects.html"
-            class="glass-button group relative inline-flex items-center gap-4 text-white font-semibold px-12 py-6 rounded-2xl transition-all duration-300 hover:scale-105"
-          >
-            <!-- Icon container -->
-            <div
-              class="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300"
-            >
-              <i
-                class="fas fa-folder-open text-lg group-hover:rotate-12 transition-transform duration-300"
-              ></i>
-            </div>
-
-            <!-- Button text -->
-            <span class="text-lg font-medium">Découvrir tous mes projets</span>
-
-            <!-- Arrow icon -->
-            <div
-              class="w-8 h-8 bg-gradient-to-br from-white/10 to-white/5 rounded-lg flex items-center justify-content border border-white/10 group-hover:border-white/20 group-hover:translate-x-1 transition-all duration-300"
-            >
-              <i class="fas fa-arrow-right text-sm mx-auto"></i>
-            </div>
-
-            <!-- Shimmer effect -->
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
-            ></div>
-          </a>
-        </div>
-
-        <!-- Decorative elements -->
-        <div class="flex justify-center gap-4 mt-8 opacity-40">
-          <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+          <!-- Shimmer effect -->
           <div
-            class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
-            style="animation-delay: 0.5s"
-          ></div>
-          <div
-            class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
-            style="animation-delay: 1s"
-          ></div>
-        </div>
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out">
+          </div>
+        </a>
       </div>
-    </section>
 
-    <!-- ========== FOOTER ========== -->
-    <div data-component="footer"></div>
+      <!-- Decorative elements -->
+      <div class="flex justify-center gap-4 mt-8 opacity-40">
+        <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+        <div class="w-2 h-2 bg-purple-400 rounded-full" style="animation-delay: 0.5s"></div>
+        <div class="w-2 h-2 bg-blue-400 rounded-full" style="animation-delay: 1s"></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ========== JAVASCRIPT ========== -->
-    <script src="assets/js/component-loader.js"></script>
-    <script src="assets/js/loader.js"></script>
-    <script src="assets/js/burger.js"></script>
-    <script src="assets/js/module-loader.js"></script>
-    <script src="assets/js/visual-effects.js"></script>
-    <script src="assets/js/three-bg.js"></script>
-    <script src="assets/js/smooth-scroll.js"></script>
-  </body>
+  <!-- ========== FOOTER ========== -->
+  <div data-component="footer"></div>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script src="assets/js/component-loader.js"></script>
+  <script src="assets/js/loader.js"></script>
+  <script src="assets/js/burger.js"></script>
+  <script src="assets/js/module-loader.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
+  <script src="assets/js/three-bg.js"></script>
+  <script src="assets/js/smooth-scroll.js"></script>
+</body>
+
 </html>
