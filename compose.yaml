@@ -4,8 +4,9 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: portfolio-frontend
-    env_file:
-      - .env
+    environment:
+      - BACKEND_URL=${BACKEND_URL}
+      - BACKEND_PORT=${BACKEND_PORT}
     ports:
       - "80:80"
     restart: always
@@ -17,8 +18,24 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     container_name: portfolio-backend
-    env_file:
-      - .env
+    environment:
+      - BACKEND_PORT=${BACKEND_PORT}
+      - BACKEND_URL=${BACKEND_URL}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - FRONTEND_PORT=${FRONTEND_PORT}
+      - FRONTEND_URL_DEV=${FRONTEND_URL_DEV}
+      - FRONTEND_PORT_DEV=${FRONTEND_PORT_DEV}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_BACKEND_USER=${DB_BACKEND_USER}
+      - DB_BACKEND_PASSWORD=${DB_BACKEND_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - TRUSTED_PROXIES=${TRUSTED_PROXIES}
     ports:
       - "8080:8080"
     restart: always
@@ -46,11 +63,10 @@ services:
       - /etc/timezone:/etc/timezone:ro
     restart: always
     healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-d", "${DB_NAME}", "-U", "${DB_ADMIN_USER}"]
+      test: [ "CMD", "pg_isready", "-q", "-d", "${DB_NAME}", "-U", "${DB_ADMIN_USER}" ]
       interval: 5s
       timeout: 60s
       retries: 10
-
 
 volumes:
   db_data:
