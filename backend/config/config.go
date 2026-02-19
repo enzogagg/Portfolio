@@ -1,11 +1,8 @@
 package config
 
 import (
-	"log"
 	"os"
 	"strings"
-
-	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -36,9 +33,6 @@ func getEnv(key, fallback string) string {
 }
 
 func LoadConfig() (*Config, error) {
-	if err := godotenv.Load(); err != nil {
-		log.Printf("no .env file loaded: %v, relying on environment variables", err)
-	}
 	config := &Config{
 		Port:             getEnv("BACKEND_PORT", "8080"),
 		URL:              getEnv("BACKEND_URL", "http://localhost:8080"),
