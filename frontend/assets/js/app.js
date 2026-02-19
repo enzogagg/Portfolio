@@ -67,6 +67,7 @@ class PortfolioApp {
     if (this.isInitialized) {
       return;
     }
+    this.isInitialized = true;
 
     console.info("🚀 Initializing Portfolio Application...");
 

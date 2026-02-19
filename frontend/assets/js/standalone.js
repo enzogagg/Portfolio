@@ -52,6 +52,7 @@
       if (this.isInitialized || document.readyState === "loading") {
         return;
       }
+      this.isInitialized = true;
 
       console.info("🚀 Initializing Portfolio Application (Standalone)...");
 

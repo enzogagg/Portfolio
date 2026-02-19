@@ -38,6 +38,9 @@ const contactModule = {
       // Ensure form fields are visible when module initializes
       forceElementVisibility(form);
 
+      if (form.dataset.initialized === "true") return;
+      form.dataset.initialized = "true";
+
       const submitBtn = form.querySelector("button[type=submit]");
       const nameInput = form.querySelector("#name");
       const emailInput = form.querySelector("#email");
@@ -111,9 +114,8 @@ function showToast(message, type = "info") {
 
     const toast = document.createElement("div");
     toast.id = "contact-toast";
-    toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-xl text-sm font-semibold shadow-lg ${
-      type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"
-    }`;
+    toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-xl text-sm font-semibold shadow-lg ${type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"
+      }`;
     toast.textContent = message;
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 4500);
