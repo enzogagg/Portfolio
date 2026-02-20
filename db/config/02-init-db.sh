@@ -44,7 +44,7 @@ echo "Step 2/3: Granting CONNECT privilege..."
 psql -d postgres -c "GRANT CONNECT ON DATABASE \"$DB_NAME\" TO ${DB_BACKEND_USER}"
 
 echo "Step 3/3: Granting table and sequence privileges..."
-cat <<PSQL | psql -d "$DB_NAME"
+cat <<'PSQL' | psql -d "$DB_NAME"
 -- Use format() to safely inject identifier values where needed
 DO
 \$do\$
@@ -59,7 +59,7 @@ PSQL
 
 echo "Ensuring ownership and idempotent privileges on existing objects..."
 # If the table/sequence exist, make the backend user the owner (use format() to avoid identifier issues)
-cat <<PSQL | psql -d "$DB_NAME"
+cat <<'PSQL' | psql -d "$DB_NAME"
 DO $$
 BEGIN
   IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema='public' AND table_name='contact_submissions') THEN
@@ -73,7 +73,7 @@ $$;
 PSQL
 
 # Apply grants and default privileges using format() to safely quote the role identifier
-cat <<PSQL | psql -d "$DB_NAME"
+cat <<'PSQL' | psql -d "$DB_NAME"
 DO
 \$do\$
 BEGIN
