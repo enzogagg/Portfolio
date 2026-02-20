@@ -60,7 +60,7 @@ PSQL
 echo "Ensuring ownership and idempotent privileges on existing objects..."
 # If the table/sequence exist, make the backend user the owner (use format() to avoid identifier issues)
 cat <<PSQL | psql -d "$DB_NAME"
-DO $$
+DO \$\$
 BEGIN
   IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema='public' AND table_name='contact_submissions') THEN
     EXECUTE format('ALTER TABLE public.contact_submissions OWNER TO %I', '${DB_BACKEND_USER}');
@@ -69,7 +69,7 @@ BEGIN
     EXECUTE format('ALTER SEQUENCE public.contact_submissions_id_seq OWNER TO %I', '${DB_BACKEND_USER}');
   END IF;
 END
-$$;
+\$\$;
 PSQL
 
 # Apply grants and default privileges using format() to safely quote the role identifier
