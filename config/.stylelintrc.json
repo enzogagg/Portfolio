@@ -1,0 +1,5 @@
+{
+  "extends": "stylelint-config-standard",
+  "indentation": 2,
+  "string-quotes": "single"
+}

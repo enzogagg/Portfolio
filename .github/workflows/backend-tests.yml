@@ -1,0 +1,130 @@
+name: Backend Tests
+
+on: [push, pull_request]
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        cache-dependency-path: backend/go.sum
+
+    - name: Install dependencies
+      working-directory: ./backend
+      run: |
+        go mod download
+        go mod verify
+
+    - name: Run unit tests
+      working-directory: ./backend
+      run: |
+        go test -v -race -coverprofile=coverage.out -coverpkg=./... ./tests/...
+        
+    - name: Display coverage
+      working-directory: ./backend
+      run: go tool cover -func=coverage.out
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: ./backend/coverage.out
+        flags: unittests
+        name: backend-unit-tests
+      continue-on-error: true
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: test_admin
+          POSTGRES_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
+          POSTGRES_DB: portfolio_test_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        cache-dependency-path: backend/go.sum
+
+    - name: Install dependencies
+      working-directory: ./backend
+      run: |
+        go mod download
+        go mod verify
+
+    - name: Setup test database
+      env:
+        PGPASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
+      run: |
+        psql -h localhost -U test_admin -d portfolio_test_db -f backend/../db/config/01-schema.sql || echo "Schema already exists"
+        psql -h localhost -U test_admin -d portfolio_test_db << EOF
+        CREATE ROLE ${{ secrets.DB_BACKEND_USER }} WITH LOGIN PASSWORD '${{ secrets.DB_BACKEND_PASSWORD }}';
+        GRANT CONNECT ON DATABASE portfolio_test_db TO ${{ secrets.DB_BACKEND_USER }};
+        GRANT USAGE ON SCHEMA public TO ${{ secrets.DB_BACKEND_USER }};
+        GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ${{ secrets.DB_BACKEND_USER }};
+        GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO ${{ secrets.DB_BACKEND_USER }};
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO ${{ secrets.DB_BACKEND_USER }};
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO ${{ secrets.DB_BACKEND_USER }};
+        EOF
+
+    - name: Run integration tests
+      working-directory: ./backend
+      env:
+        RUN_INTEGRATION_TESTS: true
+        DB_HOST: localhost
+        DB_PORT: "5432"
+        DB_NAME: portfolio_test_db
+        DB_BACKEND_USER: ${{ secrets.DB_BACKEND_USER }}
+        DB_BACKEND_PASSWORD: ${{ secrets.DB_BACKEND_PASSWORD }}
+        SMTP_HOST: ${{ secrets.SMTP_HOST }}
+        SMTP_PORT: ${{ secrets.SMTP_PORT }}
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      run: |
+        go test -v -tags=integration ./tests/integration_test.go
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        cache-dependency-path: backend/go.sum
+
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v4
+      with:
+        version: v1.62
+        working-directory: backend
+        args: --timeout=5m
+      continue-on-error: true

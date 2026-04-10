@@ -1,0 +1,92 @@
+server {
+    listen       80;
+    server_name  localhost;
+
+    root /usr/share/nginx/html;
+    index index.html;
+    # Hide nginx version in error pages and headers
+    server_tokens off;
+    # Performance: enable sendfile and tcp optimizations
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+
+    # Gzip compression for text-based assets
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 5;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml;
+
+    # Prevent caching for the dynamic config.js file so environment variable changes apply immediately
+    location = /assets/js/config.js {
+        add_header Cache-Control "no-cache, must-revalidate, proxy-revalidate" always;
+        add_header Vary "Accept-Encoding";
+        try_files $uri =404;
+    }
+
+    # Serve static files with caching rules
+    # Long cache for versioned assets (JS/CSS/images/fonts) - 1 year and immutable
+    location ~* \.(?:css|js|jpg|jpeg|png|gif|svg|ico|webp|avif|woff|woff2|ttf|eot)$ {
+        try_files $uri =404;
+        access_log off;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        add_header Vary "Accept-Encoding";
+    }
+
+    # Short caching (no store) for HTML so clients always check for updates
+    location ~* \.(?:html?)$ {
+        try_files $uri $uri/ /index.html;
+        add_header Cache-Control "no-cache, must-revalidate, proxy-revalidate" always;
+        add_header Vary "Accept-Encoding";
+    }
+
+    # Proxy API requests internally to the backend container
+    # This prevents any CORS or Mixed Content (HTTPS/HTTP) issues on the client-side
+    location /api/ {
+        proxy_pass ${BACKEND_URL}:${BACKEND_PORT};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Default: serve and fall back to index.html for SPA routes
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Logs
+    error_log /var/log/nginx/error.log warn;
+    access_log /var/log/nginx/access.log;
+
+    # Security headers (add always to include on error responses)
+    # General security (add inside server { })
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()" always;
+    add_header X-Permitted-Cross-Domain-Policies "none" always;
+
+    # HSTS (Strict-Transport-Security) - 2 years
+    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+
+    # COOP (Cross-Origin-Opener-Policy)
+    add_header Cross-Origin-Opener-Policy "same-origin" always;
+    
+    # COEP (Cross-Origin-Embedder-Policy)
+    add_header Cross-Origin-Embedder-Policy "require-corp" always;
+
+    # Strict CSP matching frontend configuration
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://matomo.ega.ovh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://matomo.ega.ovh; connect-src 'self' https://matomo.ega.ovh; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; require-trusted-types-for 'script';" always;
+
+    # CSP report endpoint: accept reports (respond with 204 No Content)
+    location = /csp-report {
+        # Nginx cannot parse the JSON body, but will accept and return 204 for reports
+        return 204;
+    }
+
+    # Optional: once you have tuned CSP, replace the Report-Only header with the enforcement header below
+    # add_header Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; object-src 'none'; base-uri 'self';" always;
+}

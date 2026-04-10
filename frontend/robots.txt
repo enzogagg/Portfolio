@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Provide the sitemap location to help crawlers
+Sitemap: https://portfolio.ega.ovh/sitemap.xml
