@@ -12,6 +12,9 @@ services:
     restart: always
     depends_on:
       - backend
+    networks:
+      management_network:
+        ipv4_address: 192.168.100.59
 
   backend:
     build:
@@ -42,6 +45,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      management_network:
+        ipv4_address: 192.168.100.60
 
   db:
     image: postgres:latest
@@ -67,6 +73,13 @@ services:
       interval: 5s
       timeout: 60s
       retries: 10
+    networks:
+      management_network:
+        ipv4_address: 192.168.100.61
 
 volumes:
   db_data:
+
+networks:
+  management_network:
+    external: true
