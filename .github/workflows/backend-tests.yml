@@ -75,6 +75,11 @@ jobs:
         go mod download
         go mod verify
 
+    - name: Install PostgreSQL client
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y postgresql-client
+
     - name: Setup test database
       env:
         PGPASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
