@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="fr" style="background: #000">
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        background: #000 !important;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      #l {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+
+      #s {
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+
+      #s > div:nth-child(1) {
+        position: absolute;
+        inset: 0;
+        border: 3px solid transparent;
+        border-top-color: #10b981;
+        border-right-color: #3b82f6;
+        border-radius: 50%;
+        animation: s 1s linear infinite;
+      }
+
+      #s > div:nth-child(2) {
+        position: absolute;
+        inset: 8px;
+        border: 3px solid transparent;
+        border-bottom-color: #a855f7;
+        border-left-color: #06b6d4;
+        border-radius: 50%;
+        animation: sr 1.5s linear infinite;
+      }
+
+      #s > div:nth-child(3) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(135deg, #10b981, #3b82f6);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        animation: p 2s ease-in-out infinite;
+      }
+
+      @keyframes s {
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes sr {
+        to { transform: rotate(-360deg); }
+      }
+
+      @keyframes p {
+        0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+      }
+    </style>
+
+    <script>
+      document.documentElement.style.background = "#000";
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-navbutton-color" content="#000000" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <title>GitOps & Automation Hub - Orchestration CI/CD | Enzo Gaggiotti</title>
+    <meta
+      name="description"
+      content="Découvrez comment j'automatise mon infrastructure HomeLab avec Jenkins, Gitea Actions et l'Infrastructure as Code (IaC). Orchestration complète et intelligente."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net https://matomo.ega.ovh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; img-src 'self' data: https://matomo.ega.ovh; connect-src 'self' https://matomo.ega.ovh; object-src 'none'; base-uri 'self'; form-action 'self';"
+    />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/fonts/fontawesome/css/local-fontawesome.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/loader.css" />
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- Matomo -->
+    <script>
+      var _paq = (globalThis._paq = globalThis._paq || []);
+      _paq.push(["setCookieDomain", "*.portfolio.ega.ovh"], ["setDomains", ["*.portfolio.ega.ovh"]], ["trackPageView"], ["enableLinkTracking"]);
+      (function () {
+        var u = "https://matomo.ega.ovh/";
+        _paq.push(["setTrackerUrl", u + "matomo.php"], ["setSiteId", "1"]);
+        var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0];
+        g.async = true; g.src = u + "matomo.js"; s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+  </head>
+
+  <body style="background: #000; margin: 0; padding: 0">
+    <div id="l">
+      <div id="s">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const l = document.getElementById("l");
+        const r = () => {
+          if (l && l.parentNode) {
+            l.style.opacity = "0";
+            setTimeout(() => l.remove(), 500);
+          }
+        };
+        window.addEventListener("load", r);
+        setTimeout(r, 3000);
+        document.body.style.overflow = "auto";
+        document.body.className = "min-h-screen flex flex-col text-white";
+      })();
+    </script>
+
+    <div class="noise-overlay"></div>
+    <div id="webgl-background" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+    <!-- HEADER NAVIGATION -->
+    <div data-component="header"></div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative min-h-[90vh] flex items-center justify-center px-6 pt-20 pb-16 overflow-hidden">
+      <!-- Animated Background -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-emerald-500/10"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Project Visual -->
+        <div class="flex justify-center lg:justify-end">
+          <div class="relative group">
+            <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden relative float-animation">
+              <div class="w-full h-full flex items-center justify-center">
+                <div class="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900 shadow-2xl transform group-hover:scale-105 transition-all duration-500">
+                  <!-- Browser Header -->
+                  <div class="bg-neutral-800 px-4 py-3 flex items-center gap-2 border-b border-white/10">
+                    <div class="flex gap-2">
+                      <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                      <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                      <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                    </div>
+                    <div class="flex-1 mx-4">
+                      <div class="bg-neutral-700 rounded px-3 py-1 text-xs text-neutral-400 font-mono">jenkins.ega.ovh</div>
+                    </div>
+                  </div>
+                  <!-- Content Mockup -->
+                  <div class="relative h-full bg-gradient-to-br from-neutral-900 via-emerald-950/20 to-blue-950/20 p-6 flex flex-col justify-center items-center">
+                    <i class="fab fa-jenkins text-emerald-400 text-6xl mb-4 glow-effect"></i>
+                    <div class="flex flex-wrap justify-center gap-2 mb-4">
+                      <span class="tech-tag px-3 py-1 rounded-full text-emerald-300 bg-emerald-950/40 border border-emerald-400/20">Groovy</span>
+                      <span class="tech-tag px-3 py-1 rounded-full text-blue-300 bg-blue-950/40 border border-blue-400/20">Gitea</span>
+                      <span class="tech-tag px-3 py-1 rounded-full text-cyan-200 bg-cyan-950/40 border border-cyan-300/20">Ansible</span>
+                    </div>
+                    <div class="w-32 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="text-center lg:text-left space-y-8">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-full backdrop-blur-sm">
+            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            <span class="text-sm font-medium text-emerald-400">Logiciel & Automatisation active</span>
+          </div>
+
+          <div class="space-y-4">
+            <h1 class="text-5xl lg:text-7xl font-black tracking-tight leading-tight">
+              <span class="block bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">GitOps Hub</span>
+              <span class="block bg-gradient-to-r from-emerald-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">L'Automatisation Totale</span>
+            </h1>
+            <div class="w-24 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full mx-auto lg:mx-0"></div>
+          </div>
+
+          <div class="space-y-4 text-lg leading-relaxed max-w-2xl">
+            <p class="text-neutral-300">
+              Le projet <span class="text-emerald-400 font-semibold">GitOps Hub</span> est le cerveau central de mon infrastructure. 
+              Il transforme la gestion manuelle en une plateforme <span class="text-blue-400 font-semibold">Self-Healing</span> et automatisée.
+            </p>
+            <p class="text-neutral-300">
+              Chaque modification sur <span class="text-emerald-400 font-semibold">Gitea</span> déclenche via webhooks un pipeline <span class="text-blue-500 font-semibold">Jenkins</span> 
+              qui valide, teste et déploie automatiquement les services sur le cluster Proxmox.
+            </p>
+            <p class="text-emerald-400 font-medium">✅ Pipelines Unifiés - Seed Jobs Dynamiques - 100% Infrastructure as Code</p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-6">
+            <a href="https://jenkins.ega.ovh" target="_blank" rel="noopener" class="glass-button group relative px-8 py-4 bg-gradient-to-r from-emerald-600/90 to-blue-600/90 rounded-xl font-semibold text-white flex items-center gap-3 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(16,185,129,0.5)]">
+              <i class="fab fa-jenkins text-xl"></i>
+              <span>Console Jenkins</span>
+            </a>
+            <a href="proxmox-project.html" class="glass-button group relative px-8 py-4 bg-white/5 border border-white/20 rounded-xl font-semibold text-white flex items-center gap-3 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-emerald-400/50 hover:bg-white/10">
+              <i class="fas fa-server text-lg"></i>
+              <span>Cible Proxmox</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STACK TECHNIQUE ========== -->
+    <section class="relative py-20 fade-in">
+      <div class="relative z-10 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-layer-group text-emerald-400"></i>
+            <span class="text-sm font-medium text-emerald-400">Architecture DevOps</span>
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span class="bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">Stack </span>
+            <span class="bg-gradient-to-r from-emerald-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Technique</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- CI/CD engine -->
+          <div class="bg-gradient-to-br from-emerald-500/5 to-emerald-600/5 border border-emerald-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-emerald-400/40 transition-all duration-300 group">
+            <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i class="fab fa-jenkins text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Pipeline Core</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-emerald-400 mt-1"></i>
+                <span><strong>Jenkins DSL</strong> - Seed Jobs programmables</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-emerald-400 mt-1"></i>
+                <span><strong>Groovy Libraries</strong> - Logique réutilisable</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-emerald-400 mt-1"></i>
+                <span><strong>Gitea Actions</strong> - Validations pré-build</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- IaC -->
+          <div class="bg-gradient-to-br from-blue-500/5 to-blue-600/5 border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-300 group">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-code text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Infrastructure Code</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span><strong>Ansible</strong> - Configuration serveurs</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span><strong>Docker Compose</strong> - Orchestration légère</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-blue-400 mt-1"></i>
+                <span><strong>Proxmox API</strong> - Provisioning VM</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Monitoring -->
+          <div class="bg-gradient-to-br from-cyan-500/5 to-cyan-600/5 border border-cyan-500/20 rounded-2xl p-8 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300 group">
+            <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i class="fas fa-chart-bar text-white text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Monitoring</h3>
+            <ul class="space-y-3 text-neutral-300">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-cyan-400 mt-1"></i>
+                <span><strong>Grafana</strong> - Dashboard métriques CI</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-cyan-400 mt-1"></i>
+                <span><span><strong>Uptime Kuma</strong> - Santé des webhooks</span></span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-cyan-400 mt-1"></i>
+                <span><strong>Prometheus</strong> - Alerting infrastructure</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DEVELOPMENT PROCESS ========== -->
+    <section class="relative py-20 fade-in bg-neutral-900/30">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-tasks text-emerald-400"></i>
+            <span class="text-sm font-medium text-emerald-400">Méthodologie & Étapes</span>
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span class="bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">Processus </span>
+            <span class="bg-gradient-to-r from-emerald-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">d'Automatisation</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass-card-premium p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-black text-xl">1</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">Setup Gitea & Jenkins</h3>
+            </div>
+            <p class="text-neutral-300 mb-4">Déploiement des serveurs sur Proxmox et configuration de l'authentification mutuelle via tokens et clés SSH SSH pour une communication sécurisée.</p>
+            <div class="flex items-center gap-2 text-sm text-neutral-400"><i class="fas fa-clock text-emerald-400"></i><span>Durée : 1 semaine</span></div>
+          </div>
+
+          <div class="glass-card-premium p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-black text-xl">2</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">Seed Job Configuration</h3>
+            </div>
+            <p class="text-neutral-300 mb-4">Utilisation du Job DSL plugin pour automatiser la création des pipelines. Tout nouveau repository est détecté et configuré automatiquement.</p>
+            <div class="flex items-center gap-2 text-sm text-neutral-400"><i class="fas fa-clock text-blue-400"></i><span>Durée : 1.5 semaine</span></div>
+          </div>
+
+          <div class="glass-card-premium p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-black text-xl">3</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">Unified CI Pipeline</h3>
+            </div>
+            <p class="text-neutral-300 mb-4">Création d'un workflow robuste de validation (Linting, Tests Unitaires, Sécurité) qui conditionne le déploiement applicatif final.</p>
+            <div class="flex items-center gap-2 text-sm text-neutral-400"><i class="fas fa-clock text-cyan-400"></i><span>Durée : 2 semaines</span></div>
+          </div>
+
+          <div class="glass-card-premium p-8">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-black text-xl">4</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">Hardening & Monitoring</h3>
+            </div>
+            <p class="text-neutral-300 mb-4">Optimisation des temps de build via le cache NPM et mise en place de dashboards Grafana pour surveiller la santé des déploiements.</p>
+            <div class="flex items-center gap-2 text-sm text-neutral-400"><i class="fas fa-clock text-blue-500"></i><span>Durée : Permanent</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TECHNICAL CHALLENGES ========== -->
+    <section class="relative py-20 fade-in">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-emerald-500/10 border border-blue-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-exclamation-triangle text-blue-400"></i>
+            <span class="text-sm font-medium text-blue-400">Problèmes & Solutions</span>
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span class="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent">Défis </span>
+            <span class="bg-gradient-to-r from-emerald-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Techniques</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <div class="glass-card-premium p-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+              <div class="lg:w-1/3">
+                <div class="flex items-center gap-3 mb-4"><i class="fas fa-bug text-red-400 text-2xl"></i><h3 class="text-xl font-bold text-white">Résolution DNS en CI</h3></div>
+                <p class="text-neutral-400 text-sm">Babel ne parvenait pas à résoudre les modules lors des tests unitaires exécutés depuis la racine du monorepo.</p>
+              </div>
+              <div class="lg:w-2/3 bg-neutral-950/50 rounded-xl p-6 border border-neutral-700">
+                <h4 class="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2"><i class="fas fa-check-circle"></i>Solution</h4>
+                <p class="text-neutral-300 mb-4">Utilisation de <code>require.resolve</code> avec des chemins explicites vers <code>frontend/node_modules</code> pour forcer le contexte de résolution.</p>
+                <div class="bg-neutral-900 rounded-lg p-4 font-mono text-sm text-emerald-400 border border-neutral-800">
+                  <code>plugins: [<br/>&nbsp;&nbsp;[require.resolve('@babel/plugin-transform-runtime', {<br/>&nbsp;&nbsp;&nbsp;&nbsp;paths: [path.resolve(__dirname, '../frontend/node_modules')]<br/>&nbsp;&nbsp;})]<br/>]</code>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card-premium p-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+              <div class="lg:w-1/3">
+                <div class="flex items-center gap-3 mb-4"><i class="fas fa-bug text-orange-400 text-2xl"></i><h3 class="text-xl font-bold text-white">Saturation des Workers</h3></div>
+                <p class="text-neutral-400 text-sm">L'accumulation de builds concurrents saturait la RAM des VMs Jenkins (8GB), causant des échecs de pipeline.</p>
+              </div>
+              <div class="lg:w-2/3 bg-neutral-950/50 rounded-xl p-6 border border-neutral-700">
+                <h4 class="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2"><i class="fas fa-check-circle"></i>Solution</h4>
+                <p class="text-neutral-300 mb-4">Implémentation de limites de ressources dans Docker et configuration de la clause <code>parallelism</code> dans Jenkins avec files d'attente prioritaires.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== METRICS ========== -->
+    <section class="relative py-20 fade-in">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-full backdrop-blur-sm mb-6">
+            <i class="fas fa-chart-bar text-emerald-400"></i>
+            <span class="text-sm font-medium text-emerald-400">Chiffres Clés</span>
+          </div>
+          <h2 class="text-5xl font-black mb-6">
+            <span class="bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">Métriques </span>
+            <span class="bg-gradient-to-r from-emerald-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Hub</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass-card-premium p-8 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-bolt text-white text-2xl"></i></div>
+            <div class="text-4xl font-black text-emerald-400 mb-2">99.9%</div>
+            <div class="text-neutral-400">Disponibilité CI</div>
+            <div class="text-xs text-neutral-500 mt-2">Zero Downtime</div>
+          </div>
+
+          <div class="glass-card-premium p-8 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-clock text-white text-2xl"></i></div>
+            <div class="text-4xl font-black text-blue-400 mb-2">&lt; 5m</div>
+            <div class="text-neutral-400">Temps de build</div>
+            <div class="text-xs text-neutral-500 mt-2">Cache optimisé</div>
+          </div>
+
+          <div class="glass-card-premium p-8 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-code-branch text-white text-2xl"></i></div>
+            <div class="text-4xl font-black text-cyan-400 mb-2">12+</div>
+            <div class="text-neutral-400">Pipelines actifs</div>
+            <div class="text-xs text-neutral-500 mt-2">Automatisation totale</div>
+          </div>
+
+          <div class="glass-card-premium p-8 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i class="fas fa-shield-alt text-white text-2xl"></i></div>
+            <div class="text-4xl font-black text-purple-400 mb-2">100%</div>
+            <div class="text-neutral-400">Couverture IaC</div>
+            <div class="text-xs text-neutral-500 mt-2">Zéro install manuelle</div>
+          </div>
+        </div>
+
+        <div class="mt-12 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl p-8 backdrop-blur-sm">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-info-circle text-white text-xl"></i></div>
+            <div>
+              <h3 class="text-xl font-bold text-white mb-2">État actuel du hub</h3>
+              <p class="text-neutral-300 mb-4">Le système est entièrement <strong>opérationnel</strong>. Tous les repositories de l'infrastructure sont désormais intégrés dans le workflow GitOps.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-sm text-emerald-400"><i class="fas fa-check mr-1"></i> Webhooks actifs</span>
+                <span class="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-sm text-emerald-400"><i class="fas fa-check mr-1"></i> Tests auto 100% passés</span>
+                <span class="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-sm text-blue-400"><i class="fas fa-sync-alt mr-1"></i> Déploiement auto</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== NEXT PROJECT NAVIGATION ========== -->
+    <section class="py-20 border-t border-white/10 bg-neutral-950/20">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-2xl font-bold mb-8 text-neutral-400">Continuer l'exploration</h2>
+        <a href="aquarium-project.html" class="group relative inline-block p-1 rounded-2xl bg-gradient-to-r from-emerald-500 to-blue-500 overflow-hidden transition-transform duration-500 hover:scale-105 active:scale-95 shadow-2xl">
+          <div class="px-12 py-6 rounded-[calc(1rem-1px)] bg-neutral-900 flex flex-col items-center gap-2 group-hover:bg-neutral-800 transition-colors duration-500">
+            <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold">Projet Suivant</span>
+            <div class="flex items-center gap-3">
+              <span class="text-2xl font-black text-white">AquaSense Aquarium</span>
+              <i class="fas fa-arrow-right text-emerald-400 group-hover:translate-x-2 transition-transform duration-300"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <div data-component="footer"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/component-loader.js"></script>
+    <script src="assets/js/module-loader.js"></script>
+    <script src="assets/js/visual-effects.js"></script>
+    <script src="assets/js/three-bg.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+  </body>
+</html>
