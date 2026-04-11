@@ -15,11 +15,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package.json
 
       - name: Install dependencies
-        run: npm install
+        working-directory: ./frontend
+        run: |
+          npm config set fetch-retries 5
+          npm config set fetch-retry-mintimeout 20000
+          npm config set fetch-retry-maxtimeout 120000
+          npm install --no-audit --no-fund --prefer-offline
 
       - name: Run Jest unit tests
+        working-directory: ./frontend
         run: npm run test:unit
 
       - name: Upload coverage report
@@ -80,11 +88,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package.json
 
       - name: Install dependencies
-        run: npm install
+        working-directory: ./frontend
+        run: |
+          npm config set fetch-retries 5
+          npm config set fetch-retry-mintimeout 20000
+          npm config set fetch-retry-maxtimeout 120000
+          npm install --no-audit --no-fund --prefer-offline
 
       - name: Run ESLint
+        working-directory: ./frontend
         run: npm run lint
 
   validate:
@@ -100,11 +116,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package.json
 
       - name: Install dependencies
-        run: npm install
+        working-directory: ./frontend
+        run: |
+          npm config set fetch-retries 5
+          npm config set fetch-retry-mintimeout 20000
+          npm config set fetch-retry-maxtimeout 120000
+          npm install --no-audit --no-fund --prefer-offline
 
       - name: Run full validation
+        working-directory: ./frontend
         run: npm run format:check
 
       - name: Success notification
