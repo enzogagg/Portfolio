@@ -2,8 +2,7 @@
 
 # Portfolio - Enzo Gaggiotti
 
-[![Backend Tests](https://img.shields.io/github/actions/workflow/status/enzogagg/Portfolio/backend-tests.yml?branch=main&label=Backend%20Tests&style=for-the-badge&logo=github)](https://github.com/enzogagg/Portfolio/actions/workflows/backend-tests.yml)
-[![Frontend Tests](https://img.shields.io/github/actions/workflow/status/enzogagg/Portfolio/frontend-tests.yml?branch=main&label=Frontend%20Tests&style=for-the-badge&logo=github)](https://github.com/enzogagg/Portfolio/actions/workflows/frontend-tests.yml)
+[![Unified CI/CD](https://img.shields.io/github/actions/workflow/status/enzogagg/Portfolio/unified-ci.yml?branch=main&label=CI/CD%20Pipeline&style=for-the-badge&logo=github)](https://github.com/enzogagg/Portfolio/actions/workflows/unified-ci.yml)
 [![License](https://img.shields.io/github/license/enzogagg/Portfolio?style=for-the-badge&color=blue)](https://opensource.org/licenses/MIT)
 
 ![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
