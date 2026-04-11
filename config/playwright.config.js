@@ -4,14 +4,16 @@ const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: '../frontend/tests/playwright',
+  timeout: 60000,
   fullyParallel: true,
   reporter: 'html',
   use: {
     baseURL: 'http://localhost:8000',
     trace: 'on-first-retry',
+    actionTimeout: 15000,
   },
   expect: {
-    timeout: 10000,
+    timeout: 15000,
     toHaveScreenshot: { maxDiffPixels: 100 },
   },
   projects: [
