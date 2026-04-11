@@ -16,13 +16,13 @@ import (
 )
 
 func main() {
-	config, err := config.LoadConfig()
+	cfg, err := config.LoadConfig()
 	if err != nil {
 		log.Fatalf("Error loading config: %v", err)
 	}
 
 	// Initialize database pool
-	pool, err := repository.NewDbPool(*config)
+	pool, err := repository.NewDbPool(*cfg)
 	if err != nil {
 		log.Fatalf("Error creating database pool: %v", err)
 	}
@@ -32,11 +32,11 @@ func main() {
 	contactRepo := repository.NewContactRepository(pool)
 
 	emailService := services.NewSMTPService(
-		config.SmtpHost,
-		config.SmtpPort,
-		config.SmtpUser,
-		config.SmtpPass,
-		config.AdminEmail,
+		cfg.SmtpHost,
+		cfg.SmtpPort,
+		cfg.SmtpUser,
+		cfg.SmtpPass,
+		cfg.AdminEmail,
 	)
 
 	// Initialize handlers
@@ -51,7 +51,7 @@ func main() {
 
 	// Use trusted proxies from configuration (set via TRUSTED_PROXIES env var).
 	// The config loader provides a default of "127.0.0.1" when unset.
-	trusted := config.TrustedProxies
+	trusted := cfg.TrustedProxies
 	if len(trusted) == 0 {
 		trusted = []string{"127.0.0.1"}
 	}
@@ -60,13 +60,13 @@ func main() {
 	}
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{config.FrontendURL, config.FrontendURL_Dev, "http://localhost", "http://127.0.0.1"},
+		AllowOrigins:     []string{cfg.FrontendURL, cfg.FrontendURL_Dev, "http://localhost", "http://127.0.0.1"},
 		AllowMethods:     []string{"GET", "POST", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
 			// Allow configured origins
-			if origin == config.FrontendURL || origin == config.FrontendURL_Dev {
+			if origin == cfg.FrontendURL || origin == cfg.FrontendURL_Dev {
 				return true
 			}
 			// Allow localhost with any port (http://localhost:*) and 127.0.0.1
@@ -79,8 +79,8 @@ func main() {
 
 	api.RegisterRoutes(router, contactHandler)
 
-	log.Printf("Starting server on port %s...", config.Port)
-	if err := router.Run(":" + config.Port); err != nil {
+	log.Printf("Starting server on port %s...", cfg.Port)
+	if err := router.Run(":" + cfg.Port); err != nil {
 		log.Fatalf("Error starting server: %v", err)
 	}
 }
