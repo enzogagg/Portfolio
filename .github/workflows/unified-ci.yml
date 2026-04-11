@@ -105,17 +105,3 @@ jobs:
       - name: Run Linting
         working-directory: ./frontend
         run: npm run lint
-
-  # --- CD TRIGGER JOB ---
-  trigger-jenkins:
-    name: Trigger Jenkins CD
-    runs-on: ubuntu-latest
-    needs: [backend-unit-tests, backend-lint, frontend-unit-tests, frontend-lint]
-    if: success()
-    steps:
-      - name: Notify Jenkins for CD
-        run: |
-          echo "Triggering Jenkins CD as all checks passed."
-          curl -X POST "https://jenkins.ega.ovh/generic-webhook-trigger/invoke?token=${{ secrets.JENKINS_TRIGGER_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d "{\"commit\": \"${{ github.sha }}\", \"ref\": \"${{ github.ref }}\", \"source\": \"Unified CI Pipeline\"}"
