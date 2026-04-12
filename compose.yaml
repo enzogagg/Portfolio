@@ -4,6 +4,15 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: portfolio-frontend
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://192.168.100.49:3100/loki/api/v1/push"
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     environment:
       - BACKEND_URL=${BACKEND_URL}
       - BACKEND_PORT=${BACKEND_PORT}
@@ -21,6 +30,15 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     container_name: portfolio-backend
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://192.168.100.49:3100/loki/api/v1/push"
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     environment:
       - BACKEND_PORT=${BACKEND_PORT}
       - BACKEND_URL=${BACKEND_URL}
@@ -52,6 +70,15 @@ services:
   db:
     image: postgres:latest
     container_name: portfolio-db
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://192.168.100.49:3100/loki/api/v1/push"
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     ports:
       - "5432:5432"
     environment:
