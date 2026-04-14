@@ -1,58 +1,49 @@
 services:
   frontend:
+    container_name: portfolio-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: portfolio-frontend
-    logging:
-      driver: loki
-      options:
-        loki-url: "http://192.168.100.49:3100/loki/api/v1/push"
-        loki-retries: 2
-        loki-max-backoff: 800ms
-        loki-timeout: 1s
-        keep-file: "true"
-        mode: "non-blocking"
-    env_file:
-      - /run/secrets/Portfolio/.env
+    restart: always
     ports:
       - "80:80"
-    restart: always
-    depends_on:
-      - backend
+    env_file:
+      - /run/secrets/Portfolio/.env
     networks:
       management_network:
         ipv4_address: 192.168.100.59
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    depends_on:
+      - backend
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://192.168.100.49:3100/loki/api/v1/push"
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
 
   backend:
+    container_name: portfolio-backend
     build:
       context: .
       dockerfile: backend/Dockerfile
-    container_name: portfolio-backend
-    logging:
-      driver: loki
-      options:
-        loki-url: "http://192.168.100.49:3100/loki/api/v1/push"
-        loki-retries: 2
-        loki-max-backoff: 800ms
-        loki-timeout: 1s
-        keep-file: "true"
-        mode: "non-blocking"
-    env_file:
-      - /run/secrets/Portfolio/.env
+    restart: always
     ports:
       - "8080:8080"
-    restart: always
-    depends_on:
-      db:
-        condition: service_healthy
+    env_file:
+      - /run/secrets/Portfolio/.env
     networks:
       management_network:
         ipv4_address: 192.168.100.60
-
-  db:
-    image: postgres:latest
-    container_name: portfolio-db
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    depends_on:
+      db:
+        condition: service_healthy
     logging:
       driver: loki
       options:
@@ -62,6 +53,11 @@ services:
         loki-timeout: 1s
         keep-file: "true"
         mode: "non-blocking"
+
+  db:
+    container_name: portfolio-db
+    image: postgres:latest
+    restart: always
     ports:
       - "5432:5432"
     env_file:
@@ -72,15 +68,25 @@ services:
       - ./db/config/02-init-db.sh:/docker-entrypoint-initdb.d/02-init-db.sh:ro
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-    restart: always
+    networks:
+      management_network:
+        ipv4_address: 192.168.100.61
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://192.168.100.49:3100/loki/api/v1/push"
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     healthcheck:
       test: [ "CMD", "pg_isready", "-q", "-d", "${DB_NAME}", "-U", "${DB_ADMIN_USER}" ]
       interval: 5s
       timeout: 60s
       retries: 10
-    networks:
-      management_network:
-        ipv4_address: 192.168.100.61
 
 volumes:
   db_data:
