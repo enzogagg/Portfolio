@@ -7,11 +7,11 @@ services:
     restart: always
     ports:
       - "80:80"
-    env_file:
-      - /run/secrets/Portfolio/.env
     networks:
       management_network:
         ipv4_address: 192.168.100.59
+    env_file:
+      - /run/secrets/Portfolio/.env
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     depends_on:
@@ -34,11 +34,11 @@ services:
     restart: always
     ports:
       - "8080:8080"
-    env_file:
-      - /run/secrets/Portfolio/.env
     networks:
       management_network:
         ipv4_address: 192.168.100.60
+    env_file:
+      - /run/secrets/Portfolio/.env
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     depends_on:
@@ -60,17 +60,17 @@ services:
     restart: always
     ports:
       - "5432:5432"
-    env_file:
-      - /run/secrets/Portfolio/.env
+    networks:
+      management_network:
+        ipv4_address: 192.168.100.61
     volumes:
       - db_data:/var/lib/postgresql
       - ./db/config/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
       - ./db/config/02-init-db.sh:/docker-entrypoint-initdb.d/02-init-db.sh:ro
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-    networks:
-      management_network:
-        ipv4_address: 192.168.100.61
+    env_file:
+      - /run/secrets/Portfolio/.env
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     logging:
