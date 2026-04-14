@@ -13,9 +13,8 @@ services:
         loki-timeout: 1s
         keep-file: "true"
         mode: "non-blocking"
-    environment:
-      - BACKEND_URL=${BACKEND_URL}
-      - BACKEND_PORT=${BACKEND_PORT}
+    env_file:
+      - /run/secrets/Portfolio/.env
     ports:
       - "80:80"
     restart: always
@@ -39,24 +38,8 @@ services:
         loki-timeout: 1s
         keep-file: "true"
         mode: "non-blocking"
-    environment:
-      - BACKEND_PORT=${BACKEND_PORT}
-      - BACKEND_URL=${BACKEND_URL}
-      - SMTP_HOST=${SMTP_HOST}
-      - SMTP_PORT=${SMTP_PORT}
-      - SMTP_USER=${SMTP_USER}
-      - SMTP_PASSWORD=${SMTP_PASSWORD}
-      - FRONTEND_URL=${FRONTEND_URL}
-      - FRONTEND_PORT=${FRONTEND_PORT}
-      - FRONTEND_URL_DEV=${FRONTEND_URL_DEV}
-      - FRONTEND_PORT_DEV=${FRONTEND_PORT_DEV}
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_BACKEND_USER=${DB_BACKEND_USER}
-      - DB_BACKEND_PASSWORD=${DB_BACKEND_PASSWORD}
-      - DB_NAME=${DB_NAME}
-      - TRUSTED_PROXIES=${TRUSTED_PROXIES}
+    env_file:
+      - /run/secrets/Portfolio/.env
     ports:
       - "8080:8080"
     restart: always
@@ -81,13 +64,8 @@ services:
         mode: "non-blocking"
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=${DB_ADMIN_USER}
-      - POSTGRES_PASSWORD=${DB_ADMIN_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
-      - DB_NAME=${DB_NAME}
-      - DB_BACKEND_USER=${DB_BACKEND_USER}
-      - DB_BACKEND_PASSWORD=${DB_BACKEND_PASSWORD}
+    env_file:
+      - /run/secrets/Portfolio/.env
     volumes:
       - db_data:/var/lib/postgresql
       - ./db/config/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
